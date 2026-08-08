@@ -243,7 +243,7 @@
 
         /* TABS SYSTEM inside Right Panel */
         .panel-tabs {
-            display: none;
+            display: flex;
             background: rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
@@ -1011,7 +1011,7 @@
             overflow-y: auto;
         }
         #dashboard-shell.active {
-            display: none;
+            display: flex;
         }
         .db-header {
             display: flex;
