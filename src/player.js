@@ -2137,8 +2137,9 @@ import { maths, bezier } from './engine/bezier.js';
             const backBtn = $("player-back-btn");
             if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
-            if (autohide && !video.paused) {
-                hideControlsTimer = setTimeout(hideControls, 2000);
+            if (autohide) {
+                const timeoutMs = video.paused ? 3500 : 2500;
+                hideControlsTimer = setTimeout(hideControls, timeoutMs);
             }
         }
 
@@ -2151,11 +2152,11 @@ import { maths, bezier } from './engine/bezier.js';
 
         function toggleControls() {
             if (controlsOverlay.classList.contains("visible")) hideControls();
-            else showControls();
+            else showControls(true);
         }
 
         const canvasArea = $("canvas-area");
-        canvasArea.addEventListener("mousemove", () => showControls());
+        canvasArea.addEventListener("mousemove", () => showControls(true));
         canvasArea.addEventListener("touchend", (e) => {
             const gsOverlay = $("gs-overlay");
             const videoCircle = $("video-circle");
@@ -2180,9 +2181,15 @@ import { maths, bezier } from './engine/bezier.js';
             if (!isOnControl) toggleControls();
         });
 
-        video.addEventListener("pause", () => showControls(false));
-        video.addEventListener("play", () => showControls());
-        showControls();
+        video.addEventListener("pause", () => {
+            releaseWakeLock();
+            showControls(true);
+        });
+        video.addEventListener("play", () => {
+            requestWakeLock();
+            showControls(true);
+        });
+        showControls(true);
 
         // Fullscreen handles
         document.addEventListener("fullscreenchange", () => {
@@ -2485,6 +2492,7 @@ import { maths, bezier } from './engine/bezier.js';
         function destroyEngine() {
             console.log("[Engine] Destroying engine state and purging caches...");
             engineLoaded = false;
+            releaseWakeLock();
             if (video) {
                 try { video.pause(); } catch (e) {}
             }
