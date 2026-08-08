@@ -2565,11 +2565,14 @@ import { switchView } from './dashboard.js';
             })();
         })();
 
-        
-// Export bindings
+        // Export bindings
 export { runEngine, loadLectureByUid, processData, syncLoop, doSeek };
 window.runEngine = runEngine;
 window.loadLectureByUid = loadLectureByUid;
 window.processData = processData;
 window.syncLoop = syncLoop;
 window.doSeek = doSeek;
+window.$ = $;
+window.video = video;
+window.resizeCanvas = resizeCanvas;
+window.setStatus = setStatus;

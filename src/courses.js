@@ -290,7 +290,7 @@ const CALCULUS_LECTURES = [
     }
 ];
 
-        let activeUid = "371ARO0LCZM7PJUQ2JAU"; // Default to Lec 1
+        window.activeUid = "371ARO0LCZM7PJUQ2JAU"; // Default to Lec 1
 
         const ALGEBRA_LECTURES = [
     {
@@ -436,7 +436,7 @@ const CALCULUS_LECTURES = [
             }
         ];
 
-        let activeCourseId = "calculus-1";
+        window.activeCourseId = "calculus-1";
 
         function findCourseByLectureUid(uid) {
             for (const c of COURSES) {
