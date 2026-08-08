@@ -108,13 +108,18 @@
             height: 100%;
             width: 0%;
             background: var(--accent);
-            box-shadow: 0 0 10px rgba(56,189,248,0.4);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
             transition: width 0.3s ease;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* BUFFERING */
@@ -183,7 +188,7 @@
             display: flex;
             flex-direction: column;
             border-left: 1px solid var(--border);
-            transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             position: relative;
             min-height: 0;
@@ -213,11 +218,15 @@
             z-index: 8000;
             color: var(--text-2);
             font-size: 11px;
-            transition: right 0.3s cubic-bezier(0.4,0,0.2,1), background 0.15s;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s;
         }
-        #panel-toggle:hover { background: var(--surface-elevated); color: var(--text); }
 
-        #right-panel:not(.collapsed) ~ #panel-toggle {
+        #panel-toggle:hover {
+            background: var(--surface-elevated);
+            color: var(--text);
+        }
+
+        #right-panel:not(.collapsed)~#panel-toggle {
             right: 280px;
         }
 
@@ -231,6 +240,7 @@
             touch-action: none;
             transition: border-radius 0.3s;
         }
+
         #video-circle video {
             width: 100%;
             height: 100%;
@@ -238,7 +248,10 @@
             display: block;
             pointer-events: none;
         }
-        #video-circle video.chroma-active { filter: url(#chroma-key); }
+
+        #video-circle video.chroma-active {
+            filter: url(#chroma-key);
+        }
 
         /* TABS SYSTEM inside Right Panel */
         .panel-tabs {
@@ -247,6 +260,7 @@
             border-bottom: 1px solid var(--border);
             flex-shrink: 0;
         }
+
         body.light-mode .panel-tabs {
             background: rgba(0, 0, 0, 0.02);
         }
@@ -278,6 +292,7 @@
             border-bottom-color: var(--accent) !important;
             background: rgba(255, 255, 255, 0.04) !important;
         }
+
         body.light-mode .tab-btn.active {
             background: rgba(0, 0, 0, 0.02) !important;
         }
@@ -302,6 +317,7 @@
             align-items: center;
             gap: 8px;
         }
+
         .doubts-title {
             font-size: 13px;
             font-weight: 700;
@@ -309,6 +325,7 @@
             letter-spacing: 0.3px;
             flex: 1;
         }
+
         .doubts-body {
             flex: 1;
             overflow-y: auto;
@@ -317,8 +334,15 @@
             flex-direction: column;
             gap: 10px;
         }
-        .doubts-body::-webkit-scrollbar { width: 4px; }
-        .doubts-body::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+        .doubts-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .doubts-body::-webkit-scrollbar-thumb {
+            background: var(--border-2);
+            border-radius: 2px;
+        }
 
         /* Slide thumbnails in doubts panel */
         .slide-thumb {
@@ -330,15 +354,32 @@
             cursor: pointer;
             position: relative;
             background: var(--surface-elevated);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             transition: border-color .2s, transform .15s;
         }
-        .slide-thumb:hover { border-color: var(--accent); transform: scale(1.01); }
-        .slide-thumb.active { border-color: var(--accent); }
-        .slide-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+
+        .slide-thumb:hover {
+            border-color: var(--accent);
+            transform: scale(1.01);
+        }
+
+        .slide-thumb.active {
+            border-color: var(--accent);
+        }
+
+        .slide-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .slide-num {
-            position:absolute; bottom:3px; right:6px;
-            font-size:9px; font-weight:700;
+            position: absolute;
+            bottom: 3px;
+            right: 6px;
+            font-size: 9px;
+            font-weight: 700;
             color: var(--text-3);
             font-family: 'JetBrains Mono', monospace;
         }
@@ -356,6 +397,7 @@
             gap: 6px;
             flex-shrink: 0;
         }
+
         body.light-mode .lec-item {
             background: rgba(0, 0, 0, 0.01);
         }
@@ -366,6 +408,7 @@
             background: rgba(14, 165, 233, 0.08);
             box-shadow: 0 4px 12px rgba(14, 165, 233, 0.08);
         }
+
         body.light-mode .lec-item:hover,
         body.light-mode .lec-item.active {
             background: rgba(14, 165, 233, 0.04);
@@ -424,12 +467,33 @@
             display: block;
         }
 
-        #slide-canvas { z-index: 1; }
-        #hl-canvas { z-index: 2; opacity: 0.35; }
-        #draw-canvas { z-index: 3; }
-        #shape-preview-canvas { z-index: 4; pointer-events: none; }
-        #pen-canvas { z-index: 5; }
-        #eraser-canvas { z-index: 6; pointer-events: none; }
+        #slide-canvas {
+            z-index: 1;
+        }
+
+        #hl-canvas {
+            z-index: 2;
+            opacity: 0.35;
+        }
+
+        #draw-canvas {
+            z-index: 3;
+        }
+
+        #shape-preview-canvas {
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        #pen-canvas {
+            z-index: 5;
+        }
+
+        #eraser-canvas {
+            z-index: 6;
+            pointer-events: none;
+        }
+
         #laser-canvas {
             z-index: 7;
             pointer-events: none;
@@ -460,8 +524,14 @@
             will-change: left, top;
         }
 
-        #gs-overlay.show { display: block; }
-        #gs-overlay:active { cursor: grabbing; }
+        #gs-overlay.show {
+            display: block;
+        }
+
+        #gs-overlay:active {
+            cursor: grabbing;
+        }
+
         #gs-video {
             width: 100%;
             height: 100%;
@@ -505,6 +575,7 @@
             transition: opacity .25s;
             opacity: 0;
         }
+
         body.light-mode #pointer-dot {
             background: #ef4444;
             box-shadow: 0 0 12px 6px rgba(239, 68, 68, 0.9), 0 0 26px 12px rgba(239, 68, 68, 0.5);
@@ -550,7 +621,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.15) 80%, transparent 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 80%, transparent 100%);
             padding: 0 18px 12px;
             display: flex;
             flex-direction: column;
@@ -560,7 +631,11 @@
             z-index: 200;
             pointer-events: auto;
         }
-        #controls-overlay.visible { opacity: 1; pointer-events: auto; }
+
+        #controls-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
         /* SEEK BAR ROW */
         .ua-seek-row {
@@ -577,14 +652,18 @@
             -webkit-appearance: none;
             appearance: none;
             background: linear-gradient(to right,
-                var(--accent) var(--pct, 0%),
-                rgba(255,255,255,0.25) var(--pct, 0%));
+                    var(--accent) var(--pct, 0%),
+                    rgba(255, 255, 255, 0.25) var(--pct, 0%));
             border-radius: 4px;
             outline: none;
             cursor: pointer;
             transition: height 0.15s ease;
         }
-        #seek-bar:hover { height: 6px; }
+
+        #seek-bar:hover {
+            height: 6px;
+        }
+
         #seek-bar::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 14px;
@@ -593,14 +672,19 @@
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid var(--accent);
-            box-shadow: 0 0 8px var(--accent-glow), 0 1px 3px rgba(0,0,0,0.6);
+            box-shadow: 0 0 8px var(--accent-glow), 0 1px 3px rgba(0, 0, 0, 0.6);
             transition: transform 0.15s ease;
         }
-        #seek-bar:hover::-webkit-slider-thumb { transform: scale(1.15); }
+
+        #seek-bar:hover::-webkit-slider-thumb {
+            transform: scale(1.15);
+        }
 
         #chapter-marks {
             position: absolute;
-            left: 0; right: 0; top: 50%;
+            left: 0;
+            right: 0;
+            top: 50%;
             transform: translateY(-50%);
             height: 16px;
             pointer-events: none;
@@ -615,7 +699,8 @@
             height: 40px;
         }
 
-        .ua-left, .ua-right {
+        .ua-left,
+        .ua-right {
             display: flex;
             align-items: center;
             gap: 4px;
@@ -637,13 +722,24 @@
             flex-shrink: 0;
             -webkit-text-fill-color: #fff !important;
         }
-        .ua-btn *, .ua-btn *::before, .ua-btn *::after {
+
+        .ua-btn *,
+        .ua-btn *::before,
+        .ua-btn *::after {
             color: #fff !important;
             fill: #fff !important;
             -webkit-text-fill-color: #fff !important;
         }
-        .ua-btn:hover { background: rgba(255,255,255,0.14) !important; transform: translateY(-1px); }
-        .ua-btn:active { background: rgba(229,9,20,0.25) !important; transform: translateY(0) scale(0.94); }
+
+        .ua-btn:hover {
+            background: rgba(255, 255, 255, 0.14) !important;
+            transform: translateY(-1px);
+        }
+
+        .ua-btn:active {
+            background: rgba(229, 9, 20, 0.25) !important;
+            transform: translateY(0) scale(0.94);
+        }
 
         #play-btn {
             width: 42px;
@@ -654,9 +750,16 @@
             color: #fff !important;
             -webkit-text-fill-color: #fff !important;
         }
-        #play-btn:hover { background: rgba(14, 165, 233, 0.4) !important; }
 
-        .ua-skip-btn { position: relative; font-size: 18px; }
+        #play-btn:hover {
+            background: rgba(14, 165, 233, 0.4) !important;
+        }
+
+        .ua-skip-btn {
+            position: relative;
+            font-size: 18px;
+        }
+
         .ua-skip-btn span {
             position: absolute;
             font-size: 7px;
@@ -677,12 +780,17 @@
             padding: 4px 10px;
             font-weight: 500;
             letter-spacing: 0.3px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             margin-left: 4px;
         }
 
-        .ua-vol-wrap { display: flex; align-items: center; gap: 4px; }
+        .ua-vol-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
         #vol-slider {
             width: 0;
             overflow: hidden;
@@ -690,14 +798,19 @@
             -webkit-appearance: none;
             height: 3px;
             border-radius: 3px;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             outline: none;
         }
-        .ua-vol-wrap:hover #vol-slider { width: 60px; }
+
+        .ua-vol-wrap:hover #vol-slider {
+            width: 60px;
+        }
+
         #vol-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 11px; height: 11px;
+            width: 11px;
+            height: 11px;
             background: #fff;
             border-radius: 50%;
         }
@@ -717,9 +830,19 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        #settings-menu.show { display: block; }
-        .settings-item { margin-bottom: 16px; }
-        .settings-item:last-child { margin-bottom: 0; }
+
+        #settings-menu.show {
+            display: block;
+        }
+
+        .settings-item {
+            margin-bottom: 16px;
+        }
+
+        .settings-item:last-child {
+            margin-bottom: 0;
+        }
+
         .settings-label {
             display: block;
             color: #ddd;
@@ -729,6 +852,7 @@
             text-transform: uppercase;
             letter-spacing: 0.8px;
         }
+
         .settings-select {
             width: 100%;
             background: rgba(40, 40, 40, 0.9);
@@ -742,6 +866,7 @@
             font-family: inherit;
             outline: none;
         }
+
         .settings-toggle-btn {
             width: 100%;
             background: rgba(40, 40, 40, 0.9);
@@ -759,10 +884,12 @@
             gap: 8px;
             transition: border-color 0.2s, background 0.2s;
         }
+
         .settings-toggle-btn:hover {
             border-color: var(--accent);
             background: rgba(14, 165, 233, 0.15);
         }
+
         .settings-toggle-btn.hidden-state {
             border-color: rgba(229, 9, 20, 0.5);
             color: #aaa;
@@ -784,7 +911,11 @@
             display: none;
             cursor: crosshair;
         }
-        #pan-minimap.show { display: block; }
+
+        #pan-minimap.show {
+            display: block;
+        }
+
         #minimap-view {
             position: absolute;
             border: 1.5px solid var(--accent);
@@ -792,23 +923,54 @@
             box-sizing: border-box;
             cursor: move;
         }
-        .minimap-bg { width: 100%; height: 100%; opacity: 0.5; object-fit: cover; }
+
+        .minimap-bg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            object-fit: cover;
+        }
 
         /* PORTRAIT (mobile) overrides */
         @media (max-width: 600px) {
-            .ctrl-btn { width: 36px; height: 36px; font-size: 14px; }
-            #play-btn { width: 40px; height: 40px; font-size: 16px; }
-            .time-chip { font-size: 10px; }
-            #right-panel { width: 0 !important; }
+            .ctrl-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            #play-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .time-chip {
+                font-size: 10px;
+            }
+
+            #right-panel {
+                width: 0 !important;
+            }
         }
 
         @media (max-width: 768px) {
-            #right-panel { width: 0 !important; }
-            #panel-toggle { right: 0 !important; }
+            #right-panel {
+                width: 0 !important;
+            }
+
+            #panel-toggle {
+                right: 0 !important;
+            }
         }
 
-        :fullscreen #right-panel { display: none !important; }
-        :fullscreen #panel-toggle { display: none !important; }
+        :fullscreen #right-panel {
+            display: none !important;
+        }
+
+        :fullscreen #panel-toggle {
+            display: none !important;
+        }
 
         #video-circle.fs-floating {
             position: fixed !important;
@@ -819,7 +981,7 @@
             border-radius: 8px !important;
             z-index: 2147483647 !important;
             cursor: grab;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
 
         .settings-select option {
@@ -902,7 +1064,7 @@
                     <canvas id="draw-canvas"></canvas>
                     <canvas id="shape-preview-canvas"></canvas>
                     <canvas id="laser-canvas"></canvas>
-                    
+
                     <div id="pointer-dot"></div>
                     <div id="page-indicator" style="display:none">Slide 1</div>
                     <div id="buffering-overlay">
@@ -923,27 +1085,59 @@
                         <div class="ua-controls-bar">
                             <div class="ua-left">
                                 <!-- Play/Pause -->
-                                <button class="ua-btn" id="play-btn" title="Play/Pause (Space)"><svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg></button>
+                                <button class="ua-btn" id="play-btn" title="Play/Pause (Space)"><svg viewBox="0 0 24 24"
+                                        width="20" height="20" fill="#fff">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg></button>
                                 <!-- Rewind 10s -->
-                                <button class="ua-btn ua-skip-btn" id="rew-btn-ui" title="−10s"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg><span>10</span></button>
+                                <button class="ua-btn ua-skip-btn" id="rew-btn-ui" title="−10s"><svg viewBox="0 0 24 24"
+                                        width="18" height="18" fill="#fff">
+                                        <path
+                                            d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
+                                    </svg><span>10</span></button>
                                 <!-- Forward 10s -->
-                                <button class="ua-btn ua-skip-btn" id="fwd-btn-ui" title="+10s"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8-3.58-8-8-8z"/></svg><span>10</span></button>
+                                <button class="ua-btn ua-skip-btn" id="fwd-btn-ui" title="+10s"><svg viewBox="0 0 24 24"
+                                        width="18" height="18" fill="#fff">
+                                        <path
+                                            d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8-3.58-8-8-8z" />
+                                    </svg><span>10</span></button>
                                 <!-- Volume -->
                                 <div class="ua-vol-wrap">
-                                    <button class="ua-btn" id="vol-btn" title="Volume"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07" fill="none" stroke="#fff" stroke-width="2"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14" fill="none" stroke="#fff" stroke-width="2"/></svg></button>
+                                    <button class="ua-btn" id="vol-btn" title="Volume"><svg viewBox="0 0 24 24"
+                                            width="18" height="18" fill="#fff">
+                                            <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" />
+                                            <path d="M15.54,8.46a5,5,0,0,1,0,7.07" fill="none" stroke="#fff"
+                                                stroke-width="2" />
+                                            <path d="M19.07,4.93a10,10,0,0,1,0,14.14" fill="none" stroke="#fff"
+                                                stroke-width="2" />
+                                        </svg></button>
                                     <input type="range" id="vol-slider" min="0" max="1" step="0.02" value="1">
                                 </div>
                                 <!-- Time -->
-                                <span class="ua-time"><span id="t-curr-overlay">0:00</span> / <span id="t-total-overlay">0:00</span></span>
+                                <span class="ua-time"><span id="t-curr-overlay">0:00</span> / <span
+                                        id="t-total-overlay">0:00</span></span>
                             </div>
 
                             <div class="ua-right">
-                                <button class="ua-btn" id="prev-slide-btn-ui" title="Prev Slide (Shift+←)" style="display:none"></button>
-                                <button class="ua-btn" id="next-slide-btn-ui" title="Next Slide (Shift+→)" style="display:none"></button>
+                                <button class="ua-btn" id="prev-slide-btn-ui" title="Prev Slide (Shift+←)"
+                                    style="display:none"></button>
+                                <button class="ua-btn" id="next-slide-btn-ui" title="Next Slide (Shift+→)"
+                                    style="display:none"></button>
                                 <!-- Settings / Speed -->
-                                <button class="ua-btn" id="settings-btn-ui" title="Settings"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+                                <button class="ua-btn" id="settings-btn-ui" title="Settings"><svg viewBox="0 0 24 24"
+                                        width="16" height="16" fill="none" stroke="#fff" stroke-width="2">
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path
+                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                                    </svg></button>
                                 <!-- Fullscreen -->
-                                <button class="ua-btn" id="fs-btn-ui" title="Fullscreen (F)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2"><polyline points="15,3 21,3 21,9"/><polyline points="9,21 3,21 3,15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+                                <button class="ua-btn" id="fs-btn-ui" title="Fullscreen (F)"><svg viewBox="0 0 24 24"
+                                        width="17" height="17" fill="none" stroke="#fff" stroke-width="2">
+                                        <polyline points="15,3 21,3 21,9" />
+                                        <polyline points="9,21 3,21 3,15" />
+                                        <line x1="21" y1="3" x2="14" y2="10" />
+                                        <line x1="3" y1="21" x2="10" y2="14" />
+                                    </svg></button>
                             </div>
                         </div>
                     </div>
@@ -988,8 +1182,9 @@
 
         <!-- RIGHT PANEL: Educator Cam placeholder + Doubts/Catalog -->
         <div id="right-panel" class="show">
-            <div id="cam-placeholder" style="width:100%;height:158px;flex-shrink:0;background:#000;overflow:hidden;"></div>
-            
+            <div id="cam-placeholder" style="width:100%;height:158px;flex-shrink:0;background:#000;overflow:hidden;">
+            </div>
+
             <!-- PANEL TABS -->
             <div class="panel-tabs">
                 <button id="tab-btn-slides" class="tab-btn active" onclick="switchPanelTab('slides')">
@@ -1004,7 +1199,9 @@
             <div id="doubts-panel" class="panel-tab-content active">
                 <div class="doubts-header">
                     <span class="doubts-title">📋 Slides List</span>
-                    <button id="mode-toggle-btn" style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);border-radius:12px;padding:3px 10px;font-size:11px;cursor:pointer;font-family:inherit;">&#9788; Light</button>
+                    <button id="mode-toggle-btn"
+                        style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);border-radius:12px;padding:3px 10px;font-size:11px;cursor:pointer;font-family:inherit;">&#9788;
+                        Light</button>
                 </div>
                 <div class="doubts-body" id="slide-nav"></div>
             </div>
@@ -1091,14 +1288,14 @@
 
             return () => clearInterval(interval);
         }
-        
+
         // Disabled DevTools blocker in development environment for debugging ease
         // initSecurityLayer();
     </script>
 
     <!-- URL param logic -->
     <script>
-        (function() {
+        (function () {
             const params = new URLSearchParams(window.location.search);
             const videoUrl = params.get('url') || params.get('lec');
             if (videoUrl) {
@@ -1225,7 +1422,7 @@
                     if (window.Parser && typeof window.Parser.parseJSON === "function") {
                         return window.Parser.parseJSON(plainText, { source: sourceName });
                     }
-                } catch (e) {}
+                } catch (e) { }
                 throw err;
             }
         }
@@ -1248,7 +1445,7 @@
         const drawCtx = drawCanvas.getContext("2d", { alpha: true });
         const shapePreviewCtx = shapePreviewCanvas.getContext("2d", { alpha: true });
         const laserCtx = laserCanvas.getContext("2d", { alpha: true });
-        
+
         const pointerDot = $("pointer-dot");
         const seekBar = $("seek-bar");
         const playBtn = $("play-btn");
@@ -1305,7 +1502,7 @@
                 if (hex === '#ffff00' || hex === '#ff0') return '#0056b3';
                 if (hex === '#00ffff' || hex === '#0ff') return '#0ea5e9';
                 if (hex === '#00ff00' || hex === '#0f0') return '#16a34a';
-                
+
                 if (hex.startsWith('#') && (hex.length === 4 || hex.length === 7)) {
                     let r, g, b;
                     if (hex.length === 4) {
@@ -1336,7 +1533,7 @@
 
         // Maths for curve calculations
         const maths = (function () {
-            function maths() {}
+            function maths() { }
             maths.zeros_Xx2x2 = x => { let zs = []; while (x--) { zs.push([0, 0]); } return zs; };
             maths.mulItems = (items, m) => [items[0] * m, items[1] * m];
             maths.mulMatrix = (m1, m2) => m1[0] * m2[0] + m1[1] * m2[1];
@@ -1354,7 +1551,7 @@
         })();
 
         const bezier = (function () {
-            function bezier() {}
+            function bezier() { }
             bezier.q = (ctrlPoly, t) => {
                 let tx = 1.0 - t;
                 let pA = maths.mulItems(ctrlPoly[0], tx * tx * tx),
@@ -1509,7 +1706,7 @@
                                 path2D.moveTo(o.x1, o.y1);
                                 path2D.lineTo(o.x2, o.y2);
                             }
-                        } catch (e) {}
+                        } catch (e) { }
                         if (path2D && Array.isArray(o.transform) && o.transform.length === 6) {
                             const tPath = new Path2D();
                             tPath.addPath(path2D, new DOMMatrix(o.transform));
@@ -1971,7 +2168,7 @@
             };
 
             drawCtx.save(); penCtx.save(); eraserCtx.save(); hlCtx.save(); laserCtx.save();
-            
+
             drawCtx.translate(curPanX * CW, curPanY * CH); drawCtx.scale(curZoom, curZoom);
             penCtx.translate(curPanX * CW, curPanY * CH); penCtx.scale(curZoom, curZoom);
             eraserCtx.translate(curPanX * CW, curPanY * CH); eraserCtx.scale(curZoom, curZoom);
@@ -2311,7 +2508,7 @@
             try {
                 const directTelemetryUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
                 const proxyTelemetryUrl = `https://corsproxy.io/?${encodeURIComponent(directTelemetryUrl)}`;
-                
+
                 let success = await runEngineWithUrl(directTelemetryUrl);
                 if (!success) {
                     console.warn("[Engine] Direct telemetry fetch failed. Trying CORS proxy...");
@@ -2362,7 +2559,7 @@
                 video.src = lecUrl;
                 if (gsMode) gsVideo.src = lecUrl;
                 console.log(`[Engine] Custom Lecture URL: ${lecUrl}`);
-                
+
                 const derivedData = lecUrl.replace(/\/[^/]+\.(webm|mp4|m3u8)$/i, "/data.json");
                 let success = await runEngineWithUrl(derivedData);
                 if (!success) {
@@ -2948,7 +3145,7 @@
             else { pointerDot.style.opacity = "0"; }
             if (pageIndicator) { const pg = getPdfPage(curSlideUrl); pageIndicator.textContent = pg ? `Slide ${curSlideIdx + 1} (Page ${pg})` : `Slide ${curSlideIdx + 1}`; }
             updateSlideNavUI();
-            
+
             let latestPoll = null; for (let i = evIdx - 1; i >= 0; i--) { if (allEvents[i].type === "poll") { latestPoll = allEvents[i]; break; } }
             if (latestPoll && (targetUs - latestPoll.t) <= 20000000) { renderPollEvent(latestPoll); activePollEvent = latestPoll; } else { pollPanel.classList.remove("show"); }
             paintBackground(true); replayStrokes(targetUs);
@@ -3169,7 +3366,7 @@
         video.addEventListener("play", () => {
             isSeeking = false;
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
-            if (gsMode) gsVideo.play().catch(() => {});
+            if (gsMode) gsVideo.play().catch(() => { });
         });
         video.addEventListener("pause", () => {
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`;
@@ -3178,21 +3375,21 @@
         video.addEventListener("seeking", () => {
             isSeeking = true;
             if (bufferingOverlay) bufferingOverlay.classList.add("show");
-            if (gsMode) { try { gsVideo.pause(); } catch (_) {} }
+            if (gsMode) { try { gsVideo.pause(); } catch (_) { } }
         });
         video.addEventListener("seeked", () => {
             if (engineLoaded) doSeek(curVideoUs());
             if (gsMode) {
-                try { gsVideo.pause(); } catch (_) {}
+                try { gsVideo.pause(); } catch (_) { }
                 gsVideo.currentTime = video.currentTime;
             }
             if (autoResumeAfterSeek) {
                 autoResumeAfterSeek = false;
-                video.play().catch(() => {});
+                video.play().catch(() => { });
             } else {
                 isSeeking = false;
                 if (bufferingOverlay) bufferingOverlay.classList.remove("show");
-                if (gsMode && !video.paused) gsVideo.play().catch(() => {});
+                if (gsMode && !video.paused) gsVideo.play().catch(() => { });
             }
         });
         video.addEventListener("waiting", () => { isBuffering = true; if (bufferingOverlay) bufferingOverlay.classList.add("show"); });
@@ -3226,7 +3423,7 @@
             }
             isSeeking = true;
             if (bufferingOverlay) bufferingOverlay.classList.add("show");
-            if (gsMode) { try { gsVideo.pause(); } catch (_) {} }
+            if (gsMode) { try { gsVideo.pause(); } catch (_) { } }
             video.currentTime = Math.max(0, Math.min(video.duration || 1e9, sec));
         }
 
@@ -3379,7 +3576,7 @@
             const fsBtnUi = $("fs-btn-ui");
             if (fsBtnUi) fsBtnUi.innerHTML = isFS ? `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2"><polyline points="4,14 10,14 10,20"/><polyline points="20,10 14,10 14,4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="14" y1="10" x2="21" y2="3"/></svg>` : `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2"><polyline points="15,3 21,3 21,9"/><polyline points="9,21 3,21 3,15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`;
             if (!isFS) {
-                try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {}
+                try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) { }
             }
             const _doResize = () => resizeCanvas(true);
             setTimeout(_doResize, 80);
@@ -3412,9 +3609,9 @@
             try {
                 if (!document.fullscreenElement) {
                     await document.body.requestFullscreen();
-                    try { if (screen.orientation && screen.orientation.lock) await screen.orientation.lock("landscape"); } catch (orientErr) {}
+                    try { if (screen.orientation && screen.orientation.lock) await screen.orientation.lock("landscape"); } catch (orientErr) { }
                 } else {
-                    try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (orientErr) {}
+                    try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (orientErr) { }
                     if (document.exitFullscreen) await document.exitFullscreen();
                 }
             } catch (err) {
@@ -3423,7 +3620,7 @@
 
             setTimeout(() => {
                 if (engineLoaded) doSeek(snapshotTimeUs);
-                if (wasPlaying) video.play().catch(() => {});
+                if (wasPlaying) video.play().catch(() => { });
                 if (bufferingOverlay) bufferingOverlay.classList.remove("show");
             }, 650);
         }
@@ -3507,7 +3704,7 @@
         }
 
         // Panel Toggle Arrow
-        (function() {
+        (function () {
             const panel = document.getElementById('right-panel');
             const toggleBtn = document.getElementById('panel-toggle');
             const vc = document.getElementById('video-circle');
@@ -3578,7 +3775,7 @@
             });
 
             // Educator circle draggable functionality when floating
-            (function() {
+            (function () {
                 let isDragging = false;
                 let startX, startY, startL, startT;
 
@@ -3586,7 +3783,7 @@
                     return document.body.classList.contains('panel-closed') || vc.classList.contains('fs-floating');
                 }
 
-                vc.addEventListener('mousedown', function(e) {
+                vc.addEventListener('mousedown', function (e) {
                     if (!isFloating()) return;
                     if (e.button !== 0) return;
                     e.preventDefault();
@@ -3605,7 +3802,7 @@
                     vc.style.userSelect = 'none';
                 });
 
-                document.addEventListener('mousemove', function(e) {
+                document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     var dx = e.clientX - startX;
                     var dy = e.clientY - startY;
@@ -3617,7 +3814,7 @@
                     vc.style.top = newT + 'px';
                 });
 
-                document.addEventListener('mouseup', function() {
+                document.addEventListener('mouseup', function () {
                     if (!isDragging) return;
                     isDragging = false;
                     vc.style.cursor = 'grab';
@@ -3625,7 +3822,7 @@
                 });
 
                 // Touch drag support
-                vc.addEventListener('touchstart', function(e) {
+                vc.addEventListener('touchstart', function (e) {
                     if (!isFloating()) return;
                     var t = e.touches[0];
                     var r = vc.getBoundingClientRect();
@@ -3640,7 +3837,7 @@
                     e.preventDefault();
                 }, { passive: false });
 
-                document.addEventListener('touchmove', function(e) {
+                document.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     var t = e.touches[0];
                     var newL = startL + (t.clientX - startX);
@@ -3652,7 +3849,7 @@
                     e.preventDefault();
                 }, { passive: false });
 
-                document.addEventListener('touchend', function() {
+                document.addEventListener('touchend', function () {
                     isDragging = false;
                     vc.style.cursor = 'grab';
                 });
@@ -3662,7 +3859,7 @@
         // ══════════════════════════════════════════════════
         //  DARK / LIGHT MODE TOGGLE
         // ══════════════════════════════════════════════════
-        (function() {
+        (function () {
             const btn = document.getElementById('mode-toggle-btn');
             if (!btn) return;
             let dark = true;
