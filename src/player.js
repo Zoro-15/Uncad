@@ -2156,7 +2156,10 @@ import { maths, bezier } from './engine/bezier.js';
         }
 
         const canvasArea = $("canvas-area");
-        canvasArea.addEventListener("mousemove", () => showControls(true));
+        const stageArea = $("stage") || canvasArea;
+        if (stageArea) {
+            stageArea.addEventListener("mousemove", () => showControls(true));
+        }
         canvasArea.addEventListener("touchend", (e) => {
             const gsOverlay = $("gs-overlay");
             const videoCircle = $("video-circle");
