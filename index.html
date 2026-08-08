@@ -374,6 +374,26 @@
             display: block;
         }
 
+        .slide-thumb.empty-slide {
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 11px;
+            font-family: inherit;
+        }
+        .empty-slide-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .empty-slide-inner i {
+            font-size: 14px;
+        }
+
         .slide-num {
             position: absolute;
             bottom: 3px;
@@ -1625,6 +1645,7 @@
         let lastPollUid = null;
         let evIdx = 0;
         let isSeeking = false;
+        let isBuffering = false;
         let autoResumeAfterSeek = false;
 
         let curPanX = 0, curPanY = 0, curZoom = 1;
@@ -2395,7 +2416,7 @@
                     } else {
                         drawCurve(dc, seg, mx, my);
                     }
-                    lastX = nx; lastY = ny; midX = mx; my = my;
+                    lastX = nx; lastY = ny; midX = mx; midY = my;
                 }
             }
 
@@ -2421,7 +2442,7 @@
                             const my = (i === pts.length - 1) ? ny : (lastY + ny) / 2;
                             const seg = { midX, midY, lastX, lastY, color: lastTempHL.color, th: lastTempHL.th, isErase: false, isHighlight: true, isTempHL: true, mode: lastTempHL.mode, dash: [] };
                             drawCurve(laserCtx, seg, mx, my);
-                            lastX = nx; lastY = ny; midX = mx; my = my;
+                            lastX = nx; lastY = ny; midX = mx; midY = my;
                         }
                     }
                 }
@@ -3185,8 +3206,13 @@
                         seekToSec((ev.t - drawOffset) / 1e6);
                     }
                 };
-                const img = document.createElement("img"); img.referrerPolicy = "no-referrer"; img.src = s.url; img.loading = "lazy";
-                thumb.appendChild(img);
+                if (s.url) {
+                    const img = document.createElement("img"); img.referrerPolicy = "no-referrer"; img.src = s.url; img.loading = "lazy";
+                    thumb.appendChild(img);
+                } else {
+                    thumb.classList.add("empty-slide");
+                    thumb.innerHTML = `<div class="empty-slide-inner"><i class="fas fa-edit"></i> <span>Blank</span></div>`;
+                }
                 row.appendChild(idxLabel); row.appendChild(thumb); nav.appendChild(row);
             });
         }
@@ -3317,7 +3343,7 @@
             }
             prevRafTs = ts; if (!engineLoaded) return;
 
-            const isBuffering = video.readyState < 3 && !video.paused;
+            isBuffering = video.readyState < 3 && !video.paused;
             if (isBuffering || isSeeking) {
                 bufferingOverlay.classList.add("show");
             } else {
@@ -3553,7 +3579,12 @@
         const canvasArea = $("canvas-area");
         canvasArea.addEventListener("mousemove", () => showControls());
         canvasArea.addEventListener("touchend", (e) => {
-            const isOnControl = controlsOverlay.contains(e.target) || settingsMenuEl.contains(e.target) || $("video-circle").contains(e.target) || $("gs-overlay").contains(e.target);
+            const gsOverlay = $("gs-overlay");
+            const videoCircle = $("video-circle");
+            const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
+                                (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
+                                (videoCircle && videoCircle.contains(e.target)) || 
+                                (gsOverlay && gsOverlay.contains(e.target));
             if (!isOnControl) {
                 lastTouchTime = Date.now();
                 toggleControls();
@@ -3562,7 +3593,12 @@
 
         canvasArea.addEventListener("click", (e) => {
             if (Date.now() - lastTouchTime < 500) return;
-            const isOnControl = controlsOverlay.contains(e.target) || settingsMenuEl.contains(e.target) || $("video-circle").contains(e.target) || $("gs-overlay").contains(e.target);
+            const gsOverlay = $("gs-overlay");
+            const videoCircle = $("video-circle");
+            const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
+                                (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
+                                (videoCircle && videoCircle.contains(e.target)) || 
+                                (gsOverlay && gsOverlay.contains(e.target));
             if (!isOnControl) toggleControls();
         });
 
