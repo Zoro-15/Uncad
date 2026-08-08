@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="no-referrer">
+    <title>Lennister Player - JEE Calculus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --surface: #ffffff;
+            --accent: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.18);
+            --text: #0f172a;
+            --border: rgba(15, 23, 42, 0.08);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            user-select: none;
+        }
+
+        #splash {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid rgba(56, 189, 248, 0.15);
+            border-top-color: #38bdf8;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        .splash-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #38bdf8;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #app {
+            position: fixed;
+            inset: 0;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        #stage {
+            flex: 1;
+            position: relative;
+            background: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #right-panel {
+            width: 310px;
+            flex-shrink: 0;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(0, 0, 0, 0.08);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #right-panel.collapsed {
+            width: 0;
+            border-left: none;
+        }
+
+        #panel-toggle {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 48px;
+            background: #2a2a2a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: none;
+            border-radius: 6px 0 0 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 8000;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+        }
+
+        #right-panel:not(.collapsed)~#panel-toggle {
+            right: 310px;
+        }
+
+        #cam-placeholder {
+            width: 100%;
+            height: 165px;
+            background: #000;
+            flex-shrink: 0;
+        }
+
+        .panel-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            background: #ffffff;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .panel-tab-content {
+            flex: 1;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .panel-tab-content.active {
+            display: flex;
+        }
+
+        .lec-item {
+            padding: 10px 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .lec-item:hover,
+        .lec-item.active {
+            border-color: var(--accent);
+            background: #e0f2fe;
+        }
+
+        .lec-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .lec-meta {
+            font-size: 10px;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #canvas-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #canvas-area {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #111118;
+            flex-shrink: 0;
+            max-height: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        #slide-canvas,
+        #hl-canvas,
+        #pen-canvas,
+        #eraser-canvas,
+        #draw-canvas,
+        #laser-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #slide-canvas {
+            z-index: 1;
+        }
+
+        #hl-canvas {
+            z-index: 2;
+            opacity: 0.35;
+        }
+
+        #draw-canvas {
+            z-index: 3;
+        }
+
+        #pen-canvas {
+            z-index: 5;
+        }
+
+        #eraser-canvas {
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        #laser-canvas {
+            z-index: 7;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        #video-circle {
+            position: fixed;
+            overflow: hidden;
+            background: #000;
+            z-index: 9000;
+            touch-action: none;
+        }
+
+        #video-circle video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #video-circle video.chroma-active {
+            filter: url(#chroma-key);
+        }
+
+        #controls-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, transparent 100%);
+            padding: 0 18px 12px;
+            display: flex;
+            flex-direction: column;
+            z-index: 200;
+        }
+
+        .ua-seek-row {
+            width: 100%;
+            padding: 8px 0 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        #seek-bar {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            background: linear-gradient(to right, var(--accent) var(--pct, 0%), rgba(255, 255, 255, 0.25) var(--pct, 0%));
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #seek-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .ua-controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 40px;
+        }
+
+        .ua-left,
+        .ua-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ua-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .ua-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(14, 165, 233, 0.3);
+        }
+
+        .ua-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #fff;
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .slide-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .slide-index {
+            font-size: 10px;
+            font-weight: 700;
+            color: #94a3b8;
+            width: 18px;
+            text-align: right;
+        }
+
+        .slide-thumb {
+            flex: 1;
+            aspect-ratio: 16/9;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            background: #000;
+        }
+
+        .slide-thumb.active {
+            border-color: var(--accent);
+        }
+
+        .slide-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="splash">
+        <div class="spinner"></div>
+        <div class="splash-label" id="splash-label">Loading Telemetry Engine...</div>
+    </div>
+
+    <div id="app">
+        <section id="stage">
+            <div id="canvas-wrapper">
+                <div id="canvas-area">
+                    <canvas id="slide-canvas"></canvas>
+                    <canvas id="hl-canvas"></canvas>
+                    <canvas id="pen-canvas"></canvas>
+                    <canvas id="eraser-canvas"></canvas>
+                    <canvas id="draw-canvas"></canvas>
+                    <canvas id="laser-canvas"></canvas>
+
+                    <div id="pointer-dot"
+                        style="position:absolute; width:6px; height:6px; background:#ef4444; border-radius:50%; pointer-events:none; z-index:30; opacity:0; transform:translate3d(-999px,-999px,0);">
+                    </div>
+
+                    <div id="controls-overlay">
+                        <div class="ua-seek-row">
+                            <input type="range" id="seek-bar" min="0" value="0" step="1">
+                        </div>
+                        <div class="ua-controls-bar">
+                            <div class="ua-left">
+                                <button class="ua-btn" id="play-btn" title="Play/Pause"><i
+                                        class="fas fa-play"></i></button>
+                                <button class="ua-btn" id="rew-btn-ui" title="-10s"><i class="fas fa-undo"></i></button>
+                                <button class="ua-btn" id="fwd-btn-ui" title="+10s"><i class="fas fa-redo"></i></button>
+                                <span class="ua-time"><span id="t-curr-overlay">0:00</span> / <span
+                                        id="t-total-overlay">0:00</span></span>
+                            </div>
+                            <div class="ua-right">
+                                <button class="ua-btn" id="fs-btn-ui" title="Fullscreen"><i
+                                        class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="right-panel">
+            <div id="cam-placeholder"></div>
+
+            <div class="panel-tabs">
+                <button class="tab-btn active" onclick="switchPanelTab('slides')"><i class="fas fa-images"></i>
+                    Slides</button>
+                <button class="tab-btn" onclick="switchPanelTab('lectures')"><i class="fas fa-list"></i>
+                    Lectures</button>
+            </div>
+
+            <div id="tab-slides" class="panel-tab-content active">
+                <div id="slide-nav"></div>
+            </div>
+
+            <div id="tab-lectures" class="panel-tab-content">
+                <div id="lecture-nav"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-circle">
+        <video id="main-video" class="chroma-active" preload="auto" playsinline></video>
+    </div>
+
+    <button id="panel-toggle" title="Toggle Panel">❯</button>
+
+    <svg width="0" height="0" style="position:absolute; pointer-events:none;">
+        <filter id="chroma-key" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="
+                1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                2.5 -5.0 2.5 0 1.5
+            " result="keyed" />
+            <feColorMatrix in="keyed" type="matrix" values="
+                1 0 0 0 0
+                -0.1 1.1 -0.1 0 0
+                0 0 1 0 0
+                0 0 0 1 0
+            " result="despilled" />
+            <feComponentTransfer in="despilled">
+                <feFuncA type="linear" slope="2" intercept="-0.5" />
+            </feComponentTransfer>
+        </filter>
+    </svg>
+
+    <script>
+        const CALCULUS_LECTURES = [
+            { rank: 0, title: "Target Stream (Active)", uid: "CZX0YLRYYNELHGM4YDF1" },
+            { rank: 1, title: "Lec 1: Calculus for JEE Advanced", uid: "371ARO0LCZM7PJUQ2JAU" },
+            { rank: 2, title: "Lec 2: Calculus for JEE Advanced", uid: "13HDZMHVYTX1V668LRVP" },
+            { rank: 3, title: "Lec 3: Calculus for JEE Advanced", uid: "C5LCAX59LMNF7S7398GN" },
+            { rank: 4, title: "Lec 4: Calculus for JEE Advanced", uid: "E16AKBQQVQNPW8XQ8M0I" },
+            { rank: 6, title: "Lec 6: Calculus for JEE Advanced", uid: "U8PPT4PICJM88V4DVOF0" }
+        ];
+
+        const SECRET_KEY = '9ffdc791579b19df35315e4d81a4aacda41d4c1ddaa318a4cba133111e20540e';
+
+        function decryptBytes(bufferOrArray, secretKey) {
+            const srcBytes = bufferOrArray instanceof Uint8Array ? bufferOrArray : new Uint8Array(bufferOrArray);
+            const bytes = new Uint8Array(srcBytes.length);
+            bytes.set(srcBytes);
+            const keyBytes = new TextEncoder().encode(secretKey);
+            const keyLen = keyBytes.length;
+            for (let i = 0; i < bytes.length; i++) {
+                bytes[i] ^= keyBytes[i % keyLen];
+            }
+            return new TextDecoder("utf-8").decode(bytes);
+        }
+
+        function tryDecryptAndParse(arrayBuffer) {
+            try {
+                const plainText = new TextDecoder("utf-8").decode(arrayBuffer);
+                return JSON.parse(plainText);
+            } catch (_) { }
+
+            try {
+                const decryptedText = decryptBytes(arrayBuffer, SECRET_KEY);
+                return JSON.parse(decryptedText);
+            } catch (err) {
+                throw new Error("Failed to decrypt telemetry.");
+            }
+        }
+
+        const $ = id => document.getElementById(id);
+        const video = $("main-video");
+        const slideCanvas = $("slide-canvas");
+        const hlCanvas = $("hl-canvas");
+        const penCanvas = $("pen-canvas");
+        const eraserCanvas = $("eraser-canvas");
+        const drawCanvas = $("draw-canvas");
+
+        const slideCtx = slideCanvas.getContext("2d");
+        const hlCtx = hlCanvas.getContext("2d");
+        const penCtx = penCanvas.getContext("2d");
+        const eraserCtx = eraserCanvas.getContext("2d");
+        const drawCtx = drawCanvas.getContext("2d");
+
+        const seekBar = $("seek-bar");
+        const playBtn = $("play-btn");
+
+        let CW = 1080, CH = 607;
+        let activeUid = "CZX0YLRYYNELHGM4YDF1";
+        let engineLoaded = false;
+        let slideRegistry = {};
+        let slideSeqs = [];
+        let curSlideUrl = "";
+        let curBgColor = "#111118";
+        let imgCache = new Map();
+
+        function switchPanelTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.panel-tab-content').forEach(c => c.classList.remove('active'));
+            if (tab === 'slides') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                $('tab-slides').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                $('tab-lectures').classList.add('active');
+            }
+        }
+
+        function renderLectureDrawer() {
+            const nav = $('lecture-nav');
+            nav.innerHTML = '';
+            CALCULUS_LECTURES.forEach(lec => {
+                const item = document.createElement('div');
+                item.className = `lec-item ${lec.uid === activeUid ? 'active' : ''}`;
+                item.innerHTML = `
+                    <div class="lec-title">${lec.title}</div>
+                    <div class="lec-meta">
+                        <span>Key: ${lec.uid.substring(0, 10)}...</span>
+                    </div>
+                `;
+                item.onclick = () => loadLectureByUid(lec.uid);
+                nav.appendChild(item);
+            });
+        }
+
+        async function loadLectureByUid(uid) {
+            activeUid = uid;
+            renderLectureDrawer();
+
+            const splash = $("splash");
+            splash.classList.remove("hidden");
+            splash.style.display = "flex";
+            $("splash-label").textContent = `Loading Telemetry Stream: ${uid}...`;
+
+            video.src = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
+            engineLoaded = false;
+            slideRegistry = {};
+            imgCache.clear();
+
+            const telemetryUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(telemetryUrl)}`;
+
+            let loaded = false;
+            try {
+                loaded = await runEngine(telemetryUrl);
+            } catch (_) {
+                console.warn("[Engine] Direct fetch failed, trying CORS Proxy...");
+                loaded = await runEngine(proxyUrl);
+            }
+
+            splash.classList.add("hidden");
+            setTimeout(() => splash.style.display = "none", 400);
+        }
+
+        async function runEngine(url) {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("HTTP error " + res.status);
+            const buffer = await res.arrayBuffer();
+            const rawData = tryDecryptAndParse(buffer);
+
+            processData(rawData);
+            resizeCanvas();
+            engineLoaded = true;
+            return true;
+        }
+
+        function processData(raw) {
+            slideRegistry = {};
+            const rawAs = [];
+            const seenUids = new Set();
+
+            const deepExtract = (d) => {
+                if (!d || typeof d !== "object") return;
+                if (Array.isArray(d)) { d.forEach(deepExtract); return; }
+                if (d.u || d.bg || d.bc) {
+                    if (d.u && !seenUids.has(d.uid || d.u)) {
+                        seenUids.add(d.uid || d.u);
+                        rawAs.push({ url: d.u, bc: d.bc || "#111118", _sid: d.uid || d.u });
+                    }
+                }
+                for (const key in d) if (Object.prototype.hasOwnProperty.call(d, key)) deepExtract(d[key]);
+            };
+
+            deepExtract(raw);
+
+            rawAs.forEach((s, idx) => { slideRegistry[idx] = s; });
+            slideSeqs = Object.keys(slideRegistry).map(Number);
+
+            renderSlideNav();
+            if (slideSeqs.length > 0) {
+                curSlideUrl = slideRegistry[0].url;
+                curBgColor = slideRegistry[0].bc;
+                paintBackground();
+            }
+        }
+
+        function renderSlideNav() {
+            const nav = $("slide-nav");
+            nav.innerHTML = '';
+            slideSeqs.forEach(seq => {
+                const s = slideRegistry[seq];
+                if (!s) return;
+                const row = document.createElement("div");
+                row.className = "slide-row";
+                row.innerHTML = `
+                    <div class="slide-index">${seq + 1}</div>
+                    <div class="slide-thumb">
+                        <img src="${s.url}" crossorigin="anonymous" loading="lazy" />
+                    </div>
+                `;
+                row.onclick = () => {
+                    curSlideUrl = s.url;
+                    curBgColor = s.bc;
+                    paintBackground();
+                };
+                nav.appendChild(row);
+            });
+        }
+
+        function paintBackground() {
+            if (!curSlideUrl) return;
+            let img = imgCache.get(curSlideUrl);
+            if (!img) {
+                img = new Image();
+                img.crossOrigin = "anonymous";
+                img.referrerPolicy = "no-referrer";
+                img.src = curSlideUrl;
+                img.onload = () => drawSlideImg(img);
+                imgCache.set(curSlideUrl, img);
+            } else if (img.complete) {
+                drawSlideImg(img);
+            }
+        }
+
+        function drawSlideImg(img) {
+            slideCtx.fillStyle = curBgColor;
+            slideCtx.fillRect(0, 0, CW, CH);
+            if (!img || !img.naturalWidth) return;
+            const ratio = Math.min(CW / img.naturalWidth, CH / img.naturalHeight);
+            const nw = img.naturalWidth * ratio;
+            const nh = img.naturalHeight * ratio;
+            slideCtx.drawImage(img, (CW - nw) / 2, (CH - nh) / 2, nw, nh);
+        }
+
+        function resizeCanvas() {
+            const area = $("canvas-area");
+            CW = area.offsetWidth || 1080;
+            CH = area.offsetHeight || 607;
+            [slideCanvas, hlCanvas, penCanvas, eraserCanvas, drawCanvas].forEach(c => {
+                c.width = CW; c.height = CH;
+            });
+            paintBackground();
+        }
+
+        function positionCamDocked() {
+            const camPlaceholder = $('cam-placeholder');
+            const vc = $('video-circle');
+            if (!camPlaceholder || !vc) return;
+            const r = camPlaceholder.getBoundingClientRect();
+            if (r.width <= 0) return;
+            vc.style.position = 'fixed';
+            vc.style.left = r.left + 'px';
+            vc.style.top = r.top + 'px';
+            vc.style.width = r.width + 'px';
+            vc.style.height = r.height + 'px';
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            positionCamDocked();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLectureDrawer();
+            loadLectureByUid("CZX0YLRYYNELHGM4YDF1");
+
+            playBtn.onclick = () => {
+                if (video.paused) {
+                    video.play();
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    video.pause();
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            };
+
+            $('panel-toggle').onclick = () => {
+                $('right-panel').classList.toggle('collapsed');
+                setTimeout(positionCamDocked, 320);
+            };
+
+            setTimeout(positionCamDocked, 500);
+        });
+    </script>
+</body>
+
+</html>
