@@ -1,7 +1,7 @@
 # Dependency directories
 node_modules/
 new txt/
-
+*.txt
 # Build outputs
 dist/
 dist-ssr/
@@ -15,7 +15,6 @@ dist-ssr/
 *.njsproj
 *.sln
 *.sw?
-*.txt
 
 # Local env files
 .env
