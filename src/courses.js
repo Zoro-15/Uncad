@@ -2,6 +2,77 @@
 
 const COURSES = [
     {
+        "id": "theory-of-numbers",
+        "title": "Theory of Numbers",
+        "subtitle": "Sandal Agarwal",
+        "description": "Elementary Number Theory, divisibility, modular arithmetic, prime numbers, and GCD for JEE Advanced.",
+        "icon": "fa-hashtag",
+        "startDate": "2024-12-15T08:00:00Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Arithmetic and the beginning of mathematics",
+                "uid": "ZWHB83O53JX6MZ6YF84H",
+                "duration": "4h 29m"
+            },
+            {
+                "rank": 2,
+                "title": "Higher Arithmetic & Elementary Number Theory",
+                "uid": "QYZXYVLBVOHDR9TUSL3H",
+                "duration": "2h 28m"
+            },
+            {
+                "rank": 3,
+                "title": "Notes making & Elementary Number Theory",
+                "uid": "P9C7RPUIUZLSHKRXI3O0",
+                "duration": "2h 28m"
+            },
+            {
+                "rank": 4,
+                "title": "Elementary Number Theory",
+                "uid": "W77K6T84P68X1KX759SL",
+                "duration": "2h 6m"
+            },
+            {
+                "rank": 5,
+                "title": "Proof of each Divisibility tests, LCM, HCF and fractions",
+                "uid": "Y7Q22DG2VNJIE0V9TFF7",
+                "duration": "2h 36m"
+            },
+            {
+                "rank": 6,
+                "title": "LCM, HCF and the mess of fractional entities",
+                "uid": "UFJVZHIO6ME4B0QGA1CJ",
+                "duration": "2h 10m"
+            },
+            {
+                "rank": 7,
+                "title": "Pythagorus, Irrationality, Commensurability & infinite decimal expansion",
+                "uid": "FA0NJ9TKTHW1Q1T5MM1W",
+                "duration": "2h 32m"
+            },
+            {
+                "rank": 8,
+                "title": "\"Irrationals and their disturbing irrationality!",
+                "uid": "NOLY5FX26UACP8R9A3TH",
+                "duration": "2h 31m"
+            },
+            {
+                "rank": 9,
+                "title": "Arithmetic & Elementary Number Theory Complete",
+                "uid": "91ZKXQXDCU8LUCRPX9OD",
+                "duration": "2h 22m"
+            },
+            {
+                "rank": 10,
+                "title": "From handling irrationals to Algebra",
+                "uid": "VSRVL7TPAYHQ8USKDUPE",
+                "duration": "2h 33m"
+            }
+        ]
+    },
+    {
         "id": "algebra-1",
         "title": "Algebra for JEE Advanced",
         "subtitle": "Part I - Sandal Agarwal",
@@ -206,6 +277,89 @@ const COURSES = [
                 "title": "Algebra-II L09: Problem Solving Situation Set 03",
                 "uid": "R1685QXXRXG2QYYMKNLU",
                 "duration": "1h 45m"
+            }
+        ]
+    },
+    {
+        "id": "trigonometry",
+        "title": "Trigonometry",
+        "subtitle": "Sandal Agarwal",
+        "description": "Trigonometric Identities, Equations, Inverse Trigonometric Functions (ITF), and properties.",
+        "icon": "fa-compass-drafting",
+        "startDate": "2025-02-08T10:00:00Z",
+        "badge": "12 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Trigonometry for JEE Advanced 2026 L01: GEOMETRY",
+                "uid": "TLZSFNCY9P3BKDE32UST",
+                "duration": "2h 31m"
+            },
+            {
+                "rank": 2,
+                "title": "Trigonometry for JEE Advanced 2026 L02:",
+                "uid": "OYLKZF5Q7UD68C3BIAHX",
+                "duration": "2h 3m"
+            },
+            {
+                "rank": 3,
+                "title": "Trigonometry for JEE Advanced 2026 L03",
+                "uid": "R83JRRJTOALM8X6TN5PB",
+                "duration": "2h 16m"
+            },
+            {
+                "rank": 4,
+                "title": "Trigonometry for JEE Advanced 2026 Problem Solving Situation Set 01",
+                "uid": "VUVLX0DNNULDU1X8BWGY",
+                "duration": "2h 12m"
+            },
+            {
+                "rank": 5,
+                "title": "Trigonometry for JEE Advanced 2026 Problem Solving Situation Set 02",
+                "uid": "I8A2UXN3HZYHNZ4DWPHM",
+                "duration": "13m"
+            },
+            {
+                "rank": 6,
+                "title": "Trigonometry Lec 05: Problem Solving Situation Set 01",
+                "uid": "1W8D690IRJLMBNVEIY8A",
+                "duration": "2h 27m"
+            },
+            {
+                "rank": 7,
+                "title": "Trigonometry Lec 06: Problem Solving Situation Set 02",
+                "uid": "9RTTWRI3A4WWS92DGUH7",
+                "duration": "2h 58m"
+            },
+            {
+                "rank": 8,
+                "title": "Trigonometry Lec 07: Problem Solving Situation Set 02",
+                "uid": "6NJII9OBKK4NSJLMU3H8",
+                "duration": "2h 24m"
+            },
+            {
+                "rank": 9,
+                "title": "Trigonometry Lec 08: Problem Solving Situation Set 03",
+                "uid": "Y1MZ1374TVSTM7SWFEA9",
+                "duration": "1h 31m"
+            },
+            {
+                "rank": 10,
+                "title": "Trigonometry Lec 09: Problem Solving Situation Set 04",
+                "uid": "O904WKV5ISZ9X0TUMHYD",
+                "duration": "2h 34m"
+            },
+            {
+                "rank": 11,
+                "title": "Trigonometry Lec 10: Problem Solving All Situation Sets",
+                "uid": "YG00YUNZJTDROQR74IVU",
+                "duration": "2h 46m"
+            },
+            {
+                "rank": 12,
+                "title": "Trigonometry Lec 11: Discussion",
+                "uid": "IMLVXZ4E8AKRG7STYW7Z",
+                "duration": "2h 40m"
             }
         ]
     },
@@ -431,6 +585,131 @@ const COURSES = [
                 "title": "Straight Lines & Circles Lec-11 for JEE Advanced 2026",
                 "uid": "LLBRV471W32XQD7UYCQK",
                 "duration": "2h 0m"
+            }
+        ]
+    },
+    {
+        "id": "vectors-3d",
+        "title": "Vectors & 3D Geometry",
+        "subtitle": "Sandal Agarwal",
+        "description": "Vector Algebra, scalar and vector products, lines, planes, and three-dimensional coordinate geometry.",
+        "icon": "fa-cube",
+        "startDate": "2025-04-14T10:00:00Z",
+        "badge": "19 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Orientation",
+                "uid": "OMXQPCNWCAXJDSBBJFI4",
+                "duration": "1h 38m"
+            },
+            {
+                "rank": 2,
+                "title": "Vector & 3D Geometry Lec 1",
+                "uid": "R4EMQ5UM5UXOMJX9OTSY",
+                "duration": "35m"
+            },
+            {
+                "rank": 3,
+                "title": "Vector & 3D Geometry Lec 1",
+                "uid": "OG618X6HXVQTC21HEQ0A",
+                "duration": "2h 33m"
+            },
+            {
+                "rank": 4,
+                "title": "Vector & 3D Geometry Lec 2",
+                "uid": "ISAHKVUBUMPI8XUV0RJV",
+                "duration": "2h 33m"
+            },
+            {
+                "rank": 5,
+                "title": "Vector & 3D Geometry Lec 3",
+                "uid": "MDJFL9P0N7P0ZR53WS64",
+                "duration": "2h 46m"
+            },
+            {
+                "rank": 6,
+                "title": "Vector & 3D Geometry Lec 4",
+                "uid": "OBF2GAJJ83DF7CKSO6YL",
+                "duration": "2h 25m"
+            },
+            {
+                "rank": 7,
+                "title": "Vector & 3D Geometry Lec 5",
+                "uid": "49T7G67L02VRCG1CNLE4",
+                "duration": "2h 39m"
+            },
+            {
+                "rank": 8,
+                "title": "Vector & 3D Geometry Lec 6",
+                "uid": "SX9YYGAULL1ZKF3AZT0U",
+                "duration": "1h 50m"
+            },
+            {
+                "rank": 9,
+                "title": "Vector & 3D Geometry Lec 7",
+                "uid": "5R2LHSD9UF7KYPVQKITR",
+                "duration": "2h 30m"
+            },
+            {
+                "rank": 10,
+                "title": "Vector & 3D Geometry Lec 8",
+                "uid": "F3BZN6UVXVVS206JHMCZ",
+                "duration": "3h 0m"
+            },
+            {
+                "rank": 11,
+                "title": "Vector & 3D Geometry Lec 9",
+                "uid": "5ZYZJBBJZYMF02BJX3JF",
+                "duration": "2h 39m"
+            },
+            {
+                "rank": 12,
+                "title": "Vector & 3D Geometry Lec 10",
+                "uid": "7PPXHYO3DMCP4UH7POIA",
+                "duration": "2h 31m"
+            },
+            {
+                "rank": 13,
+                "title": "Vector & 3D Geometry Lec 11",
+                "uid": "R2KLB2LDJI0QEDW7W5R4",
+                "duration": "2h 37m"
+            },
+            {
+                "rank": 14,
+                "title": "Vector & 3D Geometry Lec 12",
+                "uid": "WEVP0HOZXNDA79T8VM0K",
+                "duration": "2h 41m"
+            },
+            {
+                "rank": 15,
+                "title": "Vector & 3D Geometry Lec 13",
+                "uid": "OYT5LV5X6PFN6H5OXILZ",
+                "duration": "2h 27m"
+            },
+            {
+                "rank": 16,
+                "title": "Vector & 3D Geometry Lec 14",
+                "uid": "VDHCPROPTX4NMZDNF08B",
+                "duration": "2h 18m"
+            },
+            {
+                "rank": 17,
+                "title": "Vector & 3D Geometry Lec 15",
+                "uid": "NP60RLBMOT7W8C9TOBTJ",
+                "duration": "3h 12m"
+            },
+            {
+                "rank": 18,
+                "title": "Vector & 3D Geometry Lec 16",
+                "uid": "SO0JZ8VD4VI8WSP61084",
+                "duration": "2h 49m"
+            },
+            {
+                "rank": 19,
+                "title": "Vector & 3D Geometry Lec 17",
+                "uid": "4LLSQVODKB8E7J0CPQQE",
+                "duration": "1h 35m"
             }
         ]
     },
@@ -819,6 +1098,245 @@ const COURSES = [
                 "title": "P&C and BT Lecture 13",
                 "uid": "J88ITGKAF978YSMWNF2D",
                 "duration": "3h 45m"
+            }
+        ]
+    },
+    {
+        "id": "calculus-problem-solving",
+        "title": "Calculus Problem Solving",
+        "subtitle": "Sandal Agarwal",
+        "description": "High-yield problem solving and revision for Calculus covering limits, derivatives, integrals, and differential equations.",
+        "icon": "fa-calculator",
+        "startDate": "2025-08-27T10:00:00Z",
+        "badge": "38 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Calculus Problem Solving Lec-1 for JEE Advanced & Mains",
+                "uid": "OYWOWO3FW8H8TYB25OE8",
+                "duration": "2h 40m"
+            },
+            {
+                "rank": 2,
+                "title": "Calculus Problem Solving Lec-2 for JEE Advanced & Mains",
+                "uid": "17GX1BOEU00DQ80YZC4I",
+                "duration": "2h 45m"
+            },
+            {
+                "rank": 3,
+                "title": "Calculus Problem Solving Lec-4 for JEE Advanced & Mains",
+                "uid": "8VG8V475GLFCLADG4IPC",
+                "duration": "3h 36m"
+            },
+            {
+                "rank": 4,
+                "title": "Calculus Problem Solving Lec-3 for JEE Advanced & Mains",
+                "uid": "805CYBQO7T8Z1BRGJQD6",
+                "duration": "2h 29m"
+            },
+            {
+                "rank": 5,
+                "title": "Calculus Problem Solving Lec-5 for JEE Advanced & Mains",
+                "uid": "21ZB7V5Q271PLK1T59FS",
+                "duration": "2h 33m"
+            },
+            {
+                "rank": 6,
+                "title": "Calculus Problem Solving Lec-6 for JEE Advanced & Mains",
+                "uid": "9EH66E2NVIJJIGNYDI8N",
+                "duration": "2h 50m"
+            },
+            {
+                "rank": 7,
+                "title": "Calculus Problem Solving Lec-7 for JEE Advanced & Mains",
+                "uid": "11FW80LD5TTSCAAXR219",
+                "duration": "4h 16m"
+            },
+            {
+                "rank": 8,
+                "title": "Calculus Problem Solving Lec-8 for JEE Advanced & Mains",
+                "uid": "5J69IJ3JU2UYXNG7ODME",
+                "duration": "3h 36m"
+            },
+            {
+                "rank": 9,
+                "title": "Calculus Problem Solving Lec-9 for JEE Advanced & Mains",
+                "uid": "XH3E7AYHT5FZ6TGEXU8S",
+                "duration": "2h 51m"
+            },
+            {
+                "rank": 10,
+                "title": "Calculus Problem Solving Lec-10 for JEE Advanced & Mains",
+                "uid": "USDGHSDLUYL21AZDHHJJ",
+                "duration": "2h 39m"
+            },
+            {
+                "rank": 11,
+                "title": "Calculus Problem Solving Lec-11 for JEE Advanced & Mains",
+                "uid": "82DY81ZQH638HDC9EWQD",
+                "duration": "2h 46m"
+            },
+            {
+                "rank": 12,
+                "title": "Calculus Problem Solving Lec-12 for JEE Advanced & Mains",
+                "uid": "8TXTN4PLUVBIA2NZHSV7",
+                "duration": "2h 46m"
+            },
+            {
+                "rank": 13,
+                "title": "Calculus Problem Solving Lec-13 for JEE Advanced & Mains",
+                "uid": "OXRUHCH5T9OGVJ87WSQE",
+                "duration": "2h 0m"
+            },
+            {
+                "rank": 14,
+                "title": "Calculus Problem Solving Lec-14 for JEE Advanced & Mains",
+                "uid": "PZQVQWIIKHT3Q1KDI0D3",
+                "duration": "2h 50m"
+            },
+            {
+                "rank": 15,
+                "title": "Calculus Problem Solving Lec-15 for JEE Advanced & Mains",
+                "uid": "1SASP5UNP6P2RC69DULI",
+                "duration": "2h 48m"
+            },
+            {
+                "rank": 16,
+                "title": "Calculus Problem Solving Lec-16 for JEE Advanced & Mains",
+                "uid": "3R1GBZ8TVSOV5Z7WP3CZ",
+                "duration": "3h 47m"
+            },
+            {
+                "rank": 17,
+                "title": "Calculus Problem Solving Lec-17 for JEE Advanced & Mains",
+                "uid": "MWIDWE917IRWK1RF1KM1",
+                "duration": "2h 55m"
+            },
+            {
+                "rank": 18,
+                "title": "Calculus Problem Solving Lec-18 for JEE Advanced & Mains",
+                "uid": "INYIAXTH30UR8PTQ4EDL",
+                "duration": "2h 11m"
+            },
+            {
+                "rank": 19,
+                "title": "Calculus Problem Solving Lec-19 for JEE Advanced & Mains",
+                "uid": "NFKEE2PY7STKYFE14QCL",
+                "duration": "3h 45m"
+            },
+            {
+                "rank": 20,
+                "title": "Calculus Problem Solving Lec-20 for JEE Advanced & Mains",
+                "uid": "M0M8PUSCF5CGAJ3FIRE5",
+                "duration": "59m"
+            },
+            {
+                "rank": 21,
+                "title": "Calculus Problem Solving Lec-21 for JEE Advanced & Mains",
+                "uid": "GE4GKXYQ4A8346H156O4",
+                "duration": "2h 52m"
+            },
+            {
+                "rank": 22,
+                "title": "Calculus Problem Solving Lec-22 for JEE Advanced & Mains",
+                "uid": "OL6OPRYZO1Q4L88HUV1K",
+                "duration": "3h 20m"
+            },
+            {
+                "rank": 23,
+                "title": "Calculus Problem Solving Lec-23 for JEE Advanced & Mains",
+                "uid": "8UADNKS4BCW9UK3RRR3J",
+                "duration": "3h 7m"
+            },
+            {
+                "rank": 24,
+                "title": "Calculus Problem Solving Lec-24 for JEE Advanced & Mains",
+                "uid": "C1492DNEP63IZOGZOQJ9",
+                "duration": "3h 14m"
+            },
+            {
+                "rank": 25,
+                "title": "Calculus Problem Solving Lec-25 for JEE Advanced & Mains",
+                "uid": "ASJ0FS5TBTS5CLLEQB8W",
+                "duration": "2h 27m"
+            },
+            {
+                "rank": 26,
+                "title": "Calculus Problem Solving Lec-26 for JEE Advanced & Mains",
+                "uid": "012AHXUV24CHJ2IB3U06",
+                "duration": "1h 48m"
+            },
+            {
+                "rank": 27,
+                "title": "Calculus Problem Solving Lec-27 for JEE Advanced & Mains",
+                "uid": "4GCQMS5BIEZC5CJNAZB7",
+                "duration": "2h 52m"
+            },
+            {
+                "rank": 28,
+                "title": "Calculus Problem Solving Lec-28 for JEE Advanced & Mains",
+                "uid": "6FWIHDXE3HW0UK90A1ZH",
+                "duration": "1h 56m"
+            },
+            {
+                "rank": 29,
+                "title": "Calculus Problem Solving Lec-29 for JEE Advanced & Mains",
+                "uid": "EAFPOMY5I2WQN1ADKC56",
+                "duration": "2h 31m"
+            },
+            {
+                "rank": 30,
+                "title": "Calculus Problem Solving Lec-30 for JEE Advanced & Mains",
+                "uid": "ZKE60U1DWYFWA2PJK6FA",
+                "duration": "2h 26m"
+            },
+            {
+                "rank": 31,
+                "title": "Calculus Problem Solving Lec-31 for JEE Advanced & Mains",
+                "uid": "074Y9W0WALP5AJOYFBKM",
+                "duration": "3h 56m"
+            },
+            {
+                "rank": 32,
+                "title": "Calculus Problem Solving Lec-32 for JEE Advanced & Mains",
+                "uid": "GAL63GLERVOB7K7G7Y2T",
+                "duration": "4h 17m"
+            },
+            {
+                "rank": 33,
+                "title": "Calculus Problem Solving Lec-33 for JEE Advanced & Mains",
+                "uid": "90FRIRPEKMRZYR6WJAQ3",
+                "duration": "3h 1m"
+            },
+            {
+                "rank": 34,
+                "title": "Calculus Problem Solving Lec-34 for JEE Advanced & Mains",
+                "uid": "69FDC1MWZZ6L8T0A2OCJ",
+                "duration": "3h 51m"
+            },
+            {
+                "rank": 35,
+                "title": "Calculus Problem Solving Lec-35 for JEE Advanced & Mains",
+                "uid": "QUM33T85UWED4JDWUFIH",
+                "duration": "1h 35m"
+            },
+            {
+                "rank": 36,
+                "title": "Calculus Problem Solving Lec-36 for JEE Advanced & Mains",
+                "uid": "46EFS1PUCVB8TJ4WFV06",
+                "duration": "2h 28m"
+            },
+            {
+                "rank": 37,
+                "title": "Calculus Problem Solving Lec-37 for JEE Advanced & Mains",
+                "uid": "T6KB7PRVM2M488N1TBMX",
+                "duration": "2h 6m"
+            },
+            {
+                "rank": 38,
+                "title": "DISCUSSION",
+                "uid": "YXS8VRSXFV0V6TY21I87",
+                "duration": "2h 25m"
             }
         ]
     },
