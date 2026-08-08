@@ -1177,6 +1177,17 @@
 
         let activeUid = "371ARO0LCZM7PJUQ2JAU"; // Default to Lec 1
 
+        let lastSplashUpdate = 0;
+        window.updateSplash = (txt, pct) => {
+            const now = performance.now();
+            if (pct < 100 && now - lastSplashUpdate < 32) return;
+            lastSplashUpdate = now;
+            const label = document.getElementById("splash-label");
+            const bar = document.getElementById("splash-progress");
+            if (label) label.textContent = txt;
+            if (bar && pct !== undefined) bar.style.width = `${pct}%`;
+        };
+
         const SECRET_KEY = '9ffdc791579b19df35315e4d81a4aacda41d4c1ddaa318a4cba133111e20540e';
 
         function decryptBytes(bufferOrArray, secretKey) {
