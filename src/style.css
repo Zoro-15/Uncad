@@ -1138,7 +1138,7 @@
             position: relative;
         }
         .course-card-left {
-            margin-right: 220px;
+            margin-right: 320px;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -1148,9 +1148,9 @@
             top: 30px;
             right: 30px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
         }
         @media (max-width: 640px) {
             .course-card-left {
