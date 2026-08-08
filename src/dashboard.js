@@ -108,7 +108,6 @@ import { COURSES } from './courses.js';
                         <i class="fas ${course.icon}"></i>
                     </div>
                     <h3 class="course-card-title">${course.title}</h3>
-                    <div style="font-size: 11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-top:-10px;">${course.subtitle}</div>
                     <p class="course-card-desc">${course.description}</p>
                     <div class="course-card-btn">Explore Course</div>
                 `;
@@ -123,7 +122,6 @@ import { COURSES } from './courses.js';
             const header = document.getElementById("course-header-details");
             if (header) {
                 header.innerHTML = `
-                    <div class="course-subtitle-main">${course.subtitle}</div>
                     <h1 class="course-title-main">${course.title}</h1>
                     <p class="course-desc-main">${course.description}</p>
                 `;
