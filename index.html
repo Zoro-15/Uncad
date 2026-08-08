@@ -1008,6 +1008,421 @@
             background: #18181b;
             color: white;
         }
+
+        /* DASHBOARD SHELL & THEME */
+        #dashboard-shell {
+            background-color: #09090b;
+            color: #f4f4f5;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            display: none;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+        }
+        #dashboard-shell.active {
+            display: flex;
+        }
+        .db-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: rgba(15, 15, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .db-logo {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+        .db-logo i {
+            color: var(--accent);
+            text-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
+        }
+        .db-logo span {
+            color: var(--accent);
+        }
+        .db-user {
+            font-size: 13px;
+            color: #a1a1aa;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 500;
+        }
+        .db-view {
+            display: none;
+            flex-direction: column;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .db-view.active {
+            display: flex;
+        }
+        
+        /* HERO SECTION */
+        .db-hero {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.08) 0%, rgba(15, 15, 20, 0.8) 100%);
+            border: 1px solid rgba(229, 9, 20, 0.15);
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .db-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            opacity: 0.1;
+            filter: blur(100px);
+            border-radius: 50%;
+        }
+        .db-hero-title {
+            font-size: 38px;
+            font-weight: 800;
+            margin: 0 0 16px 0;
+            background: linear-gradient(to right, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .db-hero-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #a1a1aa;
+            max-width: 700px;
+            margin: 0;
+        }
+        .db-section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .db-section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* COURSE GRID CARD */
+        .db-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+        }
+        .course-card {
+            background: #18181b;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(229, 9, 20, 0.3);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.5), 0 0 20px rgba(229, 9, 20, 0.08);
+        }
+        .course-card-icon-wrap {
+            width: 52px;
+            height: 52px;
+            background: rgba(229, 9, 20, 0.1);
+            border: 1px solid rgba(229, 9, 20, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 20px;
+        }
+        .course-card-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #d4d4d8;
+            font-weight: 600;
+        }
+        .course-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+        .course-card-desc {
+            font-size: 13px;
+            color: #a1a1aa;
+            line-height: 1.5;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .course-card-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            text-align: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .course-card:hover .course-card-btn {
+            background: var(--accent);
+            border-color: var(--accent);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* COURSE DETAILS SUB-VIEW */
+        .db-back-row {
+            margin-bottom: 24px;
+        }
+        .db-back-btn {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .db-back-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.06);
+        }
+        .course-header-card {
+            background: linear-gradient(to right, #18181b, #09090b);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+        .course-title-main {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+        }
+        .course-subtitle-main {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .course-desc-main {
+            font-size: 14px;
+            color: #a1a1aa;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        /* SEARCH ROW */
+        .search-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .search-input-wrap {
+            position: relative;
+            flex-grow: 1;
+        }
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #71717a;
+            font-size: 14px;
+        }
+        #lecture-search-input {
+            width: 100%;
+            background: #18181b;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 12px 12px 12px 46px;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #lecture-search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.15);
+            outline: none;
+        }
+        .lecture-count-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #d4d4d8;
+            white-space: nowrap;
+        }
+        
+        /* LECTURE LIST */
+        .lecture-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .lecture-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #18181b;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 18px 24px;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            cursor: pointer;
+        }
+        .lecture-card:hover {
+            background: #202024;
+            border-color: rgba(255,255,255,0.1);
+            transform: scale(1.005);
+        }
+        .lecture-card-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .lecture-number {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent);
+            background: rgba(229, 9, 20, 0.08);
+            border: 1px solid rgba(229, 9, 20, 0.15);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lecture-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f4f4f5;
+        }
+        .lecture-card-play-btn {
+            background: rgba(229, 9, 20, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(229, 9, 20, 0.25);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .lecture-card:hover .lecture-card-play-btn {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+        .lecture-card-play-btn i {
+            margin-left: 2px;
+            font-size: 13px;
+        }
+        
+        /* FLOATING BACK BUTTON IN PLAYER */
+        .player-back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(15, 15, 20, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s, visibility 0.3s, background 0.2s, transform 0.2s;
+            opacity: 1;
+            visibility: visible;
+        }
+        .player-back-btn:hover {
+            background: rgba(15, 15, 20, 0.85);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        .player-back-btn.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        /* DRAWER HEADERS */
+        .drawer-course-header {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+            padding: 10px 14px 6px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(229,9,20,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(6px);
+        }
     </style>
 </head>
 
@@ -1018,6 +1433,52 @@
         <div class="splash-label" id="splash-label">Initializing Telemetry Engine...</div>
         <div class="splash-progress-wrap">
             <div class="splash-progress-bar" id="splash-progress"></div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboard-shell">
+        <header class="db-header">
+            <div class="db-logo">
+                <i class="fas fa-graduation-cap"></i> Lennister<span>Player</span>
+            </div>
+            <div class="db-user">
+                <span>IIT JEE Calculus & Algebra</span>
+            </div>
+        </header>
+
+        <!-- HOMEPAGE SUB-VIEW -->
+        <div id="view-homepage" class="db-view active">
+            <div class="db-hero">
+                <h1 class="db-hero-title">Sandal Agarwal Lectures</h1>
+                <p class="db-hero-desc">Explore Advanced Mathematics lectures for JEE Advanced calculus and algebra prep. Whiteboard dynamic replay, annotated slides, and fully synced telemetric player.</p>
+            </div>
+            <div class="db-section-title">Select Your Course</div>
+            <div class="db-grid" id="course-list-grid">
+                <!-- Course Cards generated by JS -->
+            </div>
+        </div>
+
+        <!-- COURSE DETAILS SUB-VIEW -->
+        <div id="view-course-details" class="db-view">
+            <div class="db-back-row">
+                <button class="db-back-btn" onclick="switchView('home')">
+                    <i class="fas fa-arrow-left"></i> Back to Courses
+                </button>
+            </div>
+            <div class="course-header-card" id="course-header-details">
+                <!-- Course details header text generated by JS -->
+            </div>
+            <div class="search-row">
+                <div class="search-input-wrap">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="lecture-search-input" placeholder="Search lectures by title or number..." oninput="filterLectures()">
+                </div>
+                <div class="lecture-count-chip" id="lecture-count-chip">20 Lectures</div>
+            </div>
+            <div class="lecture-list" id="course-lectures-list">
+                <!-- Lecture List cards generated by JS -->
+            </div>
         </div>
     </div>
 
@@ -1073,7 +1534,11 @@
     </div>
 
     <!-- MAIN APP -->
-    <div id="app">
+    <div id="app" style="display:none">
+        <!-- FLOATING BACK BUTTON -->
+        <button id="player-back-btn" class="player-back-btn" onclick="goBackToCourse()">
+            <i class="fas fa-arrow-left"></i> <span>Back to Course</span>
+        </button>
         <section id="stage">
             <div id="canvas-wrapper">
                 <div id="canvas-area">
@@ -1393,6 +1858,206 @@
         ];
 
         let activeUid = "371ARO0LCZM7PJUQ2JAU"; // Default to Lec 1
+
+        const ALGEBRA_LECTURES = [
+            { "rank": 1, "title": "Algebra L01 : Beginning of Algebra, Cubic formula & some elementary results", "uid": "NONCJKE7WF6MO8TV5VC3" },
+            { "rank": 2, "title": "Algebra Lec 02", "uid": "YPUK1MTK2C3XOWV9RZ4R" },
+            { "rank": 3, "title": "Algebra Lec 03", "uid": "CZX0YLRYYNELHGM4YDF1" },
+            { "rank": 4, "title": "Algebra Lec 04", "uid": "T1SYU80OO3XPEC4ZJ0Q0" },
+            { "rank": 5, "title": "Algebra Lec05 : Generalising quadratic and cubic", "uid": "JMR8OSXX4ZQS93NVNUH9" },
+            { "rank": 6, "title": "Algebra Lec 06: Cardano's Cubic Formula, Exponents, Surds, Binomials and FPS", "uid": "HKCR5ISAPOQVP56W76NH" },
+            { "rank": 7, "title": "Algebra Lec 07: Biquadratic, Transformation of Equations, Vieta and FTA", "uid": "QFVJHHUNXMXKS4QAVBLK" },
+            { "rank": 8, "title": "Algebra Lec 08: Theory of Indices and Polynomial theorems", "uid": "XGQNQOUMD6447B2AEDPJ" },
+            { "rank": 9, "title": "Algebra Lec 09", "uid": "6IAEXKANIEIQOZLZQX79" },
+            { "rank": 10, "title": "Algebra Lec 10", "uid": "N4IGYUWXHLC44AA5LJHY" },
+            { "rank": 11, "title": "Algebra Lec 11: Algebraic Identities, Newton's observations, Polynomial Theorems", "uid": "W1AKEE7VHG29Y5CLPTTF" },
+            { "rank": 12, "title": "Algebra Lec 12: A brilliant generalization , Advanced Algebraic manipulations and Factorization", "uid": "4JI4C5S2IX3R4UYSZZ1M" },
+            { "rank": 13, "title": "Algebra Lec 13", "uid": "IWEK8LDL749OMB5MUDDB" },
+            { "rank": 14, "title": "Algebra L14 : Reciprocal Equations, Idea of complex Numbers ,Nature of Roots", "uid": "WKE2TRDWPY3PDSNKP5OR" },
+            { "rank": 15, "title": "Algebra L15 : Nature of Roots and final theorems", "uid": "8P0OBHSB9BGGDEBEUIEL" },
+            { "rank": 16, "title": "Algebra L16 : Problem Solving Situation Set 01", "uid": "5QK6MML0WSITIUHTZQWA" },
+            { "rank": 17, "title": "Algebra L17 : Problem Solving Situation Set 02", "uid": "6ER69OIVN7XIOA8QRIB5" },
+            { "rank": 18, "title": "Algebra L18 : Problem Solving Situation Set 03", "uid": "EYDBQE4SJVH5W2SW7185" },
+            { "rank": 19, "title": "Algebra L19 : Problem Solving Situation Set 03", "uid": "Y8AS7A6ZOQDC0EWT5VW8" },
+            { "rank": 20, "title": "Complete Discussion of Algebra-I Sheet & JEE ADV PYQs", "uid": "KDCS5WH47U3HOQ83SWYV" }
+        ];
+
+        const COURSES = [
+            {
+                id: "calculus-1",
+                title: "Calculus for JEE Advanced",
+                subtitle: "Part I - Sandal Agarwal",
+                description: "Comprehensive Advanced Calculus course covering Functions, Limits, Continuity, Differentiability, derivatives, and graphs. Includes annotated slide replays.",
+                lectures: CALCULUS_LECTURES,
+                icon: "fa-calculator",
+                badge: "48 Lectures"
+            },
+            {
+                id: "algebra-1",
+                title: "Algebra for JEE Advanced",
+                subtitle: "Part I - Sandal Agarwal",
+                description: "Advanced Algebra covering Algebraic Identities, Cardano's Cubic Formula, Reciprocal Equations, complex numbers, and polynomials.",
+                lectures: ALGEBRA_LECTURES,
+                icon: "fa-square-root-variable",
+                badge: "20 Lectures"
+            }
+        ];
+
+        let activeCourseId = "calculus-1";
+
+        function findCourseByLectureUid(uid) {
+            for (const c of COURSES) {
+                if (c.lectures.some(l => l.uid === uid)) return c;
+            }
+            return COURSES[0];
+        }
+
+        // Routing Views
+        let currentView = "home";
+
+        function switchView(viewName, params = {}) {
+            currentView = viewName;
+            const dbShell = document.getElementById("dashboard-shell");
+            const appEl = document.getElementById("app");
+            const backBtn = document.getElementById("player-back-btn");
+
+            if (viewName === "player") {
+                if (dbShell) dbShell.classList.remove("active");
+                if (appEl) appEl.style.display = "flex";
+                if (backBtn) backBtn.style.display = "flex";
+                resizeCanvas();
+            } else {
+                if (dbShell) dbShell.classList.add("active");
+                if (appEl) appEl.style.display = "none";
+                if (backBtn) backBtn.style.display = "none";
+                
+                const sp = document.getElementById("splash");
+                if (sp) sp.style.display = "none";
+                
+                if (video) video.pause();
+
+                const viewHome = document.getElementById("view-homepage");
+                const viewDetails = document.getElementById("view-course-details");
+                
+                if (viewName === "home") {
+                    if (viewHome) viewHome.classList.add("active");
+                    if (viewDetails) viewDetails.classList.remove("active");
+                    renderDashboardHome();
+                } else if (viewName === "course") {
+                    if (viewHome) viewHome.classList.remove("active");
+                    if (viewDetails) viewDetails.classList.add("active");
+                    if (params.courseId) {
+                        activeCourseId = params.courseId;
+                        renderCourseDetails(params.courseId);
+                    }
+                }
+            }
+        }
+
+        function renderDashboardHome() {
+            const grid = document.getElementById("course-list-grid");
+            if (!grid) return;
+            grid.innerHTML = "";
+            COURSES.forEach(course => {
+                const card = document.createElement("div");
+                card.className = "course-card";
+                card.onclick = () => switchView("course", { courseId: course.id });
+                card.innerHTML = `
+                    <div class="course-card-badge">${course.badge}</div>
+                    <div class="course-card-icon-wrap">
+                        <i class="fas ${course.icon}"></i>
+                    </div>
+                    <h3 class="course-card-title">${course.title}</h3>
+                    <div style="font-size: 11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-top:-10px;">${course.subtitle}</div>
+                    <p class="course-card-desc">${course.description}</p>
+                    <div class="course-card-btn">Explore Course</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderCourseDetails(courseId) {
+            const course = COURSES.find(c => c.id === courseId);
+            if (!course) return;
+
+            const header = document.getElementById("course-header-details");
+            if (header) {
+                header.innerHTML = `
+                    <div class="course-subtitle-main">${course.subtitle}</div>
+                    <h1 class="course-title-main">${course.title}</h1>
+                    <p class="course-desc-main">${course.description}</p>
+                `;
+            }
+
+            const countChip = document.getElementById("lecture-count-chip");
+            if (countChip) countChip.textContent = `${course.lectures.length} Lectures`;
+
+            const searchInput = document.getElementById("lecture-search-input");
+            if (searchInput) searchInput.value = "";
+
+            renderLecturesList(course.lectures);
+        }
+
+        function renderLecturesList(lectures) {
+            const listContainer = document.getElementById("course-lectures-list");
+            if (!listContainer) return;
+            listContainer.innerHTML = "";
+
+            if (lectures.length === 0) {
+                listContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#71717a; font-size:14px;"><i class="fas fa-search" style="font-size:24px; margin-bottom:10px; display:block;"></i>No matching lectures found.</div>`;
+                return;
+            }
+
+            lectures.forEach(lec => {
+                const card = document.createElement("div");
+                card.className = "lecture-card";
+                card.onclick = () => launchLecture(lec.uid);
+                card.innerHTML = `
+                    <div class="lecture-card-left">
+                        <div class="lecture-number">${lec.rank}</div>
+                        <div class="lecture-card-title">${lec.title}</div>
+                    </div>
+                    <div class="lecture-card-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function filterLectures() {
+            const query = document.getElementById("lecture-search-input").value.toLowerCase().trim();
+            const course = COURSES.find(c => c.id === activeCourseId);
+            if (!course) return;
+
+            const filtered = course.lectures.filter(l => 
+                l.title.toLowerCase().includes(query) || 
+                l.rank.toString().includes(query) ||
+                l.uid.toLowerCase().includes(query)
+            );
+            renderLecturesList(filtered);
+        }
+
+        async function launchLecture(uid) {
+            const sp = document.getElementById("splash");
+            if (sp) {
+                sp.style.display = "flex";
+                sp.classList.remove("hidden");
+            }
+            switchView("player");
+            activeUid = uid;
+            const success = await loadLectureByUid(uid);
+            if (success) {
+                if (sp) {
+                    sp.classList.add("hidden");
+                    setTimeout(() => { sp.style.display = "none"; }, 700);
+                }
+            }
+        }
+
+        function goBackToCourse() {
+            switchView("course", { courseId: activeCourseId });
+        }
 
         let lastSplashUpdate = 0;
         window.updateSplash = (txt, pct) => {
@@ -2476,6 +3141,9 @@
         }
 
         async function loadLectureByUid(uid) {
+            const course = findCourseByLectureUid(uid);
+            activeCourseId = course.id;
+
             activeUid = uid;
             renderLectureDrawer();
 
@@ -2635,6 +3303,7 @@
         }
 
         async function processData(raw) {
+            ptrStreamIdx = 0;
             console.log("[Data] Deobfuscating telemetry headers...");
             raw = deobfuscateNode(raw);
             let flat = [];
@@ -3558,17 +4227,19 @@
 
         function showControls(autohide = true) {
             controlsOverlay.classList.add("visible");
+            const backBtn = $("player-back-btn");
+            if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
             if (autohide && !video.paused) {
-                hideControlsTimer = setTimeout(() => {
-                    controlsOverlay.classList.remove("visible");
-                }, 3000);
+                hideControlsTimer = setTimeout(hideControls, 3000);
             }
         }
 
         function hideControls() {
             clearTimeout(hideControlsTimer);
             controlsOverlay.classList.remove("visible");
+            const backBtn = $("player-back-btn");
+            if (backBtn) backBtn.classList.add("fade-out");
         }
 
         function toggleControls() {
@@ -3719,7 +4390,15 @@
             const nav = document.getElementById('lecture-nav');
             if (!nav) return;
             nav.innerHTML = '';
-            CALCULUS_LECTURES.forEach(lec => {
+            
+            const activeCourse = COURSES.find(c => c.id === activeCourseId) || COURSES[0];
+            
+            const titleEl = document.createElement('div');
+            titleEl.className = 'drawer-course-header';
+            titleEl.textContent = activeCourse.title;
+            nav.appendChild(titleEl);
+            
+            activeCourse.lectures.forEach(lec => {
                 const item = document.createElement('div');
                 const isActive = (lec.uid === activeUid);
                 item.className = `lec-item ${isActive ? 'active' : ''}`;
@@ -3912,8 +4591,23 @@
         (async () => {
             try {
                 resizeCanvas();
-                const success = await runEngine();
-                if (success) {
+                const params = new URLSearchParams(window.location.search);
+                const hasParam = params.get("lec") || params.get("url");
+                
+                renderDashboardHome();
+
+                if (hasParam) {
+                    switchView("player");
+                    const success = await runEngine();
+                    if (success) {
+                        const sp = $("splash");
+                        if (sp) {
+                            sp.classList.add("hidden");
+                            setTimeout(() => { sp.style.display = "none"; }, 700);
+                        }
+                    }
+                } else {
+                    switchView("home");
                     const sp = $("splash");
                     if (sp) {
                         sp.classList.add("hidden");
