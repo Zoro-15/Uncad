@@ -2,6 +2,8 @@
 node_modules/
 new txt/
 *.txt
+informatio.md
+PROJECT_CONTEXT.md
 # Build outputs
 dist/
 dist-ssr/
