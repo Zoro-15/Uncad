@@ -2138,7 +2138,7 @@ import { maths, bezier } from './engine/bezier.js';
             if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
             if (autohide) {
-                const timeoutMs = video.paused ? 2000 : 1500;
+                const timeoutMs = video.paused ? 1500 : 1000;
                 hideControlsTimer = setTimeout(hideControls, timeoutMs);
             }
         }
