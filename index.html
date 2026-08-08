@@ -2228,28 +2228,11 @@
                 const response = await fetch(url);
                 if (!response.ok) return false;
 
-                const contentLength = +response.headers.get("Content-Length") || 0;
-                const reader = response.body.getReader();
-                let receivedLength = 0;
-                let chunks = [];
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    chunks.push(value);
-                    receivedLength += value.length;
-                    const pct = contentLength ? Math.round((receivedLength / contentLength) * 100) : 0;
-                    window.updateSplash(contentLength ? `Downloading Telemetry ${pct}%` : `Downloading Telemetry...`, pct * 0.4);
-                }
+                window.updateSplash("Downloading Telemetry...", 25);
+                const buffer = await response.arrayBuffer();
 
                 window.updateSplash("Decrypting Payload...", 45);
-                const allBytes = new Uint8Array(receivedLength);
-                let pos = 0;
-                for (const chunk of chunks) { allBytes.set(chunk, pos); pos += chunk.length; }
-                chunks = [];
-
-                window.updateSplash("Parsing Telemetry...", 48);
-                const rawData = tryDecryptAndParse(allBytes.buffer, url);
+                const rawData = tryDecryptAndParse(buffer, url);
 
                 console.log("[Engine] JSON parsed. Processing stream frames...");
                 await processData(rawData);
@@ -2339,6 +2322,7 @@
                         splash.classList.add("hidden");
                         setTimeout(() => { splash.style.display = "none"; }, 500);
                     }
+                    return true;
                 } else {
                     throw new Error("Telemetry endpoints unreachable.");
                 }
@@ -2347,6 +2331,7 @@
                 setStatus("error", "LOAD ERROR");
                 const label = $("splash-label");
                 if (label) label.textContent = "Telemetry fetch failed. Please check your network or try another lecture.";
+                return false;
             }
         }
 
@@ -2361,8 +2346,7 @@
             if (lecUrl) {
                 if (lecUrl.length === 20 && !lecUrl.includes("/")) {
                     activeUid = lecUrl;
-                    await loadLectureByUid(lecUrl);
-                    return true;
+                    return await loadLectureByUid(lecUrl);
                 }
                 video.src = lecUrl;
                 if (gsMode) gsVideo.src = lecUrl;
@@ -2380,8 +2364,7 @@
                 }
             }
 
-            await loadLectureByUid(activeUid);
-            return true;
+            return await loadLectureByUid(activeUid);
         }
 
         const KEY_MAP_REV = {
@@ -3685,11 +3668,13 @@
         (async () => {
             try {
                 resizeCanvas();
-                await runEngine();
-                const sp = $("splash");
-                if (sp) {
-                    sp.classList.add("hidden");
-                    setTimeout(() => { sp.style.display = "none"; }, 700);
+                const success = await runEngine();
+                if (success) {
+                    const sp = $("splash");
+                    if (sp) {
+                        sp.classList.add("hidden");
+                        setTimeout(() => { sp.style.display = "none"; }, 700);
+                    }
                 }
             } catch (e) {
                 console.error("Engine startup failed:", e);
