@@ -1120,23 +1120,14 @@
         /* COURSE GRID CARD */
         .db-grid {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             gap: 28px;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            padding-bottom: 12px;
-            scrollbar-width: thin;
-        }
-        .db-grid::-webkit-scrollbar {
-            height: 6px;
-        }
-        .db-grid::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
         }
         .course-card {
-            flex: 0 0 450px;
-            max-width: 100%;
+            width: 100%;
             background: #18181b;
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
@@ -1148,11 +1139,6 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             position: relative;
-        }
-        @media (max-width: 600px) {
-            .course-card {
-                flex: 0 0 320px;
-            }
         }
         .course-card:hover {
             transform: translateY(-4px);

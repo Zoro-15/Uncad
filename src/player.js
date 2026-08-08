@@ -2565,8 +2565,8 @@ import { switchView } from './dashboard.js';
             })();
         })();
 
-        // Export bindings
-export { runEngine, loadLectureByUid, processData, syncLoop, doSeek };
+// Export bindings
+export { runEngine, loadLectureByUid, processData, syncLoop, doSeek, switchPanelTab };
 window.runEngine = runEngine;
 window.loadLectureByUid = loadLectureByUid;
 window.processData = processData;
@@ -2576,3 +2576,4 @@ window.$ = $;
 window.video = video;
 window.resizeCanvas = resizeCanvas;
 window.setStatus = setStatus;
+window.switchPanelTab = switchPanelTab;

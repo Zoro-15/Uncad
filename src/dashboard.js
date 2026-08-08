@@ -58,6 +58,42 @@ import { COURSES } from './courses.js';
             }
         }
 
+        function getCourseStatsText(course) {
+            const totalLectures = course.lectures.length;
+            let totalMinutes = 0;
+            course.lectures.forEach(lec => {
+                const durationStr = lec.duration || "";
+                let hours = 0;
+                let minutes = 0;
+                const hMatch = durationStr.match(/(\d+)\s*h/);
+                const mMatch = durationStr.match(/(\d+)\s*m/);
+                if (hMatch) hours = parseInt(hMatch[1], 10);
+                if (mMatch) minutes = parseInt(mMatch[1], 10);
+                if (!hMatch && !mMatch) {
+                    const onlyNum = durationStr.match(/(\d+)/);
+                    if (onlyNum) {
+                        minutes = parseInt(onlyNum[1], 10);
+                    }
+                }
+                totalMinutes += hours * 60 + minutes;
+            });
+
+            const hrs = Math.floor(totalMinutes / 60);
+            const mins = totalMinutes % 60;
+
+            let durationText = "";
+            if (hrs > 0) {
+                durationText += `${hrs}h`;
+            }
+            if (mins > 0) {
+                if (hrs > 0) durationText += " ";
+                durationText += `${mins}m`;
+            }
+            if (!durationText) durationText = "0m";
+
+            return `${totalLectures} Lectures • ${durationText}`;
+        }
+
         function renderDashboardHome() {
             const grid = document.getElementById("course-list-grid");
             if (!grid) return;
@@ -67,7 +103,7 @@ import { COURSES } from './courses.js';
                 card.className = "course-card";
                 card.onclick = () => switchView("course", { courseId: course.id });
                 card.innerHTML = `
-                    <div class="course-card-badge">${course.badge}</div>
+                    <div class="course-card-badge">${getCourseStatsText(course)}</div>
                     <div class="course-card-icon-wrap">
                         <i class="fas ${course.icon}"></i>
                     </div>
