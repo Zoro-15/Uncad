@@ -103,13 +103,17 @@ import { COURSES } from './courses.js';
                 card.className = "course-card";
                 card.onclick = () => switchView("course", { courseId: course.id });
                 card.innerHTML = `
-                    <div class="course-card-badge">${getCourseStatsText(course)}</div>
-                    <div class="course-card-icon-wrap">
-                        <i class="fas ${course.icon}"></i>
+                    <div class="course-card-right-col">
+                        <div class="course-card-badge">${getCourseStatsText(course)}</div>
+                        <div class="course-card-btn">Explore Course</div>
                     </div>
-                    <h3 class="course-card-title">${course.title}</h3>
-                    <p class="course-card-desc">${course.description}</p>
-                    <div class="course-card-btn">Explore Course</div>
+                    <div class="course-card-left">
+                        <div class="course-card-icon-wrap">
+                            <i class="fas ${course.icon}"></i>
+                        </div>
+                        <h3 class="course-card-title">${course.title}</h3>
+                        <p class="course-card-desc">${course.description}</p>
+                    </div>
                 `;
                 grid.appendChild(card);
             });

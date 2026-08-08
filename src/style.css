@@ -1132,13 +1132,38 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
             padding: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             position: relative;
+        }
+        .course-card-left {
+            margin-right: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .course-card-right-col {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+        @media (max-width: 640px) {
+            .course-card-left {
+                margin-right: 0;
+            }
+            .course-card-right-col {
+                position: static;
+                margin-top: 16px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
         }
         .course-card:hover {
             transform: translateY(-4px);
@@ -1158,9 +1183,6 @@
             font-size: 20px;
         }
         .course-card-badge {
-            position: absolute;
-            top: 30px;
-            right: 30px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 10px;
@@ -1168,6 +1190,7 @@
             font-size: 11px;
             color: #d4d4d8;
             font-weight: 600;
+            white-space: nowrap;
         }
         .course-card-title {
             font-size: 20px;
@@ -1180,18 +1203,18 @@
             color: #a1a1aa;
             line-height: 1.5;
             margin: 0;
-            flex-grow: 1;
         }
         .course-card-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 10px;
+            padding: 8px 16px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             text-align: center;
             transition: background 0.2s, border-color 0.2s;
+            white-space: nowrap;
         }
         .course-card:hover .course-card-btn {
             background: var(--accent);
