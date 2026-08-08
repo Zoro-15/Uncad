@@ -1,8 +1,11 @@
 // Dashboard views and routing module
 import { COURSES } from './courses.js';
+import { loadLectureByUid } from './player.js';
 
 // Routing Views
         let currentView = "home";
+        let activeCourseId = "LPN7OFOL";
+        let activeUid = "";
 
         function switchView(viewName, params = {}) {
             currentView = viewName;
@@ -42,14 +45,23 @@ import { COURSES } from './courses.js';
 
                 const viewHome = document.getElementById("view-homepage");
                 const viewDetails = document.getElementById("view-course-details");
+                const dbLogo = document.getElementById("db-logo");
+                const dbHeaderBackBtn = document.getElementById("db-header-back-btn");
+                const dbHeaderRight = document.getElementById("db-header-right");
                 
                 if (viewName === "home") {
                     if (viewHome) viewHome.classList.add("active");
                     if (viewDetails) viewDetails.classList.remove("active");
+                    if (dbLogo) dbLogo.style.display = "flex";
+                    if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
+                    if (dbHeaderRight) dbHeaderRight.style.display = "block";
                     renderDashboardHome();
                 } else if (viewName === "course") {
                     if (viewHome) viewHome.classList.remove("active");
                     if (viewDetails) viewDetails.classList.add("active");
+                    if (dbLogo) dbLogo.style.display = "none";
+                    if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "flex";
+                    if (dbHeaderRight) dbHeaderRight.style.display = "block";
                     if (params.courseId) {
                         activeCourseId = params.courseId;
                         renderCourseDetails(params.courseId);

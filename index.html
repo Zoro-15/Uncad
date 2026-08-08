@@ -26,12 +26,17 @@
 
     <!-- DASHBOARD VIEW -->
     <div id="dashboard-shell">
-        <header class="db-header">
-            <div class="db-logo">
-                <i class="fas fa-dragon"></i> Runcadel's<span>Player</span>
+        <header class="db-header" id="db-header">
+            <div class="db-header-left">
+                <div class="db-logo" id="db-logo">
+                    <i class="fas fa-dragon"></i> Runcadel's<span>Player</span>
+                </div>
+                <button class="db-header-back-btn" id="db-header-back-btn" style="display: none;" onclick="switchView('home')">
+                    <i class="fas fa-arrow-left"></i> Back to Courses
+                </button>
             </div>
-            <div class="db-user">
-                <span>IIT JEE Calculus & Algebra</span>
+            <div class="db-user" id="db-header-right">
+                <span id="db-header-badge-text">IIT JEE Calculus & Algebra</span>
             </div>
         </header>
 
@@ -46,7 +51,7 @@
 
         <!-- COURSE DETAILS SUB-VIEW -->
         <div id="view-course-details" class="db-view">
-            <div class="db-back-row">
+            <div class="db-back-row" style="display: none;">
                 <button class="db-back-btn" onclick="switchView('home')">
                     <i class="fas fa-arrow-left"></i> Back to Courses
                 </button>
