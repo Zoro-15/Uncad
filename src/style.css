@@ -752,17 +752,66 @@
         }
 
         #play-btn {
-            width: 42px;
-            height: 42px;
-            font-size: 20px;
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
             border-radius: 50%;
             background: rgba(14, 165, 233, 0.25) !important;
             color: #fff !important;
             -webkit-text-fill-color: #fff !important;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #play-btn svg {
+            width: 14px;
+            height: 14px;
         }
 
         #play-btn:hover {
             background: rgba(14, 165, 233, 0.4) !important;
+        }
+
+        /* YOUTUBE-STYLE PLAY/PAUSE RIPPLE BADGE */
+        .play-ripple-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            width: 64px;
+            height: 64px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 150;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .play-ripple-badge.animate {
+            animation: ripplePop 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes ripplePop {
+            0% {
+                opacity: 0.95;
+                transform: translate(-50%, -50%) scale(0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.18);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.35);
+            }
         }
 
         .ua-skip-btn {

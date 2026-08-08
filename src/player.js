@@ -2138,7 +2138,7 @@ import { maths, bezier } from './engine/bezier.js';
             if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
             if (autohide) {
-                const timeoutMs = video.paused ? 3500 : 2500;
+                const timeoutMs = video.paused ? 2000 : 1500;
                 hideControlsTimer = setTimeout(hideControls, timeoutMs);
             }
         }
@@ -2153,6 +2153,25 @@ import { maths, bezier } from './engine/bezier.js';
         function toggleControls() {
             if (controlsOverlay.classList.contains("visible")) hideControls();
             else showControls(true);
+        }
+
+        function triggerPlayPauseRipple(isPlay) {
+            let ripple = $("play-ripple-badge");
+            if (!ripple) {
+                ripple = document.createElement("div");
+                ripple.id = "play-ripple-badge";
+                ripple.className = "play-ripple-badge";
+                const targetWrap = $("canvas-area") || $("stage");
+                if (targetWrap) targetWrap.appendChild(ripple);
+            }
+            if (ripple) {
+                ripple.innerHTML = isPlay 
+                    ? `<svg viewBox="0 0 24 24" width="32" height="32" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`
+                    : `<svg viewBox="0 0 24 24" width="32" height="32" fill="#fff"><rect x="5" y="3" width="5" height="18"/><rect x="14" y="3" width="5" height="18"/></svg>`;
+                ripple.classList.remove("animate");
+                void ripple.offsetWidth; // Trigger reflow for re-animation
+                ripple.classList.add("animate");
+            }
         }
 
         const canvasArea = $("canvas-area");
@@ -2173,6 +2192,7 @@ import { maths, bezier } from './engine/bezier.js';
             }
         }, { passive: true });
 
+        let stageClickTimer = null;
         canvasArea.addEventListener("click", (e) => {
             if (Date.now() - lastTouchTime < 500) return;
             const gsOverlay = $("gs-overlay");
@@ -2181,7 +2201,26 @@ import { maths, bezier } from './engine/bezier.js';
                                 (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
                                 (videoCircle && videoCircle.contains(e.target)) || 
                                 (gsOverlay && gsOverlay.contains(e.target));
-            if (!isOnControl) toggleControls();
+            if (isOnControl) return;
+
+            if (stageClickTimer) {
+                clearTimeout(stageClickTimer);
+                stageClickTimer = null;
+                toggleFullScreen();
+                return;
+            }
+
+            stageClickTimer = setTimeout(() => {
+                stageClickTimer = null;
+                if (video.paused) {
+                    video.play().catch(err => console.error("[Player] Play error:", err));
+                    triggerPlayPauseRipple(true);
+                } else {
+                    video.pause();
+                    triggerPlayPauseRipple(false);
+                }
+                showControls(true);
+            }, 220);
         });
 
         video.addEventListener("pause", () => {
