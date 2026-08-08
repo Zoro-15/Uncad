@@ -239,6 +239,7 @@
             border-radius: 0;
             touch-action: none;
             transition: border-radius 0.3s;
+            display: none; /* Hidden by default; controlled by switchView() */
         }
 
         #video-circle video {
@@ -1013,7 +1014,7 @@
         #dashboard-shell {
             background-color: #09090b;
             color: #f4f4f5;
-            min-height: 100vh;
+            height: 100vh;
             font-family: 'Outfit', sans-serif;
             display: none;
             flex-direction: column;
@@ -1920,16 +1921,27 @@
             const dbShell = document.getElementById("dashboard-shell");
             const appEl = document.getElementById("app");
             const backBtn = document.getElementById("player-back-btn");
+            const vc = document.getElementById("video-circle");
 
             if (viewName === "player") {
                 if (dbShell) dbShell.classList.remove("active");
                 if (appEl) appEl.style.display = "flex";
                 if (backBtn) backBtn.style.display = "flex";
+                if (vc) vc.style.display = "block";
                 resizeCanvas();
+                
+                // Force camera re-docking to upper right corner
+                setTimeout(() => {
+                    if (window.positionCamDocked) window.positionCamDocked();
+                }, 50);
+                setTimeout(() => {
+                    if (window.positionCamDocked) window.positionCamDocked();
+                }, 350);
             } else {
                 if (dbShell) dbShell.classList.add("active");
                 if (appEl) appEl.style.display = "none";
                 if (backBtn) backBtn.style.display = "none";
+                if (vc) vc.style.display = "none";
                 
                 const sp = document.getElementById("splash");
                 if (sp) sp.style.display = "none";
@@ -4062,10 +4074,12 @@
             isSeeking = false;
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
             if (gsMode) gsVideo.play().catch(() => { });
+            requestWakeLock();
         });
         video.addEventListener("pause", () => {
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`;
             if (gsMode) gsVideo.pause();
+            releaseWakeLock();
         });
         video.addEventListener("seeking", () => {
             isSeeking = true;
@@ -4089,7 +4103,10 @@
         });
         video.addEventListener("waiting", () => { isBuffering = true; if (bufferingOverlay) bufferingOverlay.classList.add("show"); });
         video.addEventListener("playing", () => { isBuffering = false; isSeeking = false; if (bufferingOverlay) bufferingOverlay.classList.remove("show"); });
-        video.addEventListener("ended", () => { playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; });
+        video.addEventListener("ended", () => { 
+            playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; 
+            releaseWakeLock();
+        });
         video.addEventListener("ratechange", () => { if (gsMode) gsVideo.playbackRate = video.playbackRate; });
 
         function renderPollEvent(latest) {
@@ -4221,6 +4238,37 @@
 
         $("fs-btn-ui").addEventListener("click", () => toggleFullScreen());
 
+        // Screen Wake Lock API helpers to prevent sleep during lecture playback
+        let wakeLock = null;
+        async function requestWakeLock() {
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log("[Engine] Screen Wake Lock acquired.");
+                }
+            } catch (err) {
+                console.warn("[Engine] Wake Lock acquisition failed:", err);
+            }
+        }
+
+        async function releaseWakeLock() {
+            try {
+                if (wakeLock !== null) {
+                    await wakeLock.release();
+                    wakeLock = null;
+                    console.log("[Engine] Screen Wake Lock released.");
+                }
+            } catch (err) {
+                console.warn("[Engine] Wake Lock release failed:", err);
+            }
+        }
+
+        document.addEventListener('visibilitychange', async () => {
+            if (wakeLock !== null && document.visibilityState === 'visible' && !video.paused) {
+                await requestWakeLock();
+            }
+        });
+
         const controlsOverlay = $("controls-overlay");
         let hideControlsTimer;
         let lastTouchTime = 0;
@@ -4231,7 +4279,7 @@
             if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
             if (autohide && !video.paused) {
-                hideControlsTimer = setTimeout(hideControls, 3000);
+                hideControlsTimer = setTimeout(hideControls, 2000);
             }
         }
 
@@ -4475,6 +4523,10 @@
                 }
                 setTimeout(() => { resizeCanvas(true); }, 320);
             }
+
+            window.positionCamDocked = positionCamDocked;
+            window.positionCamFloating = positionCamFloating;
+            window.applyPanelState = applyPanelState;
 
             toggleBtn.addEventListener('click', () => {
                 panelOpen = !panelOpen;
