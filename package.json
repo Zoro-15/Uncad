@@ -1,0 +1,13 @@
+{
+  "name": "lennister-player",
+  "version": "1.0.0",
+  "description": "Lennister Player - Multi-Course telemetric whiteboard streaming player",
+  "scripts": {
+    "dev": "vite --port 3000 --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.5.2"
+  }
+}
