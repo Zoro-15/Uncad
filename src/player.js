@@ -2089,35 +2089,31 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             updateSpeedUI(parseFloat(e.target.value));
         });
 
-        let videoCircleVisible = true;
-        $("video-toggle-btn").addEventListener("click", () => {
-            videoCircleVisible = !videoCircleVisible;
-            const vc = $("video-circle");
-            const btn = $("video-toggle-btn");
-            if (videoCircleVisible) {
-                vc.style.opacity = "1";
-                vc.style.pointerEvents = "auto";
-                btn.innerHTML = "<i class=\"fas fa-eye\"></i> <span>Visible</span>";
-            } else {
-                vc.style.opacity = "0";
-                vc.style.pointerEvents = "none";
-                btn.innerHTML = "<i class=\"fas fa-eye-slash\"></i> <span>Hidden</span>";
-            }
-        });
+        const teacherSizeWrap = $("teacher-size-wrap");
+        if (teacherSizeWrap) {
+            teacherSizeWrap.addEventListener("click", e => {
+                const chip = e.target.closest(".teacher-size-chip");
+                if (!chip) return;
+                const size = chip.getAttribute("data-size");
+                const gs = $("gs-overlay");
+                const vc = $("video-circle");
+                const cp = $("cam-placeholder");
+                
+                document.querySelectorAll(".teacher-size-chip").forEach(c => c.classList.remove("active"));
+                chip.classList.add("active");
 
-        let chromaKeyEnabled = true;
-        $("chroma-toggle-btn").addEventListener("click", () => {
-            chromaKeyEnabled = !chromaKeyEnabled;
-            const videoEl = $("main-video");
-            const btn = $("chroma-toggle-btn");
-            if (chromaKeyEnabled) {
-                videoEl.classList.add("chroma-active");
-                btn.innerHTML = "<i class=\"fas fa-magic\"></i> <span>Enabled</span>";
-            } else {
-                videoEl.classList.remove("chroma-active");
-                btn.innerHTML = "<i class=\"fas fa-magic-slash\"></i> <span>Disabled</span>";
-            }
-        });
+                if (size === "small") {
+                    if (gs) gs.classList.add("small-size");
+                    if (vc) vc.classList.add("small-size");
+                    if (cp) cp.classList.add("small-size");
+                } else {
+                    if (gs) gs.classList.remove("small-size");
+                    if (vc) vc.classList.remove("small-size");
+                    if (cp) cp.classList.remove("small-size");
+                }
+                if (window.repositionCam) window.repositionCam();
+            });
+        }
 
         const settingsMenuEl = $("settings-menu");
         $("settings-btn-ui").addEventListener("click", (e) => {
@@ -2133,8 +2129,10 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
         $("fs-btn-ui").addEventListener("click", () => toggleFullScreen());
 
         document.addEventListener('visibilitychange', async () => {
-            if (wakeLock !== null && document.visibilityState === 'visible' && !video.paused) {
+            if (document.visibilityState === 'visible' && !video.paused) {
                 await requestWakeLock();
+            } else if (document.visibilityState === 'hidden') {
+                releaseWakeLock();
             }
         });
 
@@ -2143,52 +2141,27 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
         let lastTouchTime = 0;
 
         function showControls(autohide = true) {
-            controlsOverlay.classList.add("visible");
+            if (controlsOverlay) controlsOverlay.classList.add("visible");
+            const ytCenterOverlay = $("yt-center-play-overlay");
+            if (ytCenterOverlay) ytCenterOverlay.classList.add("show");
             const backBtn = $("player-back-btn");
             if (backBtn) backBtn.classList.remove("fade-out");
             clearTimeout(hideControlsTimer);
             if (autohide) {
-                const timeoutMs = video.paused ? 1500 : 1000;
+                const timeoutMs = video.paused ? 5000 : 4000;
                 hideControlsTimer = setTimeout(hideControls, timeoutMs);
             }
         }
 
         function hideControls() {
             clearTimeout(hideControlsTimer);
-            controlsOverlay.classList.remove("visible");
+            if (controlsOverlay) controlsOverlay.classList.remove("visible");
+            const ytCenterOverlay = $("yt-center-play-overlay");
+            if (ytCenterOverlay) ytCenterOverlay.classList.remove("show");
             const backBtn = $("player-back-btn");
             if (backBtn) backBtn.classList.add("fade-out");
         }
 
-        function toggleControls() {
-            if (controlsOverlay.classList.contains("visible")) hideControls();
-            else showControls(true);
-        }
-
-        function triggerPlayPauseRipple(isPlay) {
-            let ripple = $("play-ripple-badge");
-            if (!ripple) {
-                ripple = document.createElement("div");
-                ripple.id = "play-ripple-badge";
-                ripple.className = "play-ripple-badge";
-                const targetWrap = $("canvas-area") || $("stage");
-                if (targetWrap) targetWrap.appendChild(ripple);
-            }
-            if (ripple) {
-                ripple.innerHTML = isPlay 
-                    ? `<svg viewBox="0 0 24 24" width="32" height="32" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`
-                    : `<svg viewBox="0 0 24 24" width="32" height="32" fill="#fff"><rect x="5" y="3" width="5" height="18"/><rect x="14" y="3" width="5" height="18"/></svg>`;
-                ripple.classList.remove("animate");
-                void ripple.offsetWidth; // Trigger reflow for re-animation
-                ripple.classList.add("animate");
-            }
-        }
-
-        const canvasArea = $("canvas-area");
-        const stageArea = $("stage") || canvasArea;
-        if (stageArea) {
-            stageArea.addEventListener("mousemove", () => showControls(true));
-        }
         // YOUTUBE PLAY/PAUSE ICON & CENTER OVERLAY SYNC
         const ytCenterOverlay = $("yt-center-play-overlay");
         const ytCenterBtn = $("yt-center-btn");
@@ -2198,10 +2171,8 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             if (!ytCenterIcon) return;
             if (video.paused) {
                 ytCenterIcon.className = "fas fa-play";
-                if (ytCenterOverlay) ytCenterOverlay.classList.remove("playing");
             } else {
                 ytCenterIcon.className = "fas fa-pause";
-                if (ytCenterOverlay) ytCenterOverlay.classList.add("playing");
             }
         }
 
@@ -2228,9 +2199,11 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             setTimeout(() => el.classList.remove("active"), 600);
         }
 
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
         let stageClickTimer = null;
-        canvasArea.addEventListener("click", (e) => {
-            if (Date.now() - lastTouchTime < 500) return;
+        const canvasArea = $("canvas-area") || $("stage");
+        if (canvasArea) {
+            canvasArea.addEventListener("click", (e) => {
             const gsOverlay = $("gs-overlay");
             const videoCircle = $("video-circle");
             const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
@@ -2268,14 +2241,18 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             lastTapTime = now;
             stageClickTimer = setTimeout(() => {
                 stageClickTimer = null;
-                if (video.paused) {
-                    video.play().catch(err => console.error("[Player] Play error:", err));
+                const controlsWereVisible = controlsOverlay.classList.contains("visible");
+
+                if (!controlsWereVisible) {
+                    // First click/tap when controls are hidden ONLY wakes up / shows controls
+                    showControls(true);
                 } else {
-                    video.pause();
+                    // Clicking on empty stage area when controls are already visible hides controls!
+                    hideControls();
                 }
-                showControls(true);
             }, 250);
         });
+        }
 
         video.addEventListener("pause", () => {
             releaseWakeLock();
@@ -2373,7 +2350,7 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
         document.addEventListener("keydown", handleActivity);
 
         // YOUTUBE KEYBOARD SHORTCUTS
-        const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+        const speeds = [1, 1.25, 1.5, 1.75, 2];
         document.addEventListener("keydown", e => {
             if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
             
@@ -2549,6 +2526,8 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
 
             function positionCamDocked() {
                 if (!camPlaceholder) return;
+                const isSmall = vc.classList.contains('small-size') || camPlaceholder.classList.contains('small-size');
+                camPlaceholder.style.height = isSmall ? '100px' : '158px';
                 const r = camPlaceholder.getBoundingClientRect();
                 if (r.width <= 0) return;
                 vc.style.position = 'fixed';
@@ -2565,18 +2544,26 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             }
 
             function positionCamFloating() {
+                const isSmall = vc.classList.contains('small-size');
+                const w = isSmall ? '120px' : '200px';
+                const h = isSmall ? '90px' : '150px';
                 vc.style.position = 'fixed';
                 vc.style.top = '12px';
                 vc.style.right = '12px';
                 vc.style.left = 'auto';
                 vc.style.bottom = 'auto';
-                vc.style.width = '200px';
-                vc.style.height = '150px';
+                vc.style.width = w;
+                vc.style.height = h;
                 vc.style.borderRadius = '8px';
                 vc.style.zIndex = '9999';
                 vc.style.cursor = 'grab';
                 vc.style.boxShadow = '0 4px 20px rgba(0,0,0,0.6)';
             }
+
+            window.repositionCam = function() {
+                if (panelOpen) positionCamDocked();
+                else positionCamFloating();
+            };
 
             function applyPanelState() {
                 if (panelOpen) {

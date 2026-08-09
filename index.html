@@ -260,8 +260,6 @@
                         <div class="settings-item">
                             <label class="settings-label"><i class="fas fa-tachometer-alt"></i> Playback Speed</label>
                             <div class="speed-chips-grid" id="speed-chips-wrap">
-                                <button class="speed-chip" data-speed="0.5">0.5x</button>
-                                <button class="speed-chip" data-speed="0.75">0.75x</button>
                                 <button class="speed-chip active" data-speed="1">1x</button>
                                 <button class="speed-chip" data-speed="1.25">1.25x</button>
                                 <button class="speed-chip" data-speed="1.5">1.5x</button>
@@ -269,9 +267,6 @@
                                 <button class="speed-chip" data-speed="2">2x</button>
                             </div>
                             <select class="settings-select" id="speed-sel-ui" style="display:none;">
-                                <option value="0.25">0.25×</option>
-                                <option value="0.5">0.5×</option>
-                                <option value="0.75">0.75×</option>
                                 <option value="1" selected>1x</option>
                                 <option value="1.25">1.25×</option>
                                 <option value="1.5">1.5×</option>
@@ -280,16 +275,11 @@
                             </select>
                         </div>
                         <div class="settings-item">
-                            <label class="settings-label">Teacher Video</label>
-                            <button id="video-toggle-btn" class="settings-toggle-btn">
-                                <i class="fas fa-eye"></i> <span id="video-toggle-label">Visible</span>
-                            </button>
-                        </div>
-                        <div class="settings-item">
-                            <label class="settings-label">Chroma Key</label>
-                            <button id="chroma-toggle-btn" class="settings-toggle-btn">
-                                <i class="fas fa-magic"></i> <span id="chroma-toggle-label">Enabled</span>
-                            </button>
+                            <label class="settings-label"><i class="fas fa-video"></i> Teacher Video</label>
+                            <div class="teacher-size-grid" id="teacher-size-wrap">
+                                <button class="teacher-size-chip" id="t-size-small" data-size="small"><i class="fas fa-compress-alt"></i> Small</button>
+                                <button class="teacher-size-chip active" id="t-size-big" data-size="big"><i class="fas fa-expand-alt"></i> Big</button>
+                            </div>
                         </div>
                     </div>
 
@@ -351,7 +341,7 @@
 
     <!-- EDUCATOR CAM -->
     <div id="video-circle">
-        <video id="main-video" class="chroma-active" preload="auto" playsinline></video>
+        <video id="main-video" preload="auto" playsinline></video>
     </div>
 
     <!-- Panel Toggle Arrow -->
