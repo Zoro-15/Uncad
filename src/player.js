@@ -2091,17 +2091,14 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
 
         const teacherSizeWrap = $("teacher-size-wrap");
         if (teacherSizeWrap) {
-            teacherSizeWrap.addEventListener("click", e => {
-                const chip = e.target.closest(".teacher-size-chip");
-                if (!chip) return;
-                const size = chip.getAttribute("data-size");
+            function applyTeacherSize(size) {
                 const gs = $("gs-overlay");
                 const vc = $("video-circle");
                 const cp = $("cam-placeholder");
-                
-                document.querySelectorAll(".teacher-size-chip").forEach(c => c.classList.remove("active"));
-                chip.classList.add("active");
-
+                document.querySelectorAll(".teacher-size-chip").forEach(c => {
+                    if (c.getAttribute("data-size") === size) c.classList.add("active");
+                    else c.classList.remove("active");
+                });
                 if (size === "small") {
                     if (gs) gs.classList.add("small-size");
                     if (vc) vc.classList.add("small-size");
@@ -2112,7 +2109,20 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                     if (cp) cp.classList.remove("small-size");
                 }
                 if (window.repositionCam) window.repositionCam();
+            }
+
+            teacherSizeWrap.addEventListener("click", e => {
+                const chip = e.target.closest(".teacher-size-chip");
+                if (!chip) return;
+                const size = chip.getAttribute("data-size");
+                applyTeacherSize(size);
+                try { localStorage.setItem("teacher_cam_size", size); } catch (e) {}
             });
+
+            try {
+                const savedSize = localStorage.getItem("teacher_cam_size");
+                if (savedSize === "small") applyTeacherSize("small");
+            } catch (e) {}
         }
 
         const settingsMenuEl = $("settings-menu");

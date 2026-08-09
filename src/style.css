@@ -1015,9 +1015,11 @@
         }
 
         #gs-overlay.small-size,
-        #video-circle.small-size {
-            width: 110px !important;
-            height: 110px !important;
+        #video-circle.small-size,
+        #cam-placeholder.small-size {
+            transform: scale(0.68) !important;
+            transform-origin: top right !important;
+            transition: transform 0.25s ease !important;
         }
 
         .settings-toggle-btn {
