@@ -1,8 +1,13 @@
-// Telemetric whiteboard rendering canvas player engine
-import { findCourseByLectureUid } from './courses.js';
-import { switchView } from './dashboard.js';
+import { findCourseByLectureUid, COURSES } from './courses.js';
+import { switchView, saveLastWatched } from './dashboard.js';
 import { SECRET_KEY, decryptBytes, tryDecryptAndParse } from './engine/crypto.js';
 import { maths, bezier } from './engine/bezier.js';
+import { fetchWithFallback, loadCachedImage, clearImageCache } from './engine/networkLoader.js';
+import { initCanvasContexts, renderSlideBackground } from './engine/canvasRenderer.js';
+import { parseTelemetryData } from './engine/telemetryParser.js';
+import { requestWakeLock, releaseWakeLock, createSyncLoop } from './engine/mediaSync.js';
+import { renderChapterMarks } from './ui/seekChapterBar.js';
+import { initLocalFileLoader } from './ui/localFileLoader.js';
 
 'use strict';
 
@@ -2097,31 +2102,6 @@ import { maths, bezier } from './engine/bezier.js';
 
         $("fs-btn-ui").addEventListener("click", () => toggleFullScreen());
 
-        // Screen Wake Lock API helpers to prevent sleep during lecture playback
-        let wakeLock = null;
-        async function requestWakeLock() {
-            try {
-                if ('wakeLock' in navigator) {
-                    wakeLock = await navigator.wakeLock.request('screen');
-                    console.log("[Engine] Screen Wake Lock acquired.");
-                }
-            } catch (err) {
-                console.warn("[Engine] Wake Lock acquisition failed:", err);
-            }
-        }
-
-        async function releaseWakeLock() {
-            try {
-                if (wakeLock !== null) {
-                    await wakeLock.release();
-                    wakeLock = null;
-                    console.log("[Engine] Screen Wake Lock released.");
-                }
-            } catch (err) {
-                console.warn("[Engine] Wake Lock release failed:", err);
-            }
-        }
-
         document.addEventListener('visibilitychange', async () => {
             if (wakeLock !== null && document.visibilityState === 'visible' && !video.paused) {
                 await requestWakeLock();
@@ -2179,18 +2159,44 @@ import { maths, bezier } from './engine/bezier.js';
         if (stageArea) {
             stageArea.addEventListener("mousemove", () => showControls(true));
         }
-        canvasArea.addEventListener("touchend", (e) => {
-            const gsOverlay = $("gs-overlay");
-            const videoCircle = $("video-circle");
-            const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
-                                (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
-                                (videoCircle && videoCircle.contains(e.target)) || 
-                                (gsOverlay && gsOverlay.contains(e.target));
-            if (!isOnControl) {
-                lastTouchTime = Date.now();
-                toggleControls();
+        // YOUTUBE PLAY/PAUSE ICON & CENTER OVERLAY SYNC
+        const ytCenterOverlay = $("yt-center-play-overlay");
+        const ytCenterBtn = $("yt-center-btn");
+        const ytCenterIcon = $("yt-center-icon");
+
+        function updateYtCenterIcon() {
+            if (!ytCenterIcon) return;
+            if (video.paused) {
+                ytCenterIcon.className = "fas fa-play";
+                if (ytCenterOverlay) ytCenterOverlay.classList.remove("playing");
+            } else {
+                ytCenterIcon.className = "fas fa-pause";
+                if (ytCenterOverlay) ytCenterOverlay.classList.add("playing");
             }
-        }, { passive: true });
+        }
+
+        if (ytCenterBtn) {
+            ytCenterBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+                updateYtCenterIcon();
+            });
+        }
+
+        // DOUBLE-TAP 10s REWIND / FAST-FORWARD GESTURE
+        let lastTapTime = 0;
+        function triggerRippleAnim(type) {
+            const el = type === 'rewind' ? $("ripple-rewind") : $("ripple-forward");
+            if (!el) return;
+            el.classList.remove("active");
+            void el.offsetWidth; // Reflow
+            el.classList.add("active");
+            setTimeout(() => el.classList.remove("active"), 600);
+        }
 
         let stageClickTimer = null;
         canvasArea.addEventListener("click", (e) => {
@@ -2200,37 +2206,67 @@ import { maths, bezier } from './engine/bezier.js';
             const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
                                 (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
                                 (videoCircle && videoCircle.contains(e.target)) || 
-                                (gsOverlay && gsOverlay.contains(e.target));
+                                (gsOverlay && gsOverlay.contains(e.target)) ||
+                                (ytCenterBtn && ytCenterBtn.contains(e.target));
             if (isOnControl) return;
 
-            if (stageClickTimer) {
-                clearTimeout(stageClickTimer);
-                stageClickTimer = null;
-                toggleFullScreen();
+            const now = Date.now();
+            const rect = canvasArea.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isLeftHalf = clickX < rect.width * 0.4;
+            const isRightHalf = clickX > rect.width * 0.6;
+
+            if (now - lastTapTime < 300) {
+                // Double tap
+                if (stageClickTimer) {
+                    clearTimeout(stageClickTimer);
+                    stageClickTimer = null;
+                }
+                if (isLeftHalf) {
+                    seekToSec(Math.max(0, video.currentTime - 10));
+                    triggerRippleAnim('rewind');
+                } else if (isRightHalf) {
+                    seekToSec(Math.min(video.duration || 0, video.currentTime + 10));
+                    triggerRippleAnim('forward');
+                } else {
+                    toggleFullScreen();
+                }
+                lastTapTime = 0;
                 return;
             }
 
+            lastTapTime = now;
             stageClickTimer = setTimeout(() => {
                 stageClickTimer = null;
                 if (video.paused) {
                     video.play().catch(err => console.error("[Player] Play error:", err));
-                    triggerPlayPauseRipple(true);
                 } else {
                     video.pause();
-                    triggerPlayPauseRipple(false);
                 }
                 showControls(true);
-            }, 220);
+            }, 250);
         });
 
         video.addEventListener("pause", () => {
             releaseWakeLock();
             showControls(true);
+            updateYtCenterIcon();
+            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
+
         video.addEventListener("play", () => {
             requestWakeLock();
             showControls(true);
+            updateYtCenterIcon();
+            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
+
+        video.addEventListener("timeupdate", () => {
+            if (Math.floor(video.currentTime) % 10 === 0 && activeUid) {
+                saveLastWatched(activeUid, activeCourseId, video.currentTime);
+            }
+        });
+
         showControls(true);
 
         // Fullscreen handles
@@ -2306,19 +2342,114 @@ import { maths, bezier } from './engine/bezier.js';
         document.addEventListener("mousedown", handleActivity);
         document.addEventListener("keydown", handleActivity);
 
+        // YOUTUBE KEYBOARD SHORTCUTS
+        const speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
         document.addEventListener("keydown", e => {
             if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
-            if (e.code === "Space") {
+            
+            if (e.code === "Space" || e.code === "KeyK") {
                 e.preventDefault();
-                playBtn.click();
-            }
-            if (!engineLoaded) return;
-            switch (e.code) {
-                case "ArrowLeft": e.preventDefault(); seekToSec(video.currentTime - 10); break;
-                case "ArrowRight": e.preventDefault(); seekToSec(video.currentTime + 10); break;
-                case "KeyF": toggleFullScreen(); break;
+                if (video.paused) video.play(); else video.pause();
+                updateYtCenterIcon();
+            } else if (e.code === "KeyJ") {
+                e.preventDefault();
+                seekToSec(Math.max(0, video.currentTime - 10));
+                triggerRippleAnim('rewind');
+            } else if (e.code === "KeyL") {
+                e.preventDefault();
+                seekToSec(Math.min(video.duration || 0, video.currentTime + 10));
+                triggerRippleAnim('forward');
+            } else if (e.code === "ArrowLeft") {
+                e.preventDefault();
+                if (e.shiftKey && window.prevSlide) {
+                    window.prevSlide();
+                } else {
+                    seekToSec(Math.max(0, video.currentTime - 5));
+                }
+            } else if (e.code === "ArrowRight") {
+                e.preventDefault();
+                if (e.shiftKey && window.nextSlide) {
+                    window.nextSlide();
+                } else {
+                    seekToSec(Math.min(video.duration || 0, video.currentTime + 5));
+                }
+            } else if (e.code === "ArrowUp") {
+                e.preventDefault();
+                video.volume = Math.min(1, video.volume + 0.1);
+            } else if (e.code === "ArrowDown") {
+                e.preventDefault();
+                video.volume = Math.max(0, video.volume - 0.1);
+            } else if (e.code === "KeyF") {
+                e.preventDefault();
+                toggleFullScreen();
+            } else if (e.code === "KeyM") {
+                e.preventDefault();
+                video.muted = !video.muted;
+            } else if (e.key === ">" || (e.shiftKey && e.code === "Period")) {
+                e.preventDefault();
+                const cur = video.playbackRate || 1;
+                let idx = speeds.indexOf(cur);
+                if (idx < speeds.length - 1) {
+                    const next = speeds[idx + 1];
+                    video.playbackRate = next;
+                    const sel = $("speed-sel-ui") || $("speed-sel");
+                    if (sel) sel.value = next;
+                }
+            } else if (e.key === "<" || (e.shiftKey && e.code === "Comma")) {
+                e.preventDefault();
+                const cur = video.playbackRate || 1;
+                let idx = speeds.indexOf(cur);
+                if (idx > 0) {
+                    const prev = speeds[idx - 1];
+                    video.playbackRate = prev;
+                    const sel = $("speed-sel-ui") || $("speed-sel");
+                    if (sel) sel.value = prev;
+                }
             }
         });
+
+        // ══════════════════════════════════════════════════
+        //  PDF NOTES CARD RENDERER
+        // ══════════════════════════════════════════════════
+        function renderPdfNotes(uid) {
+            const pdfNav = document.getElementById('pdf-nav');
+            if (!pdfNav) return;
+            pdfNav.innerHTML = '';
+
+            const activeCourse = COURSES.find(c => c.id === activeCourseId) || COURSES[0];
+            const lec = activeCourse.lectures.find(l => l.uid === uid) || activeCourse.lectures[0];
+            
+            const titleSlug = (lec.title || "Lecture_Notes").replace(/\s+/g, '_');
+            const withAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_with_anno.pdf`;
+            const noAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_no_anno.pdf`;
+
+            pdfNav.innerHTML = `
+                <div class="pdf-card">
+                    <div class="pdf-card-header">
+                        <i class="fas fa-file-pdf pdf-card-icon anno"></i>
+                        <div>
+                            <div class="pdf-card-title">Annotated Notes PDF</div>
+                            <div class="pdf-card-sub">With teacher handwritten ink & markings</div>
+                        </div>
+                    </div>
+                    <div class="pdf-card-actions">
+                        <a href="${withAnnoUrl}" target="_blank" class="pdf-btn anno"><i class="fas fa-download"></i> Open / Download</a>
+                    </div>
+                </div>
+                <div class="pdf-card">
+                    <div class="pdf-card-header">
+                        <i class="fas fa-file-pdf pdf-card-icon clean"></i>
+                        <div>
+                            <div class="pdf-card-title">Clean Slide PDF</div>
+                            <div class="pdf-card-sub">Original high-res slide deck background</div>
+                        </div>
+                    </div>
+                    <div class="pdf-card-actions">
+                        <a href="${noAnnoUrl}" target="_blank" class="pdf-btn clean"><i class="fas fa-download"></i> Open / Download</a>
+                    </div>
+                </div>
+            `;
+        }
 
         // ══════════════════════════════════════════════════
         //  PANEL CONTROLLER & TABS
@@ -2334,6 +2465,15 @@ import { maths, bezier } from './engine/bezier.js';
                 const t = document.getElementById('doubts-panel');
                 t.style.display = 'flex';
                 t.classList.add('active');
+            } else if (tab === 'pdf') {
+                const pdfBtn = document.getElementById('tab-btn-pdf');
+                if (pdfBtn) pdfBtn.classList.add('active');
+                const t = document.getElementById('pdf-panel');
+                if (t) {
+                    t.style.display = 'flex';
+                    t.classList.add('active');
+                    renderPdfNotes(activeUid);
+                }
             } else {
                 document.getElementById('tab-btn-lectures').classList.add('active');
                 const t = document.getElementById('lectures-panel');
@@ -2567,6 +2707,13 @@ import { maths, bezier } from './engine/bezier.js';
             lastPaintedUrl = null;
             lastPaintedBg = null;
         }
+
+// Initialize local file loader for Drag & Drop
+initLocalFileLoader((videoUrl, rawData, fileName) => {
+    console.log("[LocalLoader] Loading dropped local recording:", fileName);
+    if (video) video.src = videoUrl;
+    if (rawData) processData(rawData);
+});
 
 // Export bindings
 export { runEngine, loadLectureByUid, processData, syncLoop, doSeek, switchPanelTab, destroyEngine };

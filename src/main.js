@@ -1,53 +1,85 @@
 // Main Application Bootstrapper
-import { renderDashboardHome, switchView } from './dashboard.js';
+import { renderMyCourses, switchView } from './dashboard.js';
 import { runEngine } from './player.js';
 
 // ══════════════════════════════════════════════════
-        //  DARK / LIGHT MODE TOGGLE
-        // ══════════════════════════════════════════════════
-        (function () {
-            const btn = document.getElementById('mode-toggle-btn');
-            if (!btn) return;
-            let dark = true;
-            btn.innerHTML = '&#9788; Light';
-            btn.addEventListener('click', () => {
-                dark = !dark;
-                document.body.classList.toggle('light-mode', !dark);
-                btn.innerHTML = dark ? '&#9788; Light' : '&#9790; Dark';
-                window.dispatchEvent(new Event('resize'));
-            });
-        })();
+// LOGO FULLSCREEN TOGGLE
+// ══════════════════════════════════════════════════
+function toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        const docEl = document.documentElement;
+        if (docEl.requestFullscreen) {
+            docEl.requestFullscreen();
+        } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+        } else if (docEl.msRequestFullscreen) {
+            docEl.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+window.toggleFullscreen = toggleFullscreen;
 
-        // Bootstrap launch
-        (async () => {
-            try {
-                resizeCanvas();
-                const params = new URLSearchParams(window.location.search);
-                const hasParam = params.get("lec") || params.get("url");
-                
-                renderDashboardHome();
+// ══════════════════════════════════════════════════
+// DARK / LIGHT MODE TOGGLE
+// ══════════════════════════════════════════════════
+(function () {
+    const btn = document.getElementById('mode-toggle-btn');
+    if (!btn) return;
+    let dark = true;
+    btn.innerHTML = '&#9788; Light';
+    btn.addEventListener('click', () => {
+        dark = !dark;
+        document.body.classList.toggle('light-mode', !dark);
+        btn.innerHTML = dark ? '&#9788; Light' : '&#9790; Dark';
+        window.dispatchEvent(new Event('resize'));
+    });
+})();
 
-                if (hasParam) {
-                    switchView("player");
-                    const success = await runEngine();
-                    if (success) {
-                        const sp = $("splash");
-                        if (sp) {
-                            sp.classList.add("hidden");
-                            setTimeout(() => { sp.style.display = "none"; }, 700);
-                        }
-                    }
-                } else {
-                    switchView("home");
-                    const sp = $("splash");
-                    if (sp) {
-                        sp.classList.add("hidden");
-                        setTimeout(() => { sp.style.display = "none"; }, 700);
-                    }
+// Attach click on logo for Fullscreen toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const dbLogo = document.getElementById('db-logo');
+    if (dbLogo) {
+        dbLogo.style.cursor = 'pointer';
+        dbLogo.addEventListener('click', toggleFullscreen);
+    }
+});
+
+// Bootstrap launch
+(async () => {
+    try {
+        if (window.resizeCanvas) window.resizeCanvas();
+        const params = new URLSearchParams(window.location.search);
+        const hasParam = params.get("lec") || params.get("url");
+        
+        renderMyCourses();
+
+        if (hasParam) {
+            switchView("player");
+            const success = await runEngine();
+            if (success) {
+                const sp = document.getElementById("splash");
+                if (sp) {
+                    sp.classList.add("hidden");
+                    setTimeout(() => { sp.style.display = "none"; }, 700);
                 }
-            } catch (e) {
-                console.error("Engine startup failed:", e);
-                setStatus("error", "ENGINE STARTUP ERROR");
             }
-        })();
-    
+        } else {
+            switchView("my-courses");
+            const sp = document.getElementById("splash");
+            if (sp) {
+                sp.classList.add("hidden");
+                setTimeout(() => { sp.style.display = "none"; }, 700);
+            }
+        }
+    } catch (e) {
+        console.error("Engine startup failed:", e);
+    }
+})();
