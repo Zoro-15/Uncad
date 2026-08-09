@@ -1065,9 +1065,13 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             curScreenShare = false;
 
             const videoUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
+            video.preload = "auto";
             video.src = videoUrl;
-            if (gsMode) {
+            video.load();
+            if (gsMode && gsVideo) {
+                gsVideo.preload = "auto";
                 gsVideo.src = videoUrl;
+                gsVideo.load();
             }
 
             try {
@@ -1093,7 +1097,7 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                     engineLoaded = true;
                     if (splash) {
                         splash.classList.add("hidden");
-                        setTimeout(() => { splash.style.display = "none"; }, 500);
+                        splash.style.display = "none";
                     }
                     return true;
                 } else {
@@ -2055,8 +2059,34 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             volBtn.innerHTML = v ? `<svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15" stroke="#fff" stroke-width="2"/><line x1="17" y1="9" x2="23" y2="15" stroke="#fff" stroke-width="2"/></svg>` : (video.volume < 0.5 ? `<svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07" fill="none" stroke="#fff" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54,8.46a5,5,0,0,1,0,7.07" fill="none" stroke="#fff" stroke-width="2"/><path d="M19.07,4.93a10,10,0,0,1,0,14.14" fill="none" stroke="#fff" stroke-width="2"/></svg>`);
         }
 
+        function updateSpeedUI(spd) {
+            video.playbackRate = spd;
+            const sel = $("speed-sel-ui");
+            if (sel) sel.value = spd;
+            const chips = document.querySelectorAll(".speed-chip");
+            chips.forEach(c => {
+                const val = parseFloat(c.getAttribute("data-speed"));
+                if (val === spd) {
+                    c.classList.add("active");
+                } else {
+                    c.classList.remove("active");
+                }
+            });
+        }
+
+        const speedChipsWrap = $("speed-chips-wrap");
+        if (speedChipsWrap) {
+            speedChipsWrap.addEventListener("click", e => {
+                const chip = e.target.closest(".speed-chip");
+                if (chip) {
+                    const spd = parseFloat(chip.getAttribute("data-speed"));
+                    if (!isNaN(spd)) updateSpeedUI(spd);
+                }
+            });
+        }
+
         $("speed-sel-ui").addEventListener("change", e => {
-            video.playbackRate = parseFloat(e.target.value);
+            updateSpeedUI(parseFloat(e.target.value));
         });
 
         let videoCircleVisible = true;
@@ -2390,20 +2420,14 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                 const cur = video.playbackRate || 1;
                 let idx = speeds.indexOf(cur);
                 if (idx < speeds.length - 1) {
-                    const next = speeds[idx + 1];
-                    video.playbackRate = next;
-                    const sel = $("speed-sel-ui") || $("speed-sel");
-                    if (sel) sel.value = next;
+                    updateSpeedUI(speeds[idx + 1]);
                 }
             } else if (e.key === "<" || (e.shiftKey && e.code === "Comma")) {
                 e.preventDefault();
                 const cur = video.playbackRate || 1;
                 let idx = speeds.indexOf(cur);
                 if (idx > 0) {
-                    const prev = speeds[idx - 1];
-                    video.playbackRate = prev;
-                    const sel = $("speed-sel-ui") || $("speed-sel");
-                    if (sel) sel.value = prev;
+                    updateSpeedUI(speeds[idx - 1]);
                 }
             }
         });

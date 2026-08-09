@@ -428,7 +428,7 @@ async function launchLecture(uid) {
     if (success) {
         if (sp) {
             sp.classList.add("hidden");
-            setTimeout(() => { sp.style.display = "none"; }, 700);
+            sp.style.display = "none";
         }
     }
 }

@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sp = document.getElementById("splash");
                 if (sp) {
                     sp.classList.add("hidden");
-                    setTimeout(() => { sp.style.display = "none"; }, 700);
+                    sp.style.display = "none";
                 }
             }
         } else {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const sp = document.getElementById("splash");
             if (sp) {
                 sp.classList.add("hidden");
-                setTimeout(() => { sp.style.display = "none"; }, 700);
+                sp.style.display = "none";
             }
         }
     } catch (e) {
