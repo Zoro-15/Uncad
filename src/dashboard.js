@@ -1,6 +1,7 @@
 // Dashboard views, routing, and user course enrollment module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
+import { getAllCachedUids } from './engine/offlineStorage.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";
@@ -11,6 +12,7 @@ let activeUid = "";
 // ══════════════════════════════════════════════════
 const ENROLLED_KEY = "lennister_enrolled_courses";
 const LAST_WATCHED_KEY = "lennister_last_watched";
+const PROGRESS_KEY = "lennister_lectures_progress";
 
 function getEnrolledCourses() {
     try {
@@ -53,6 +55,32 @@ function getLastWatched() {
     return null;
 }
 
+function getLectureProgress(uid) {
+    if (!uid) return null;
+    try {
+        const stored = localStorage.getItem(PROGRESS_KEY);
+        if (stored) {
+            const map = JSON.parse(stored);
+            return map[uid] || null;
+        }
+    } catch (e) {}
+    return null;
+}
+
+function saveLectureProgress(uid, timeSec) {
+    if (!uid || typeof timeSec !== 'number') return;
+    try {
+        let map = {};
+        const stored = localStorage.getItem(PROGRESS_KEY);
+        if (stored) map = JSON.parse(stored);
+        map[uid] = {
+            timeSec: Math.floor(timeSec),
+            updatedAt: Date.now()
+        };
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(map));
+    } catch (e) {}
+}
+
 function saveLastWatched(uid, courseId, timeSec = 0) {
     if (!uid) return;
     const course = COURSES.find(c => c.id === courseId || c.lectures.some(l => l.uid === uid));
@@ -71,6 +99,9 @@ function saveLastWatched(uid, courseId, timeSec = 0) {
         updatedAt: Date.now()
     };
     localStorage.setItem(LAST_WATCHED_KEY, JSON.stringify(record));
+    if (timeSec > 0) {
+        saveLectureProgress(uid, timeSec);
+    }
 }
 
 // ══════════════════════════════════════════════════
@@ -135,7 +166,12 @@ function switchView(viewName, params = {}, skipPush = false) {
         if (sp) sp.style.display = "none";
         
         const video = document.getElementById("main-video");
-        if (video) video.pause();
+        if (video) {
+            if (activeUid && video.currentTime > 0) {
+                saveLastWatched(activeUid, activeCourseId, video.currentTime);
+            }
+            video.pause();
+        }
 
         const viewMyCourses = document.getElementById("view-my-courses");
         const viewAllCourses = document.getElementById("view-all-courses");
@@ -247,7 +283,7 @@ function renderMyCourses() {
                         <div class="last-watched-title">${lastWatched.lectureTitle}</div>
                         <div class="last-watched-sub">${lastWatched.courseTitle} • Stopped at ${formattedTime}</div>
                     </div>
-                    <button class="last-watched-btn" onclick="launchLecture('${lastWatched.uid}')">
+                    <button class="last-watched-btn" onclick="launchLecture('${lastWatched.uid}', ${lastWatched.timeSec || 0})">
                         <i class="fas fa-play"></i> Continue
                     </button>
                 </div>
@@ -310,9 +346,9 @@ function launchCourseContinue(courseId) {
 
     const lastWatched = getLastWatched();
     if (lastWatched && lastWatched.courseId === courseId && lastWatched.uid) {
-        launchLecture(lastWatched.uid);
+        launchLecture(lastWatched.uid, lastWatched.timeSec || 0);
     } else {
-        launchLecture(course.lectures[0].uid);
+        launchLecture(course.lectures[0].uid, 0);
     }
 }
 
@@ -372,7 +408,7 @@ function renderCourseDetails(courseId) {
     renderLecturesList(course.lectures);
 }
 
-function renderLecturesList(lectures) {
+async function renderLecturesList(lectures) {
     const listContainer = document.getElementById("course-lectures-list");
     if (!listContainer) return;
     listContainer.innerHTML = "";
@@ -382,7 +418,13 @@ function renderLecturesList(lectures) {
         return;
     }
 
+    let cachedUids = [];
+    try {
+        cachedUids = await getAllCachedUids();
+    } catch (e) {}
+
     lectures.forEach(lec => {
+        const isOffline = cachedUids.includes(lec.uid);
         const card = document.createElement("div");
         card.className = "lecture-card";
         card.onclick = () => launchLecture(lec.uid);
@@ -391,7 +433,10 @@ function renderLecturesList(lectures) {
                 <div class="lecture-number">${lec.rank}</div>
                 <div>
                     <div class="lecture-card-title">${lec.title}</div>
-                    <div class="lecture-card-duration"><i class="far fa-clock"></i> ${lec.duration || '--'}</div>
+                    <div class="lecture-card-duration">
+                        <i class="far fa-clock"></i> ${lec.duration || '--'}
+                        ${isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : ''}
+                    </div>
                 </div>
             </div>
             <div class="lecture-card-play-btn">
@@ -415,7 +460,7 @@ function filterLectures() {
     renderLecturesList(filtered);
 }
 
-async function launchLecture(uid) {
+async function launchLecture(uid, startTimeSec = null) {
     const sp = document.getElementById("splash");
     if (sp) {
         sp.style.display = "flex";
@@ -423,8 +468,25 @@ async function launchLecture(uid) {
     }
     switchView("player");
     activeUid = uid;
-    saveLastWatched(uid, activeCourseId, 0);
-    const success = await loadLectureByUid(uid);
+
+    // Determine target start time:
+    let targetTime = 0;
+    if (typeof startTimeSec === 'number' && startTimeSec > 0) {
+        targetTime = startTimeSec;
+    } else {
+        const savedProg = getLectureProgress(uid);
+        if (savedProg && savedProg.timeSec > 0) {
+            targetTime = savedProg.timeSec;
+        } else {
+            const lastWatched = getLastWatched();
+            if (lastWatched && lastWatched.uid === uid && (lastWatched.timeSec || 0) > 0) {
+                targetTime = lastWatched.timeSec;
+            }
+        }
+    }
+
+    saveLastWatched(uid, activeCourseId, targetTime);
+    const success = await loadLectureByUid(uid, targetTime);
     if (success) {
         if (sp) {
             sp.classList.add("hidden");
@@ -434,8 +496,20 @@ async function launchLecture(uid) {
 }
 
 function goBackToCourse() {
+    const video = document.getElementById("main-video");
+    if (video && activeUid && video.currentTime > 0) {
+        saveLastWatched(activeUid, activeCourseId, video.currentTime);
+    }
     switchView("course", { courseId: activeCourseId });
 }
+
+// Listen for offline cache updates
+window.addEventListener('lennister-offline-change', () => {
+    if (currentView === "course" && activeCourseId) {
+        const course = COURSES.find(c => c.id === activeCourseId);
+        if (course) renderLecturesList(course.lectures);
+    }
+});
 
 // Initialize Routing History
 initHistoryRouting();

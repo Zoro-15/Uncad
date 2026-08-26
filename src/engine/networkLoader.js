@@ -1,4 +1,4 @@
-// Network fetch engine with CORS proxy fallback and retry resilience
+import { getOfflineTelemetry, saveTelemetryOffline } from './offlineStorage.js';
 
 const PROXY_PREFIX = "https://corsproxy.io/?";
 
@@ -41,6 +41,33 @@ async function fetchWithFallback(url, responseType = 'json', maxRetries = 2) {
 }
 
 /**
+ * Loads telemetry data with offline cache first, falling back to network and auto-saving
+ * @param {string} uid - Lecture unique ID
+ * @param {string} url - Remote telemetry endpoint
+ * @param {object} metadata - Lecture metadata
+ * @returns {Promise<{ source: 'cache'|'network', data: any }>}
+ */
+async function fetchTelemetryWithOfflineFallback(uid, url, metadata = {}) {
+    if (uid) {
+        const cached = await getOfflineTelemetry(uid);
+        if (cached) {
+            console.log(`[Network] Loaded telemetry from offline cache for ${uid}`);
+            return { source: 'cache', data: cached };
+        }
+    }
+
+    const arrayBuffer = await fetchWithFallback(url, 'arraybuffer');
+    if (uid && arrayBuffer) {
+        // Asynchronously save to IndexedDB cache
+        saveTelemetryOffline(uid, arrayBuffer, metadata).catch(e => {
+            console.warn('[Network] Offline auto-save error:', e);
+        });
+    }
+
+    return { source: 'network', data: arrayBuffer };
+}
+
+/**
  * Image loader with LRU caching
  */
 const imageCache = new Map();
@@ -75,4 +102,10 @@ function clearImageCache() {
     imageCache.clear();
 }
 
-export { fetchWithFallback, loadCachedImage, clearImageCache };
+export { 
+    fetchWithFallback, 
+    fetchTelemetryWithOfflineFallback, 
+    loadCachedImage, 
+    clearImageCache 
+};
+

@@ -8,30 +8,46 @@ import { parseTelemetryData } from './engine/telemetryParser.js';
 import { requestWakeLock, releaseWakeLock, createSyncLoop } from './engine/mediaSync.js';
 import { renderChapterMarks } from './ui/seekChapterBar.js';
 import { initLocalFileLoader } from './ui/localFileLoader.js';
+import { getOfflineTelemetry, saveTelemetryOffline, isTelemetryCached } from './engine/offlineStorage.js';
 
 'use strict';
 
-        // ══════════════════════════════════════════════════════
-        //  48 COURSES LECTURES ARRAY
-        // ══════════════════════════════════════════════════════
-        
+// ══════════════════════════════════════════════════════
+// TOAST NOTIFICATION SYSTEM
+// ══════════════════════════════════════════════════════
+function showToast(message, type = 'info', duration = 3200) {
+    let container = document.getElementById('lennister-toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'lennister-toast-container';
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.className = `toast-message toast-${type}`;
+    const icon = type === 'success' ? 'fa-check-circle' : (type === 'offline' ? 'fa-bolt' : (type === 'warn' ? 'fa-exclamation-triangle' : 'fa-info-circle'));
+    toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 15);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 350);
+    }, duration);
+}
+window.showToast = showToast;
 
+let lastSplashUpdate = 0;
+window.updateSplash = (txt, pct) => {
+    const now = performance.now();
+    if (pct < 100 && now - lastSplashUpdate < 32) return;
+    lastSplashUpdate = now;
+    const label = document.getElementById("splash-label");
+    const bar = document.getElementById("splash-progress");
+    if (label) label.textContent = txt;
+    if (bar && pct !== undefined) bar.style.width = `${pct}%`;
+};
 
-        
-
-
-        let lastSplashUpdate = 0;
-        window.updateSplash = (txt, pct) => {
-            const now = performance.now();
-            if (pct < 100 && now - lastSplashUpdate < 32) return;
-            lastSplashUpdate = now;
-            const label = document.getElementById("splash-label");
-            const bar = document.getElementById("splash-progress");
-            if (label) label.textContent = txt;
-            if (bar && pct !== undefined) bar.style.width = `${pct}%`;
-        };
-
-        // Element refs
+// Element refs
         const $ = id => document.getElementById(id);
         const video = $("main-video");
         const slideCanvas = $("slide-canvas");
@@ -992,9 +1008,9 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             drawCtx.restore(); penCtx.restore(); eraserCtx.restore(); hlCtx.restore(); laserCtx.restore();
         }
 
-        async function runEngineWithUrl(url) {
+        async function runEngineWithUrl(url, uid = null, startSec = 0) {
             try {
-                console.log(`[Engine] Smart Load: ${url}`);
+                console.log(`[Engine] Smart Load: ${url} (startSec: ${startSec})`);
                 const response = await fetch(url);
                 if (!response.ok) return false;
 
@@ -1005,7 +1021,20 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                 const rawData = tryDecryptAndParse(buffer, url);
 
                 console.log("[Engine] JSON parsed. Processing stream frames...");
-                await processData(rawData);
+                await processData(rawData, startSec);
+
+                const targetUid = uid || activeUid;
+                if (targetUid) {
+                    const course = findCourseByLectureUid(targetUid);
+                    const lec = course?.lectures?.find(l => l.uid === targetUid);
+                    saveTelemetryOffline(targetUid, buffer, {
+                        courseId: course?.id || '',
+                        title: lec?.title || '',
+                        duration: lec?.duration || ''
+                    }).then(saved => {
+                        if (saved) showToast("Lecture cached for offline viewing", "success");
+                    }).catch(e => console.warn('[Engine] Offline auto-save error:', e));
+                }
 
                 window.updateSplash("Lecture Ready", 100);
                 setStatus("synced", "SYNCED");
@@ -1016,7 +1045,7 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             }
         }
 
-        async function loadLectureByUid(uid) {
+        async function loadLectureByUid(uid, startSec = 0) {
             const course = findCourseByLectureUid(uid);
             activeCourseId = course.id;
 
@@ -1074,22 +1103,67 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                 gsVideo.load();
             }
 
+            function applyResumePosition() {
+                if (startSec > 0) {
+                    console.log(`[Player] Applying resume position: ${startSec}s`);
+                    video.currentTime = startSec;
+                    if (gsMode && gsVideo) gsVideo.currentTime = startSec;
+                    doSeek(startSec * 1e6);
+                    const m = Math.floor(startSec / 60);
+                    const s = Math.floor(startSec % 60);
+                    showToast(`Resumed from ${m}:${s < 10 ? '0' : ''}${s}`, "info");
+                }
+            }
+
+            if (video.readyState >= 1) {
+                applyResumePosition();
+            } else {
+                video.addEventListener("loadedmetadata", applyResumePosition, { once: true });
+            }
+
+            // 1. FAST OFFLINE CACHE CHECK FIRST
+            try {
+                const cachedPayload = await getOfflineTelemetry(uid);
+                if (cachedPayload) {
+                    window.updateSplash("Loading from Offline Cache...", 50);
+                    let rawData;
+                    if (typeof cachedPayload === 'string' || cachedPayload instanceof ArrayBuffer) {
+                        rawData = tryDecryptAndParse(cachedPayload, `offline_cache_${uid}`);
+                    } else {
+                        rawData = cachedPayload;
+                    }
+                    await processData(rawData, startSec);
+                    window.updateSplash("Lecture Ready (Offline)", 100);
+                    setStatus("synced", "OFFLINE CACHE");
+                    showToast("⚡ Loaded from offline cache", "offline");
+                    engineLoaded = true;
+                    if (splash) {
+                        splash.classList.add("hidden");
+                        splash.style.display = "none";
+                    }
+                    return true;
+                }
+            } catch (cacheErr) {
+                console.warn("[Engine] Offline cache read error:", cacheErr);
+            }
+
+            // 2. REMOTE FETCH FALLBACK
             try {
                 const directTelemetryUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
                 const proxyTelemetryUrl = `https://corsproxy.io/?${encodeURIComponent(directTelemetryUrl)}`;
 
-                let success = await runEngineWithUrl(directTelemetryUrl);
+                let success = await runEngineWithUrl(directTelemetryUrl, uid, startSec);
                 if (!success) {
                     console.warn("[Engine] Direct telemetry fetch failed. Trying CORS proxy...");
-                    success = await runEngineWithUrl(proxyTelemetryUrl);
+                    success = await runEngineWithUrl(proxyTelemetryUrl, uid, startSec);
                 }
 
                 if (!success) {
                     const directSecureUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/securejson.json`;
                     const proxySecureUrl = `https://corsproxy.io/?${encodeURIComponent(directSecureUrl)}`;
-                    success = await runEngineWithUrl(directSecureUrl);
+                    success = await runEngineWithUrl(directSecureUrl, uid, startSec);
                     if (!success) {
-                        success = await runEngineWithUrl(proxySecureUrl);
+                        success = await runEngineWithUrl(proxySecureUrl, uid, startSec);
                     }
                 }
 
@@ -1108,6 +1182,7 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
                 setStatus("error", "LOAD ERROR");
                 const label = $("splash-label");
                 if (label) label.textContent = "Telemetry fetch failed. Please check your network or try another lecture.";
+                showToast("Failed to fetch lecture data. Check internet connection.", "warn");
                 return false;
             }
         }
@@ -1182,7 +1257,7 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             return node;
         }
 
-        async function processData(raw) {
+        async function processData(raw, startSec = 0) {
             ptrStreamIdx = 0;
             console.log("[Data] Deobfuscating telemetry headers...");
             raw = deobfuscateNode(raw);
@@ -1637,7 +1712,12 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             const fsIdx = slideSeqs.length ? slideSeqs[0] : 0;
             const fs = slideRegistry[fsIdx] || { url: '', bc: "#111118" };
             curSlideIdx = fsIdx; curSlideUrl = fs.url; curBgColor = fs.bc;
-            doSeek(0);
+            if (startSec > 0) {
+                console.log(`[Player] processData seeking to startSec: ${startSec}s`);
+                doSeek(startSec * 1e6);
+            } else {
+                doSeek(0);
+            }
         }
 
         function getInterpolatedPointer(targetUs) {
@@ -2278,8 +2358,17 @@ import { initLocalFileLoader } from './ui/localFileLoader.js';
             if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
 
+        let lastProgressSaveSec = 0;
         video.addEventListener("timeupdate", () => {
-            if (Math.floor(video.currentTime) % 10 === 0 && activeUid) {
+            const curSec = Math.floor(video.currentTime);
+            if (activeUid && curSec > 0 && Math.abs(curSec - lastProgressSaveSec) >= 3) {
+                lastProgressSaveSec = curSec;
+                saveLastWatched(activeUid, activeCourseId, video.currentTime);
+            }
+        });
+
+        window.addEventListener("beforeunload", () => {
+            if (activeUid && video && video.currentTime > 0) {
                 saveLastWatched(activeUid, activeCourseId, video.currentTime);
             }
         });

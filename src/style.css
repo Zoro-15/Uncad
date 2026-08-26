@@ -2129,4 +2129,77 @@
             border-radius: 4px;
             color: var(--accent);
         }
+
+        /* TOAST NOTIFICATION STYLING */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(24, 24, 27, 0.95);
+            color: #f4f4f5;
+            border: 1px solid var(--border-2);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto;
+        }
+
+        .toast-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-message.toast-success {
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+        .toast-message.toast-success i {
+            color: #22c55e;
+        }
+
+        .toast-message.toast-offline {
+            border-color: rgba(14, 165, 233, 0.4);
+            background: rgba(14, 165, 233, 0.12);
+        }
+        .toast-message.toast-offline i {
+            color: #0ea5e9;
+        }
+
+        .toast-message.toast-warn {
+            border-color: rgba(234, 179, 8, 0.4);
+        }
+        .toast-message.toast-warn i {
+            color: #eab308;
+        }
+
+        /* OFFLINE READY BADGE */
+        .offline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
     
