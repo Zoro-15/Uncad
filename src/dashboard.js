@@ -158,10 +158,6 @@ function saveLastWatched(uid, courseId, timeSec = 0) {
         saveLectureProgress(uid, timeSec);
     }
 }
-    if (timeSec > 0) {
-        saveLectureProgress(uid, timeSec);
-    }
-}
 
 // ══════════════════════════════════════════════════
 // HISTORY API & ROUTING ENGINE
@@ -606,6 +602,9 @@ export {
     toggleNavMenu,
     switchNavView,
     saveLastWatched,
+    getLastWatched,
+    getLectureProgress,
+    saveLectureProgress,
     launchCourseContinue,
     refreshCachedUidsSet
 };
@@ -622,3 +621,6 @@ window.toggleEnrollCourse = toggleEnrollCourse;
 window.toggleNavMenu = toggleNavMenu;
 window.switchNavView = switchNavView;
 window.launchCourseContinue = launchCourseContinue;
+window.getLastWatched = getLastWatched;
+window.getLectureProgress = getLectureProgress;
+window.saveLectureProgress = saveLectureProgress;
