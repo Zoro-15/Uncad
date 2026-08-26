@@ -2925,21 +2925,31 @@ window.updateSplash = (txt, pct) => {
             });
         }
 
-        // Panel Toggle Arrow
+        // Panel Toggle Arrow & Educator Cam
         (function () {
             const panel = document.getElementById('right-panel');
             const toggleBtn = document.getElementById('panel-toggle');
             const vc = document.getElementById('video-circle');
-            let panelOpen = true;
-
             const camPlaceholder = document.getElementById('cam-placeholder');
+            let panelOpen = window.innerWidth > 768;
+
+            function isFloating() {
+                return !panelOpen || document.body.classList.contains('panel-closed') || (vc && vc.classList.contains('fs-floating')) || window.innerWidth <= 768;
+            }
 
             function positionCamDocked() {
-                if (!camPlaceholder) return;
+                if (!vc) return;
+                if (!camPlaceholder || window.innerWidth <= 768 || !panelOpen) {
+                    positionCamFloating();
+                    return;
+                }
                 const isSmall = vc.classList.contains('small-size') || camPlaceholder.classList.contains('small-size');
                 camPlaceholder.style.height = isSmall ? '100px' : '158px';
                 const r = camPlaceholder.getBoundingClientRect();
-                if (r.width <= 0) return;
+                if (r.width <= 0 || r.height <= 0) {
+                    positionCamFloating();
+                    return;
+                }
                 vc.style.position = 'fixed';
                 vc.style.left = r.left + 'px';
                 vc.style.top = r.top + 'px';
@@ -2951,12 +2961,15 @@ window.updateSplash = (txt, pct) => {
                 vc.style.zIndex = '9000';
                 vc.style.cursor = 'default';
                 vc.style.boxShadow = 'none';
+                vc.style.transform = '';
             }
 
             function positionCamFloating() {
+                if (!vc) return;
                 const isSmall = vc.classList.contains('small-size');
-                const w = isSmall ? '120px' : '200px';
-                const h = isSmall ? '90px' : '150px';
+                const isMobile = window.innerWidth <= 600;
+                const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
+                const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
                 vc.style.position = 'fixed';
                 vc.style.top = '12px';
                 vc.style.right = '12px';
@@ -2964,30 +2977,35 @@ window.updateSplash = (txt, pct) => {
                 vc.style.bottom = 'auto';
                 vc.style.width = w;
                 vc.style.height = h;
-                vc.style.borderRadius = '8px';
+                vc.style.borderRadius = '12px';
                 vc.style.zIndex = '9999';
                 vc.style.cursor = 'grab';
-                vc.style.boxShadow = '0 4px 20px rgba(0,0,0,0.6)';
+                vc.style.boxShadow = '0 8px 24px rgba(0,0,0,0.7)';
+                vc.style.transform = '';
             }
 
             window.repositionCam = function() {
-                if (panelOpen) positionCamDocked();
+                if (panelOpen && window.innerWidth > 768) positionCamDocked();
                 else positionCamFloating();
             };
 
             function applyPanelState() {
-                if (panelOpen) {
+                if (panelOpen && window.innerWidth > 768) {
                     panel.classList.remove('collapsed');
                     document.body.classList.remove('panel-closed');
-                    toggleBtn.style.right = '280px';
-                    toggleBtn.innerHTML = '&#10095;';
+                    if (toggleBtn) {
+                        toggleBtn.style.right = '280px';
+                        toggleBtn.innerHTML = '&#10095;';
+                    }
                     setTimeout(positionCamDocked, 10);
                     setTimeout(positionCamDocked, 320);
                 } else {
                     panel.classList.add('collapsed');
                     document.body.classList.add('panel-closed');
-                    toggleBtn.style.right = '0px';
-                    toggleBtn.innerHTML = '&#10094;';
+                    if (toggleBtn) {
+                        toggleBtn.style.right = '0px';
+                        toggleBtn.innerHTML = '&#10094;';
+                    }
                     positionCamFloating();
                 }
                 setTimeout(() => { resizeCanvas(true); }, 320);
@@ -2997,15 +3015,19 @@ window.updateSplash = (txt, pct) => {
             window.positionCamFloating = positionCamFloating;
             window.applyPanelState = applyPanelState;
 
-            toggleBtn.addEventListener('click', () => {
-                panelOpen = !panelOpen;
-                applyPanelState();
-            });
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    panelOpen = !panelOpen;
+                    applyPanelState();
+                });
+            }
 
             applyPanelState();
 
             window.addEventListener('resize', () => {
-                if (panelOpen && !document.fullscreenElement) {
+                if (window.innerWidth <= 768) {
+                    positionCamFloating();
+                } else if (panelOpen && !document.fullscreenElement) {
                     requestAnimationFrame(positionCamDocked);
                 }
             });
@@ -3013,88 +3035,88 @@ window.updateSplash = (txt, pct) => {
             // Educator circle draggable functionality when floating
             (function () {
                 let isDragging = false;
-                let startX, startY, startL, startT;
+                let startX = 0, startY = 0, startL = 0, startT = 0;
 
-                function isFloating() {
-                    return document.body.classList.contains('panel-closed') || vc.classList.contains('fs-floating');
-                }
-
-                vc.addEventListener('mousedown', function (e) {
-                    if (!isFloating()) return;
-                    if (e.button !== 0) return;
-                    e.preventDefault();
+                function startDrag(clientX, clientY) {
+                    if (!isFloating()) return false;
                     isDragging = true;
-                    var r = vc.getBoundingClientRect();
-                    vc.style.left = r.left + 'px';
-                    vc.style.top = r.top + 'px';
-                    vc.style.right = 'auto';
-                    vc.style.bottom = 'auto';
-                    startX = e.clientX;
-                    startY = e.clientY;
+                    const r = vc.getBoundingClientRect();
                     startL = r.left;
                     startT = r.top;
+                    startX = clientX;
+                    startY = clientY;
+                    vc.style.position = 'fixed';
+                    vc.style.left = startL + 'px';
+                    vc.style.top = startT + 'px';
+                    vc.style.right = 'auto';
+                    vc.style.bottom = 'auto';
                     vc.style.cursor = 'grabbing';
                     vc.style.transition = 'none';
                     vc.style.userSelect = 'none';
+                    vc.style.transform = '';
+                    return true;
+                }
+
+                function moveDrag(clientX, clientY) {
+                    if (!isDragging) return;
+                    const dx = clientX - startX;
+                    const dy = clientY - startY;
+                    let newL = startL + dx;
+                    let newT = startT + dy;
+                    const maxL = Math.max(0, window.innerWidth - vc.offsetWidth);
+                    const maxT = Math.max(0, window.innerHeight - vc.offsetHeight);
+                    newL = Math.max(0, Math.min(maxL, newL));
+                    newT = Math.max(0, Math.min(maxT, newT));
+                    vc.style.left = newL + 'px';
+                    vc.style.top = newT + 'px';
+                }
+
+                function endDrag() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    vc.style.cursor = 'grab';
+                    vc.style.userSelect = '';
+                }
+
+                vc.addEventListener('mousedown', function (e) {
+                    if (e.button !== 0) return;
+                    if (startDrag(e.clientX, e.clientY)) {
+                        e.preventDefault();
+                    }
                 });
 
                 document.addEventListener('mousemove', function (e) {
-                    if (!isDragging) return;
-                    var dx = e.clientX - startX;
-                    var dy = e.clientY - startY;
-                    var newL = startL + dx;
-                    var newT = startT + dy;
-                    newL = Math.max(0, Math.min(window.innerWidth - vc.offsetWidth, newL));
-                    newT = Math.max(0, Math.min(window.innerHeight - vc.offsetHeight, newT));
-                    vc.style.transform = `translate3d(${newL - startL}px, ${newT - startT}px, 0)`;
+                    moveDrag(e.clientX, e.clientY);
                 });
 
                 document.addEventListener('mouseup', function () {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    var r = vc.getBoundingClientRect();
-                    vc.style.transform = '';
-                    vc.style.left = r.left + 'px';
-                    vc.style.top = r.top + 'px';
-                    vc.style.cursor = 'grab';
-                    vc.style.userSelect = '';
+                    endDrag();
                 });
 
                 // Touch drag support
                 vc.addEventListener('touchstart', function (e) {
-                    if (!isFloating()) return;
-                    var t = e.touches[0];
-                    var r = vc.getBoundingClientRect();
-                    vc.style.left = r.left + 'px';
-                    vc.style.top = r.top + 'px';
-                    vc.style.right = 'auto';
-                    vc.style.bottom = 'auto';
-                    startX = t.clientX; startY = t.clientY;
-                    startL = r.left; startT = r.top;
-                    isDragging = true;
-                    vc.style.transition = 'none';
-                    e.preventDefault();
+                    if (e.touches.length === 1) {
+                        const t = e.touches[0];
+                        if (startDrag(t.clientX, t.clientY)) {
+                            e.preventDefault();
+                        }
+                    }
                 }, { passive: false });
 
                 document.addEventListener('touchmove', function (e) {
-                    if (!isDragging) return;
-                    var t = e.touches[0];
-                    var newL = startL + (t.clientX - startX);
-                    var newT = startT + (t.clientY - startY);
-                    newL = Math.max(0, Math.min(window.innerWidth - vc.offsetWidth, newL));
-                    newT = Math.max(0, Math.min(window.innerHeight - vc.offsetHeight, newT));
-                    vc.style.transform = `translate3d(${newL - startL}px, ${newT - startT}px, 0)`;
-                    e.preventDefault();
+                    if (isDragging && e.touches.length === 1) {
+                        const t = e.touches[0];
+                        moveDrag(t.clientX, t.clientY);
+                        e.preventDefault();
+                    }
                 }, { passive: false });
 
                 document.addEventListener('touchend', function () {
-                    if (!isDragging) return;
-                    isDragging = false;
-                    var r = vc.getBoundingClientRect();
-                    vc.style.transform = '';
-                    vc.style.left = r.left + 'px';
-                    vc.style.top = r.top + 'px';
-                    vc.style.cursor = 'grab';
+                    endDrag();
+                });
+
+                document.addEventListener('touchcancel', function () {
+                    endDrag();
                 });
             })();
         })();

@@ -210,15 +210,19 @@
             right: 280px;
         }
 
-        /* EDUCATOR CAM — always fixed, positioned by JS */
+        /* EDUCATOR CAM — fixed, positioned by JS */
         #video-circle {
             position: fixed;
+            top: 12px;
+            right: 12px;
+            width: 140px;
+            height: 105px;
             overflow: hidden;
             background: #000;
             z-index: 9000;
-            border-radius: 0;
+            border-radius: 12px;
             touch-action: none;
-            transition: border-radius 0.3s;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
             display: none; /* Hidden by default; controlled by switchView() */
         }
 

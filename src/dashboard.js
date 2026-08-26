@@ -225,11 +225,13 @@ function switchView(viewName, params = {}, skipPush = false) {
         if (window.resizeCanvas) window.resizeCanvas();
         
         setTimeout(() => {
-            if (window.positionCamDocked) window.positionCamDocked();
-        }, 50);
+            if (window.repositionCam) window.repositionCam();
+            else if (window.positionCamDocked) window.positionCamDocked();
+        }, 30);
         setTimeout(() => {
-            if (window.positionCamDocked) window.positionCamDocked();
-        }, 350);
+            if (window.repositionCam) window.repositionCam();
+            else if (window.positionCamDocked) window.positionCamDocked();
+        }, 300);
     } else {
         if (dbShell) dbShell.classList.add("active");
         if (appEl) appEl.style.display = "none";
