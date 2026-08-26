@@ -93,9 +93,34 @@ window.updateSplash = (txt, pct) => {
         const SHAPES_STROKE_TO_REPLACE = "#000001";
         const USLShape_DASH_SCALE_BASE_DIM = 100;
 
+        let isLightModeCached = typeof document !== 'undefined' ? document.body.classList.contains('light-mode') : false;
+        const colorLut = new Map();
+
+        window.addEventListener('theme-changed', (e) => {
+            if (e && e.detail && typeof e.detail.isLight === 'boolean') {
+                isLightModeCached = e.detail.isLight;
+            } else if (typeof document !== 'undefined') {
+                isLightModeCached = document.body.classList.contains('light-mode');
+            }
+            colorLut.clear();
+            if (engineLoaded) {
+                paintBackground();
+                replayStrokes(lastDrawUs);
+            }
+        });
+
         function getDisplayColor(c, isBg = false) {
-            if (!document.body.classList.contains('light-mode')) return c;
-            if (!c) return c;
+            if (!isLightModeCached || !c) return c;
+            const key = c + (isBg ? '_bg' : '_fg');
+            const cached = colorLut.get(key);
+            if (cached) return cached;
+
+            const computed = computeDisplayColor(c, isBg);
+            colorLut.set(key, computed);
+            return computed;
+        }
+
+        function computeDisplayColor(c, isBg = false) {
             const hex = c.trim().toLowerCase();
             if (isBg) {
                 if (hex.startsWith('#')) {
@@ -641,6 +666,50 @@ window.updateSplash = (txt, pct) => {
             dc.stroke();
         }
 
+        function renderContinuousStroke(dc, stroke, pts) {
+            if (!pts || pts.length === 0) return;
+
+            const isErase = stroke.isErase;
+            const isHL = stroke.isHighlight;
+            const lineWidth = isErase ? (stroke.th + 10) * scaleFactor 
+                           : (isHL ? stroke.th * scaleFactor * 15 
+                           : stroke.th * scaleFactor * 3);
+            const style = isErase ? "rgba(0,0,0,1)" : getDisplayColor(stroke.color, false);
+            const op = isErase ? "destination-out" : "source-over";
+
+            if (dc.globalCompositeOperation !== op) dc.globalCompositeOperation = op;
+            if (dc.strokeStyle !== style) dc.strokeStyle = style;
+            if (dc.lineWidth !== lineWidth) dc.lineWidth = lineWidth;
+            if (dc.lineCap !== "round") dc.lineCap = "round";
+            if (dc.lineJoin !== "round") dc.lineJoin = "round";
+
+            const p0 = pts[0];
+            let lastX = p0.x * CW, lastY = p0.y * CH;
+
+            if (pts.length === 1) {
+                if (dc.fillStyle !== style) dc.fillStyle = style;
+                dc.beginPath();
+                dc.arc(lastX, lastY, Math.max(1, lineWidth / 2), 0, Math.PI * 2);
+                dc.fill();
+                return;
+            }
+
+            dc.beginPath();
+            dc.moveTo(lastX, lastY);
+
+            for (let i = 1; i < pts.length; i++) {
+                const p = pts[i];
+                const nx = p.x * CW, ny = p.y * CH;
+                const isEnd = (i === pts.length - 1);
+                const mx = isEnd ? nx : (lastX + nx) / 2;
+                const my = isEnd ? ny : (lastY + ny) / 2;
+                dc.quadraticCurveTo(lastX, lastY, mx, my);
+                lastX = nx;
+                lastY = ny;
+            }
+            dc.stroke();
+        }
+
         function drawShape(dc, stroke, x1, y1, x2, y2) {
             dc.save();
             dc.beginPath();
@@ -906,17 +975,19 @@ window.updateSplash = (txt, pct) => {
                 if (stroke.oid && replayDeletedOids.has(stroke.oid)) continue;
 
                 const tf = transformMap.get(stroke.oid) || { matrix: new DOMMatrix() };
-                let pts = [];
                 const hasTF = !tf.matrix.isIdentity;
+                const m = tf.matrix;
+                let pts = [];
 
                 for (let i = 0; i < stroke.pts.length; i++) {
-                    if (stroke.pts[i].t <= targetUs) {
-                        const p = stroke.pts[i];
+                    const p = stroke.pts[i];
+                    if (p.t <= targetUs) {
                         if (hasTF && !isShape(stroke.mode)) {
-                            scratchPoint.x = p.x * CW;
-                            scratchPoint.y = p.y * CH;
-                            const proj = scratchPoint.matrixTransform(tf.matrix);
-                            pts.push({ x: proj.x / CW, y: proj.y / CH, t: p.t });
+                            const rawX = p.x * CW;
+                            const rawY = p.y * CH;
+                            const projX = (m.a * rawX + m.c * rawY + m.e) / CW;
+                            const projY = (m.b * rawX + m.d * rawY + m.f) / CH;
+                            pts.push({ x: projX, y: projY, t: p.t });
                         } else {
                             pts.push({ x: p.x, y: p.y, t: p.t });
                         }
@@ -924,40 +995,24 @@ window.updateSplash = (txt, pct) => {
                 }
                 if (pts.length === 0) continue;
 
-                let lastX = pts[0].x * CW, lastY = pts[0].y * CH;
-                let midX = lastX, midY = lastY;
-                const dotSeg = { lastX, lastY, color: stroke.color, th: stroke.th, isErase: stroke.isErase, isHighlight: stroke.isHighlight, mode: stroke.mode, dash: stroke.dash };
-
-                if (stroke.isErase) {
-                    drawDot(penCtx, dotSeg); drawDot(hlCtx, dotSeg); drawDot(drawCtx, dotSeg); drawDot(eraserCtx, dotSeg);
-                } else if (!isShape(stroke.mode)) {
-                    if (!stroke.isHighlight) drawDot(penCtx, dotSeg);
-                    else if (pts.length === 1) drawDot(hlCtx, dotSeg);
-                }
-
-                for (let i = 1; i < pts.length; i++) {
-                    const nx = pts[i].x * CW, ny = pts[i].y * CH;
-                    const mx = (i === pts.length - 1) ? nx : (lastX + nx) / 2;
-                    const my = (i === pts.length - 1) ? ny : (lastY + ny) / 2;
-                    const seg = { midX, midY, lastX, lastY, color: stroke.color, th: stroke.th, isErase: stroke.isErase, isHighlight: stroke.isHighlight, mode: stroke.mode, dash: stroke.dash, uslUrl: stroke.uslUrl };
-                    if (isShape(stroke.mode)) {
-                        if (i === pts.length - 1) {
-                            const dc = stroke.isTempHL ? laserCtx : (stroke.isHighlight ? hlCtx : drawCtx);
-                            dc.save();
-                            if (hasTF) { dc.transform(tf.matrix.a, tf.matrix.b, tf.matrix.c, tf.matrix.d, tf.matrix.e, tf.matrix.f); }
-                            const sx1 = stroke.pts[0].x * CW, sy1 = stroke.pts[0].y * CH;
-                            const sx2 = stroke.pts[stroke.pts.length - 1].x * CW, sy2 = stroke.pts[stroke.pts.length - 1].y * CH;
-                            drawShape(dc, seg, sx1, sy1, sx2, sy2);
-                            dc.restore();
-                        }
-                    } else if (stroke.isErase) {
-                        drawCurve(penCtx, seg, mx, my); drawCurve(hlCtx, seg, mx, my); drawCurve(drawCtx, seg, mx, my); drawCurve(eraserCtx, seg, mx, my);
-                    } else if (stroke.isTempHL) {
-                        // Temp lasers
-                    } else {
-                        drawCurve(stroke.isHighlight ? hlCtx : penCtx, seg, mx, my);
-                    }
-                    lastX = nx; lastY = ny; midX = mx; midY = my;
+                if (isShape(stroke.mode)) {
+                    const dc = stroke.isTempHL ? laserCtx : (stroke.isHighlight ? hlCtx : drawCtx);
+                    dc.save();
+                    if (hasTF) { dc.transform(m.a, m.b, m.c, m.d, m.e, m.f); }
+                    const sx1 = stroke.pts[0].x * CW, sy1 = stroke.pts[0].y * CH;
+                    const sx2 = stroke.pts[stroke.pts.length - 1].x * CW, sy2 = stroke.pts[stroke.pts.length - 1].y * CH;
+                    drawShape(dc, stroke, sx1, sy1, sx2, sy2);
+                    dc.restore();
+                } else if (stroke.isErase) {
+                    renderContinuousStroke(penCtx, stroke, pts);
+                    renderContinuousStroke(hlCtx, stroke, pts);
+                    renderContinuousStroke(drawCtx, stroke, pts);
+                    renderContinuousStroke(eraserCtx, stroke, pts);
+                } else if (stroke.isTempHL) {
+                    // Temp lasers handled in laserCtx
+                } else {
+                    const targetCtx = stroke.isHighlight ? hlCtx : penCtx;
+                    renderContinuousStroke(targetCtx, stroke, pts);
                 }
             }
 
@@ -970,49 +1025,40 @@ window.updateSplash = (txt, pct) => {
 
                 const isSh = isShape(s.mode);
                 const tf = transformMap.get(s.oid) || { matrix: new DOMMatrix() };
+                const hasTF = !tf.matrix.isIdentity;
+                const m = tf.matrix;
 
-                const pts = s.pts.map(p => {
-                    if (!tf.matrix.isIdentity && !isSh) {
-                        const proj = new DOMPoint(p.x * CW, p.y * CH).matrixTransform(tf.matrix);
-                        return { x: proj.x / CW, y: proj.y / CH, t: p.t };
+                const pts = [];
+                for (let i = 0; i < s.pts.length; i++) {
+                    const p = s.pts[i];
+                    if (hasTF && !isSh) {
+                        const rawX = p.x * CW;
+                        const rawY = p.y * CH;
+                        const projX = (m.a * rawX + m.c * rawY + m.e) / CW;
+                        const projY = (m.b * rawX + m.d * rawY + m.f) / CH;
+                        pts.push({ x: projX, y: projY, t: p.t });
+                    } else {
+                        pts.push({ x: p.x, y: p.y, t: p.t });
                     }
-                    return { x: p.x, y: p.y, t: p.t };
-                });
+                }
                 if (pts.length === 0) continue;
 
-                let lastX = pts[0].x * CW, lastY = pts[0].y * CH;
-                let midX = lastX, midY = lastY;
-                const dotSeg = { lastX, lastY, color: s.color, th: s.th, isErase: s.isErase, isHighlight: s.isHighlight, isTempHL: s.isTempHL, mode: s.mode, dash: s.dash || [] };
-
-                const dc = s.isErase ? penCtx : (s.isTempHL ? laserCtx : (s.isHighlight ? hlCtx : penCtx));
-                if (s.isErase) {
-                    drawDot(penCtx, dotSeg); drawDot(hlCtx, dotSeg); drawDot(drawCtx, dotSeg); drawDot(eraserCtx, dotSeg);
-                } else if (!isSh) {
-                    if (!s.isHighlight && !s.isTempHL) drawDot(dc, dotSeg);
-                    else if (pts.length === 1) drawDot(dc, dotSeg);
-                }
-
-                for (let i = 1; i < pts.length; i++) {
-                    const nx = pts[i].x * CW, ny = pts[i].y * CH;
-                    const mx = (i === pts.length - 1) ? nx : (lastX + nx) / 2;
-                    const my = (i === pts.length - 1) ? ny : (lastY + ny) / 2;
-                    const seg = { midX, midY, lastX, lastY, color: s.color, th: s.th, isErase: s.isErase, isHighlight: s.isHighlight, isTempHL: s.isTempHL, mode: s.mode, dash: s.dash || [], uslUrl: s.uslUrl };
-
-                    if (isSh) {
-                        if (i === pts.length - 1) {
-                            dc.save();
-                            if (!tf.matrix.isIdentity) { dc.transform(tf.matrix.a, tf.matrix.b, tf.matrix.c, tf.matrix.d, tf.matrix.e, tf.matrix.f); }
-                            const sx1 = s.pts[0].x * CW, sy1 = s.pts[0].y * CH;
-                            const sx2 = s.pts[s.pts.length - 1].x * CW, sy2 = s.pts[s.pts.length - 1].y * CH;
-                            drawShape(dc, seg, sx1, sy1, sx2, sy2);
-                            dc.restore();
-                        }
-                    } else if (s.isErase) {
-                        drawCurve(penCtx, seg, mx, my); drawCurve(hlCtx, seg, mx, my); drawCurve(drawCtx, seg, mx, my); drawCurve(eraserCtx, seg, mx, my);
-                    } else {
-                        drawCurve(dc, seg, mx, my);
-                    }
-                    lastX = nx; lastY = ny; midX = mx; midY = my;
+                if (isSh) {
+                    const dc = s.isTempHL ? laserCtx : (s.isHighlight ? hlCtx : drawCtx);
+                    dc.save();
+                    if (hasTF) { dc.transform(m.a, m.b, m.c, m.d, m.e, m.f); }
+                    const sx1 = pts[0].x * CW, sy1 = pts[0].y * CH;
+                    const sx2 = pts[pts.length - 1].x * CW, sy2 = pts[pts.length - 1].y * CH;
+                    drawShape(dc, s, sx1, sy1, sx2, sy2);
+                    dc.restore();
+                } else if (s.isErase) {
+                    renderContinuousStroke(penCtx, s, pts);
+                    renderContinuousStroke(hlCtx, s, pts);
+                    renderContinuousStroke(drawCtx, s, pts);
+                    renderContinuousStroke(eraserCtx, s, pts);
+                } else {
+                    const dc = s.isTempHL ? laserCtx : (s.isHighlight ? hlCtx : penCtx);
+                    renderContinuousStroke(dc, s, pts);
                 }
             }
 
@@ -2245,14 +2291,28 @@ window.updateSplash = (txt, pct) => {
             }
         });
 
-        // Fast decoupled seek bar scrubbing
+        let seekRafId = null;
+        let pendingSeekAnimUs = null;
+
+        // Fast decoupled seek bar scrubbing with RAF throttling
         seekBar.addEventListener("input", () => {
             isDraggingSeek = true;
-            const targetAnimUs = parseInt(seekBar.value);
-            applyDecoupledSeek(targetAnimUs - drawOffset, false);
+            pendingSeekAnimUs = parseInt(seekBar.value);
+            if (!seekRafId) {
+                seekRafId = requestAnimationFrame(() => {
+                    seekRafId = null;
+                    if (pendingSeekAnimUs !== null) {
+                        applyDecoupledSeek(pendingSeekAnimUs - drawOffset, false);
+                    }
+                });
+            }
         });
 
         seekBar.addEventListener("change", () => {
+            if (seekRafId) {
+                cancelAnimationFrame(seekRafId);
+                seekRafId = null;
+            }
             isDraggingSeek = false;
             const targetAnimUs = parseInt(seekBar.value);
             applyDecoupledSeek(targetAnimUs - drawOffset, true);
@@ -2901,13 +2961,16 @@ window.updateSplash = (txt, pct) => {
                     var newT = startT + dy;
                     newL = Math.max(0, Math.min(window.innerWidth - vc.offsetWidth, newL));
                     newT = Math.max(0, Math.min(window.innerHeight - vc.offsetHeight, newT));
-                    vc.style.left = newL + 'px';
-                    vc.style.top = newT + 'px';
+                    vc.style.transform = `translate3d(${newL - startL}px, ${newT - startT}px, 0)`;
                 });
 
                 document.addEventListener('mouseup', function () {
                     if (!isDragging) return;
                     isDragging = false;
+                    var r = vc.getBoundingClientRect();
+                    vc.style.transform = '';
+                    vc.style.left = r.left + 'px';
+                    vc.style.top = r.top + 'px';
                     vc.style.cursor = 'grab';
                     vc.style.userSelect = '';
                 });
@@ -2935,13 +2998,17 @@ window.updateSplash = (txt, pct) => {
                     var newT = startT + (t.clientY - startY);
                     newL = Math.max(0, Math.min(window.innerWidth - vc.offsetWidth, newL));
                     newT = Math.max(0, Math.min(window.innerHeight - vc.offsetHeight, newT));
-                    vc.style.left = newL + 'px';
-                    vc.style.top = newT + 'px';
+                    vc.style.transform = `translate3d(${newL - startL}px, ${newT - startT}px, 0)`;
                     e.preventDefault();
                 }, { passive: false });
 
                 document.addEventListener('touchend', function () {
+                    if (!isDragging) return;
                     isDragging = false;
+                    var r = vc.getBoundingClientRect();
+                    vc.style.transform = '';
+                    vc.style.left = r.left + 'px';
+                    vc.style.top = r.top + 'px';
                     vc.style.cursor = 'grab';
                 });
             })();

@@ -25,15 +25,15 @@ function decryptBytesToUint8(bufferOrArray, secretKey = SECRET_KEY) {
         }
         const out32 = new Uint32Array(out.buffer, 0, wordCount);
 
-        // Vectorized 32-bit word step (4 bytes per iteration)
+        // Vectorized 32-bit word step (4 bytes per iteration, bitwise & 15 for 16-word wrap)
         for (let i = 0; i < wordCount; i++) {
-            out32[i] = src32[i] ^ defaultKey32[i % defaultKey32Len];
+            out32[i] = src32[i] ^ defaultKey32[i & 15];
         }
 
-        // Remainder tail bytes
+        // Remainder tail bytes (bitwise & 63 for 64-byte wrap)
         const tailStart = wordCount * 4;
         for (let i = tailStart; i < len; i++) {
-            out[i] = srcBytes[i] ^ defaultKeyBytes[i % defaultKeyLen];
+            out[i] = srcBytes[i] ^ defaultKeyBytes[i & 63];
         }
         return out;
     }
