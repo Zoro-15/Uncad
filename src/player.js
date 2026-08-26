@@ -2479,6 +2479,7 @@ window.updateSplash = (txt, pct) => {
                     if (cp) cp.classList.remove("small-size");
                 }
                 if (window.repositionCam) window.repositionCam();
+                if (window.resizeCanvas) window.resizeCanvas(true);
             }
 
             teacherSizeWrap.addEventListener("click", e => {
@@ -2492,6 +2493,7 @@ window.updateSplash = (txt, pct) => {
             try {
                 const savedSize = localStorage.getItem("teacher_cam_size");
                 if (savedSize === "small") applyTeacherSize("small");
+                else applyTeacherSize("big");
             } catch (e) {}
         }
 
@@ -2934,8 +2936,8 @@ window.updateSplash = (txt, pct) => {
             let panelOpen = window.innerWidth > 768;
             let hasCustomPos = false;
 
-            function isFloating() {
-                return hasCustomPos || !panelOpen || document.body.classList.contains('panel-closed') || (vc && vc.classList.contains('fs-floating')) || window.innerWidth <= 768;
+            function isSmallSize() {
+                return (vc && vc.classList.contains('small-size')) || (camPlaceholder && camPlaceholder.classList.contains('small-size'));
             }
 
             function positionCamDocked() {
@@ -2944,13 +2946,17 @@ window.updateSplash = (txt, pct) => {
                     positionCamFloating();
                     return;
                 }
-                const isSmall = vc.classList.contains('small-size') || camPlaceholder.classList.contains('small-size');
-                camPlaceholder.style.height = isSmall ? '100px' : '158px';
+                const isSmall = isSmallSize();
+                const targetH = isSmall ? 105 : 158;
+                camPlaceholder.style.height = targetH + 'px';
+                
                 const r = camPlaceholder.getBoundingClientRect();
                 if (r.width <= 0 || r.height <= 0) {
                     positionCamFloating();
                     return;
                 }
+                vc.classList.add('docked-cam');
+                vc.classList.remove('floating-cam');
                 vc.style.position = 'fixed';
                 vc.style.left = r.left + 'px';
                 vc.style.top = r.top + 'px';
@@ -2967,11 +2973,13 @@ window.updateSplash = (txt, pct) => {
 
             function positionCamFloating() {
                 if (!vc) return;
-                const isSmall = vc.classList.contains('small-size');
+                const isSmall = isSmallSize();
                 const isMobile = window.innerWidth <= 600;
                 const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
                 const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
                 
+                vc.classList.add('floating-cam');
+                vc.classList.remove('docked-cam');
                 vc.style.position = 'fixed';
                 vc.style.width = w;
                 vc.style.height = h;
@@ -2985,6 +2993,18 @@ window.updateSplash = (txt, pct) => {
                     vc.style.top = '12px';
                     vc.style.right = '12px';
                     vc.style.left = 'auto';
+                    vc.style.bottom = 'auto';
+                } else {
+                    // Re-bound within current viewport when resized
+                    const curL = parseFloat(vc.style.left) || 12;
+                    const curT = parseFloat(vc.style.top) || 12;
+                    const numW = parseFloat(w);
+                    const numH = parseFloat(h);
+                    const maxL = Math.max(0, window.innerWidth - numW);
+                    const maxT = Math.max(0, window.innerHeight - numH);
+                    vc.style.left = Math.max(0, Math.min(maxL, curL)) + 'px';
+                    vc.style.top = Math.max(0, Math.min(maxT, curT)) + 'px';
+                    vc.style.right = 'auto';
                     vc.style.bottom = 'auto';
                 }
             }
@@ -3003,6 +3023,7 @@ window.updateSplash = (txt, pct) => {
                         toggleBtn.innerHTML = '&#10095;';
                     }
                     setTimeout(positionCamDocked, 10);
+                    setTimeout(positionCamDocked, 150);
                     setTimeout(positionCamDocked, 320);
                 } else {
                     panel.classList.add('collapsed');
@@ -3023,7 +3044,7 @@ window.updateSplash = (txt, pct) => {
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', () => {
                     panelOpen = !panelOpen;
-                    hasCustomPos = false; // Reset to docked/default when panel is toggled
+                    hasCustomPos = false; // Reset custom position to dock cleanly when user toggles panel
                     applyPanelState();
                 });
             }
@@ -3035,24 +3056,36 @@ window.updateSplash = (txt, pct) => {
                     positionCamFloating();
                 } else if (panelOpen && !document.fullscreenElement && !hasCustomPos) {
                     requestAnimationFrame(positionCamDocked);
+                } else if (hasCustomPos) {
+                    requestAnimationFrame(positionCamFloating);
                 }
             });
 
-            // Universal Drag Engine: pointer events with pointer capture for buttery-smooth movement
+            // Universal Drag Engine: touch & mouse with full 2D movement for Android & desktop
             (function () {
                 if (!vc) return;
                 let isDragging = false;
                 let startX = 0, startY = 0, startL = 0, startT = 0;
+                let activeTouchId = null;
 
-                function startDrag(clientX, clientY) {
+                function getViewportSize() {
+                    return {
+                        width: window.innerWidth || document.documentElement.clientWidth || screen.width,
+                        height: window.innerHeight || document.documentElement.clientHeight || screen.height
+                    };
+                }
+
+                function initDrag(clientX, clientY) {
                     isDragging = true;
                     hasCustomPos = true;
 
                     // Ensure floating styles are active
-                    const isSmall = vc.classList.contains('small-size');
+                    const isSmall = isSmallSize();
                     const isMobile = window.innerWidth <= 600;
                     const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
                     const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
+                    vc.classList.add('floating-cam');
+                    vc.classList.remove('docked-cam');
                     vc.style.width = w;
                     vc.style.height = h;
                     vc.style.borderRadius = '12px';
@@ -3074,19 +3107,21 @@ window.updateSplash = (txt, pct) => {
                     vc.style.transition = 'none';
                     vc.style.userSelect = 'none';
                     vc.style.transform = '';
-                    return true;
                 }
 
-                function moveDrag(clientX, clientY) {
+                function updateDrag(clientX, clientY) {
                     if (!isDragging) return;
                     const dx = clientX - startX;
                     const dy = clientY - startY;
                     let newL = startL + dx;
                     let newT = startT + dy;
 
-                    // Bound strictly within visible viewport periphery
-                    const maxL = Math.max(0, window.innerWidth - vc.offsetWidth);
-                    const maxT = Math.max(0, window.innerHeight - vc.offsetHeight);
+                    const vp = getViewportSize();
+                    const vcW = vc.offsetWidth || 140;
+                    const vcH = vc.offsetHeight || 105;
+                    const maxL = Math.max(0, vp.width - vcW);
+                    const maxT = Math.max(0, vp.height - vcH);
+
                     newL = Math.max(0, Math.min(maxL, newL));
                     newT = Math.max(0, Math.min(maxT, newT));
 
@@ -3094,69 +3129,64 @@ window.updateSplash = (txt, pct) => {
                     vc.style.top = newT + 'px';
                 }
 
-                function endDrag() {
+                function stopDrag() {
                     if (!isDragging) return;
                     isDragging = false;
+                    activeTouchId = null;
                     vc.style.cursor = 'grab';
                     vc.style.userSelect = '';
                 }
 
-                // Pointer Events (Touch, Mouse, Pen)
-                vc.addEventListener('pointerdown', function (e) {
-                    if (e.button !== 0 && e.pointerType === 'mouse') return;
-                    if (startDrag(e.clientX, e.clientY)) {
-                        try { vc.setPointerCapture(e.pointerId); } catch (_) {}
-                        e.preventDefault();
+                // TOUCH EVENTS (Primary for Android & iOS)
+                vc.addEventListener('touchstart', function (e) {
+                    if (e.touches.length > 0) {
+                        const t = e.touches[0];
+                        activeTouchId = t.identifier;
+                        initDrag(t.clientX, t.clientY);
+                        if (e.cancelable) e.preventDefault();
                         e.stopPropagation();
                     }
                 }, { passive: false });
 
-                vc.addEventListener('pointermove', function (e) {
-                    if (isDragging) {
-                        moveDrag(e.clientX, e.clientY);
-                        e.preventDefault();
-                    }
-                }, { passive: false });
-
-                vc.addEventListener('pointerup', function (e) {
-                    if (isDragging) {
-                        endDrag();
-                        try { vc.releasePointerCapture(e.pointerId); } catch (_) {}
-                    }
-                }, { passive: false });
-
-                vc.addEventListener('pointercancel', function (e) {
-                    if (isDragging) {
-                        endDrag();
-                        try { vc.releasePointerCapture(e.pointerId); } catch (_) {}
-                    }
-                }, { passive: false });
-
-                // Touch Events fallback for older WebViews
-                vc.addEventListener('touchstart', function (e) {
-                    if (e.touches.length === 1) {
-                        const t = e.touches[0];
-                        if (startDrag(t.clientX, t.clientY)) {
-                            e.preventDefault();
-                            e.stopPropagation();
+                window.addEventListener('touchmove', function (e) {
+                    if (!isDragging) return;
+                    for (let i = 0; i < e.touches.length; i++) {
+                        const t = e.touches[i];
+                        if (activeTouchId === null || t.identifier === activeTouchId) {
+                            updateDrag(t.clientX, t.clientY);
+                            if (e.cancelable) e.preventDefault();
+                            break;
                         }
                     }
                 }, { passive: false });
 
-                document.addEventListener('touchmove', function (e) {
-                    if (isDragging && e.touches.length === 1) {
-                        const t = e.touches[0];
-                        moveDrag(t.clientX, t.clientY);
-                        e.preventDefault();
-                    }
+                window.addEventListener('touchend', function (e) {
+                    if (isDragging) stopDrag();
                 }, { passive: false });
 
-                document.addEventListener('touchend', function () {
-                    endDrag();
-                });
+                window.addEventListener('touchcancel', function (e) {
+                    if (isDragging) stopDrag();
+                }, { passive: false });
 
-                document.addEventListener('touchcancel', function () {
-                    endDrag();
+                // MOUSE EVENTS (Desktop fallback)
+                vc.addEventListener('mousedown', function (e) {
+                    if (e.button !== 0) return;
+                    initDrag(e.clientX, e.clientY);
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    function onMouseMove(me) {
+                        updateDrag(me.clientX, me.clientY);
+                    }
+
+                    function onMouseUp() {
+                        stopDrag();
+                        window.removeEventListener('mousemove', onMouseMove);
+                        window.removeEventListener('mouseup', onMouseUp);
+                    }
+
+                    window.addEventListener('mousemove', onMouseMove);
+                    window.addEventListener('mouseup', onMouseUp);
                 });
             })();
         })();
