@@ -8,7 +8,6 @@ import { parseTelemetryData } from './engine/telemetryParser.js';
 import { requestWakeLock, releaseWakeLock, createSyncLoop } from './engine/mediaSync.js';
 import { renderChapterMarks } from './ui/seekChapterBar.js';
 import { initLocalFileLoader } from './ui/localFileLoader.js';
-import { getOfflineTelemetry, saveTelemetryOffline, isTelemetryCached } from './engine/offlineStorage.js';
 
 'use strict';
 
@@ -1023,19 +1022,6 @@ window.updateSplash = (txt, pct) => {
                 console.log("[Engine] JSON parsed. Processing stream frames...");
                 await processData(rawData, startSec);
 
-                const targetUid = uid || activeUid;
-                if (targetUid) {
-                    const course = findCourseByLectureUid(targetUid);
-                    const lec = course?.lectures?.find(l => l.uid === targetUid);
-                    saveTelemetryOffline(targetUid, buffer, {
-                        courseId: course?.id || '',
-                        title: lec?.title || '',
-                        duration: lec?.duration || ''
-                    }).then(saved => {
-                        if (saved) showToast("Lecture cached for offline viewing", "success");
-                    }).catch(e => console.warn('[Engine] Offline auto-save error:', e));
-                }
-
                 window.updateSplash("Lecture Ready", 100);
                 setStatus("synced", "SYNCED");
                 return true;
@@ -1095,59 +1081,40 @@ window.updateSplash = (txt, pct) => {
 
             const videoUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
             video.preload = "auto";
+            video.playsInline = true;
+            video.setAttribute("playsinline", "true");
+            video.setAttribute("webkit-playsinline", "true");
             video.src = videoUrl;
             video.load();
+
             if (gsMode && gsVideo) {
                 gsVideo.preload = "auto";
+                gsVideo.playsInline = true;
+                gsVideo.setAttribute("playsinline", "true");
+                gsVideo.setAttribute("webkit-playsinline", "true");
                 gsVideo.src = videoUrl;
                 gsVideo.load();
             }
 
-            function applyResumePosition() {
-                if (startSec > 0) {
-                    console.log(`[Player] Applying resume position: ${startSec}s`);
-                    video.currentTime = startSec;
-                    if (gsMode && gsVideo) gsVideo.currentTime = startSec;
-                    doSeek(startSec * 1e6);
-                    const m = Math.floor(startSec / 60);
-                    const s = Math.floor(startSec % 60);
-                    showToast(`Resumed from ${m}:${s < 10 ? '0' : ''}${s}`, "info");
+            if (startSec > 0) {
+                const applyResumePosition = () => {
+                    try {
+                        video.currentTime = startSec;
+                        if (gsMode && gsVideo) gsVideo.currentTime = startSec;
+                        doSeek(startSec * 1e6);
+                    } catch (e) {
+                        console.warn("[Player] Seek on load error:", e);
+                    }
+                };
+
+                if (video.readyState >= 1) {
+                    applyResumePosition();
+                } else {
+                    video.addEventListener("loadedmetadata", applyResumePosition, { once: true });
                 }
             }
 
-            if (video.readyState >= 1) {
-                applyResumePosition();
-            } else {
-                video.addEventListener("loadedmetadata", applyResumePosition, { once: true });
-            }
-
-            // 1. FAST OFFLINE CACHE CHECK FIRST
-            try {
-                const cachedPayload = await getOfflineTelemetry(uid);
-                if (cachedPayload) {
-                    window.updateSplash("Loading from Offline Cache...", 50);
-                    let rawData;
-                    if (typeof cachedPayload === 'string' || cachedPayload instanceof ArrayBuffer) {
-                        rawData = tryDecryptAndParse(cachedPayload, `offline_cache_${uid}`);
-                    } else {
-                        rawData = cachedPayload;
-                    }
-                    await processData(rawData, startSec);
-                    window.updateSplash("Lecture Ready (Offline)", 100);
-                    setStatus("synced", "OFFLINE CACHE");
-                    showToast("⚡ Loaded from offline cache", "offline");
-                    engineLoaded = true;
-                    if (splash) {
-                        splash.classList.add("hidden");
-                        splash.style.display = "none";
-                    }
-                    return true;
-                }
-            } catch (cacheErr) {
-                console.warn("[Engine] Offline cache read error:", cacheErr);
-            }
-
-            // 2. REMOTE FETCH FALLBACK
+            // REMOTE FETCH PIPELINE
             try {
                 const directTelemetryUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
                 const proxyTelemetryUrl = `https://corsproxy.io/?${encodeURIComponent(directTelemetryUrl)}`;
@@ -1972,13 +1939,6 @@ window.updateSplash = (txt, pct) => {
             }
             prevRafTs = ts; if (!engineLoaded) return;
 
-            isBuffering = video.readyState < 3 && !video.paused;
-            if (isBuffering || isSeeking) {
-                bufferingOverlay.classList.add("show");
-            } else {
-                bufferingOverlay.classList.remove("show");
-            }
-
             const vUs = curVideoUs();
             const dUs = drawingUs(vUs);
 
@@ -1995,7 +1955,7 @@ window.updateSplash = (txt, pct) => {
             vCurr.textContent = fmt(video.currentTime);
             vTotal.textContent = fmt(videoMax);
 
-            if (!video.paused && !isSeeking && !isBuffering) tickDraw(vUs);
+            if (!video.paused && !isSeeking) tickDraw(vUs);
 
             if (engineLoaded && recordStartMs > 0) {
                 const wallMs = recordStartMs + (dUs / 1000);
@@ -2020,6 +1980,8 @@ window.updateSplash = (txt, pct) => {
         });
         video.addEventListener("play", () => {
             isSeeking = false;
+            isBuffering = false;
+            if (bufferingOverlay) bufferingOverlay.classList.remove("show");
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
             if (gsMode) gsVideo.play().catch(() => { });
             requestWakeLock();
@@ -2049,8 +2011,19 @@ window.updateSplash = (txt, pct) => {
                 if (gsMode && !video.paused) gsVideo.play().catch(() => { });
             }
         });
-        video.addEventListener("waiting", () => { isBuffering = true; if (bufferingOverlay) bufferingOverlay.classList.add("show"); });
-        video.addEventListener("playing", () => { isBuffering = false; isSeeking = false; if (bufferingOverlay) bufferingOverlay.classList.remove("show"); });
+        video.addEventListener("waiting", () => { 
+            isBuffering = true; 
+            if (bufferingOverlay) bufferingOverlay.classList.add("show"); 
+        });
+        video.addEventListener("playing", () => { 
+            isBuffering = false; 
+            isSeeking = false; 
+            if (bufferingOverlay) bufferingOverlay.classList.remove("show"); 
+        });
+        video.addEventListener("canplay", () => {
+            isBuffering = false;
+            if (bufferingOverlay && !isSeeking) bufferingOverlay.classList.remove("show");
+        });
         video.addEventListener("ended", () => { 
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; 
             releaseWakeLock();

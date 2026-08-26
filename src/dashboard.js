@@ -1,7 +1,6 @@
 // Dashboard views, routing, and user course enrollment module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
-import { getAllCachedUids } from './engine/offlineStorage.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";

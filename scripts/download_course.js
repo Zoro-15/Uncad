@@ -1,23 +1,30 @@
 #!/usr/bin/env node
 /**
- * Automated Course & Lecture Archival Downloader for Google Drive Packaging
- * 
- * Usage:
- *   node scripts/download_course.js --list
- *   node scripts/download_course.js --course calculus-1
- *   node scripts/download_course.js --course theory-of-numbers --limit 2
- *   node scripts/download_course.js --all
+ * Interactive Course & Lecture Archival Downloader for Google Drive Packaging
  */
 
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
 import http from 'http';
+import readline from 'readline';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
+
+// Helper for interactive prompt
+function askQuestion(query) {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+    return new Promise(resolve => rl.question(query, ans => {
+        rl.close();
+        resolve(ans.trim());
+    }));
+}
 
 // Load courses registry
 let COURSES = [];
@@ -42,11 +49,13 @@ let targetCourseId = null;
 let downloadAll = false;
 let limitCount = null;
 let listOnly = false;
+let autoConfirm = false;
 let outputDir = path.join(ROOT_DIR, 'downloads');
 
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--list') listOnly = true;
     else if (args[i] === '--all') downloadAll = true;
+    else if (args[i] === '-y' || args[i] === '--yes') autoConfirm = true;
     else if (args[i] === '--course' && args[i + 1]) targetCourseId = args[++i];
     else if (args[i] === '--limit' && args[i + 1]) limitCount = parseInt(args[++i], 10);
     else if (args[i] === '--out' && args[i + 1]) outputDir = path.resolve(args[++i]);
@@ -63,27 +72,6 @@ if (listOnly) {
         console.log("-------------------------------------------------------");
     });
     console.log("\nRun with: node scripts/download_course.js --course <course_id>\n");
-    process.exit(0);
-}
-
-if (!targetCourseId && !downloadAll) {
-    console.log(`
-\x1b[1m\x1b[34m[Lennister Archival Downloader]\x1b[0m
-Automated Course & Lecture Archiver for Google Drive
-
-Commands:
-  \x1b[32mnode scripts/download_course.js --list\x1b[0m
-      List all available courses and their lecture counts.
-
-  \x1b[32mnode scripts/download_course.js --course <id>\x1b[0m
-      Download all lectures for a specific course (e.g. theory-of-numbers, calculus-1).
-
-  \x1b[32mnode scripts/download_course.js --course <id> --limit 2\x1b[0m
-      Download only the first N lectures of a course for testing.
-
-  \x1b[32mnode scripts/download_course.js --all\x1b[0m
-      Download all courses into the downloads folder.
-`);
     process.exit(0);
 }
 
@@ -246,20 +234,72 @@ async function downloadLecture(courseFolder, lec, courseTitle) {
 }
 
 async function run() {
+    // If no course specified via CLI flags, open interactive menu
+    if (!targetCourseId && !downloadAll) {
+        console.log("\n=======================================================");
+        console.log("  \x1b[1m\x1b[34mLennister Course Archiver\x1b[0m - Select Course to Download");
+        console.log("=======================================================\n");
+        COURSES.forEach((c, idx) => {
+            const numStr = String(idx + 1).padStart(2, ' ');
+            console.log(` [${numStr}] \x1b[36m${c.title}\x1b[0m (${c.lectures.length} Lectures)`);
+        });
+        console.log(` [${COURSES.length + 1}] \x1b[33mDOWNLOAD ALL 16 COURSES\x1b[0m`);
+        console.log(` [ 0] Cancel / Exit\n`);
+
+        const choiceStr = await askQuestion(`Enter course number [1-${COURSES.length + 1}] (or 0 to cancel): `);
+        const choice = parseInt(choiceStr, 10);
+
+        if (isNaN(choice) || choice <= 0 || choice > COURSES.length + 1) {
+            console.log("Cancelled. No files were downloaded.");
+            process.exit(0);
+        }
+
+        if (choice === COURSES.length + 1) {
+            downloadAll = true;
+        } else {
+            targetCourseId = COURSES[choice - 1].id;
+        }
+
+        const limitStr = await askQuestion("How many lectures? (Press Enter for ALL, or type a number like 2): ");
+        if (limitStr && !isNaN(parseInt(limitStr, 10))) {
+            limitCount = parseInt(limitStr, 10);
+        }
+
+        const customOut = await askQuestion(`Output folder [Press Enter for "${outputDir}"]: `);
+        if (customOut && customOut.trim()) {
+            outputDir = path.resolve(customOut.trim());
+        }
+    }
+
     const selectedCourses = downloadAll 
         ? COURSES 
         : COURSES.filter(c => c.id === targetCourseId);
 
     if (selectedCourses.length === 0) {
         console.error(`Course "${targetCourseId}" not found in catalog.`);
-        console.log("Run with --list to see all valid course IDs.");
         process.exit(1);
     }
 
+    let totalLecsCount = 0;
+    selectedCourses.forEach(c => {
+        const count = (limitCount && limitCount > 0) ? Math.min(limitCount, c.lectures.length) : c.lectures.length;
+        totalLecsCount += count;
+    });
+
     console.log(`\n=======================================================`);
-    console.log(`  STARTING ARCHIVAL TO: ${outputDir}`);
-    console.log(`  COURSES TO PROCESS: ${selectedCourses.length}`);
-    console.log(`=======================================================`);
+    console.log(`  \x1b[1mDOWNLOAD SUMMARY\x1b[0m`);
+    console.log(`  Courses to download:  ${selectedCourses.length}`);
+    console.log(`  Total lectures:       ${totalLecsCount}`);
+    console.log(`  Destination directory: ${outputDir}`);
+    console.log(`=======================================================\n`);
+
+    if (!autoConfirm) {
+        const confirm = await askQuestion("Start downloading now? (Y/n): ");
+        if (confirm.toLowerCase() === 'n') {
+            console.log("Cancelled.");
+            process.exit(0);
+        }
+    }
 
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
@@ -287,8 +327,6 @@ async function run() {
     console.log(`\n=======================================================`);
     console.log(`  \x1b[32mARCHIVAL COMPLETE!\x1b[0m`);
     console.log(`  You can now upload the folder "${outputDir}" to Google Drive.`);
-    console.log(`  Users can download any lecture or course folder and open`);
-    console.log(`  it directly in Lennister Player completely offline.`);
     console.log(`=======================================================\n`);
 }
 
