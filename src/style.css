@@ -219,11 +219,18 @@
             height: 105px;
             overflow: hidden;
             background: #000;
-            z-index: 9000;
+            z-index: 9999;
             border-radius: 12px;
             touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+            cursor: grab;
             display: none; /* Hidden by default; controlled by switchView() */
+        }
+
+        #video-circle:active {
+            cursor: grabbing;
         }
 
         #video-circle video {
@@ -232,6 +239,8 @@
             object-fit: cover;
             display: block;
             pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         #video-circle video.chroma-active {

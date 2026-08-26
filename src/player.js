@@ -2932,14 +2932,15 @@ window.updateSplash = (txt, pct) => {
             const vc = document.getElementById('video-circle');
             const camPlaceholder = document.getElementById('cam-placeholder');
             let panelOpen = window.innerWidth > 768;
+            let hasCustomPos = false;
 
             function isFloating() {
-                return !panelOpen || document.body.classList.contains('panel-closed') || (vc && vc.classList.contains('fs-floating')) || window.innerWidth <= 768;
+                return hasCustomPos || !panelOpen || document.body.classList.contains('panel-closed') || (vc && vc.classList.contains('fs-floating')) || window.innerWidth <= 768;
             }
 
             function positionCamDocked() {
                 if (!vc) return;
-                if (!camPlaceholder || window.innerWidth <= 768 || !panelOpen) {
+                if (hasCustomPos || !camPlaceholder || window.innerWidth <= 768 || !panelOpen) {
                     positionCamFloating();
                     return;
                 }
@@ -2959,7 +2960,7 @@ window.updateSplash = (txt, pct) => {
                 vc.style.bottom = 'auto';
                 vc.style.borderRadius = '0';
                 vc.style.zIndex = '9000';
-                vc.style.cursor = 'default';
+                vc.style.cursor = 'grab';
                 vc.style.boxShadow = 'none';
                 vc.style.transform = '';
             }
@@ -2970,11 +2971,8 @@ window.updateSplash = (txt, pct) => {
                 const isMobile = window.innerWidth <= 600;
                 const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
                 const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
+                
                 vc.style.position = 'fixed';
-                vc.style.top = '12px';
-                vc.style.right = '12px';
-                vc.style.left = 'auto';
-                vc.style.bottom = 'auto';
                 vc.style.width = w;
                 vc.style.height = h;
                 vc.style.borderRadius = '12px';
@@ -2982,10 +2980,17 @@ window.updateSplash = (txt, pct) => {
                 vc.style.cursor = 'grab';
                 vc.style.boxShadow = '0 8px 24px rgba(0,0,0,0.7)';
                 vc.style.transform = '';
+
+                if (!hasCustomPos) {
+                    vc.style.top = '12px';
+                    vc.style.right = '12px';
+                    vc.style.left = 'auto';
+                    vc.style.bottom = 'auto';
+                }
             }
 
             window.repositionCam = function() {
-                if (panelOpen && window.innerWidth > 768) positionCamDocked();
+                if (panelOpen && window.innerWidth > 768 && !hasCustomPos) positionCamDocked();
                 else positionCamFloating();
             };
 
@@ -3018,6 +3023,7 @@ window.updateSplash = (txt, pct) => {
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', () => {
                     panelOpen = !panelOpen;
+                    hasCustomPos = false; // Reset to docked/default when panel is toggled
                     applyPanelState();
                 });
             }
@@ -3027,24 +3033,38 @@ window.updateSplash = (txt, pct) => {
             window.addEventListener('resize', () => {
                 if (window.innerWidth <= 768) {
                     positionCamFloating();
-                } else if (panelOpen && !document.fullscreenElement) {
+                } else if (panelOpen && !document.fullscreenElement && !hasCustomPos) {
                     requestAnimationFrame(positionCamDocked);
                 }
             });
 
-            // Educator circle draggable functionality when floating
+            // Universal Drag Engine: pointer events with pointer capture for buttery-smooth movement
             (function () {
+                if (!vc) return;
                 let isDragging = false;
                 let startX = 0, startY = 0, startL = 0, startT = 0;
 
                 function startDrag(clientX, clientY) {
-                    if (!isFloating()) return false;
                     isDragging = true;
+                    hasCustomPos = true;
+
+                    // Ensure floating styles are active
+                    const isSmall = vc.classList.contains('small-size');
+                    const isMobile = window.innerWidth <= 600;
+                    const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
+                    const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
+                    vc.style.width = w;
+                    vc.style.height = h;
+                    vc.style.borderRadius = '12px';
+                    vc.style.boxShadow = '0 8px 24px rgba(0,0,0,0.7)';
+                    vc.style.zIndex = '9999';
+
                     const r = vc.getBoundingClientRect();
                     startL = r.left;
                     startT = r.top;
                     startX = clientX;
                     startY = clientY;
+
                     vc.style.position = 'fixed';
                     vc.style.left = startL + 'px';
                     vc.style.top = startT + 'px';
@@ -3063,10 +3083,13 @@ window.updateSplash = (txt, pct) => {
                     const dy = clientY - startY;
                     let newL = startL + dx;
                     let newT = startT + dy;
+
+                    // Bound strictly within visible viewport periphery
                     const maxL = Math.max(0, window.innerWidth - vc.offsetWidth);
                     const maxT = Math.max(0, window.innerHeight - vc.offsetHeight);
                     newL = Math.max(0, Math.min(maxL, newL));
                     newT = Math.max(0, Math.min(maxT, newT));
+
                     vc.style.left = newL + 'px';
                     vc.style.top = newT + 'px';
                 }
@@ -3078,27 +3101,44 @@ window.updateSplash = (txt, pct) => {
                     vc.style.userSelect = '';
                 }
 
-                vc.addEventListener('mousedown', function (e) {
-                    if (e.button !== 0) return;
+                // Pointer Events (Touch, Mouse, Pen)
+                vc.addEventListener('pointerdown', function (e) {
+                    if (e.button !== 0 && e.pointerType === 'mouse') return;
                     if (startDrag(e.clientX, e.clientY)) {
+                        try { vc.setPointerCapture(e.pointerId); } catch (_) {}
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, { passive: false });
+
+                vc.addEventListener('pointermove', function (e) {
+                    if (isDragging) {
+                        moveDrag(e.clientX, e.clientY);
                         e.preventDefault();
                     }
-                });
+                }, { passive: false });
 
-                document.addEventListener('mousemove', function (e) {
-                    moveDrag(e.clientX, e.clientY);
-                });
+                vc.addEventListener('pointerup', function (e) {
+                    if (isDragging) {
+                        endDrag();
+                        try { vc.releasePointerCapture(e.pointerId); } catch (_) {}
+                    }
+                }, { passive: false });
 
-                document.addEventListener('mouseup', function () {
-                    endDrag();
-                });
+                vc.addEventListener('pointercancel', function (e) {
+                    if (isDragging) {
+                        endDrag();
+                        try { vc.releasePointerCapture(e.pointerId); } catch (_) {}
+                    }
+                }, { passive: false });
 
-                // Touch drag support
+                // Touch Events fallback for older WebViews
                 vc.addEventListener('touchstart', function (e) {
                     if (e.touches.length === 1) {
                         const t = e.touches[0];
                         if (startDrag(t.clientX, t.clientY)) {
                             e.preventDefault();
+                            e.stopPropagation();
                         }
                     }
                 }, { passive: false });
