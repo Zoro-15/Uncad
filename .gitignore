@@ -40,3 +40,5 @@ yarn-error.log*
 pnpm-debug.log*
 .tmp/
 temp/
+downloads/
+

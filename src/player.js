@@ -2818,17 +2818,88 @@ window.updateSplash = (txt, pct) => {
             lastPaintedBg = null;
         }
 
-// Initialize local file loader for Drag & Drop
-initLocalFileLoader((videoUrl, rawData, fileName) => {
-    console.log("[LocalLoader] Loading dropped local recording:", fileName);
-    if (video) video.src = videoUrl;
-    if (rawData) processData(rawData);
+// Load local lecture recording from File/Blob objects
+async function loadLocalLecture(lec, course = null) {
+    if (course) {
+        if (!COURSES.some(c => c.id === course.id)) {
+            COURSES.unshift(course);
+        }
+        activeCourseId = course.id;
+    }
+    activeUid = lec.uid;
+    renderLectureDrawer();
+
+    video.pause();
+    const splash = $("splash");
+    if (splash) {
+        splash.style.display = "flex";
+        splash.classList.remove("hidden");
+        const label = $("splash-label");
+        if (label) label.textContent = `Loading Local Lecture: ${lec.title}...`;
+    }
+
+    destroyEngine();
+
+    const videoUrl = lec.videoFile ? URL.createObjectURL(lec.videoFile) : (lec.videoUrl || "");
+    video.preload = "auto";
+    video.src = videoUrl;
+    video.load();
+
+    try {
+        let rawData;
+        if (lec.jsonFile) {
+            const jsonText = await lec.jsonFile.text();
+            rawData = JSON.parse(jsonText);
+        } else if (lec.telemetryData) {
+            rawData = lec.telemetryData;
+        }
+
+        if (rawData) {
+            await processData(rawData, 0);
+            engineLoaded = true;
+            showToast(`📂 Opened: ${lec.title}`, "success");
+            if (splash) {
+                splash.classList.add("hidden");
+                splash.style.display = "none";
+            }
+            return true;
+        } else {
+            throw new Error("No telemetry data found in local recording");
+        }
+    } catch (e) {
+        console.error("[LocalLoader] Error loading local lecture:", e);
+        showToast("Failed to load local telemetry data", "warn");
+        if (splash) {
+            splash.classList.add("hidden");
+            splash.style.display = "none";
+        }
+        return false;
+    }
+}
+
+// Initialize local file & folder loader
+initLocalFileLoader({
+    onCourseLoaded: (coursePackage) => {
+        console.log("[LocalLoader] Local course folder loaded:", coursePackage.title, coursePackage.lectures.length);
+        if (!COURSES.some(c => c.id === coursePackage.id)) {
+            COURSES.unshift(coursePackage);
+        }
+        activeCourseId = coursePackage.id;
+        switchView("course", { courseId: coursePackage.id });
+        showToast(`📂 Loaded course folder: ${coursePackage.title} (${coursePackage.lectures.length} lectures)`, "success");
+    },
+    onSingleLectureLoaded: (lecture, coursePackage) => {
+        console.log("[LocalLoader] Single local lecture loaded:", lecture.title);
+        switchView("player");
+        loadLocalLecture(lecture, coursePackage);
+    }
 });
 
 // Export bindings
-export { runEngine, loadLectureByUid, processData, syncLoop, doSeek, switchPanelTab, destroyEngine };
+export { runEngine, loadLectureByUid, loadLocalLecture, processData, syncLoop, doSeek, switchPanelTab, destroyEngine };
 window.runEngine = runEngine;
 window.loadLectureByUid = loadLectureByUid;
+window.loadLocalLecture = loadLocalLecture;
 window.processData = processData;
 window.syncLoop = syncLoop;
 window.doSeek = doSeek;
@@ -2838,3 +2909,4 @@ window.video = video;
 window.resizeCanvas = resizeCanvas;
 window.setStatus = setStatus;
 window.switchPanelTab = switchPanelTab;
+

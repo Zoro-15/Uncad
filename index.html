@@ -43,6 +43,9 @@
             </div>
         </header>
 
+        <!-- Hidden folder input for directory picker -->
+        <input type="file" id="local-folder-input" webkitdirectory directory multiple style="display: none;">
+
         <!-- NAVIGATION DRAWER / MODAL MENU -->
         <div id="db-nav-drawer" class="db-nav-drawer">
             <div class="db-nav-item active" id="nav-item-my-courses" onclick="switchNavView('my-courses')">
@@ -50,6 +53,9 @@
             </div>
             <div class="db-nav-item" id="nav-item-all-courses" onclick="switchNavView('all-courses')">
                 <i class="fas fa-th-large"></i> All Courses
+            </div>
+            <div class="db-nav-item" id="nav-item-offline-mode" onclick="switchNavView('offline-mode')">
+                <i class="fas fa-bolt"></i> Offline Mode
             </div>
         </div>
 
@@ -445,8 +451,8 @@
     <div id="local-drop-zone" class="local-drop-zone">
         <div class="drop-zone-content">
             <i class="fas fa-cloud-upload-alt drop-icon"></i>
-            <h2>Drop Recording Files Here</h2>
-            <p>Drop <code>output.webm</code> video and <code>data.json</code> telemetry file together for offline playback.</p>
+            <h2>Drop Lecture or Course Folder Here</h2>
+            <p>Drop downloaded lecture folders (containing <code>output.webm</code> + <code>data.json</code>) or full course folders for instant offline playback.</p>
         </div>
     </div>
 

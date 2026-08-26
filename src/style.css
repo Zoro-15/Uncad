@@ -2202,4 +2202,37 @@
             font-weight: 600;
             margin-left: 8px;
         }
+
+        /* OPEN LOCAL FOLDER HEADER BUTTON */
+        .db-folder-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: var(--accent);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .db-folder-btn:hover {
+            background: rgba(14, 165, 233, 0.22);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .db-folder-btn span {
+                display: none;
+            }
+            .db-folder-btn {
+                padding: 7px 10px;
+            }
+        }
     

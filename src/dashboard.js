@@ -220,15 +220,24 @@ function toggleNavMenu() {
 function switchNavView(target) {
     const navItemMy = document.getElementById("nav-item-my-courses");
     const navItemAll = document.getElementById("nav-item-all-courses");
+    const navItemOffline = document.getElementById("nav-item-offline-mode");
+    const navDrawer = document.getElementById("db-nav-drawer");
+    if (navDrawer) navDrawer.classList.remove("show");
     
     if (target === "my-courses") {
         if (navItemMy) navItemMy.classList.add("active");
         if (navItemAll) navItemAll.classList.remove("active");
+        if (navItemOffline) navItemOffline.classList.remove("active");
         switchView("my-courses");
-    } else {
+    } else if (target === "all-courses") {
         if (navItemMy) navItemMy.classList.remove("active");
         if (navItemAll) navItemAll.classList.add("active");
+        if (navItemOffline) navItemOffline.classList.remove("active");
         switchView("all-courses");
+    } else if (target === "offline-mode") {
+        if (window.openLocalFolderPicker) {
+            window.openLocalFolderPicker();
+        }
     }
 }
 
@@ -467,7 +476,18 @@ async function launchLecture(uid, startTimeSec = null) {
         sp.classList.remove("hidden");
     }
     switchView("player");
-    activeUid = uid;
+    const course = COURSES.find(c => c.id === activeCourseId || (c.lectures && c.lectures.some(l => l.uid === uid)));
+    if (course && course.isLocal) {
+        const lec = course.lectures.find(l => l.uid === uid);
+        if (lec && window.loadLocalLecture) {
+            await window.loadLocalLecture(lec, course);
+            if (sp) {
+                sp.classList.add("hidden");
+                sp.style.display = "none";
+            }
+            return;
+        }
+    }
 
     // Determine target start time:
     let targetTime = 0;
