@@ -2971,23 +2971,29 @@ window.updateSplash = (txt, pct) => {
 
             function getFloatingCamDimensions() {
                 const isSmall = isSmallSize();
-                const isAndroid = /Android/i.test(navigator.userAgent);
-                const isMobile = window.innerWidth <= 768 || isAndroid || /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                const vp = getViewportSize();
+                const minDim = Math.min(vp.width, vp.height);
+                const maxDim = Math.max(vp.width, vp.height);
+                const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
                 
-                if (isAndroid) {
-                    // Average of previous big (140x105) and small (96x72) for Android
-                    const w = isSmall ? '88px' : '118px';
-                    const h = isSmall ? '66px' : '88px';
-                    return { w, h };
-                } else if (isMobile) {
-                    const w = isSmall ? '90px' : '125px';
-                    const h = isSmall ? '68px' : '94px';
-                    return { w, h };
+                let targetW;
+                if (minDim <= 500) {
+                    // Mobile Phone (e.g. 360-480px short dimension)
+                    targetW = isSmall ? 88 : 118;
+                } else if (minDim <= 950 || (isTouch && maxDim <= 1400)) {
+                    // Tablet / iPad / Foldable (e.g. 600-900px short dimension)
+                    targetW = isSmall ? Math.round(minDim * 0.17) : Math.round(minDim * 0.24);
+                    targetW = isSmall ? Math.max(120, Math.min(145, targetW)) : Math.max(165, Math.min(210, targetW));
                 } else {
-                    const w = isSmall ? '130px' : '200px';
-                    const h = isSmall ? '98px' : '150px';
-                    return { w, h };
+                    // Desktop / Laptop (e.g. 1080p, 1440p, 4k)
+                    targetW = isSmall ? 135 : 200;
                 }
+
+                const targetH = Math.round(targetW * 0.75); // 4:3 camera aspect ratio
+                return {
+                    w: targetW + 'px',
+                    h: targetH + 'px'
+                };
             }
 
             function positionCamFloating() {
