@@ -1,11 +1,30 @@
-// Dashboard views, routing, and user course enrollment module
+// Dashboard views, routing, offline manager, and predictive caching module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
-import { getAllCachedUids } from './engine/offlineStorage.js';
+import { getAllCachedUids, clearAllOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";
 let activeUid = "";
+
+// ══════════════════════════════════════════════════
+// LOCAL / OFFLINE IMPORTED COURSES REGISTRY
+// ══════════════════════════════════════════════════
+const LOCAL_COURSES = [];
+
+function addLocalCourse(coursePkg) {
+    if (!coursePkg || !coursePkg.id) return;
+    const existingIdx = LOCAL_COURSES.findIndex(c => c.id === coursePkg.id || c.title === coursePkg.title);
+    if (existingIdx >= 0) {
+        LOCAL_COURSES[existingIdx] = coursePkg;
+    } else {
+        LOCAL_COURSES.unshift(coursePkg);
+    }
+}
+
+function findCourseById(id) {
+    return LOCAL_COURSES.find(c => c.id === id) || COURSES.find(c => c.id === id);
+}
 
 // ══════════════════════════════════════════════════
 // IN-MEMORY OFFLINE UIDS CACHE (FOR ZERO-LAG SEARCH)
@@ -30,16 +49,20 @@ window.addEventListener('lennister-offline-change', (e) => {
         refreshCachedUidsSet();
     }
     if (currentView === "course" && activeCourseId) {
-        const course = COURSES.find(c => c.id === activeCourseId);
+        const course = findCourseById(activeCourseId);
         if (course) renderLecturesList(course.lectures);
+    } else if (currentView === "offline-mode") {
+        renderOfflineMode();
     }
 });
 
 window.addEventListener('lennister-offline-cleared', () => {
     cachedUidsSet.clear();
     if (currentView === "course" && activeCourseId) {
-        const course = COURSES.find(c => c.id === activeCourseId);
+        const course = findCourseById(activeCourseId);
         if (course) renderLecturesList(course.lectures);
+    } else if (currentView === "offline-mode") {
+        renderOfflineMode();
     }
 });
 
@@ -119,13 +142,11 @@ function getLectureProgress(uid) {
 }
 
 function saveLectureProgress(uid, timeSec) {
-    if (!uid || typeof timeSec !== 'number') return;
+    if (!uid || timeSec <= 0) return;
     try {
-        let map = _memoProgress || {};
-        if (!_memoProgress) {
-            const stored = localStorage.getItem(PROGRESS_KEY);
-            if (stored) map = JSON.parse(stored);
-        }
+        let map = {};
+        const stored = localStorage.getItem(PROGRESS_KEY);
+        if (stored) map = JSON.parse(stored);
         map[uid] = {
             timeSec: Math.floor(timeSec),
             updatedAt: Date.now()
@@ -137,7 +158,7 @@ function saveLectureProgress(uid, timeSec) {
 
 function saveLastWatched(uid, courseId, timeSec = 0) {
     if (!uid) return;
-    const course = COURSES.find(c => c.id === courseId || c.lectures.some(l => l.uid === uid));
+    const course = findCourseById(courseId) || COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid));
     if (!course) return;
     const lec = course.lectures.find(l => l.uid === uid);
     if (!lec) return;
@@ -230,6 +251,7 @@ function switchView(viewName, params = {}, skipPush = false) {
 
         const viewMyCourses = document.getElementById("view-my-courses");
         const viewAllCourses = document.getElementById("view-all-courses");
+        const viewOfflineMode = document.getElementById("view-offline-mode");
         const viewDetails = document.getElementById("view-course-details");
         const dbLogo = document.getElementById("db-logo");
         const dbHeaderBackBtn = document.getElementById("db-header-back-btn");
@@ -238,6 +260,7 @@ function switchView(viewName, params = {}, skipPush = false) {
         // Hide all sub-views first
         if (viewMyCourses) viewMyCourses.classList.remove("active");
         if (viewAllCourses) viewAllCourses.classList.remove("active");
+        if (viewOfflineMode) viewOfflineMode.classList.remove("active");
         if (viewDetails) viewDetails.classList.remove("active");
 
         if (viewName === "my-courses" || viewName === "home") {
@@ -252,6 +275,12 @@ function switchView(viewName, params = {}, skipPush = false) {
             if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
             if (dbHeaderRight) dbHeaderRight.style.display = "block";
             renderAllCourses();
+        } else if (viewName === "offline-mode") {
+            if (viewOfflineMode) viewOfflineMode.classList.add("active");
+            if (dbLogo) dbLogo.style.display = "flex";
+            if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
+            if (dbHeaderRight) dbHeaderRight.style.display = "block";
+            renderOfflineMode();
         } else if (viewName === "course") {
             if (viewDetails) viewDetails.classList.add("active");
             if (dbLogo) dbLogo.style.display = "flex";
@@ -290,9 +319,10 @@ function switchNavView(target) {
         if (navItemOffline) navItemOffline.classList.remove("active");
         switchView("all-courses");
     } else if (target === "offline-mode") {
-        if (window.openLocalFolderPicker) {
-            window.openLocalFolderPicker();
-        }
+        if (navItemMy) navItemMy.classList.remove("active");
+        if (navItemAll) navItemAll.classList.remove("active");
+        if (navItemOffline) navItemOffline.classList.add("active");
+        switchView("offline-mode");
     }
 }
 
@@ -365,7 +395,7 @@ function renderMyCourses() {
     grid.innerHTML = "";
     
     const enrolledIds = getEnrolledCourses();
-    const enrolledCourses = COURSES.filter(c => enrolledIds.includes(c.id));
+    const enrolledCourses = COURSES.filter(c => !c.isLocal && enrolledIds.includes(c.id));
 
     if (enrolledCourses.length === 0) {
         grid.innerHTML = `
@@ -405,7 +435,7 @@ function renderMyCourses() {
 }
 
 function launchCourseContinue(courseId) {
-    const course = COURSES.find(c => c.id === courseId);
+    const course = findCourseById(courseId);
     if (!course || !course.lectures || course.lectures.length === 0) return;
 
     const lastWatched = getLastWatched();
@@ -417,14 +447,17 @@ function launchCourseContinue(courseId) {
 }
 
 // ══════════════════════════════════════════════════
-// ALL COURSES CATALOG RENDERER
+// ALL COURSES CATALOG RENDERER (STRICTLY ONLINE ONLY)
 // ══════════════════════════════════════════════════
 function renderAllCourses() {
     const grid = document.getElementById("all-courses-grid");
     if (!grid) return;
     grid.innerHTML = "";
 
-    COURSES.forEach(course => {
+    // Strictly show official catalog courses only (never local imported folders)
+    const onlineCourses = COURSES.filter(c => !c.isLocal);
+
+    onlineCourses.forEach(course => {
         const enrolled = isCourseEnrolled(course.id);
         const card = document.createElement("div");
         card.className = "course-card";
@@ -451,8 +484,126 @@ function renderAllCourses() {
     });
 }
 
+// ══════════════════════════════════════════════════
+// OFFLINE MODE VIEW RENDERER
+// ══════════════════════════════════════════════════
+function renderOfflineMode() {
+    // 1. Local Imported Folders & Courses
+    const localGrid = document.getElementById("local-courses-grid");
+    if (localGrid) {
+        localGrid.innerHTML = "";
+        if (LOCAL_COURSES.length === 0) {
+            localGrid.innerHTML = `
+                <div class="empty-courses-state" style="padding: 36px 20px; text-align: center; color: #71717a; border: 1px dashed rgba(255,255,255,0.08); border-radius: 16px;">
+                    <i class="fas fa-folder-open" style="font-size: 36px; margin-bottom: 12px; display: block; opacity: 0.5; color: #22c55e;"></i>
+                    <p style="font-size: 14px; margin-bottom: 6px; color: #f4f4f5; font-weight: 600;">No local folders imported yet.</p>
+                    <span style="font-size: 13px; color: #71717a;">Click "Browse Folder" above to add your downloaded lecture folders.</span>
+                </div>
+            `;
+        } else {
+            LOCAL_COURSES.forEach(course => {
+                const card = document.createElement("div");
+                card.className = "course-card";
+                card.onclick = () => switchView("course", { courseId: course.id });
+                card.innerHTML = `
+                    <div class="course-card-left">
+                        <div class="course-card-icon-wrap" style="background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.3); color: #22c55e;">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h3 class="course-card-title">${course.title}</h3>
+                        <p class="course-card-desc">${course.description}</p>
+                    </div>
+                    <div class="course-card-right-col">
+                        <div class="course-card-badge" style="background: rgba(34,197,94,0.12); color: #22c55e; border-color: rgba(34,197,94,0.25);">
+                            <i class="fas fa-hdd"></i> ${getCourseStatsText(course)}
+                        </div>
+                        <div class="course-btn-group">
+                            <button class="course-card-btn" style="background: #22c55e; border-color: #22c55e; color: #09090b; font-weight: 700;">Explore Local Folder</button>
+                        </div>
+                    </div>
+                `;
+                localGrid.appendChild(card);
+            });
+        }
+    }
+
+    // 2. Pre-cached / IndexedDB Online Lectures
+    const cachedList = document.getElementById("offline-cached-list");
+    const clearBtn = document.getElementById("clear-cache-btn");
+    if (cachedList) {
+        cachedList.innerHTML = "";
+        const uids = Array.from(cachedUidsSet);
+        if (uids.length === 0) {
+            if (clearBtn) clearBtn.style.display = "none";
+            cachedList.innerHTML = `
+                <div style="text-align:center; padding:30px; color:#71717a; font-size:13px; border: 1px dashed rgba(255,255,255,0.06); border-radius: 12px;">
+                    <i class="fas fa-bolt" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.4;"></i>
+                    No fast-cached online lectures yet. Telemetry data is automatically pre-cached silently on startup.
+                </div>
+            `;
+        } else {
+            if (clearBtn) clearBtn.style.display = "block";
+            const fragment = document.createDocumentFragment();
+            
+            uids.forEach(uid => {
+                let foundLec = null;
+                let foundCourse = null;
+                for (const c of COURSES) {
+                    if (c.lectures) {
+                        const l = c.lectures.find(lec => lec.uid === uid);
+                        if (l) {
+                            foundLec = l;
+                            foundCourse = c;
+                            break;
+                        }
+                    }
+                }
+
+                const title = foundLec ? foundLec.title : `Lecture ${uid}`;
+                const rank = foundLec ? foundLec.rank : "--";
+                const courseName = foundCourse ? foundCourse.title : "Online Catalog";
+                const duration = foundLec ? foundLec.duration : "";
+
+                const card = document.createElement("div");
+                card.className = "lecture-card";
+                card.onclick = () => launchLecture(uid);
+                card.innerHTML = `
+                    <div class="lecture-card-left">
+                        <div class="lecture-number"><i class="fas fa-bolt" style="color:var(--accent);"></i></div>
+                        <div>
+                            <div class="lecture-card-title">${title}</div>
+                            <div class="lecture-card-duration">
+                                <span>${courseName}</span> • <i class="far fa-clock"></i> ${duration || '--'}
+                                <span class="offline-badge" style="background:rgba(14,165,233,0.15);color:var(--accent);border-color:rgba(14,165,233,0.3);"><i class="fas fa-bolt"></i> Instant Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lecture-card-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                `;
+                fragment.appendChild(card);
+            });
+            cachedList.appendChild(fragment);
+        }
+    }
+}
+
+async function clearOfflineStorage() {
+    if (!confirm("Are you sure you want to clear all offline pre-cached lecture data?")) return;
+    try {
+        await clearAllOfflineTelemetry();
+        cachedUidsSet.clear();
+        window.dispatchEvent(new CustomEvent('lennister-offline-cleared'));
+        renderOfflineMode();
+        if (window.showToast) window.showToast("🧹 Cleared offline pre-cached telemetry", "info");
+    } catch (e) {
+        console.error("Failed to clear offline storage:", e);
+    }
+}
+
 function renderCourseDetails(courseId) {
-    const course = COURSES.find(c => c.id === courseId);
+    const course = findCourseById(courseId);
     if (!course) return;
 
     const header = document.getElementById("course-header-details");
@@ -515,7 +666,7 @@ function renderLecturesList(lectures) {
 function filterLectures() {
     const searchInput = document.getElementById("lecture-search-input");
     const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
-    const course = COURSES.find(c => c.id === activeCourseId);
+    const course = findCourseById(activeCourseId);
     if (!course) return;
 
     if (!query) {
@@ -538,20 +689,31 @@ async function launchLecture(uid, startTimeSec = null) {
         sp.classList.remove("hidden");
     }
     switchView("player");
-    const course = COURSES.find(c => c.id === activeCourseId || (c.lectures && c.lectures.some(l => l.uid === uid)));
-    if (course && course.isLocal) {
-        const lec = course.lectures.find(l => l.uid === uid);
-        if (lec && window.loadLocalLecture) {
-            await window.loadLocalLecture(lec, course);
-            if (sp) {
-                sp.classList.add("hidden");
-                sp.style.display = "none";
+    
+    // 1. Check if lecture belongs to an imported local folder package
+    let localLec = null;
+    let localCourse = null;
+    for (const c of LOCAL_COURSES) {
+        if (c.lectures) {
+            const found = c.lectures.find(l => l.uid === uid);
+            if (found) {
+                localLec = found;
+                localCourse = c;
+                break;
             }
-            return;
         }
     }
 
-    // Determine target start time:
+    if (localLec && window.loadLocalLecture) {
+        await window.loadLocalLecture(localLec, localCourse, startTimeSec || 0);
+        if (sp) {
+            sp.classList.add("hidden");
+            sp.style.display = "none";
+        }
+        return;
+    }
+
+    // 2. Standard online lecture playback (uses local IndexedDB cache if available)
     let targetTime = 0;
     if (typeof startTimeSec === 'number' && startTimeSec > 0) {
         targetTime = startTimeSec;
@@ -585,6 +747,79 @@ function goBackToCourse() {
     switchView("course", { courseId: activeCourseId });
 }
 
+// ══════════════════════════════════════════════════
+// SILENT PREDICTIVE TELEMETRY PRE-CACHING (2 LECTURES)
+// ══════════════════════════════════════════════════
+async function prefetchPredictiveLectures() {
+    try {
+        const lastWatched = getLastWatched();
+        let course = null;
+        let currentLecIndex = 0;
+        
+        if (lastWatched && lastWatched.courseId) {
+            course = COURSES.find(c => c.id === lastWatched.courseId);
+            if (course && course.lectures) {
+                currentLecIndex = course.lectures.findIndex(l => l.uid === lastWatched.uid);
+                if (currentLecIndex === -1) currentLecIndex = 0;
+            }
+        }
+        
+        if (!course) {
+            course = COURSES.find(c => !c.isLocal);
+            currentLecIndex = 0;
+        }
+        
+        if (!course || !course.lectures || course.lectures.length === 0) return;
+        
+        const targets = [];
+        // Target 1: The lecture to resume
+        if (currentLecIndex >= 0 && currentLecIndex < course.lectures.length) {
+            targets.push(course.lectures[currentLecIndex]);
+        }
+        // Target 2: The next lecture in sequence
+        if (currentLecIndex + 1 < course.lectures.length) {
+            targets.push(course.lectures[currentLecIndex + 1]);
+        } else if (course.lectures.length > 1 && targets.length === 1) {
+            targets.push(course.lectures[0]);
+        }
+        
+        // Silently prefetch telemetry in background into IndexedDB
+        for (const targetLec of targets) {
+            const uid = targetLec.uid;
+            if (!uid || cachedUidsSet.has(uid)) continue;
+            
+            const directUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(directUrl)}`;
+            
+            try {
+                let res = await fetch(directUrl).catch(() => null);
+                if (!res || !res.ok) {
+                    res = await fetch(proxyUrl).catch(() => null);
+                }
+                if (res && res.ok) {
+                    const buffer = await res.arrayBuffer();
+                    await saveTelemetryOffline(uid, buffer, {
+                        courseId: course.id,
+                        courseTitle: course.title,
+                        lectureTitle: targetLec.title,
+                        downloadedAt: Date.now()
+                    });
+                    cachedUidsSet.add(uid);
+                    window.dispatchEvent(new CustomEvent('lennister-offline-change', { detail: { uid, isCached: true } }));
+                    console.log(`[Prefetch] Silently pre-cached telemetry for: ${targetLec.title} (${uid})`);
+                }
+            } catch (fetchErr) {
+                console.warn(`[Prefetch] Failed for ${uid}:`, fetchErr.message);
+            }
+        }
+    } catch (e) {
+        console.warn("[Prefetch] Error running predictive cache:", e);
+    }
+}
+
+// Trigger silent predictive caching after dashboard initial mount
+setTimeout(prefetchPredictiveLectures, 1200);
+
 // Initialize Routing History
 initHistoryRouting();
 
@@ -593,6 +828,8 @@ export {
     switchView, 
     renderMyCourses, 
     renderAllCourses, 
+    renderOfflineMode,
+    clearOfflineStorage,
     renderCourseDetails, 
     renderLecturesList, 
     filterLectures, 
@@ -606,12 +843,18 @@ export {
     getLectureProgress,
     saveLectureProgress,
     launchCourseContinue,
-    refreshCachedUidsSet
+    refreshCachedUidsSet,
+    addLocalCourse,
+    findCourseById,
+    LOCAL_COURSES,
+    prefetchPredictiveLectures
 };
 
 window.switchView = switchView;
 window.renderMyCourses = renderMyCourses;
 window.renderAllCourses = renderAllCourses;
+window.renderOfflineMode = renderOfflineMode;
+window.clearOfflineStorage = clearOfflineStorage;
 window.renderCourseDetails = renderCourseDetails;
 window.renderLecturesList = renderLecturesList;
 window.filterLectures = filterLectures;
@@ -624,3 +867,10 @@ window.launchCourseContinue = launchCourseContinue;
 window.getLastWatched = getLastWatched;
 window.getLectureProgress = getLectureProgress;
 window.saveLectureProgress = saveLectureProgress;
+window.addLocalCourse = addLocalCourse;
+window.findCourseById = findCourseById;
+window.LOCAL_COURSES = LOCAL_COURSES;
+window.openLocalFolderPicker = () => {
+    const input = document.getElementById("local-folder-input");
+    if (input) input.click();
+};

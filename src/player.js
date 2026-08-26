@@ -3054,8 +3054,8 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
 initLocalFileLoader({
     onCourseLoaded: (coursePackage) => {
         console.log("[LocalLoader] Local course folder loaded:", coursePackage.title, coursePackage.lectures.length);
-        if (!COURSES.some(c => c.id === coursePackage.id)) {
-            COURSES.unshift(coursePackage);
+        if (window.addLocalCourse) {
+            window.addLocalCourse(coursePackage);
         }
         activeCourseId = coursePackage.id;
         switchView("course", { courseId: coursePackage.id });
@@ -3063,6 +3063,9 @@ initLocalFileLoader({
     },
     onSingleLectureLoaded: (lecture, coursePackage) => {
         console.log("[LocalLoader] Single local lecture loaded:", lecture.title);
+        if (window.addLocalCourse) {
+            window.addLocalCourse(coursePackage);
+        }
         switchView("player");
         loadLocalLecture(lecture, coursePackage);
     }
