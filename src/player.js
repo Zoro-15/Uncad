@@ -2969,12 +2969,30 @@ window.updateSplash = (txt, pct) => {
                 };
             }
 
+            function getFloatingCamDimensions() {
+                const isSmall = isSmallSize();
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                const isMobile = window.innerWidth <= 768 || isAndroid || /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                
+                if (isAndroid) {
+                    // Average of previous big (140x105) and small (96x72) for Android
+                    const w = isSmall ? '88px' : '118px';
+                    const h = isSmall ? '66px' : '88px';
+                    return { w, h };
+                } else if (isMobile) {
+                    const w = isSmall ? '90px' : '125px';
+                    const h = isSmall ? '68px' : '94px';
+                    return { w, h };
+                } else {
+                    const w = isSmall ? '130px' : '200px';
+                    const h = isSmall ? '98px' : '150px';
+                    return { w, h };
+                }
+            }
+
             function positionCamFloating() {
                 if (!vc) return;
-                const isSmall = isSmallSize();
-                const isMobile = window.innerWidth <= 600;
-                const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
-                const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
+                const { w, h } = getFloatingCamDimensions();
                 
                 vc.classList.add('floating-cam');
                 vc.classList.remove('docked-cam');
@@ -3072,10 +3090,7 @@ window.updateSplash = (txt, pct) => {
                     hasCustomPos = true;
 
                     // Ensure floating styles are active
-                    const isSmall = isSmallSize();
-                    const isMobile = window.innerWidth <= 600;
-                    const w = isMobile ? (isSmall ? '96px' : '140px') : (isSmall ? '130px' : '200px');
-                    const h = isMobile ? (isSmall ? '72px' : '105px') : (isSmall ? '98px' : '150px');
+                    const { w, h } = getFloatingCamDimensions();
                     vc.classList.add('floating-cam');
                     vc.classList.remove('docked-cam');
                     vc.style.width = w;
