@@ -2938,7 +2938,7 @@ window.updateSplash = (txt, pct) => {
                     return;
                 }
                 const isSmall = isSmallSize();
-                const targetH = isSmall ? 105 : 158;
+                const targetH = isSmall ? 125 : 158;
                 camPlaceholder.style.height = targetH + 'px';
                 
                 const r = camPlaceholder.getBoundingClientRect();
@@ -2979,14 +2979,14 @@ window.updateSplash = (txt, pct) => {
                 let targetW;
                 if (minDim <= 500) {
                     // Mobile Phone (e.g. 360-480px short dimension)
-                    targetW = isSmall ? 88 : 118;
+                    targetW = isSmall ? 105 : 118;
                 } else if (minDim <= 950 || (isTouch && maxDim <= 1400)) {
-                    // Tablet / iPad / Foldable (e.g. 600-900px short dimension)
-                    targetW = isSmall ? Math.round(minDim * 0.17) : Math.round(minDim * 0.24);
-                    targetW = isSmall ? Math.max(120, Math.min(145, targetW)) : Math.max(165, Math.min(210, targetW));
+                    // Tablet / iPad / Foldable (e.g. 600-900px short dimension) - ~40% bigger small mode
+                    targetW = isSmall ? Math.round(minDim * 0.20) : Math.round(minDim * 0.24);
+                    targetW = isSmall ? Math.max(155, Math.min(175, targetW)) : Math.max(165, Math.min(210, targetW));
                 } else {
-                    // Desktop / Laptop (e.g. 1080p, 1440p, 4k)
-                    targetW = isSmall ? 135 : 200;
+                    // Desktop / Laptop (e.g. 1080p, 1440p, 4k) - ~40% bigger small mode
+                    targetW = isSmall ? 165 : 200;
                 }
 
                 const targetH = Math.round(targetW * 0.75); // 4:3 camera aspect ratio
