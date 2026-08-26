@@ -3019,10 +3019,10 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
     try {
         let rawData;
         if (lec.jsonFile) {
-            const jsonText = await lec.jsonFile.text();
-            rawData = JSON.parse(jsonText);
+            const buffer = await lec.jsonFile.arrayBuffer();
+            rawData = tryDecryptAndParse(buffer, lec.title || "local_lecture");
         } else if (lec.telemetryData) {
-            rawData = lec.telemetryData;
+            rawData = typeof lec.telemetryData === "string" ? JSON.parse(lec.telemetryData) : lec.telemetryData;
         }
 
         if (rawData) {

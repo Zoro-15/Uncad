@@ -34,31 +34,35 @@ async function scanDirectoryEntry(entry) {
 /**
  * Helper to clean course title from folder name
  * e.g. "Conic Sections for JEE Advanced_conic-sections" -> "Conic Sections for JEE Advanced"
+ * or "Calculus for JEE Advanced_calculus-1-20260826T065911Z-001" -> "Calculus for JEE Advanced"
  */
 function cleanCourseTitle(rawName) {
     if (!rawName || rawName === "Local Folder" || rawName === "Dropped Folder") return rawName;
-    return rawName.replace(/_[a-zA-Z0-9-]+$/, '').replace(/_/g, ' ').trim();
+    let name = rawName.replace(/-\d{8}T\d{6}Z.*$/i, '').replace(/-\d+-\d+$/i, '').replace(/-\d+$/i, '').replace(/\s*\(\d+\)$/i, '');
+    return name.replace(/_[a-zA-Z0-9-]+$/, '').replace(/_/g, ' ').trim();
 }
 
 /**
  * Helper to clean lecture title from folder name
  * e.g. "Lec_25_Test Discussion for JEE 2026_SFFZEPMT7CVERROVSRAL" -> "Test Discussion for JEE 2026"
+ * or "Lec_40_Problem Solving Lecture-44 for JEE Advanced 2026_WYAOZ9RL1VYIM7I10AGU-20260826T065911Z-1-001"
  */
 function parseLectureFolderName(folderName) {
+    let cleanName = (folderName || "").replace(/-\d{8}T\d{6}Z.*$/i, '').replace(/-\d+-\d+$/i, '').replace(/-\d+$/i, '').replace(/\s*\(\d+\)$/i, '').trim();
     let rank = 1;
-    let title = folderName;
+    let title = cleanName;
     let uid = `local_${Date.now()}`;
 
-    // Pattern: Lec_25_Title_UID or Lec 25 - Title
-    const match = folderName.match(/^Lec[_\s]+(\d+)[_\s]+(.*?)(?:[_\s]+([A-Z0-9]{15,25}))?$/i);
+    // Pattern: Lec_25_Title_UID or Lec 25 - Title_UID
+    const match = cleanName.match(/^Lec[_\s]+(\d+)[_\s]+(.*?)(?:[_\s]+([A-Z0-9]{15,25}))?$/i);
     if (match) {
         rank = parseInt(match[1], 10);
         title = match[2].replace(/_/g, ' ').trim();
         if (match[3]) uid = match[3];
     } else {
-        const simpleRankMatch = folderName.match(/Lec[_\s]+(\d+)/i);
+        const simpleRankMatch = cleanName.match(/Lec[_\s]+(\d+)/i);
         if (simpleRankMatch) rank = parseInt(simpleRankMatch[1], 10);
-        title = folderName.replace(/^Lec[_\s]+\d+[_\s-]*/i, '').replace(/_/g, ' ').trim();
+        title = cleanName.replace(/^Lec[_\s]+\d+[_\s-]*/i, '').replace(/_/g, ' ').trim();
     }
 
     return { rank, title, uid };
@@ -135,7 +139,7 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
     if (parsedLectures.length === 0) {
         // Direct root drop check (e.g. dropped output.webm and data.json directly into window)
         const videoFile = files.find(f => f.name.endsWith('.webm') || f.name.endsWith('.mp4'));
-        const jsonFile = files.find(f => f.name.endsWith('.json') || f.name.endsWith('.txt'));
+        const jsonFile = files.find(f => (f.name.endsWith('.json') || f.name.endsWith('.txt')) && !f.name.includes('metadata'));
         const pdfFile = files.find(f => f.name.endsWith('.pdf'));
         const metaFile = files.find(f => f.name === 'metadata.json');
 
