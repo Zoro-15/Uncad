@@ -1,28 +1,74 @@
 // Dashboard views, routing, and user course enrollment module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
+import { getAllCachedUids } from './engine/offlineStorage.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";
 let activeUid = "";
 
 // ══════════════════════════════════════════════════
-// LOCAL STORAGE STATE HELPERS
+// IN-MEMORY OFFLINE UIDS CACHE (FOR ZERO-LAG SEARCH)
+// ══════════════════════════════════════════════════
+let cachedUidsSet = new Set();
+
+async function refreshCachedUidsSet() {
+    try {
+        const uids = await getAllCachedUids();
+        cachedUidsSet = new Set(uids || []);
+    } catch (e) {
+        cachedUidsSet = new Set();
+    }
+}
+refreshCachedUidsSet();
+
+window.addEventListener('lennister-offline-change', (e) => {
+    if (e.detail && e.detail.uid) {
+        if (e.detail.isCached) cachedUidsSet.add(e.detail.uid);
+        else cachedUidsSet.delete(e.detail.uid);
+    } else {
+        refreshCachedUidsSet();
+    }
+    if (currentView === "course" && activeCourseId) {
+        const course = COURSES.find(c => c.id === activeCourseId);
+        if (course) renderLecturesList(course.lectures);
+    }
+});
+
+window.addEventListener('lennister-offline-cleared', () => {
+    cachedUidsSet.clear();
+    if (currentView === "course" && activeCourseId) {
+        const course = COURSES.find(c => c.id === activeCourseId);
+        if (course) renderLecturesList(course.lectures);
+    }
+});
+
+// ══════════════════════════════════════════════════
+// LOCAL STORAGE STATE HELPERS (MEMOIZED)
 // ══════════════════════════════════════════════════
 const ENROLLED_KEY = "lennister_enrolled_courses";
 const LAST_WATCHED_KEY = "lennister_last_watched";
 const PROGRESS_KEY = "lennister_lectures_progress";
 
+let _memoEnrolled = null;
+let _memoLastWatched = null;
+let _memoProgress = null;
+
 function getEnrolledCourses() {
+    if (_memoEnrolled) return _memoEnrolled;
     try {
         const stored = localStorage.getItem(ENROLLED_KEY);
-        if (stored) return JSON.parse(stored);
+        if (stored) {
+            _memoEnrolled = JSON.parse(stored);
+            return _memoEnrolled;
+        }
     } catch (e) {
         console.error("Failed to read enrolled courses:", e);
     }
     // Default enrolled courses for new users
     const defaultEnrolled = ["theory-of-numbers", "LPN7OFOL"];
     localStorage.setItem(ENROLLED_KEY, JSON.stringify(defaultEnrolled));
+    _memoEnrolled = defaultEnrolled;
     return defaultEnrolled;
 }
 
@@ -37,17 +83,22 @@ function toggleEnrollCourse(courseId, event) {
     if (list.includes(courseId)) {
         list = list.filter(id => id !== courseId);
     } else {
-        list.push(courseId);
+        list = [...list, courseId];
     }
+    _memoEnrolled = list;
     localStorage.setItem(ENROLLED_KEY, JSON.stringify(list));
     renderMyCourses();
     renderAllCourses();
 }
 
 function getLastWatched() {
+    if (_memoLastWatched) return _memoLastWatched;
     try {
         const stored = localStorage.getItem(LAST_WATCHED_KEY);
-        if (stored) return JSON.parse(stored);
+        if (stored) {
+            _memoLastWatched = JSON.parse(stored);
+            return _memoLastWatched;
+        }
     } catch (e) {
         console.error("Failed to read last watched:", e);
     }
@@ -56,11 +107,12 @@ function getLastWatched() {
 
 function getLectureProgress(uid) {
     if (!uid) return null;
+    if (_memoProgress) return _memoProgress[uid] || null;
     try {
         const stored = localStorage.getItem(PROGRESS_KEY);
         if (stored) {
-            const map = JSON.parse(stored);
-            return map[uid] || null;
+            _memoProgress = JSON.parse(stored);
+            return _memoProgress[uid] || null;
         }
     } catch (e) {}
     return null;
@@ -69,13 +121,16 @@ function getLectureProgress(uid) {
 function saveLectureProgress(uid, timeSec) {
     if (!uid || typeof timeSec !== 'number') return;
     try {
-        let map = {};
-        const stored = localStorage.getItem(PROGRESS_KEY);
-        if (stored) map = JSON.parse(stored);
+        let map = _memoProgress || {};
+        if (!_memoProgress) {
+            const stored = localStorage.getItem(PROGRESS_KEY);
+            if (stored) map = JSON.parse(stored);
+        }
         map[uid] = {
             timeSec: Math.floor(timeSec),
             updatedAt: Date.now()
         };
+        _memoProgress = map;
         localStorage.setItem(PROGRESS_KEY, JSON.stringify(map));
     } catch (e) {}
 }
@@ -97,7 +152,12 @@ function saveLastWatched(uid, courseId, timeSec = 0) {
         durationStr: lec.duration || "",
         updatedAt: Date.now()
     };
+    _memoLastWatched = record;
     localStorage.setItem(LAST_WATCHED_KEY, JSON.stringify(record));
+    if (timeSec > 0) {
+        saveLectureProgress(uid, timeSec);
+    }
+}
     if (timeSec > 0) {
         saveLectureProgress(uid, timeSec);
     }
@@ -416,23 +476,21 @@ function renderCourseDetails(courseId) {
     renderLecturesList(course.lectures);
 }
 
-async function renderLecturesList(lectures) {
+function renderLecturesList(lectures) {
     const listContainer = document.getElementById("course-lectures-list");
     if (!listContainer) return;
     listContainer.innerHTML = "";
 
-    if (lectures.length === 0) {
+    if (!lectures || lectures.length === 0) {
         listContainer.innerHTML = `<div style="text-align:center; padding:40px; color:#71717a; font-size:14px;"><i class="fas fa-search" style="font-size:24px; margin-bottom:10px; display:block;"></i>No matching lectures found.</div>`;
         return;
     }
 
-    let cachedUids = [];
-    try {
-        cachedUids = await getAllCachedUids();
-    } catch (e) {}
+    const fragment = document.createDocumentFragment();
 
     lectures.forEach(lec => {
-        const isOffline = cachedUids.includes(lec.uid);
+        const isOffline = cachedUidsSet.has(lec.uid);
+        const isLocal = !!(lec.videoFile || lec.jsonFile || lec.isLocal);
         const card = document.createElement("div");
         card.className = "lecture-card";
         card.onclick = () => launchLecture(lec.uid);
@@ -443,7 +501,8 @@ async function renderLecturesList(lectures) {
                     <div class="lecture-card-title">${lec.title}</div>
                     <div class="lecture-card-duration">
                         <i class="far fa-clock"></i> ${lec.duration || '--'}
-                        ${isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : ''}
+                        ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : '')}
+                        ${lec.pdfFile ? `<span class="offline-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="PDF Notes Attached"><i class="fas fa-file-pdf"></i> Notes</span>` : ''}
                     </div>
                 </div>
             </div>
@@ -451,19 +510,27 @@ async function renderLecturesList(lectures) {
                 <i class="fas fa-play"></i>
             </div>
         `;
-        listContainer.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    listContainer.appendChild(fragment);
 }
 
 function filterLectures() {
-    const query = document.getElementById("lecture-search-input").value.toLowerCase().trim();
+    const searchInput = document.getElementById("lecture-search-input");
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
     const course = COURSES.find(c => c.id === activeCourseId);
     if (!course) return;
 
+    if (!query) {
+        renderLecturesList(course.lectures);
+        return;
+    }
+
     const filtered = course.lectures.filter(l => 
-        l.title.toLowerCase().includes(query) || 
-        l.rank.toString().includes(query) ||
-        l.uid.toLowerCase().includes(query)
+        (l.title && l.title.toLowerCase().includes(query)) || 
+        (l.rank && l.rank.toString().includes(query)) ||
+        (l.uid && l.uid.toLowerCase().includes(query))
     );
     renderLecturesList(filtered);
 }
@@ -522,14 +589,6 @@ function goBackToCourse() {
     switchView("course", { courseId: activeCourseId });
 }
 
-// Listen for offline cache updates
-window.addEventListener('lennister-offline-change', () => {
-    if (currentView === "course" && activeCourseId) {
-        const course = COURSES.find(c => c.id === activeCourseId);
-        if (course) renderLecturesList(course.lectures);
-    }
-});
-
 // Initialize Routing History
 initHistoryRouting();
 
@@ -547,7 +606,8 @@ export {
     toggleNavMenu,
     switchNavView,
     saveLastWatched,
-    launchCourseContinue
+    launchCourseContinue,
+    refreshCachedUidsSet
 };
 
 window.switchView = switchView;

@@ -439,6 +439,7 @@
             overflow: hidden;
             background: #000;
             min-height: 0;
+            contain: strict;
         }
 
         /* CANVAS AREA 16:9 */
@@ -451,6 +452,8 @@
             max-height: 100%;
             max-width: 100%;
             overflow: hidden;
+            contain: layout paint;
+            transform: translateZ(0);
         }
 
         /* CANVAS LAYERS */
@@ -1318,6 +1321,7 @@
             margin: 0 auto;
             width: 100%;
             padding-bottom: 40px;
+            contain: content;
         }
         .course-card {
             width: 100%;
@@ -1530,6 +1534,7 @@
             flex-direction: column;
             gap: 12px;
             padding-bottom: 80px;
+            contain: content;
         }
         .lecture-card {
             display: flex;

@@ -32,7 +32,40 @@ async function scanDirectoryEntry(entry) {
 }
 
 /**
- * Group raw files into lecture objects
+ * Helper to clean course title from folder name
+ * e.g. "Conic Sections for JEE Advanced_conic-sections" -> "Conic Sections for JEE Advanced"
+ */
+function cleanCourseTitle(rawName) {
+    if (!rawName || rawName === "Local Folder" || rawName === "Dropped Folder") return rawName;
+    return rawName.replace(/_[a-zA-Z0-9-]+$/, '').replace(/_/g, ' ').trim();
+}
+
+/**
+ * Helper to clean lecture title from folder name
+ * e.g. "Lec_25_Test Discussion for JEE 2026_SFFZEPMT7CVERROVSRAL" -> "Test Discussion for JEE 2026"
+ */
+function parseLectureFolderName(folderName) {
+    let rank = 1;
+    let title = folderName;
+    let uid = `local_${Date.now()}`;
+
+    // Pattern: Lec_25_Title_UID or Lec 25 - Title
+    const match = folderName.match(/^Lec[_\s]+(\d+)[_\s]+(.*?)(?:[_\s]+([A-Z0-9]{15,25}))?$/i);
+    if (match) {
+        rank = parseInt(match[1], 10);
+        title = match[2].replace(/_/g, ' ').trim();
+        if (match[3]) uid = match[3];
+    } else {
+        const simpleRankMatch = folderName.match(/Lec[_\s]+(\d+)/i);
+        if (simpleRankMatch) rank = parseInt(simpleRankMatch[1], 10);
+        title = folderName.replace(/^Lec[_\s]+\d+[_\s-]*/i, '').replace(/_/g, ' ').trim();
+    }
+
+    return { rank, title, uid };
+}
+
+/**
+ * Group raw files into structured course & lecture objects
  */
 async function processRawFiles(fileList, rootName = "Local Folder") {
     const files = Array.from(fileList);
@@ -44,7 +77,6 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
     files.forEach(file => {
         const relPath = file.webkitRelativePath || file.fullPath || file.name;
         const parts = relPath.split(/[/\\]/);
-        // If nested in a folder, use parent folder name, otherwise use root
         const folderKey = parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : "root";
         
         if (!groups.has(folderKey)) {
@@ -54,17 +86,22 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
     });
 
     const parsedLectures = [];
+    let detectedCourseTitle = cleanCourseTitle(rootName);
 
     for (const [folderKey, groupFiles] of groups.entries()) {
         const videoFile = groupFiles.find(f => f.name.endsWith('.webm') || f.name.endsWith('.mp4'));
-        const jsonFile = groupFiles.find(f => f.name.endsWith('.json') && !f.name.includes('metadata'));
+        const jsonFile = groupFiles.find(f => (f.name.endsWith('.json') || f.name.endsWith('.txt')) && !f.name.includes('metadata'));
         const metaFile = groupFiles.find(f => f.name === 'metadata.json');
         const pdfFile = groupFiles.find(f => f.name.endsWith('.pdf'));
 
         if (videoFile && jsonFile) {
-            let title = folderKey !== 'root' ? folderKey.split(/[/\\]/).pop() : videoFile.name.replace(/\.[^/.]+$/, "");
-            let rank = parsedLectures.length + 1;
-            let uid = `local_${Date.now()}_${parsedLectures.length + 1}`;
+            const lastFolder = folderKey !== 'root' ? folderKey.split(/[/\\]/).pop() : videoFile.name.replace(/\.[^/.]+$/, "");
+            const parsedFolder = parseLectureFolderName(lastFolder);
+
+            let rank = parsedFolder.rank;
+            let title = parsedFolder.title || videoFile.name.replace(/\.[^/.]+$/, "");
+            let uid = parsedFolder.uid || `local_${Date.now()}_${parsedLectures.length + 1}`;
+            let duration = "";
 
             // Try reading metadata.json if available
             if (metaFile) {
@@ -72,21 +109,22 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
                     const metaText = await metaFile.text();
                     const meta = JSON.parse(metaText);
                     if (meta.title) title = meta.title;
-                    if (meta.rank) rank = meta.rank;
+                    if (meta.rank) rank = parseInt(meta.rank, 10);
                     if (meta.uid) uid = meta.uid;
+                    if (meta.duration) duration = meta.duration;
+                    if (meta.courseTitle && detectedCourseTitle === "Local Folder") {
+                        detectedCourseTitle = meta.courseTitle;
+                    }
                 } catch (e) {
-                    console.warn("[LocalLoader] Failed to read metadata.json:", e);
+                    console.warn("[LocalLoader] Failed to parse metadata.json:", e);
                 }
-            } else {
-                // Extract rank from folder name (e.g. Lec_01_...)
-                const rankMatch = folderKey.match(/Lec_?(\d+)/i);
-                if (rankMatch) rank = parseInt(rankMatch[1], 10);
             }
 
             parsedLectures.push({
                 rank,
-                title: title.replace(/^Lec_\d+_/, '').replace(/_/g, ' '),
+                title,
                 uid,
+                duration: duration || "--",
                 videoFile,
                 jsonFile,
                 pdfFile: pdfFile || null
@@ -95,17 +133,38 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
     }
 
     if (parsedLectures.length === 0) {
-        // Direct root drop check (e.g. dropped output.webm and data.json directly)
+        // Direct root drop check (e.g. dropped output.webm and data.json directly into window)
         const videoFile = files.find(f => f.name.endsWith('.webm') || f.name.endsWith('.mp4'));
-        const jsonFile = files.find(f => f.name.endsWith('.json'));
+        const jsonFile = files.find(f => f.name.endsWith('.json') || f.name.endsWith('.txt'));
+        const pdfFile = files.find(f => f.name.endsWith('.pdf'));
+        const metaFile = files.find(f => f.name === 'metadata.json');
+
         if (videoFile && jsonFile) {
+            let title = videoFile.name.replace(/\.[^/.]+$/, "").replace(/_/g, ' ');
+            let rank = 1;
+            let uid = `local_${Date.now()}`;
+            let duration = "";
+
+            if (metaFile) {
+                try {
+                    const metaText = await metaFile.text();
+                    const meta = JSON.parse(metaText);
+                    if (meta.title) title = meta.title;
+                    if (meta.rank) rank = parseInt(meta.rank, 10);
+                    if (meta.uid) uid = meta.uid;
+                    if (meta.duration) duration = meta.duration;
+                    if (meta.courseTitle) detectedCourseTitle = meta.courseTitle;
+                } catch (e) {}
+            }
+
             parsedLectures.push({
-                rank: 1,
-                title: videoFile.name.replace(/\.[^/.]+$/, "").replace(/_/g, ' '),
-                uid: `local_${Date.now()}`,
+                rank,
+                title,
+                uid,
+                duration: duration || "--",
                 videoFile,
                 jsonFile,
-                pdfFile: files.find(f => f.name.endsWith('.pdf')) || null
+                pdfFile: pdfFile || null
             });
         }
     }
@@ -118,12 +177,12 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
     // Sort by rank
     parsedLectures.sort((a, b) => a.rank - b.rank);
 
-    const courseTitle = rootName !== "Local Folder" ? rootName.replace(/_/g, ' ') : (parsedLectures.length === 1 ? parsedLectures[0].title : "Downloaded Course");
+    const courseTitle = detectedCourseTitle !== "Local Folder" ? detectedCourseTitle : (parsedLectures.length === 1 ? parsedLectures[0].title : "Downloaded Course");
 
     const coursePackage = {
         id: `local-course-${Date.now()}`,
         title: courseTitle,
-        description: `Imported local folder containing ${parsedLectures.length} lecture(s).`,
+        description: `Imported local storage folder with ${parsedLectures.length} offline lecture(s).`,
         icon: "fa-folder-open",
         isLocal: true,
         lectures: parsedLectures
@@ -204,4 +263,4 @@ function openLocalFolderPicker() {
 }
 window.openLocalFolderPicker = openLocalFolderPicker;
 
-export { initLocalFileLoader, openLocalFolderPicker, processRawFiles };
+export { initLocalFileLoader, openLocalFolderPicker, processRawFiles, parseLectureFolderName, cleanCourseTitle };

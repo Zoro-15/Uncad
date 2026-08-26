@@ -1,8 +1,9 @@
 import { findCourseByLectureUid, COURSES } from './courses.js';
-import { switchView, saveLastWatched } from './dashboard.js';
+import { switchView, saveLastWatched, getLectureProgress, getLastWatched } from './dashboard.js';
 import { SECRET_KEY, decryptBytes, tryDecryptAndParse } from './engine/crypto.js';
 import { maths, bezier } from './engine/bezier.js';
 import { fetchWithFallback, loadCachedImage, clearImageCache } from './engine/networkLoader.js';
+import { getOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
 import { initCanvasContexts, renderSlideBackground } from './engine/canvasRenderer.js';
 import { parseTelemetryData } from './engine/telemetryParser.js';
 import { requestWakeLock, releaseWakeLock, createSyncLoop } from './engine/mediaSync.js';
@@ -370,17 +371,19 @@ window.updateSplash = (txt, pct) => {
             const total = registryValues.length;
             if (total === 0) return;
 
+            // Fast initial batch: preload only the first 3 slides to make playback start immediately
+            const initialBatch = registryValues.slice(0, 3);
             let loaded = 0;
             const updateUI = () => {
                 const label = $("splash-label");
                 const bar = $("splash-progress");
-                if (label) label.textContent = `Preloading Slide Assets ${loaded}/${total}`;
-                if (bar) bar.style.width = `${(loaded / total) * 100}%`;
+                if (label) label.textContent = `Preparing Slides ${loaded}/${initialBatch.length}...`;
+                if (bar) bar.style.width = `${Math.min(100, 85 + (loaded / initialBatch.length) * 15)}%`;
             };
 
             updateUI();
 
-            const loads = registryValues.flatMap(s => {
+            const loads = initialBatch.flatMap(s => {
                 const arr = [];
                 if (s.url) arr.push(getImg(s.url));
                 if (s.bg) arr.push(getImg(s.bg));
@@ -400,8 +403,22 @@ window.updateSplash = (txt, pct) => {
 
             await Promise.race([
                 Promise.allSettled(loads),
-                new Promise(resolve => setTimeout(resolve, 8000))
+                new Promise(resolve => setTimeout(resolve, 1500))
             ]);
+
+            // Lazily preload remaining slides in background without blocking UI
+            const lazyPreload = () => {
+                const remaining = registryValues.slice(3);
+                remaining.forEach(s => {
+                    if (s.url) getImg(s.url);
+                    if (s.bg) getImg(s.bg);
+                });
+            };
+            if (typeof requestIdleCallback === 'function') {
+                requestIdleCallback(lazyPreload, { timeout: 3000 });
+            } else {
+                setTimeout(lazyPreload, 600);
+            }
         }
 
         let lastCW = 0, lastCH = 0;
@@ -1013,10 +1030,18 @@ window.updateSplash = (txt, pct) => {
                 const response = await fetch(url);
                 if (!response.ok) return false;
 
-                window.updateSplash("Downloading Telemetry...", 25);
+                window.updateSplash("Downloading Telemetry...", 35);
                 const buffer = await response.arrayBuffer();
 
-                window.updateSplash("Decrypting Payload...", 45);
+                // Save to IndexedDB cache in background for instant future loads
+                if (uid && buffer) {
+                    saveTelemetryOffline(uid, buffer, {
+                        courseId: activeCourseId || '',
+                        downloadedAt: Date.now()
+                    }).catch(() => {});
+                }
+
+                window.updateSplash("Decrypting Payload...", 65);
                 const rawData = tryDecryptAndParse(buffer, url);
 
                 console.log("[Engine] JSON parsed. Processing stream frames...");
@@ -1045,39 +1070,12 @@ window.updateSplash = (txt, pct) => {
                 splash.style.display = "flex";
                 splash.classList.remove("hidden");
                 const label = $("splash-label");
-                if (label) label.textContent = `Initializing Lecture ${uid}...`;
+                if (label) label.textContent = `Initializing Lecture...`;
                 const bar = $("splash-progress");
-                if (bar) bar.style.width = "0%";
+                if (bar) bar.style.width = "10%";
             }
 
-            engineLoaded = false;
-            slideRegistry = {};
-            imgCache.clear();
-            imgLoadPromises.clear();
-            uslCache.clear();
-            uslLoadPromises.clear();
-            allEvents = [];
-            completedStrokes = [];
-            strokesBySid.clear();
-            eventsBySid.clear();
-            eraseLog = [];
-            snapshots = [];
-            activeStrokes.clear();
-            latestTempHLcwId = null;
-            lastPollUid = null;
-            activePollEvent = null;
-            curSlideIdx = 0;
-            curSid = "init";
-            curSlideUrl = "";
-            curBgColor = "#111118";
-            curBgImageUrl = "";
-            curColor = "#ffff00";
-            curMode = "marker";
-            curPenSize = 2;
-            curEraserSize = 10;
-            curSlideRotation = 0;
-            curGifUrl = "";
-            curScreenShare = false;
+            destroyEngine();
 
             const videoUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
             video.preload = "auto";
@@ -1114,7 +1112,28 @@ window.updateSplash = (txt, pct) => {
                 }
             }
 
-            // REMOTE FETCH PIPELINE
+            // 1. FAST PATH: Check IndexedDB offline cache first (<30ms instant load)
+            try {
+                const cachedTelemetry = await getOfflineTelemetry(uid);
+                if (cachedTelemetry) {
+                    window.updateSplash("⚡ Instant Cache Ready", 70);
+                    const rawData = tryDecryptAndParse(cachedTelemetry);
+                    if (rawData) {
+                        await processData(rawData, startSec);
+                        engineLoaded = true;
+                        if (splash) {
+                            splash.classList.add("hidden");
+                            splash.style.display = "none";
+                        }
+                        showToast("⚡ Instant Cached Playback", "success", 1800);
+                        return true;
+                    }
+                }
+            } catch (cacheErr) {
+                console.warn("[Engine] Offline cache check:", cacheErr);
+            }
+
+            // 2. REMOTE FETCH PIPELINE with auto-caching
             try {
                 const directTelemetryUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/data.json`;
                 const proxyTelemetryUrl = `https://corsproxy.io/?${encodeURIComponent(directTelemetryUrl)}`;
@@ -1148,8 +1167,8 @@ window.updateSplash = (txt, pct) => {
                 console.error("loadLectureByUid failed:", err);
                 setStatus("error", "LOAD ERROR");
                 const label = $("splash-label");
-                if (label) label.textContent = "Telemetry fetch failed. Please check your network or try another lecture.";
-                showToast("Failed to fetch lecture data. Check internet connection.", "warn");
+                if (label) label.textContent = "Telemetry fetch failed. Please check your network or load a downloaded local folder.";
+                showToast("Failed to fetch online lecture data. Try offline / downloaded mode.", "warn");
                 return false;
             }
         }
@@ -1651,12 +1670,13 @@ window.updateSplash = (txt, pct) => {
             snapshots = [];
             let curSnapshotState = { sid: "init", slideUrl: '', bgColor: "#111118", bgImageUrl: '', color: "#ffff00", mode: "marker", penSize: 2, eraserSize: 10, panX: 0, panY: 0, zoom: 1, rotation: 0, gifUrl: '', screenShare: false };
             let nextSnap = 0;
+            const SNAP_INTERVAL = 2500000; // 2.5 seconds keyframe density for instant seek response
             const maxDuration = allEvents.length ? allEvents[allEvents.length - 1].t : 0;
             for (let i = 0; i < allEvents.length; i++) {
                 const e = allEvents[i];
-                while (e.t >= nextSnap && nextSnap <= maxDuration + 10000000) {
-                    snapshots.push({ t: nextSnap, evIdx: i, state: JSON.parse(JSON.stringify(curSnapshotState)) });
-                    nextSnap += 10000000;
+                while (e.t >= nextSnap && nextSnap <= maxDuration + SNAP_INTERVAL) {
+                    snapshots.push({ t: nextSnap, evIdx: i, state: { ...curSnapshotState } });
+                    nextSnap += SNAP_INTERVAL;
                 }
                 if (e.type === "slide") { curSnapshotState.sid = e.sid; curSnapshotState.slideUrl = e.url; curSnapshotState.bgColor = e.bc; curSnapshotState.bgImageUrl = e.bg; curSnapshotState.rotation = 0; curSnapshotState.gifUrl = ''; }
                 else if (e.type === "bg") { curSnapshotState.bgColor = e.color; curSnapshotState.bgImageUrl = e.bg; }
@@ -1666,7 +1686,7 @@ window.updateSplash = (txt, pct) => {
                 else if (e.type === "play_gif") curSnapshotState.gifUrl = e.src || '';
                 else if (e.type === "share_screen") curSnapshotState.screenShare = !!e.value;
             }
-            if (!snapshots.length) snapshots.push({ t: 0, evIdx: 0, state: JSON.parse(JSON.stringify(curSnapshotState)) });
+            if (!snapshots.length) snapshots.push({ t: 0, evIdx: 0, state: { ...curSnapshotState } });
 
             await preloadSlides();
 
@@ -1699,12 +1719,27 @@ window.updateSplash = (txt, pct) => {
             return { t: targetUs, x: p0.x + (p1.x - p0.x) * ratio, y: p0.y + (p1.y - p0.y) * ratio };
         }
 
+        function findClosestSnapshot(targetUs) {
+            if (!snapshots || snapshots.length === 0) {
+                return { t: 0, evIdx: 0, state: { sid: "init", slideUrl: '', bgColor: "#111118", bgImageUrl: '', color: "#ffff00", mode: "marker", penSize: 2, eraserSize: 10, panX: 0, panY: 0, zoom: 1, rotation: 0, gifUrl: '', screenShare: false } };
+            }
+            let low = 0, high = snapshots.length - 1;
+            let best = 0;
+            while (low <= high) {
+                const mid = (low + high) >>> 1;
+                if (snapshots[mid].t <= targetUs) {
+                    best = mid;
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            return snapshots[best];
+        }
+
         function doSeek(targetVideoUs) {
             const targetUs = drawingUs(targetVideoUs);
-
-            let snapIdx = Math.floor(Math.max(0, targetUs) / 10000000);
-            if (snapIdx >= snapshots.length) snapIdx = snapshots.length - 1;
-            const snap = snapshots[snapIdx] || { t: 0, evIdx: 0, state: { sid: "init", slideUrl: '', bgColor: "#111118", bgImageUrl: '', color: "#ffff00", mode: "marker", penSize: 2, eraserSize: 10, panX: 0, panY: 0, zoom: 1, rotation: 0, gifUrl: '', screenShare: false } };
+            const snap = findClosestSnapshot(targetUs);
 
             curSid = snap.state.sid; curSlideUrl = snap.state.slideUrl; curBgColor = snap.state.bgColor; curBgImageUrl = snap.state.bgImageUrl || '';
             curColor = snap.state.color; curMode = snap.state.mode; curPenSize = snap.state.penSize; curEraserSize = snap.state.eraserSize;
@@ -1927,47 +1962,151 @@ window.updateSplash = (txt, pct) => {
             if (needsRedraw) replayStrokes(targetUs);
         }
 
-        // 60FPS Sync & Render Loop
+        // Fast Integer IST clock (zero allocation, 0 GC churn)
+        let lastIstSec = -1;
+        function updateIstClockFast(wallMs) {
+            if (!istClock) return;
+            const totalSec = Math.floor(wallMs / 1000);
+            if (totalSec === lastIstSec) return;
+            lastIstSec = totalSec;
+            const istSec = (totalSec + 19800) % 86400; // UTC + 5:30 = 19800 seconds
+            const h = Math.floor(istSec / 3600);
+            const m = Math.floor((istSec % 3600) / 60);
+            const s = istSec % 60;
+            const h12 = h % 12 || 12;
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            istClock.textContent = `${h12}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s} ${ampm}`;
+        }
+
+        // Throttled time text display updater
+        let lastRenderedVideoSec = -1;
+        let lastRenderedAnimSec = -1;
+        let lastRenderedTotalSec = -1;
+        let lastRenderedPct = -1;
+        let lastRenderedVpct = -1;
+
+        function updateTimeDisplaysFast(dUs, videoCurTime, videoDuration) {
+            const dSec = Math.floor(dUs / 1e6);
+            if (dSec !== lastRenderedAnimSec) {
+                lastRenderedAnimSec = dSec;
+                const formatted = fmt(dSec);
+                if (tCurr) tCurr.textContent = formatted;
+                const overlayCurrentEl = $("t-curr-overlay");
+                if (overlayCurrentEl) overlayCurrentEl.textContent = formatted;
+            }
+
+            if (videoCurTime !== undefined) {
+                const vSec = Math.floor(videoCurTime);
+                if (vSec !== lastRenderedVideoSec) {
+                    lastRenderedVideoSec = vSec;
+                    if (vCurr) vCurr.textContent = fmt(vSec);
+                }
+            }
+
+            if (videoDuration !== undefined && videoDuration > 0) {
+                const totSec = Math.floor(videoDuration);
+                if (totSec !== lastRenderedTotalSec) {
+                    lastRenderedTotalSec = totSec;
+                    const totFormatted = fmt(totSec);
+                    if (vTotal) vTotal.textContent = totFormatted;
+                    if (tTotal) tTotal.textContent = totFormatted;
+                    const overlayTotalEl = $("t-total-overlay");
+                    if (overlayTotalEl) overlayTotalEl.textContent = totFormatted;
+                }
+            }
+        }
+
+        let isDraggingSeek = false;
+        let throttledVideoSeekTimer = null;
+
+        function applyDecoupledSeek(targetVideoUs, isFinalSeek = false) {
+            if (!engineLoaded) return;
+            const targetSec = Math.max(0, Math.min(video.duration || 1e9, targetVideoUs / 1e6));
+            
+            // 1. Immediately redraw whiteboard canvas with 0ms latency
+            doSeek(targetVideoUs);
+            
+            // 2. Immediately update time display text
+            updateTimeDisplaysFast(drawingUs(targetVideoUs), targetSec);
+
+            // 3. Update seek slider progress visuals
+            const masterMax = parseFloat(seekBar.max) || 1;
+            const dUs = drawingUs(targetVideoUs);
+            const mPct = (dUs / masterMax) * 100;
+            seekBar.style.setProperty("--pct", mPct.toFixed(1) + "%");
+
+            // 4. Decoupled video hardware decoder seeking
+            if (isFinalSeek) {
+                if (throttledVideoSeekTimer) {
+                    clearTimeout(throttledVideoSeekTimer);
+                    throttledVideoSeekTimer = null;
+                }
+                seekToSec(targetSec);
+            } else {
+                if (!throttledVideoSeekTimer) {
+                    throttledVideoSeekTimer = setTimeout(() => {
+                        throttledVideoSeekTimer = null;
+                        if (typeof video.fastSeek === 'function') {
+                            try { video.fastSeek(targetSec); } catch (e) { video.currentTime = targetSec; }
+                        } else {
+                            video.currentTime = targetSec;
+                        }
+                    }, 80);
+                }
+            }
+        }
+
+        // 60FPS High-Precision Sync & Render Loop
         function syncLoop(ts) {
             requestAnimationFrame(syncLoop);
             if (prevRafTs > 0) {
-                fpsSamples.push(ts - prevRafTs); if (fpsSamples.length > 30) fpsSamples.shift();
+                fpsSamples.push(ts - prevRafTs);
+                if (fpsSamples.length > 30) fpsSamples.shift();
                 if (fpsSamples.length === 30) {
                     const avg = fpsSamples.reduce((a, b) => a + b, 0) / 30;
                     fpsDisp.textContent = Math.round(1000 / avg) + " fps";
                 }
             }
-            prevRafTs = ts; if (!engineLoaded) return;
+            prevRafTs = ts;
+            if (!engineLoaded) return;
 
             const vUs = curVideoUs();
             const dUs = drawingUs(vUs);
+            const videoCurTime = video.currentTime;
+            const videoDuration = video.duration || 1;
 
-            const masterMax = parseFloat(seekBar.max) || 1;
-            const mPct = (dUs / masterMax) * 100;
-            seekBar.value = dUs;
-            seekBar.style.setProperty("--pct", mPct + "%");
+            if (!isDraggingSeek) {
+                const masterMax = parseFloat(seekBar.max) || 1;
+                const mPct = (dUs / masterMax) * 100;
+                seekBar.value = dUs;
+                
+                // Only update CSS property when percentage shifted significantly
+                const roundedPct = Math.round(mPct * 10) / 10;
+                if (roundedPct !== lastRenderedPct) {
+                    lastRenderedPct = roundedPct;
+                    seekBar.style.setProperty("--pct", roundedPct + "%");
+                }
 
-            const videoMax = video.duration || 1;
-            const vPct = (video.currentTime / videoMax) * 100;
-            videoSeekBar.value = video.currentTime;
-            videoSeekBar.max = videoMax;
-            videoSeekBar.style.setProperty("--vpct", vPct + "%");
-            vCurr.textContent = fmt(video.currentTime);
-            vTotal.textContent = fmt(videoMax);
+                const vPct = (videoCurTime / videoDuration) * 100;
+                videoSeekBar.value = videoCurTime;
+                videoSeekBar.max = videoDuration;
+                const roundedVpct = Math.round(vPct * 10) / 10;
+                if (roundedVpct !== lastRenderedVpct) {
+                    lastRenderedVpct = roundedVpct;
+                    videoSeekBar.style.setProperty("--vpct", roundedVpct + "%");
+                }
 
-            if (!video.paused && !isSeeking) tickDraw(vUs);
+                updateTimeDisplaysFast(dUs, videoCurTime, videoDuration);
+            }
+
+            if (!video.paused && !isSeeking && !isDraggingSeek) {
+                tickDraw(vUs);
+            }
 
             if (engineLoaded && recordStartMs > 0) {
                 const wallMs = recordStartMs + (dUs / 1000);
-                istClock.textContent = new Date(wallMs).toLocaleTimeString("en-IN", {
-                    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true
-                });
+                updateIstClockFast(wallMs);
             }
-
-            const overlayCurrentEl = $("t-curr-overlay");
-            const overlayTotalEl = $("t-total-overlay");
-            if (overlayCurrentEl) overlayCurrentEl.textContent = fmt(dUs / 1e6);
-            if (overlayTotalEl) overlayTotalEl.textContent = tTotal.textContent;
         }
         requestAnimationFrame(syncLoop);
 
@@ -2081,9 +2220,17 @@ window.updateSplash = (txt, pct) => {
             }
         });
 
+        // Fast decoupled seek bar scrubbing
         seekBar.addEventListener("input", () => {
+            isDraggingSeek = true;
             const targetAnimUs = parseInt(seekBar.value);
-            seekToSec((targetAnimUs - drawOffset) / 1e6);
+            applyDecoupledSeek(targetAnimUs - drawOffset, false);
+        });
+
+        seekBar.addEventListener("change", () => {
+            isDraggingSeek = false;
+            const targetAnimUs = parseInt(seekBar.value);
+            applyDecoupledSeek(targetAnimUs - drawOffset, true);
         });
 
         $("rew-btn-ui").addEventListener("click", () => seekToSec(video.currentTime - 10));
@@ -2490,9 +2637,30 @@ window.updateSplash = (txt, pct) => {
             pdfNav.innerHTML = '';
 
             const activeCourse = COURSES.find(c => c.id === activeCourseId) || COURSES[0];
-            const lec = activeCourse.lectures.find(l => l.uid === uid) || activeCourse.lectures[0];
+            const lec = (activeCourse && activeCourse.lectures) ? (activeCourse.lectures.find(l => l.uid === uid) || activeCourse.lectures[0]) : null;
             
-            const titleSlug = (lec.title || "Lecture_Notes").replace(/\s+/g, '_');
+            // 1. LOCAL DOWNLOAD MODE PDF
+            if (lec && lec.pdfFile) {
+                const localPdfBlobUrl = URL.createObjectURL(lec.pdfFile);
+                pdfNav.innerHTML = `
+                    <div class="pdf-card" style="border: 1px solid rgba(34,197,94,0.35); background: rgba(34,197,94,0.06);">
+                        <div class="pdf-card-header">
+                            <i class="fas fa-file-pdf pdf-card-icon" style="color:#22c55e;"></i>
+                            <div>
+                                <div class="pdf-card-title">Local Lecture Notes PDF</div>
+                                <div class="pdf-card-sub">Loaded directly from your downloaded folder (${lec.pdfFile.name || 'notes.pdf'})</div>
+                            </div>
+                        </div>
+                        <div class="pdf-card-actions">
+                            <a href="${localPdfBlobUrl}" target="_blank" class="pdf-btn anno" style="background:#22c55e;color:#09090b;font-weight:600;"><i class="fas fa-external-link-alt"></i> Open / View Notes PDF</a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // 2. REMOTE STREAMING MODE PDF
+            const titleSlug = ((lec && lec.title) || "Lecture_Notes").replace(/\s+/g, '_');
             const withAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_with_anno.pdf`;
             const noAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_no_anno.pdf`;
 
@@ -2792,7 +2960,7 @@ window.updateSplash = (txt, pct) => {
         }
 
 // Load local lecture recording from File/Blob objects
-async function loadLocalLecture(lec, course = null) {
+async function loadLocalLecture(lec, course = null, startSec = 0) {
     if (course) {
         if (!COURSES.some(c => c.id === course.id)) {
             COURSES.unshift(course);
@@ -2818,6 +2986,36 @@ async function loadLocalLecture(lec, course = null) {
     video.src = videoUrl;
     video.load();
 
+    // Determine target start time
+    let targetTime = startSec;
+    if (targetTime <= 0) {
+        const savedProg = getLectureProgress(lec.uid);
+        if (savedProg && savedProg.timeSec > 0) {
+            targetTime = savedProg.timeSec;
+        } else {
+            const last = getLastWatched();
+            if (last && last.uid === lec.uid && (last.timeSec || 0) > 0) {
+                targetTime = last.timeSec;
+            }
+        }
+    }
+
+    if (targetTime > 0) {
+        const applyResume = () => {
+            try {
+                video.currentTime = targetTime;
+                doSeek(targetTime * 1e6);
+            } catch (e) {
+                console.warn("[LocalLoader] Seek on load error:", e);
+            }
+        };
+        if (video.readyState >= 1) {
+            applyResume();
+        } else {
+            video.addEventListener("loadedmetadata", applyResume, { once: true });
+        }
+    }
+
     try {
         let rawData;
         if (lec.jsonFile) {
@@ -2828,8 +3026,10 @@ async function loadLocalLecture(lec, course = null) {
         }
 
         if (rawData) {
-            await processData(rawData, 0);
+            await processData(rawData, targetTime);
             engineLoaded = true;
+            saveLastWatched(lec.uid, activeCourseId, targetTime);
+            renderPdfNotes(lec.uid);
             showToast(`📂 Opened: ${lec.title}`, "success");
             if (splash) {
                 splash.classList.add("hidden");
