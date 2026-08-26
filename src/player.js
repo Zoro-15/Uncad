@@ -2687,18 +2687,9 @@ window.updateSplash = (txt, pct) => {
 
             const snapshotTimeUs = curVideoUs();
             const vcEl = $("video-circle");
-            if (vcEl && !document.fullscreenElement) {
+            if (vcEl) {
                 vcEl.classList.add('fs-floating');
-                vcEl.style.top = '12px';
-                vcEl.style.right = '12px';
-                vcEl.style.left = 'auto';
-                vcEl.style.bottom = 'auto';
-                vcEl.style.width = '220px';
-                vcEl.style.height = '165px';
-                vcEl.style.borderRadius = '8px';
-                vcEl.style.zIndex = '2147483647';
-                vcEl.style.cursor = 'grab';
-                vcEl.style.boxShadow = '0 4px 20px rgba(0,0,0,0.7)';
+                if (window.positionCamFloating) window.positionCamFloating();
             }
 
             await new Promise(resolve => setTimeout(resolve, 50));
@@ -2971,6 +2962,13 @@ window.updateSplash = (txt, pct) => {
                 vc.style.transform = '';
             }
 
+            function getViewportSize() {
+                return {
+                    width: window.innerWidth || document.documentElement.clientWidth || screen.width,
+                    height: window.innerHeight || document.documentElement.clientHeight || screen.height
+                };
+            }
+
             function positionCamFloating() {
                 if (!vc) return;
                 const isSmall = isSmallSize();
@@ -3000,8 +2998,9 @@ window.updateSplash = (txt, pct) => {
                     const curT = parseFloat(vc.style.top) || 12;
                     const numW = parseFloat(w);
                     const numH = parseFloat(h);
-                    const maxL = Math.max(0, window.innerWidth - numW);
-                    const maxT = Math.max(0, window.innerHeight - numH);
+                    const vp = getViewportSize();
+                    const maxL = Math.max(0, vp.width - numW);
+                    const maxT = Math.max(0, vp.height - numH);
                     vc.style.left = Math.max(0, Math.min(maxL, curL)) + 'px';
                     vc.style.top = Math.max(0, Math.min(maxT, curT)) + 'px';
                     vc.style.right = 'auto';
@@ -3068,13 +3067,6 @@ window.updateSplash = (txt, pct) => {
                 let startX = 0, startY = 0, startL = 0, startT = 0;
                 let activeTouchId = null;
 
-                function getViewportSize() {
-                    return {
-                        width: window.innerWidth || document.documentElement.clientWidth || screen.width,
-                        height: window.innerHeight || document.documentElement.clientHeight || screen.height
-                    };
-                }
-
                 function initDrag(clientX, clientY) {
                     isDragging = true;
                     hasCustomPos = true;
@@ -3127,6 +3119,8 @@ window.updateSplash = (txt, pct) => {
 
                     vc.style.left = newL + 'px';
                     vc.style.top = newT + 'px';
+                    vc.style.right = 'auto';
+                    vc.style.bottom = 'auto';
                 }
 
                 function stopDrag() {
@@ -3135,6 +3129,18 @@ window.updateSplash = (txt, pct) => {
                     activeTouchId = null;
                     vc.style.cursor = 'grab';
                     vc.style.userSelect = '';
+                }
+
+                function onTouchMoveHandler(e) {
+                    if (!isDragging) return;
+                    for (let i = 0; i < e.touches.length; i++) {
+                        const t = e.touches[i];
+                        if (activeTouchId === null || t.identifier === activeTouchId) {
+                            updateDrag(t.clientX, t.clientY);
+                            if (e.cancelable) e.preventDefault();
+                            break;
+                        }
+                    }
                 }
 
                 // TOUCH EVENTS (Primary for Android & iOS)
@@ -3148,25 +3154,17 @@ window.updateSplash = (txt, pct) => {
                     }
                 }, { passive: false });
 
-                window.addEventListener('touchmove', function (e) {
-                    if (!isDragging) return;
-                    for (let i = 0; i < e.touches.length; i++) {
-                        const t = e.touches[i];
-                        if (activeTouchId === null || t.identifier === activeTouchId) {
-                            updateDrag(t.clientX, t.clientY);
-                            if (e.cancelable) e.preventDefault();
-                            break;
-                        }
-                    }
-                }, { passive: false });
+                vc.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
+                document.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
+                window.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
 
-                window.addEventListener('touchend', function (e) {
-                    if (isDragging) stopDrag();
-                }, { passive: false });
+                vc.addEventListener('touchend', stopDrag, { passive: false });
+                document.addEventListener('touchend', stopDrag, { passive: false });
+                window.addEventListener('touchend', stopDrag, { passive: false });
 
-                window.addEventListener('touchcancel', function (e) {
-                    if (isDragging) stopDrag();
-                }, { passive: false });
+                vc.addEventListener('touchcancel', stopDrag, { passive: false });
+                document.addEventListener('touchcancel', stopDrag, { passive: false });
+                window.addEventListener('touchcancel', stopDrag, { passive: false });
 
                 // MOUSE EVENTS (Desktop fallback)
                 vc.addEventListener('mousedown', function (e) {
