@@ -1042,7 +1042,7 @@ window.updateSplash = (txt, pct) => {
                 }
 
                 window.updateSplash("Decrypting Payload...", 65);
-                const rawData = tryDecryptAndParse(buffer, url);
+                const rawData = await tryDecryptAndParse(buffer, url);
 
                 console.log("[Engine] JSON parsed. Processing stream frames...");
                 await processData(rawData, startSec);
@@ -1117,7 +1117,7 @@ window.updateSplash = (txt, pct) => {
                 const cachedTelemetry = await getOfflineTelemetry(uid);
                 if (cachedTelemetry) {
                     window.updateSplash("⚡ Instant Cache Ready", 70);
-                    const rawData = tryDecryptAndParse(cachedTelemetry);
+                    const rawData = await tryDecryptAndParse(cachedTelemetry);
                     if (rawData) {
                         await processData(rawData, startSec);
                         engineLoaded = true;
@@ -3020,7 +3020,7 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
         let rawData;
         if (lec.jsonFile) {
             const buffer = await lec.jsonFile.arrayBuffer();
-            rawData = tryDecryptAndParse(buffer, lec.title || "local_lecture");
+            rawData = await tryDecryptAndParse(buffer, lec.title || "local_lecture");
         } else if (lec.telemetryData) {
             rawData = typeof lec.telemetryData === "string" ? JSON.parse(lec.telemetryData) : lec.telemetryData;
         }

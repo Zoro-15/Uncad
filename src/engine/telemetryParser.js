@@ -6,10 +6,10 @@ import { tryDecryptAndParse } from './crypto.js';
  * @param {ArrayBuffer | string | object} rawPayload
  * @returns {Object} { slideList, allEvents, strokesBySid, eventsBySid }
  */
-function parseTelemetryData(rawPayload) {
+async function parseTelemetryData(rawPayload) {
     let data = rawPayload;
     if (typeof rawPayload === 'string' || rawPayload instanceof ArrayBuffer) {
-        data = tryDecryptAndParse(rawPayload);
+        data = await tryDecryptAndParse(rawPayload);
     }
 
     if (!data) {
