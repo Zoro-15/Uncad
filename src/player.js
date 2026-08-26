@@ -417,30 +417,11 @@ window.updateSplash = (txt, pct) => {
                 if (bar) bar.style.width = `${Math.min(100, 85 + (loaded / initialBatch.length) * 15)}%`;
             };
 
-            updateUI();
-
-            const loads = initialBatch.flatMap(s => {
-                const arr = [];
-                if (s.url) arr.push(getImg(s.url));
-                if (s.bg) arr.push(getImg(s.bg));
-                return arr.map(img => {
-                    return new Promise(resolve => {
-                        if (img && img.complete) {
-                            loaded++; updateUI(); resolve(true);
-                        } else if (img) {
-                            img.addEventListener("load", () => { loaded++; updateUI(); resolve(true); }, { once: true });
-                            img.addEventListener("error", () => { loaded++; updateUI(); resolve(false); }, { once: true });
-                        } else {
-                            resolve(false);
-                        }
-                    });
-                });
+            // Non-blocking slide preload: immediately initiate background decoding
+            initialBatch.forEach(s => {
+                if (s.url) getImg(s.url);
+                if (s.bg) getImg(s.bg);
             });
-
-            await Promise.race([
-                Promise.allSettled(loads),
-                new Promise(resolve => setTimeout(resolve, 1500))
-            ]);
 
             // Lazily preload remaining slides in background without blocking UI
             const lazyPreload = () => {
@@ -453,7 +434,7 @@ window.updateSplash = (txt, pct) => {
             if (typeof requestIdleCallback === 'function') {
                 requestIdleCallback(lazyPreload, { timeout: 3000 });
             } else {
-                setTimeout(lazyPreload, 600);
+                setTimeout(lazyPreload, 400);
             }
         }
 
@@ -708,6 +689,37 @@ window.updateSplash = (txt, pct) => {
                 lastY = ny;
             }
             dc.stroke();
+        }
+
+        function getStrokePath2D(stroke, curCW, curCH) {
+            if (stroke._cachedPath2D && stroke._cachedCW === curCW && stroke._cachedCH === curCH) {
+                return stroke._cachedPath2D;
+            }
+            const p = new Path2D();
+            const pts = stroke.pts;
+            if (!pts || pts.length === 0) return p;
+            const p0 = pts[0];
+            let lastX = p0.x * curCW, lastY = p0.y * curCH;
+
+            if (pts.length === 1) {
+                p.arc(lastX, lastY, 1, 0, Math.PI * 2);
+            } else {
+                p.moveTo(lastX, lastY);
+                for (let i = 1; i < pts.length; i++) {
+                    const pt = pts[i];
+                    const nx = pt.x * curCW, ny = pt.y * curCH;
+                    const isEnd = (i === pts.length - 1);
+                    const mx = isEnd ? nx : (lastX + nx) / 2;
+                    const my = isEnd ? ny : (lastY + ny) / 2;
+                    p.quadraticCurveTo(lastX, lastY, mx, my);
+                    lastX = nx;
+                    lastY = ny;
+                }
+            }
+            stroke._cachedPath2D = p;
+            stroke._cachedCW = curCW;
+            stroke._cachedCH = curCH;
+            return p;
         }
 
         function drawShape(dc, stroke, x1, y1, x2, y2) {
@@ -977,8 +989,42 @@ window.updateSplash = (txt, pct) => {
                 const tf = transformMap.get(stroke.oid) || { matrix: new DOMMatrix() };
                 const hasTF = !tf.matrix.isIdentity;
                 const m = tf.matrix;
-                let pts = [];
 
+                // Path2D GPU FAST PATH: Completed static stroke (95%+ of whiteboard ink)
+                if (!hasTF && !isShape(stroke.mode) && stroke.pts[stroke.pts.length - 1].t <= targetUs) {
+                    const isErase = stroke.isErase;
+                    const isHL = stroke.isHighlight;
+                    const lineWidth = isErase ? (stroke.th + 10) * scaleFactor 
+                                   : (isHL ? stroke.th * scaleFactor * 15 
+                                   : stroke.th * scaleFactor * 3);
+                    const style = isErase ? "rgba(0,0,0,1)" : getDisplayColor(stroke.color, false);
+                    const op = isErase ? "destination-out" : "source-over";
+                    const p2d = getStrokePath2D(stroke, CW, CH);
+
+                    if (isErase) {
+                        const ctxList = [penCtx, hlCtx, drawCtx, eraserCtx];
+                        for (let cIdx = 0; cIdx < 4; cIdx++) {
+                            const dc = ctxList[cIdx];
+                            if (dc.globalCompositeOperation !== op) dc.globalCompositeOperation = op;
+                            if (dc.strokeStyle !== style) dc.strokeStyle = style;
+                            if (dc.lineWidth !== lineWidth) dc.lineWidth = lineWidth;
+                            if (dc.lineCap !== "round") dc.lineCap = "round";
+                            if (dc.lineJoin !== "round") dc.lineJoin = "round";
+                            dc.stroke(p2d);
+                        }
+                    } else if (!stroke.isTempHL) {
+                        const targetCtx = isHL ? hlCtx : penCtx;
+                        if (targetCtx.globalCompositeOperation !== op) targetCtx.globalCompositeOperation = op;
+                        if (targetCtx.strokeStyle !== style) targetCtx.strokeStyle = style;
+                        if (targetCtx.lineWidth !== lineWidth) targetCtx.lineWidth = lineWidth;
+                        if (targetCtx.lineCap !== "round") targetCtx.lineCap = "round";
+                        if (targetCtx.lineJoin !== "round") targetCtx.lineJoin = "round";
+                        targetCtx.stroke(p2d);
+                    }
+                    continue;
+                }
+
+                let pts = [];
                 for (let i = 0; i < stroke.pts.length; i++) {
                     const p = stroke.pts[i];
                     if (p.t <= targetUs) {
@@ -1093,6 +1139,9 @@ window.updateSplash = (txt, pct) => {
             drawCtx.restore(); penCtx.restore(); eraserCtx.restore(); hlCtx.restore(); laserCtx.restore();
         }
 
+        // In-memory Session LRU Cache for 0ms instantaneous lecture switching
+        const TELEMETRY_SESSION_CACHE = new Map();
+
         async function runEngineWithUrl(url, uid = null, startSec = 0) {
             try {
                 console.log(`[Engine] Smart Load: ${url} (startSec: ${startSec})`);
@@ -1112,6 +1161,14 @@ window.updateSplash = (txt, pct) => {
 
                 window.updateSplash("Decrypting Payload...", 65);
                 const rawData = await tryDecryptAndParse(buffer, url);
+
+                if (uid && rawData) {
+                    if (TELEMETRY_SESSION_CACHE.size >= 8) {
+                        const firstKey = TELEMETRY_SESSION_CACHE.keys().next().value;
+                        TELEMETRY_SESSION_CACHE.delete(firstKey);
+                    }
+                    TELEMETRY_SESSION_CACHE.set(uid, rawData);
+                }
 
                 console.log("[Engine] JSON parsed. Processing stream frames...");
                 await processData(rawData, startSec);
@@ -1181,6 +1238,24 @@ window.updateSplash = (txt, pct) => {
                 }
             }
 
+            // 0. MEMORY LRU CACHE (0ms instant session resume)
+            if (TELEMETRY_SESSION_CACHE.has(uid)) {
+                try {
+                    window.updateSplash("⚡ Instant Memory Ready", 90);
+                    const memData = TELEMETRY_SESSION_CACHE.get(uid);
+                    await processData(memData, startSec);
+                    engineLoaded = true;
+                    if (splash) {
+                        splash.classList.add("hidden");
+                        splash.style.display = "none";
+                    }
+                    showToast("⚡ Instant Session Playback", "success", 1500);
+                    return true;
+                } catch (memErr) {
+                    console.warn("[Engine] Session memory load error:", memErr);
+                }
+            }
+
             // 1. FAST PATH: Check IndexedDB offline cache first (<30ms instant load)
             try {
                 const cachedTelemetry = await getOfflineTelemetry(uid);
@@ -1188,6 +1263,12 @@ window.updateSplash = (txt, pct) => {
                     window.updateSplash("⚡ Instant Cache Ready", 70);
                     const rawData = await tryDecryptAndParse(cachedTelemetry);
                     if (rawData) {
+                        if (TELEMETRY_SESSION_CACHE.size >= 8) {
+                            const firstKey = TELEMETRY_SESSION_CACHE.keys().next().value;
+                            TELEMETRY_SESSION_CACHE.delete(firstKey);
+                        }
+                        TELEMETRY_SESSION_CACHE.set(uid, rawData);
+
                         await processData(rawData, startSec);
                         engineLoaded = true;
                         if (splash) {
@@ -1758,8 +1839,7 @@ window.updateSplash = (txt, pct) => {
                 else if (e.type === "share_screen") curSnapshotState.screenShare = !!e.value;
             }
             if (!snapshots.length) snapshots.push({ t: 0, evIdx: 0, state: { ...curSnapshotState } });
-
-            await preloadSlides();
+            preloadSlides();
 
             seekBar.max = maxDuration;
             tTotal.textContent = fmt(maxDuration / 1e6);
@@ -2022,10 +2102,15 @@ window.updateSplash = (txt, pct) => {
             const p = getInterpolatedPointer(targetUs);
             if (p) {
                 const projected = projectBoardPoint(p.x * CW, p.y * CH);
-                ptrX = projected.x - 3; ptrY = projected.y - 3;
-                pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
-                pointerDot.style.opacity = "1";
-            } else {
+                const nextPtrX = Math.round(projected.x - 3);
+                const nextPtrY = Math.round(projected.y - 3);
+                if (nextPtrX !== ptrX || nextPtrY !== ptrY) {
+                    ptrX = nextPtrX;
+                    ptrY = nextPtrY;
+                    pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
+                }
+                if (pointerDot.style.opacity !== "1") pointerDot.style.opacity = "1";
+            } else if (pointerDot.style.opacity !== "0") {
                 pointerDot.style.opacity = "0";
             }
 
