@@ -79,23 +79,39 @@ async function loadCachedImage(url) {
         return imageCache.get(url);
     }
 
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-            if (imageCache.size >= MAX_IMAGE_CACHE) {
-                const firstKey = imageCache.keys().next().value;
-                imageCache.delete(firstKey);
-            }
-            imageCache.set(url, img);
-            resolve(img);
-        };
-        img.onerror = () => {
-            console.warn("[Network] Image load failed:", url);
-            resolve(null);
-        };
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.referrerPolicy = "no-referrer";
+
+    try {
         img.src = url;
-    });
+        if ('decode' in img) {
+            await img.decode();
+        } else {
+            await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        }
+        if (imageCache.size >= MAX_IMAGE_CACHE) {
+            const firstKey = imageCache.keys().next().value;
+            imageCache.delete(firstKey);
+        }
+        imageCache.set(url, img);
+        return img;
+    } catch (err) {
+        console.warn("[Network] Image load/decode fallback:", url);
+        // Fallback for CORS decode rejection on certain CDNs
+        return new Promise((resolve) => {
+            const fallbackImg = new Image();
+            fallbackImg.onload = () => {
+                imageCache.set(url, fallbackImg);
+                resolve(fallbackImg);
+            };
+            fallbackImg.onerror = () => resolve(null);
+            fallbackImg.src = url;
+        });
+    }
 }
 
 function clearImageCache() {

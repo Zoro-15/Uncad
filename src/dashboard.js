@@ -327,22 +327,25 @@ function switchNavView(target) {
 }
 
 function getCourseStatsText(course) {
-    const totalLectures = course.lectures.length;
+    if (course._statsText) return course._statsText;
+    const totalLectures = course.lectures ? course.lectures.length : 0;
     let totalMinutes = 0;
-    course.lectures.forEach(lec => {
-        const durationStr = lec.duration || "";
-        let hours = 0;
-        let minutes = 0;
-        const hMatch = durationStr.match(/(\d+)\s*h/);
-        const mMatch = durationStr.match(/(\d+)\s*m/);
-        if (hMatch) hours = parseInt(hMatch[1], 10);
-        if (mMatch) minutes = parseInt(mMatch[1], 10);
-        if (!hMatch && !mMatch) {
-            const onlyNum = durationStr.match(/(\d+)/);
-            if (onlyNum) minutes = parseInt(onlyNum[1], 10);
-        }
-        totalMinutes += hours * 60 + minutes;
-    });
+    if (course.lectures) {
+        course.lectures.forEach(lec => {
+            const durationStr = lec.duration || "";
+            let hours = 0;
+            let minutes = 0;
+            const hMatch = durationStr.match(/(\d+)\s*h/);
+            const mMatch = durationStr.match(/(\d+)\s*m/);
+            if (hMatch) hours = parseInt(hMatch[1], 10);
+            if (mMatch) minutes = parseInt(mMatch[1], 10);
+            if (!hMatch && !mMatch) {
+                const onlyNum = durationStr.match(/(\d+)/);
+                if (onlyNum) minutes = parseInt(onlyNum[1], 10);
+            }
+            totalMinutes += hours * 60 + minutes;
+        });
+    }
 
     const hrs = Math.floor(totalMinutes / 60);
     const mins = totalMinutes % 60;
@@ -354,7 +357,8 @@ function getCourseStatsText(course) {
     }
     if (!durationText) durationText = "0m";
 
-    return `${totalLectures} Lectures • ${durationText}`;
+    course._statsText = `${totalLectures} Lectures • ${durationText}`;
+    return course._statsText;
 }
 
 // ══════════════════════════════════════════════════
@@ -663,23 +667,27 @@ function renderLecturesList(lectures) {
     listContainer.appendChild(fragment);
 }
 
+let _searchDebounceTimer = null;
 function filterLectures() {
-    const searchInput = document.getElementById("lecture-search-input");
-    const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
-    const course = findCourseById(activeCourseId);
-    if (!course) return;
+    if (_searchDebounceTimer) clearTimeout(_searchDebounceTimer);
+    _searchDebounceTimer = setTimeout(() => {
+        const searchInput = document.getElementById("lecture-search-input");
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+        const course = findCourseById(activeCourseId);
+        if (!course) return;
 
-    if (!query) {
-        renderLecturesList(course.lectures);
-        return;
-    }
+        if (!query) {
+            renderLecturesList(course.lectures);
+            return;
+        }
 
-    const filtered = course.lectures.filter(l => 
-        (l.title && l.title.toLowerCase().includes(query)) || 
-        (l.rank && l.rank.toString().includes(query)) ||
-        (l.uid && l.uid.toLowerCase().includes(query))
-    );
-    renderLecturesList(filtered);
+        const filtered = course.lectures.filter(l => 
+            (l.title && l.title.toLowerCase().includes(query)) || 
+            (l.rank && l.rank.toString().includes(query)) ||
+            (l.uid && l.uid.toLowerCase().includes(query))
+        );
+        renderLecturesList(filtered);
+    }, 60);
 }
 
 async function launchLecture(uid, startTimeSec = null) {

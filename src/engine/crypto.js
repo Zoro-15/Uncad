@@ -3,15 +3,48 @@
 
 const SECRET_KEY = '9ffdc791579b19df35315e4d81a4aacda41d4c1ddaa318a4cba133111e20540e';
 
+// Pre-computed key buffers for zero-allocation fast XOR
+const defaultKeyBytes = new TextEncoder().encode(SECRET_KEY);
+const defaultKeyLen = defaultKeyBytes.length; // 64 bytes
+const defaultKey32 = new Uint32Array(defaultKeyBytes.buffer, defaultKeyBytes.byteOffset, defaultKeyLen / 4);
+const defaultKey32Len = defaultKey32.length; // 16 32-bit words
+
 function decryptBytesToUint8(bufferOrArray, secretKey = SECRET_KEY) {
     const srcBytes = bufferOrArray instanceof Uint8Array ? bufferOrArray : new Uint8Array(bufferOrArray);
-    const bytes = new Uint8Array(srcBytes.length);
-    const keyBytes = new TextEncoder().encode(secretKey);
-    const keyLen = keyBytes.length;
-    for (let i = 0; i < bytes.length; i++) {
-        bytes[i] = srcBytes[i] ^ keyBytes[i % keyLen];
+    const len = srcBytes.length;
+    const out = new Uint8Array(len);
+
+    if (secretKey === SECRET_KEY) {
+        const wordCount = Math.floor(len / 4);
+        let src32;
+        if (srcBytes.byteOffset % 4 === 0) {
+            src32 = new Uint32Array(srcBytes.buffer, srcBytes.byteOffset, wordCount);
+        } else {
+            const alignedSrc = new Uint8Array(srcBytes);
+            src32 = new Uint32Array(alignedSrc.buffer, 0, wordCount);
+        }
+        const out32 = new Uint32Array(out.buffer, 0, wordCount);
+
+        // Vectorized 32-bit word step (4 bytes per iteration)
+        for (let i = 0; i < wordCount; i++) {
+            out32[i] = src32[i] ^ defaultKey32[i % defaultKey32Len];
+        }
+
+        // Remainder tail bytes
+        const tailStart = wordCount * 4;
+        for (let i = tailStart; i < len; i++) {
+            out[i] = srcBytes[i] ^ defaultKeyBytes[i % defaultKeyLen];
+        }
+        return out;
     }
-    return bytes;
+
+    // Dynamic key fallback
+    const customKeyBytes = new TextEncoder().encode(secretKey);
+    const customKeyLen = customKeyBytes.length;
+    for (let i = 0; i < len; i++) {
+        out[i] = srcBytes[i] ^ customKeyBytes[i % customKeyLen];
+    }
+    return out;
 }
 
 function decryptBytes(bufferOrArray, secretKey = SECRET_KEY) {

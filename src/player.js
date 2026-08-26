@@ -346,21 +346,32 @@ window.updateSplash = (txt, pct) => {
             if (!imgCache.has(url)) {
                 const img = new Image();
                 img.referrerPolicy = "no-referrer";
-                const loadPromise = new Promise(resolve => {
-                    img.onload = () => { if (url === curSlideUrl || url === curBgImageUrl) paintBackground(); resolve(true); };
-                    img.onerror = () => resolve(false);
-                });
-                imgLoadPromises.set(url, loadPromise);
-
-                let finalUrl = url;
-                if (!finalUrl.startsWith("data:")) {
-                    if (finalUrl.includes("?")) {
-                        if (!finalUrl.includes("fm=webp")) finalUrl += "&fm=webp&fit=clip&auto=compress&w=1080";
-                    } else {
-                        finalUrl += "?fm=webp&fit=clip&auto=compress&w=1080";
+                const loadPromise = (async () => {
+                    try {
+                        let finalUrl = url;
+                        if (!finalUrl.startsWith("data:")) {
+                            if (finalUrl.includes("?")) {
+                                if (!finalUrl.includes("fm=webp")) finalUrl += "&fm=webp&fit=clip&auto=compress&w=1080";
+                            } else {
+                                finalUrl += "?fm=webp&fit=clip&auto=compress&w=1080";
+                            }
+                        }
+                        img.src = finalUrl;
+                        if ('decode' in img) {
+                            await img.decode();
+                        } else {
+                            await new Promise((resolve, reject) => {
+                                img.onload = resolve;
+                                img.onerror = reject;
+                            });
+                        }
+                        if (url === curSlideUrl || url === curBgImageUrl) paintBackground();
+                        return true;
+                    } catch (e) {
+                        return false;
                     }
-                }
-                img.src = finalUrl;
+                })();
+                imgLoadPromises.set(url, loadPromise);
                 imgCache.set(url, img);
             }
             return imgCache.get(url);
@@ -579,51 +590,55 @@ window.updateSplash = (txt, pct) => {
         }
 
         function drawDot(dc, stroke) {
-            dc.save();
             dc.beginPath();
-            dc.lineCap = "round"; dc.lineJoin = "round";
+            dc.lineCap = "round";
+            dc.lineJoin = "round";
             let lineWidth = stroke.th * scaleFactor * 3;
             if (stroke.isErase) lineWidth = (stroke.th + 10) * scaleFactor;
             else if (stroke.isHighlight) lineWidth = stroke.th * scaleFactor * 15;
 
             const radius = Math.max(1, lineWidth / 2);
+            let op, style;
             if (stroke.isErase) {
-                dc.globalCompositeOperation = "destination-out";
-                dc.fillStyle = "rgba(0,0,0,1)";
+                op = "destination-out";
+                style = "rgba(0,0,0,1)";
             } else {
-                dc.globalCompositeOperation = "source-over";
-                dc.globalAlpha = 1.0;
-                dc.fillStyle = getDisplayColor(stroke.color, false);
+                op = "source-over";
+                style = getDisplayColor(stroke.color, false);
             }
+            if (dc.globalCompositeOperation !== op) dc.globalCompositeOperation = op;
+            if (dc.fillStyle !== style) dc.fillStyle = style;
+
             dc.arc(stroke.lastX, stroke.lastY, radius, 0, Math.PI * 2);
             dc.fill();
-            dc.restore();
         }
 
         function drawCurve(dc, stroke, mx, my) {
-            dc.save();
             dc.beginPath();
             dc.lineCap = "round";
             dc.lineJoin = "round";
+            let op, style, width;
             if (stroke.isErase) {
-                dc.globalCompositeOperation = "destination-out";
-                dc.strokeStyle = "rgba(0,0,0,1)";
-                dc.lineWidth = (stroke.th + 10) * scaleFactor;
+                op = "destination-out";
+                style = "rgba(0,0,0,1)";
+                width = (stroke.th + 10) * scaleFactor;
             } else if (stroke.isHighlight) {
-                dc.globalCompositeOperation = "source-over";
-                dc.globalAlpha = 1.0;
-                dc.strokeStyle = getDisplayColor(stroke.color, false);
-                dc.lineWidth = stroke.th * scaleFactor * 15;
+                op = "source-over";
+                style = getDisplayColor(stroke.color, false);
+                width = stroke.th * scaleFactor * 15;
             } else {
-                dc.globalCompositeOperation = "source-over";
-                dc.globalAlpha = 1;
-                dc.strokeStyle = getDisplayColor(stroke.color, false);
-                dc.lineWidth = stroke.th * scaleFactor * 3;
+                op = "source-over";
+                style = getDisplayColor(stroke.color, false);
+                width = stroke.th * scaleFactor * 3;
             }
+
+            if (dc.globalCompositeOperation !== op) dc.globalCompositeOperation = op;
+            if (dc.strokeStyle !== style) dc.strokeStyle = style;
+            if (dc.lineWidth !== width) dc.lineWidth = width;
+
             dc.moveTo(stroke.midX, stroke.midY);
             dc.quadraticCurveTo(stroke.lastX, stroke.lastY, mx, my);
             dc.stroke();
-            dc.restore();
         }
 
         function drawShape(dc, stroke, x1, y1, x2, y2) {
@@ -747,6 +762,12 @@ window.updateSplash = (txt, pct) => {
             dc.restore();
         }
 
+        // Pre-allocated singletons for zero-allocation 60 FPS replay & seek
+        const scratchPoint = new DOMPoint();
+        const replayUndoneEvents = new Set();
+        const replayDeletedOids = new Set();
+        const replayHistoryStack = [];
+
         function replayStrokes(targetUs) {
             drawCtx.clearRect(0, 0, CW, CH);
             penCtx.clearRect(0, 0, CW, CH);
@@ -799,19 +820,19 @@ window.updateSplash = (txt, pct) => {
             curMode = currentMode; curColor = currentColor; curPenSize = currentPenSize; curEraserSize = currentEraserSize;
 
             const slideEvents = eventsBySid.get(curSid) || [];
-            const undoneEvents = new Set();
-            const currentDeletedOids = new Set();
-            const historyStack = [];
+            replayUndoneEvents.clear();
+            replayDeletedOids.clear();
+            replayHistoryStack.length = 0;
 
             for (let i = 0; i < slideEvents.length; i++) {
                 const ev = slideEvents[i];
                 if (ev.t > targetUs) break;
                 if (ev.type === "stroke_up" || ev.type === "delete_objects" || ev.type === "erase_all") {
-                    historyStack.push(ev);
+                    replayHistoryStack.push(ev);
                 } else if (ev.type === "undo") {
-                    if (historyStack.length > 0) {
-                        const target = historyStack.pop();
-                        undoneEvents.add(target.t);
+                    if (replayHistoryStack.length > 0) {
+                        const target = replayHistoryStack.pop();
+                        replayUndoneEvents.add(target.t);
                     }
                 }
             }
@@ -822,9 +843,9 @@ window.updateSplash = (txt, pct) => {
             for (let i = 0; i < slideEvents.length; i++) {
                 const ev = slideEvents[i];
                 if (ev.t > targetUs) break;
-                if (!undoneEvents.has(ev.t)) {
+                if (!replayUndoneEvents.has(ev.t)) {
                     if (ev.type === "delete_objects") {
-                        (ev.oids || []).forEach(oid => currentDeletedOids.add(oid));
+                        (ev.oids || []).forEach(oid => replayDeletedOids.add(oid));
                     } else if (ev.type === "erase_all") {
                         lastEraseT = Math.max(lastEraseT, ev.t);
                     }
@@ -881,8 +902,8 @@ window.updateSplash = (txt, pct) => {
                 const stroke = relevantStrokes[sIdx];
                 if (stroke.t_start > targetUs) continue;
                 if (stroke.t_start <= lastEraseT) continue;
-                if (undoneEvents.has(stroke.t_start)) continue;
-                if (stroke.oid && currentDeletedOids.has(stroke.oid)) continue;
+                if (replayUndoneEvents.has(stroke.t_start)) continue;
+                if (stroke.oid && replayDeletedOids.has(stroke.oid)) continue;
 
                 const tf = transformMap.get(stroke.oid) || { matrix: new DOMMatrix() };
                 let pts = [];
@@ -892,7 +913,9 @@ window.updateSplash = (txt, pct) => {
                     if (stroke.pts[i].t <= targetUs) {
                         const p = stroke.pts[i];
                         if (hasTF && !isShape(stroke.mode)) {
-                            const proj = new DOMPoint(p.x * CW, p.y * CH).matrixTransform(tf.matrix);
+                            scratchPoint.x = p.x * CW;
+                            scratchPoint.y = p.y * CH;
+                            const proj = scratchPoint.matrixTransform(tf.matrix);
                             pts.push({ x: proj.x / CW, y: proj.y / CH, t: p.t });
                         } else {
                             pts.push({ x: p.x, y: p.y, t: p.t });
@@ -1399,11 +1422,13 @@ window.updateSplash = (txt, pct) => {
             const pdoMemory = new Map();
 
             let loopCounter = 0;
+            let lastYieldTs = performance.now();
             for (const ev of flat) {
                 loopCounter++;
-                if (loopCounter % 4000 === 0) {
+                if (loopCounter % 2000 === 0 && (performance.now() - lastYieldTs > 14)) {
                     window.updateSplash(`Processing Telemetry Data...`, 48 + (loopCounter / flat.length * 48));
-                    await new Promise(r => setTimeout(r, 0));
+                    await new Promise(r => requestAnimationFrame(r));
+                    lastYieldTs = performance.now();
                 }
 
                 const t = finalGetT(ev);
