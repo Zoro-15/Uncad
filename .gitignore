@@ -1,65 +1,138 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
+# ══════════════════════════════════════════════════════════════════════
+# Comprehensive .gitignore for Lennister Player / Vercel Web Deployment
+# ══════════════════════════════════════════════════════════════════════
 
-# Build Outputs
+# ─── 1. Package Manager & Dependencies ───
+node_modules/
+.pnp/
+.pnp.js
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.npm/
+.pnpm-store/
+package-lock.json.bak
+
+# ─── 2. Build Outputs & Deployment Artifacts ───
 dist/
 dist-ssr/
 build/
 out/
-.vercel/
 .output/
+.vercel/
+.next/
+.nuxt/
 
-# Cache & Temporary Directories
+# ─── 3. Caches, Bundler Internals & Temp Files ───
 .cache/
 .vite/
+.parcel-cache/
+.turbo/
+.eslintcache/
 .tmp/
+.temp/
 temp/
-downloads/
+tmp/
+scratch/
 *.tmp
+*.temp
 
-# Scratch & Raw Data Dumps
+# ─── 4. Raw Data Dumps, Scraped Files & Text Notes ───
 *.txt
 new txt/
 1_*.html
 *.dump.html
-informatio.md
-PROJECT_CONTEXT.md
+*.dump
+*.jsonl
+*.csv
+*.tsv
+*.sqlite
+*.db
+*.md
+!README.md
 
-# Video & Notes Downloads
+# ─── 5. Offline Scripts & Local Cache Files ───
+scripts/
+*.cjs
+*cache*.json
+*.cache
+
+# ─── 6. Video, Audio, Document & Slide Downloads ───
+downloads/
 *.webm
 *.mp4
+*.mkv
+*.avi
+*.mov
+*.flv
+*.mp3
+*.wav
+*.aac
+*.m4a
+*.ogg
 *.pdf
-downloads/
 
-# Environment Variables & Secrets
+# ─── 7. Compressed Archives & Backups ───
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.rar
+*.7z
+*.bak
+*.backup
+*~
+
+# ─── 8. Environment Variables & Secrets ───
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.cert
+*.crt
 
-# Logs
+# ─── 9. Logs & Debug Reports ───
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# Editor & OS Metadata
+# ─── 10. IDE, Editor & OS System Metadata ───
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea/
-.DS_Store
-Thumbs.db
+*.sublime-workspace
+*.sublime-project
 *.sw?
 *.swp
+*.swo
 *.suo
 *.sln
+*.njsproj
+*.ntvs*
 
-# Archives
-*.zip
-*.tar
-*.gz
-*.rar
-*.7z
+# ─── 11. Testing & Agent Local Storage ───
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+.gemini/
+.agents/
+.system_generated/
+.antigravity/
