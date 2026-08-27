@@ -96,7 +96,9 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
         const videoFile = groupFiles.find(f => f.name.endsWith('.webm') || f.name.endsWith('.mp4'));
         const jsonFile = groupFiles.find(f => (f.name.endsWith('.json') || f.name.endsWith('.txt')) && !f.name.includes('metadata'));
         const metaFile = groupFiles.find(f => f.name === 'metadata.json');
-        const pdfFile = groupFiles.find(f => f.name.endsWith('.pdf'));
+        const pdfAnnoFile = groupFiles.find(f => f.name.endsWith('.pdf') && (f.name.includes('with_anno') || f.name === 'notes.pdf' || !f.name.includes('no_anno')));
+        const pdfCleanFile = groupFiles.find(f => f.name.endsWith('.pdf') && (f.name.includes('no_anno') || f.name.includes('clean')));
+        const pdfFile = pdfAnnoFile || pdfCleanFile || groupFiles.find(f => f.name.endsWith('.pdf'));
 
         if (videoFile && jsonFile) {
             const lastFolder = folderKey !== 'root' ? folderKey.split(/[/\\]/).pop() : videoFile.name.replace(/\.[^/.]+$/, "");
@@ -131,7 +133,9 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
                 duration: duration || "--",
                 videoFile,
                 jsonFile,
-                pdfFile: pdfFile || null
+                pdfFile: pdfFile || null,
+                pdfAnnoFile: pdfAnnoFile || null,
+                pdfCleanFile: pdfCleanFile || null
             });
         }
     }

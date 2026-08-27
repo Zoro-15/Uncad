@@ -2806,22 +2806,48 @@ window.updateSplash = (txt, pct) => {
             const lec = (activeCourse && activeCourse.lectures) ? (activeCourse.lectures.find(l => l.uid === uid) || activeCourse.lectures[0]) : null;
             
             // 1. LOCAL DOWNLOAD MODE PDF
-            if (lec && lec.pdfFile) {
-                const localPdfBlobUrl = URL.createObjectURL(lec.pdfFile);
-                pdfNav.innerHTML = `
-                    <div class="pdf-card" style="border: 1px solid rgba(34,197,94,0.35); background: rgba(34,197,94,0.06);">
-                        <div class="pdf-card-header">
-                            <i class="fas fa-file-pdf pdf-card-icon" style="color:#22c55e;"></i>
-                            <div>
-                                <div class="pdf-card-title">Local Lecture Notes PDF</div>
-                                <div class="pdf-card-sub">Loaded directly from your downloaded folder (${lec.pdfFile.name || 'notes.pdf'})</div>
+            if (lec && (lec.pdfFile || lec.pdfAnnoFile || lec.pdfCleanFile)) {
+                let localHtml = '';
+                const annoFile = lec.pdfAnnoFile || lec.pdfFile;
+                const cleanFile = lec.pdfCleanFile;
+
+                if (annoFile) {
+                    const localPdfBlobUrl = URL.createObjectURL(annoFile);
+                    localHtml += `
+                        <div class="pdf-card" style="border: 1px solid rgba(34,197,94,0.35); background: rgba(34,197,94,0.06);">
+                            <div class="pdf-card-header">
+                                <i class="fas fa-file-pdf pdf-card-icon" style="color:#22c55e;"></i>
+                                <div>
+                                    <div class="pdf-card-title">Annotated Notes (Local)</div>
+                                    <div class="pdf-card-sub">Loaded from local disk: ${annoFile.name || 'notes_with_anno.pdf'}</div>
+                                </div>
+                            </div>
+                            <div class="pdf-card-actions">
+                                <a href="${localPdfBlobUrl}" target="_blank" class="pdf-btn anno" style="background:#22c55e;color:#09090b;font-weight:600;"><i class="fas fa-external-link-alt"></i> Open Annotated PDF</a>
                             </div>
                         </div>
-                        <div class="pdf-card-actions">
-                            <a href="${localPdfBlobUrl}" target="_blank" class="pdf-btn anno" style="background:#22c55e;color:#09090b;font-weight:600;"><i class="fas fa-external-link-alt"></i> Open / View Notes PDF</a>
+                    `;
+                }
+
+                if (cleanFile && cleanFile !== annoFile) {
+                    const cleanPdfBlobUrl = URL.createObjectURL(cleanFile);
+                    localHtml += `
+                        <div class="pdf-card" style="border: 1px solid rgba(59,130,246,0.35); background: rgba(59,130,246,0.06);">
+                            <div class="pdf-card-header">
+                                <i class="fas fa-file-pdf pdf-card-icon" style="color:#3b82f6;"></i>
+                                <div>
+                                    <div class="pdf-card-title">Clean Slide Notes (Local)</div>
+                                    <div class="pdf-card-sub">Loaded from local disk: ${cleanFile.name || 'notes_no_anno.pdf'}</div>
+                                </div>
+                            </div>
+                            <div class="pdf-card-actions">
+                                <a href="${cleanPdfBlobUrl}" target="_blank" class="pdf-btn clean" style="background:#3b82f6;color:#ffffff;font-weight:600;"><i class="fas fa-external-link-alt"></i> Open Clean PDF</a>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                }
+
+                pdfNav.innerHTML = localHtml;
                 return;
             }
 
