@@ -501,7 +501,11 @@ function renderSubjectGrid(subject, gridId) {
     if (!grid) return;
     grid.innerHTML = "";
 
-    const subjectCourses = COURSES.filter(c => !c.isLocal && c.subject === subject);
+    const subjectCourses = COURSES.filter(c => {
+        if (c.isLocal) return false;
+        if (subject === "Mentorship") return c.subject === "Mentorship" || c.subject === "Crash Course";
+        return c.subject === subject;
+    });
 
     if (subjectCourses.length === 0) {
         grid.innerHTML = `
