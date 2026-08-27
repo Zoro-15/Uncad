@@ -8934,6 +8934,155 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_no_anno.pdf"
             }
         ]
+    },
+    {
+        "id": "nexus-physics-jee-2025",
+        "title": "Nexus Crash Course: Physics for JEE Mains 2025",
+        "subject": "Phy OS",
+        "subjectIcon": "fa-microchip",
+        "subjectColor": "#06b6d4",
+        "subtitle": "Physics One Shots & Core Problem Solving",
+        "description": "Complete 15-lesson intensive Physics crash course arranged topic-wise: Kinematics, NLM, WPE, Momentum, COM, Rotation, Electrostatics, Gravitation, Capacitance, Current Electricity, and Fluid Mechanics.",
+        "icon": "fa-atom",
+        "startDate": "2025-01-01T08:00:00Z",
+        "badge": "15 Lessons",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Kinematics 1",
+                "topic": "Kinematics",
+                "uid": "A4BW2JFS5Y0OECY9C3DW",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A4BW2JFS5Y0OECY9C3DW/Kinematics_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A4BW2JFS5Y0OECY9C3DW/Kinematics_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Kinematics 2",
+                "topic": "Kinematics",
+                "uid": "S8MUL5T22ZUI4ZPZOBG0",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S8MUL5T22ZUI4ZPZOBG0/Kinematics_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S8MUL5T22ZUI4ZPZOBG0/Kinematics_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Newton's Laws of Motion: NLM",
+                "topic": "Newton's Laws of Motion",
+                "uid": "E3N3I66ETKSP8F7AP5CG",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E3N3I66ETKSP8F7AP5CG/NLM_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E3N3I66ETKSP8F7AP5CG/NLM_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Work, Power & Energy: WPE",
+                "topic": "Work, Power & Energy",
+                "uid": "TJ3407RXK6XQD5MXMFGD",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TJ3407RXK6XQD5MXMFGD/WPE_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TJ3407RXK6XQD5MXMFGD/WPE_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Work, Power & Energy",
+                "topic": "Work, Power & Energy",
+                "uid": "KR92KVWMEUWUS7G23T6E",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KR92KVWMEUWUS7G23T6E/Work_Power__Energy_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KR92KVWMEUWUS7G23T6E/Work%2C_Power_%26_Energy_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Collision & Conservation of Momentum",
+                "topic": "Collision & Momentum",
+                "uid": "RK64LSZ1EV6KG96J6ER6",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RK64LSZ1EV6KG96J6ER6/Collision__Conservation_of_Momentum_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RK64LSZ1EV6KG96J6ER6/Collision_%26_Conservation_of_Momentum_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Centre of Mass",
+                "topic": "Centre of Mass",
+                "uid": "R36FBWS31FAUWLK7LJ3U",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R36FBWS31FAUWLK7LJ3U/Centre_of_Mass_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R36FBWS31FAUWLK7LJ3U/Centre_of_Mass_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Rotational Motion: Rotation",
+                "topic": "Rotational Motion",
+                "uid": "SAO073RJI1NOFXBXAE3L",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SAO073RJI1NOFXBXAE3L/Rotation_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SAO073RJI1NOFXBXAE3L/Rotation_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Rotational Motion: Rotation 2",
+                "topic": "Rotational Motion",
+                "uid": "YGFM669P89R0KWJFLA5E",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YGFM669P89R0KWJFLA5E/Rotation_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YGFM669P89R0KWJFLA5E/Rotation_2_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Electrostatics 1",
+                "topic": "Electrostatics",
+                "uid": "A9BUX16M62VMOAUBIEI2",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A9BUX16M62VMOAUBIEI2/Electrostatics_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A9BUX16M62VMOAUBIEI2/Electrostatics_1_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Electrostatics 2",
+                "topic": "Electrostatics",
+                "uid": "LKXZ0L06LL80P33XYS5X",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LKXZ0L06LL80P33XYS5X/Electrostatics_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LKXZ0L06LL80P33XYS5X/Electrostatics_2_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Gravitation",
+                "topic": "Gravitation",
+                "uid": "5SGI2CDMUOT974DD96VM",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5SGI2CDMUOT974DD96VM/Gravitation_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5SGI2CDMUOT974DD96VM/Gravitation_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Capacitance",
+                "topic": "Capacitance",
+                "uid": "240LQP3Y73Q5C13JRJ6Z",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/240LQP3Y73Q5C13JRJ6Z/Capacitance_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/240LQP3Y73Q5C13JRJ6Z/Capacitance_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Current Electricity",
+                "topic": "Current Electricity",
+                "uid": "7VJ2WY09WTYV4ZBQS104",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7VJ2WY09WTYV4ZBQS104/Current_Electricity_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7VJ2WY09WTYV4ZBQS104/Current_Electricity_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Fluid mechanics",
+                "topic": "Fluid Mechanics",
+                "uid": "QAL352QKONZZNW4543DD",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QAL352QKONZZNW4543DD/Fluid_mechanics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QAL352QKONZZNW4543DD/Fluid_mechanics_no_anno.pdf"
+            }
+        ]
     }
 ];
 

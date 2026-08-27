@@ -114,7 +114,8 @@ function toggleEnrollCourse(courseId, event) {
     if (currentView === "math") renderSubjectGrid("Mathematics", "math-courses-grid");
     else if (currentView === "physics") renderSubjectGrid("Physics", "physics-courses-grid");
     else if (currentView === "chemistry") renderSubjectGrid("Chemistry", "chemistry-courses-grid");
-    else if (currentView === "mentorship" || currentView === "modules") renderSubjectGrid("Mentorship", "mentorship-courses-grid");
+    else if (currentView === "mentorship" || currentView === "modules" || currentView === "crash-course") renderSubjectGrid("Mentorship", "mentorship-courses-grid");
+    else if (currentView === "phy-os" || currentView === "phyos") renderSubjectGrid("Phy OS", "phy-os-courses-grid");
 }
 
 function getLastWatched() {
@@ -259,6 +260,7 @@ function switchView(viewName, params = {}, skipPush = false) {
         const viewPhysics = document.getElementById("view-physics");
         const viewChemistry = document.getElementById("view-chemistry");
         const viewMentorship = document.getElementById("view-mentorship");
+        const viewPhyOs = document.getElementById("view-phy-os");
         const viewOfflineMode = document.getElementById("view-offline-mode");
         const viewDetails = document.getElementById("view-course-details");
         const dbLogo = document.getElementById("db-logo");
@@ -271,6 +273,7 @@ function switchView(viewName, params = {}, skipPush = false) {
         if (viewPhysics) viewPhysics.classList.remove("active");
         if (viewChemistry) viewChemistry.classList.remove("active");
         if (viewMentorship) viewMentorship.classList.remove("active");
+        if (viewPhyOs) viewPhyOs.classList.remove("active");
         if (viewOfflineMode) viewOfflineMode.classList.remove("active");
         if (viewDetails) viewDetails.classList.remove("active");
 
@@ -298,12 +301,18 @@ function switchView(viewName, params = {}, skipPush = false) {
             if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
             if (dbHeaderRight) dbHeaderRight.style.display = "block";
             renderSubjectGrid("Chemistry", "chemistry-courses-grid");
-        } else if (viewName === "mentorship" || viewName === "modules") {
+        } else if (viewName === "mentorship" || viewName === "modules" || viewName === "crash-course") {
             if (viewMentorship) viewMentorship.classList.add("active");
             if (dbLogo) dbLogo.style.display = "flex";
             if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
             if (dbHeaderRight) dbHeaderRight.style.display = "block";
             renderSubjectGrid("Mentorship", "mentorship-courses-grid");
+        } else if (viewName === "phy-os" || viewName === "phyos") {
+            if (viewPhyOs) viewPhyOs.classList.add("active");
+            if (dbLogo) dbLogo.style.display = "flex";
+            if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
+            if (dbHeaderRight) dbHeaderRight.style.display = "block";
+            renderSubjectGrid("Phy OS", "phy-os-courses-grid");
         } else if (viewName === "offline-mode") {
             if (viewOfflineMode) viewOfflineMode.classList.add("active");
             if (dbLogo) dbLogo.style.display = "flex";
@@ -338,7 +347,10 @@ function switchNavView(target) {
         "physics": document.getElementById("nav-item-physics"),
         "chemistry": document.getElementById("nav-item-chemistry"),
         "mentorship": document.getElementById("nav-item-mentorship"),
+        "crash-course": document.getElementById("nav-item-mentorship"),
         "modules": document.getElementById("nav-item-mentorship"),
+        "phy-os": document.getElementById("nav-item-phy-os"),
+        "phyos": document.getElementById("nav-item-phy-os"),
         "offline-mode": document.getElementById("nav-item-offline-mode")
     };
     const navDrawer = document.getElementById("db-nav-drawer");
@@ -438,7 +450,8 @@ function renderMyCourses() {
                     <button class="explore-nav-btn" onclick="switchNavView('math')"><i class="fas fa-square-root-variable"></i> Mathematics</button>
                     <button class="explore-nav-btn" onclick="switchNavView('physics')"><i class="fas fa-atom"></i> Physics</button>
                     <button class="explore-nav-btn" onclick="switchNavView('chemistry')"><i class="fas fa-flask-vial"></i> Chemistry</button>
-                    <button class="explore-nav-btn" onclick="switchNavView('mentorship')"><i class="fas fa-bolt"></i> Crash Courses & Mentorship</button>
+                    <button class="explore-nav-btn" onclick="switchNavView('mentorship')"><i class="fas fa-bolt"></i> Crash Course</button>
+                    <button class="explore-nav-btn" onclick="switchNavView('phy-os')"><i class="fas fa-microchip"></i> Phy OS</button>
                 </div>
             </div>
         `;

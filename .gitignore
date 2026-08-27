@@ -44,6 +44,7 @@ scratch/
 *.txt
 new txt/
 1_*.html
+nexus_*.html
 *.dump.html
 *.dump
 *.jsonl
