@@ -138,3 +138,7 @@ cypress/screenshots/
 .agents/
 .system_generated/
 .antigravity/
+
+# ─── 12. Subprojects / Batch Folders ───
+ramanujan-20-ioqm-2026/
+

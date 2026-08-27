@@ -5,6 +5,8 @@
   "description": "Lennister Player - Multi-Course telemetric whiteboard streaming player",
   "scripts": {
     "dev": "vite --port 3000 --host",
+    "dev:ioqm": "vite ramanujan-20-ioqm-2026 --port 3001 --host --open",
+    "dev:sub": "vite --port 3000 --open /ramanujan-20-ioqm-2026/",
     "build": "vite build",
     "preview": "vite preview",
     "archive": "node scripts/download_course.js"
@@ -13,4 +15,3 @@
     "vite": "^4.5.2"
   }
 }
-
