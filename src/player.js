@@ -167,6 +167,8 @@ window.updateSplash = (txt, pct) => {
         }
 
         // Global State
+        let activeCourseId = "LPN7OFOL";
+        let activeUid = "";
         let engineLoaded = false;
         let drawOffset = 0;
         let CW = 1, CH = 1;
@@ -1184,8 +1186,9 @@ window.updateSplash = (txt, pct) => {
 
         async function loadLectureByUid(uid, startSec = 0) {
             const course = findCourseByLectureUid(uid);
-            activeCourseId = course.id;
-
+            if (course) {
+                activeCourseId = course.id;
+            }
             activeUid = uid;
             renderLectureDrawer();
 
@@ -2823,9 +2826,16 @@ window.updateSplash = (txt, pct) => {
             }
 
             // 2. REMOTE STREAMING MODE PDF
-            const titleSlug = ((lec && lec.title) || "Lecture_Notes").replace(/\s+/g, '_');
-            const withAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_with_anno.pdf`;
-            const noAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_no_anno.pdf`;
+            let withAnnoUrl = (lec && lec.pdfUrl) ? lec.pdfUrl : null;
+            let noAnnoUrl = (lec && lec.pdfCleanUrl) ? lec.pdfCleanUrl : null;
+
+            if (!withAnnoUrl) {
+                const titleSlug = ((lec && lec.title) || "Lecture_Notes").replace(/\s+/g, '_');
+                withAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_with_anno.pdf`;
+            }
+            if (!noAnnoUrl && withAnnoUrl && withAnnoUrl.includes('_with_anno.pdf')) {
+                noAnnoUrl = withAnnoUrl.replace('_with_anno.pdf', '_no_anno.pdf');
+            }
 
             pdfNav.innerHTML = `
                 <div class="pdf-card">
@@ -2837,9 +2847,10 @@ window.updateSplash = (txt, pct) => {
                         </div>
                     </div>
                     <div class="pdf-card-actions">
-                        <a href="${withAnnoUrl}" target="_blank" class="pdf-btn anno"><i class="fas fa-download"></i> Open / Download</a>
+                        <a href="${withAnnoUrl}" target="_blank" rel="noopener" class="pdf-btn anno"><i class="fas fa-file-download"></i> Open / Download</a>
                     </div>
                 </div>
+                ${noAnnoUrl ? `
                 <div class="pdf-card">
                     <div class="pdf-card-header">
                         <i class="fas fa-file-pdf pdf-card-icon clean"></i>
@@ -2849,9 +2860,9 @@ window.updateSplash = (txt, pct) => {
                         </div>
                     </div>
                     <div class="pdf-card-actions">
-                        <a href="${noAnnoUrl}" target="_blank" class="pdf-btn clean"><i class="fas fa-download"></i> Open / Download</a>
+                        <a href="${noAnnoUrl}" target="_blank" rel="noopener" class="pdf-btn clean"><i class="fas fa-file-download"></i> Open / Download</a>
                     </div>
-                </div>
+                </div>` : ''}
             `;
         }
 

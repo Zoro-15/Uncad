@@ -1,4 +1,4 @@
-// Course catalogs registry module (Dynamically Generated)
+// Course catalogs registry module (Dynamically Generated Multi-Subject Library)
 
 const COURSES = [
     {
@@ -14,63 +14,86 @@ const COURSES = [
                 "rank": 1,
                 "title": "Arithmetic and the beginning of mathematics",
                 "uid": "ZWHB83O53JX6MZ6YF84H",
-                "duration": "4h 29m"
+                "duration": "4h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZWHB83O53JX6MZ6YF84H/Arithmetic_and_the_beginning_of_mathematics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZWHB83O53JX6MZ6YF84H/Arithmetic_and_the_beginning_of_mathematics_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Higher Arithmetic & Elementary Number Theory",
                 "uid": "QYZXYVLBVOHDR9TUSL3H",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QYZXYVLBVOHDR9TUSL3H/Higher_Arithmetic__Elementary_Number_Theory_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QYZXYVLBVOHDR9TUSL3H/Higher_Arithmetic__Elementary_Number_Theory_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Notes making & Elementary Number Theory",
                 "uid": "P9C7RPUIUZLSHKRXI3O0",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P9C7RPUIUZLSHKRXI3O0/Notes_making__Elementary_Number_Theory_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P9C7RPUIUZLSHKRXI3O0/Notes_making__Elementary_Number_Theory_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Elementary Number Theory",
                 "uid": "W77K6T84P68X1KX759SL",
-                "duration": "2h 6m"
+                "duration": "2h 06m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W77K6T84P68X1KX759SL/Elementary_Number_Theory_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W77K6T84P68X1KX759SL/Elementary_Number_Theory_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Proof of each Divisibility tests, LCM, HCF and fractions",
                 "uid": "Y7Q22DG2VNJIE0V9TFF7",
-                "duration": "2h 36m"
+                "duration": "2h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y7Q22DG2VNJIE0V9TFF7/Proof_of_each_Divisibility_tests_LCM_HCF_and_fractions_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y7Q22DG2VNJIE0V9TFF7/Proof_of_each_Divisibility_tests_LCM_HCF_and_fractions_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "LCM, HCF and the mess of fractional entities",
                 "uid": "UFJVZHIO6ME4B0QGA1CJ",
-                "duration": "2h 10m"
+                "duration": "2h 10m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UFJVZHIO6ME4B0QGA1CJ/LCM_HCF_and_the_mess_of_fractional_entities_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UFJVZHIO6ME4B0QGA1CJ/LCM_HCF_and_the_mess_of_fractional_entities_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Pythagorus, Irrationality, Commensurability & infinite decimal expansion",
                 "uid": "FA0NJ9TKTHW1Q1T5MM1W",
-                "duration": "2h 32m"
+                "duration": "2h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FA0NJ9TKTHW1Q1T5MM1W/Pythagorus_Irrationality_Commensurability__infinite_decimal_expansion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FA0NJ9TKTHW1Q1T5MM1W/Pythagorus_Irrationality_Commensurability__infinite_decimal_expansion_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "\"Irrationals and their disturbing irrationality!",
                 "uid": "NOLY5FX26UACP8R9A3TH",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NOLY5FX26UACP8R9A3TH/Irrationals_and_their_disturbing_irrationality_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NOLY5FX26UACP8R9A3TH/Irrationals_and_their_disturbing_irrationality_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Arithmetic & Elementary Number Theory Complete",
                 "uid": "91ZKXQXDCU8LUCRPX9OD",
-                "duration": "2h 22m"
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/91ZKXQXDCU8LUCRPX9OD/Arithmetic__Elementary_Number_Theory_Complete_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/91ZKXQXDCU8LUCRPX9OD/Arithmetic__Elementary_Number_Theory_Complete_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "From handling irrationals to Algebra",
                 "uid": "VSRVL7TPAYHQ8USKDUPE",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VSRVL7TPAYHQ8USKDUPE/From_handling_irrationals_to_Algebra_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VSRVL7TPAYHQ8USKDUPE/From_handling_irrationals_to_Algebra_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "algebra-1",
@@ -85,13 +108,17 @@ const COURSES = [
                 "rank": 1,
                 "title": "Algebra L01 : Beginning of Algebra, Cubic formula & some elementary results",
                 "uid": "NONCJKE7WF6MO8TV5VC3",
-                "duration": "2h 34m"
+                "duration": "2h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NONCJKE7WF6MO8TV5VC3/Algebra_L01__Beginning_of_Algebra_Cubic_formula__some_elementary_results_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NONCJKE7WF6MO8TV5VC3/Algebra_L01__Beginning_of_Algebra_Cubic_formula__some_elementary_results_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Algebra Lec 02",
                 "uid": "YPUK1MTK2C3XOWV9RZ4R",
-                "duration": "2h 30m"
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YPUK1MTK2C3XOWV9RZ4R/Algebra_Lec_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YPUK1MTK2C3XOWV9RZ4R/Algebra_Lec_02_no_anno.pdf"
             },
             {
                 "rank": 3,
@@ -103,109 +130,145 @@ const COURSES = [
                 "rank": 3,
                 "title": "Algebra Lec 03",
                 "uid": "CZX0YLRYYNELHGM4YDF1",
-                "duration": "2h 14m"
+                "duration": "2h 14m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CZX0YLRYYNELHGM4YDF1/Algebra_Lec_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CZX0YLRYYNELHGM4YDF1/Algebra_Lec_03_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Algebra Lec 04",
                 "uid": "T1SYU80OO3XPEC4ZJ0Q0",
-                "duration": "53m"
+                "duration": "53m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T1SYU80OO3XPEC4ZJ0Q0/Algebra_Lec_04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T1SYU80OO3XPEC4ZJ0Q0/Algebra_Lec_04_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Algebra Lec05 : Generalising quadratic and cubic",
                 "uid": "JMR8OSXX4ZQS93NVNUH9",
-                "duration": "2h 14m"
+                "duration": "2h 14m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JMR8OSXX4ZQS93NVNUH9/Algebra_Lec05__Generalising_quadratic_and_cubic_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JMR8OSXX4ZQS93NVNUH9/Algebra_Lec05__Generalising_quadratic_and_cubic_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Algebra Lec 06: Cardano's Cubic Formula, Exponents, Surds, Binomials and FPS",
                 "uid": "HKCR5ISAPOQVP56W76NH",
-                "duration": "2h 43m"
+                "duration": "2h 43m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HKCR5ISAPOQVP56W76NH/Algebra_Lec_06_Cardanos_Cubic_Formula_Exponents_Surds_Binomials_and_FPS_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HKCR5ISAPOQVP56W76NH/Algebra_Lec_06_Cardanos_Cubic_Formula_Exponents_Surds_Binomials_and_FPS_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Algebra Lec 07: Biquadratic, Transformation of Equations, Vieta and FTA",
                 "uid": "QFVJHHUNXMXKS4QAVBLK",
-                "duration": "2h 22m"
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QFVJHHUNXMXKS4QAVBLK/Algebra_Lec_07_Biquadratic_Transformation_of_Equations_Vieta_and_FTA_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QFVJHHUNXMXKS4QAVBLK/Algebra_Lec_07_Biquadratic_Transformation_of_Equations_Vieta_and_FTA_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Algebra Lec 08: Theory of Indices and Polynomial theorems",
                 "uid": "XGQNQOUMD6447B2AEDPJ",
-                "duration": "2h 26m"
+                "duration": "2h 26m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XGQNQOUMD6447B2AEDPJ/Algebra_Lec_08_Theory_of_Indices_and_Polynomial_theorems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XGQNQOUMD6447B2AEDPJ/Algebra_Lec_08_Theory_of_Indices_and_Polynomial_theorems_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Algebra Lec 09",
                 "uid": "6IAEXKANIEIQOZLZQX79",
-                "duration": "2h 14m"
+                "duration": "2h 14m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6IAEXKANIEIQOZLZQX79/Algebra_Lec_09_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6IAEXKANIEIQOZLZQX79/Algebra_Lec_09_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Algebra Lec 10",
                 "uid": "N4IGYUWXHLC44AA5LJHY",
-                "duration": "2h 20m"
+                "duration": "2h 20m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N4IGYUWXHLC44AA5LJHY/Algebra_Lec_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N4IGYUWXHLC44AA5LJHY/Algebra_Lec_10_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Algebra Lec 11: Algebraic Identities, Newton's observations, Polynomial Theorems",
                 "uid": "W1AKEE7VHG29Y5CLPTTF",
-                "duration": "2h 35m"
+                "duration": "2h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W1AKEE7VHG29Y5CLPTTF/Algebra_Lec_11_Algebraic_Identities_Newtons_observations_Polynomial_Theorems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W1AKEE7VHG29Y5CLPTTF/Algebra_Lec_11_Algebraic_Identities_Newtons_observations_Polynomial_Theorems_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Algebra Lec 12: A brilliant generalization , Advanced Algebraic manipulations and Factorization",
                 "uid": "4JI4C5S2IX3R4UYSZZ1M",
-                "duration": "2h 32m"
+                "duration": "2h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4JI4C5S2IX3R4UYSZZ1M/Algebra_Lec_12_A_brilliant_generalization__Advanced_Algebraic_manipulations_and_Factorization_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4JI4C5S2IX3R4UYSZZ1M/Algebra_Lec_12_A_brilliant_generalization__Advanced_Algebraic_manipulations_and_Factorization_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Algebra Lec 13",
                 "uid": "IWEK8LDL749OMB5MUDDB",
-                "duration": "2h 36m"
+                "duration": "2h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IWEK8LDL749OMB5MUDDB/Algebra_Lec_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IWEK8LDL749OMB5MUDDB/Algebra_Lec_13_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Algebra L14 : Reciprocal Equations, Idea of complex Numbers ,Nature of Roots",
                 "uid": "WKE2TRDWPY3PDSNKP5OR",
-                "duration": "2h 34m"
+                "duration": "2h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WKE2TRDWPY3PDSNKP5OR/Algebra_L14__Reciprocal_Equations_Idea_of_complex_Numbers_Nature_of_Roots_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WKE2TRDWPY3PDSNKP5OR/Algebra_L14__Reciprocal_Equations_Idea_of_complex_Numbers_Nature_of_Roots_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "Algebra L15 : Nature of Roots and final theorems",
                 "uid": "8P0OBHSB9BGGDEBEUIEL",
-                "duration": "2h 35m"
+                "duration": "2h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8P0OBHSB9BGGDEBEUIEL/Algebra_L15__Nature_of_Roots_and_final_theorems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8P0OBHSB9BGGDEBEUIEL/Algebra_L15__Nature_of_Roots_and_final_theorems_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Algebra L16 : Problem Solving Situation Set 01",
                 "uid": "5QK6MML0WSITIUHTZQWA",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5QK6MML0WSITIUHTZQWA/Algebra_L16__Problem_Solving_Situation_Set_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5QK6MML0WSITIUHTZQWA/Algebra_L16__Problem_Solving_Situation_Set_01_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Algebra L17 : Problem Solving Situation Set 02",
                 "uid": "6ER69OIVN7XIOA8QRIB5",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6ER69OIVN7XIOA8QRIB5/Algebra_L17__Problem_Solving_Situation_Set_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6ER69OIVN7XIOA8QRIB5/Algebra_L17__Problem_Solving_Situation_Set_02_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Algebra L18 : Problem Solving Situation Set 03",
                 "uid": "EYDBQE4SJVH5W2SW7185",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EYDBQE4SJVH5W2SW7185/Algebra_L18__Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EYDBQE4SJVH5W2SW7185/Algebra_L18__Problem_Solving_Situation_Set_03_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Algebra L19 : Problem Solving Situation Set 03",
                 "uid": "Y8AS7A6ZOQDC0EWT5VW8",
-                "duration": "2h 50m"
+                "duration": "2h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y8AS7A6ZOQDC0EWT5VW8/Algebra_L19__Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y8AS7A6ZOQDC0EWT5VW8/Algebra_L19__Problem_Solving_Situation_Set_03_no_anno.pdf"
             },
             {
                 "rank": 20,
                 "title": "Complete Discussion of Algebra-I Sheet & JEE ADV PYQs",
                 "uid": "KDCS5WH47U3HOQ83SWYV",
-                "duration": "2h 18m"
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KDCS5WH47U3HOQ83SWYV/Complete_Discussion_of_AlgebraI_Sheet__JEE_ADV_PYQs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KDCS5WH47U3HOQ83SWYV/Complete_Discussion_of_AlgebraI_Sheet__JEE_ADV_PYQs_no_anno.pdf"
             },
             {
                 "rank": 21,
@@ -213,7 +276,10 @@ const COURSES = [
                 "uid": "",
                 "duration": "2h 0m"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "algebra-2",
@@ -228,57 +294,78 @@ const COURSES = [
                 "rank": 1,
                 "title": "Algebra-II L01 : Determinants & System of Polynomial Equations",
                 "uid": "WT3QTRLHWUOWRQ9R9SZ7",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WT3QTRLHWUOWRQ9R9SZ7/AlgebraII_L01__Determinants__System_of_Polynomial_Equations_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WT3QTRLHWUOWRQ9R9SZ7/AlgebraII_L01__Determinants__System_of_Polynomial_Equations_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Algebra-II L02 : Determinants",
                 "uid": "LXWMTK1UE509SBZK8WG6",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LXWMTK1UE509SBZK8WG6/AlgebraII_L02__Determinants_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LXWMTK1UE509SBZK8WG6/AlgebraII_L02__Determinants_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Algebra-II L03 : Determinants",
                 "uid": "X3OQM5WDG87SI7VLK4ZS",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X3OQM5WDG87SI7VLK4ZS/AlgebraII_L03__Determinants_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X3OQM5WDG87SI7VLK4ZS/AlgebraII_L03__Determinants_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Algebra-II L04 : Determinants",
                 "uid": "LG8J0DXZJR5F8YA3WY53",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LG8J0DXZJR5F8YA3WY53/AlgebraII_L04__Determinants_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LG8J0DXZJR5F8YA3WY53/AlgebraII_L04__Determinants_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Algebra-II L05: Problem Solving Situation Set 01 and 02",
                 "uid": "W9XQ78G8YTSJ2G4FXPO9",
-                "duration": "2h 21m"
+                "duration": "2h 21m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W9XQ78G8YTSJ2G4FXPO9/AlgebraII_L05_Problem_Solving_Situation_Set_01_and_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W9XQ78G8YTSJ2G4FXPO9/AlgebraII_L05_Problem_Solving_Situation_Set_01_and_02_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Algebra-II L06: Complete systematic go through & Situation Set",
                 "uid": "T5YWJQ48CSMBZ4Y6F7HF",
-                "duration": "2h 25m"
+                "duration": "2h 25m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T5YWJQ48CSMBZ4Y6F7HF/AlgebraII_L06_Complete_systematic_go_through__Situation_Set_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T5YWJQ48CSMBZ4Y6F7HF/AlgebraII_L06_Complete_systematic_go_through__Situation_Set_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Algebra-II L07: Problem Solving Situation Set 03",
                 "uid": "D2GOZDD2BRROLMPF8BVT",
-                "duration": "2h 20m"
+                "duration": "2h 20m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D2GOZDD2BRROLMPF8BVT/AlgebraII_L07_Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D2GOZDD2BRROLMPF8BVT/AlgebraII_L07_Problem_Solving_Situation_Set_03_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Algebra-II L08: Problem Solving Situation Set 03",
                 "uid": "9DKRAJN8H4W33YI63397",
-                "duration": "2h 27m"
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9DKRAJN8H4W33YI63397/AlgebraII_L08_Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9DKRAJN8H4W33YI63397/AlgebraII_L08_Problem_Solving_Situation_Set_03_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Algebra-II L09: Problem Solving Situation Set 03",
                 "uid": "R1685QXXRXG2QYYMKNLU",
-                "duration": "1h 45m"
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R1685QXXRXG2QYYMKNLU/AlgebraII_L09_Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R1685QXXRXG2QYYMKNLU/AlgebraII_L09_Problem_Solving_Situation_Set_03_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "trigonometry",
@@ -293,75 +380,102 @@ const COURSES = [
                 "rank": 1,
                 "title": "Trigonometry for JEE Advanced 2026 L01: GEOMETRY",
                 "uid": "TLZSFNCY9P3BKDE32UST",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TLZSFNCY9P3BKDE32UST/Trigonometry_for_JEE_Advanced_2026_L01_GEOMETRY_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TLZSFNCY9P3BKDE32UST/Trigonometry_for_JEE_Advanced_2026_L01_GEOMETRY_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Trigonometry for JEE Advanced 2026 L02:",
                 "uid": "OYLKZF5Q7UD68C3BIAHX",
-                "duration": "2h 3m"
+                "duration": "2h 03m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OYLKZF5Q7UD68C3BIAHX/Trigonometry_for_JEE_Advanced_2026_L02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OYLKZF5Q7UD68C3BIAHX/Trigonometry_for_JEE_Advanced_2026_L02_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Trigonometry for JEE Advanced 2026 L03",
                 "uid": "R83JRRJTOALM8X6TN5PB",
-                "duration": "2h 16m"
+                "duration": "2h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R83JRRJTOALM8X6TN5PB/Trigonometry_for_JEE_Advanced_2026_L03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R83JRRJTOALM8X6TN5PB/Trigonometry_for_JEE_Advanced_2026_L03_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Trigonometry for JEE Advanced 2026 Problem Solving Situation Set 01",
                 "uid": "VUVLX0DNNULDU1X8BWGY",
-                "duration": "2h 12m"
+                "duration": "2h 12m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VUVLX0DNNULDU1X8BWGY/Trigonometry_for_JEE_Advanced_2026_Problem_Solving_Situation_Set_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VUVLX0DNNULDU1X8BWGY/Trigonometry_for_JEE_Advanced_2026_Problem_Solving_Situation_Set_01_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Trigonometry for JEE Advanced 2026 Problem Solving Situation Set 02",
                 "uid": "I8A2UXN3HZYHNZ4DWPHM",
-                "duration": "13m"
+                "duration": "13m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I8A2UXN3HZYHNZ4DWPHM/Trigonometry_for_JEE_Advanced_2026_Problem_Solving_Situation_Set_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I8A2UXN3HZYHNZ4DWPHM/Trigonometry_for_JEE_Advanced_2026_Problem_Solving_Situation_Set_02_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Trigonometry Lec 05: Problem Solving Situation Set 01",
                 "uid": "1W8D690IRJLMBNVEIY8A",
-                "duration": "2h 27m"
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1W8D690IRJLMBNVEIY8A/Trigonometry_Lec_05_Problem_Solving_Situation_Set_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1W8D690IRJLMBNVEIY8A/Trigonometry_Lec_05_Problem_Solving_Situation_Set_01_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Trigonometry Lec 06: Problem Solving Situation Set 02",
                 "uid": "9RTTWRI3A4WWS92DGUH7",
-                "duration": "2h 58m"
+                "duration": "2h 58m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9RTTWRI3A4WWS92DGUH7/Trigonometry_Lec_06_Problem_Solving_Situation_Set_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9RTTWRI3A4WWS92DGUH7/Trigonometry_Lec_06_Problem_Solving_Situation_Set_02_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Trigonometry Lec 07: Problem Solving Situation Set 02",
                 "uid": "6NJII9OBKK4NSJLMU3H8",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6NJII9OBKK4NSJLMU3H8/Trigonometry_Lec_07_Problem_Solving_Situation_Set_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6NJII9OBKK4NSJLMU3H8/Trigonometry_Lec_07_Problem_Solving_Situation_Set_02_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Trigonometry Lec 08: Problem Solving Situation Set 03",
                 "uid": "Y1MZ1374TVSTM7SWFEA9",
-                "duration": "1h 31m"
+                "duration": "1h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y1MZ1374TVSTM7SWFEA9/Trigonometry_Lec_08_Problem_Solving_Situation_Set_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y1MZ1374TVSTM7SWFEA9/Trigonometry_Lec_08_Problem_Solving_Situation_Set_03_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Trigonometry Lec 09: Problem Solving Situation Set 04",
                 "uid": "O904WKV5ISZ9X0TUMHYD",
-                "duration": "2h 34m"
+                "duration": "2h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/O904WKV5ISZ9X0TUMHYD/Trigonometry_Lec_09_Problem_Solving_Situation_Set_04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/O904WKV5ISZ9X0TUMHYD/Trigonometry_Lec_09_Problem_Solving_Situation_Set_04_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Trigonometry Lec 10: Problem Solving All Situation Sets",
                 "uid": "YG00YUNZJTDROQR74IVU",
-                "duration": "2h 46m"
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YG00YUNZJTDROQR74IVU/Trigonometry_Lec_10_Problem_Solving_All_Situation_Sets_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YG00YUNZJTDROQR74IVU/Trigonometry_Lec_10_Problem_Solving_All_Situation_Sets_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Trigonometry Lec 11: Discussion",
                 "uid": "IMLVXZ4E8AKRG7STYW7Z",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IMLVXZ4E8AKRG7STYW7Z/Trigonometry_Lec_11_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IMLVXZ4E8AKRG7STYW7Z/Trigonometry_Lec_11_Discussion_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "sequence-series",
@@ -376,69 +490,94 @@ const COURSES = [
                 "rank": 1,
                 "title": "Sequence & Series for JEE Advanced Lec 1",
                 "uid": "KK3CFHUP7JXXOHI86JMA",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KK3CFHUP7JXXOHI86JMA/Sequence__Series_for_JEE_Advanced_Lec_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KK3CFHUP7JXXOHI86JMA/Sequence__Series_for_JEE_Advanced_Lec_1_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Sequence & Series for JEE Advanced Lec 2",
                 "uid": "DAJPS9A4OF3NMM80L44H",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DAJPS9A4OF3NMM80L44H/Sequence__Series_for_JEE_Advanced_Lec_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DAJPS9A4OF3NMM80L44H/Sequence__Series_for_JEE_Advanced_Lec_2_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Sequence & Series for JEE Advanced Lec 3",
                 "uid": "8YP7E3XDH95EEGPWY8ZZ",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8YP7E3XDH95EEGPWY8ZZ/Sequence__Series_for_JEE_Advanced_Lec_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8YP7E3XDH95EEGPWY8ZZ/Sequence__Series_for_JEE_Advanced_Lec_3_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Sequence & Series for JEE Advanced Lec 4",
                 "uid": "VP01UCNZICP5KCZIOX32",
-                "duration": "2h 36m"
+                "duration": "2h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VP01UCNZICP5KCZIOX32/Sequence__Series_for_JEE_Advanced_Lec_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VP01UCNZICP5KCZIOX32/Sequence__Series_for_JEE_Advanced_Lec_4_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Sequence & Series for JEE Advanced Lec 5",
                 "uid": "UBANUHDSK5U1CMXSOOWK",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UBANUHDSK5U1CMXSOOWK/Sequence__Series_for_JEE_Advanced_Lec_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UBANUHDSK5U1CMXSOOWK/Sequence__Series_for_JEE_Advanced_Lec_5_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Sequence & Series for JEE Advanced 2026",
                 "uid": "U34FKS02ZB9CXHQAU71I",
-                "duration": "2h 27m"
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U34FKS02ZB9CXHQAU71I/Sequence__Series_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U34FKS02ZB9CXHQAU71I/Sequence__Series_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Sequence and Series for JEE Advanced 2026 Lec 7",
                 "uid": "6YLPSPPYLJXTS15USBIZ",
-                "duration": "1h 48m"
+                "duration": "1h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6YLPSPPYLJXTS15USBIZ/Sequence_and_Series_for_JEE_Advanced_2026_Lec_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6YLPSPPYLJXTS15USBIZ/Sequence_and_Series_for_JEE_Advanced_2026_Lec_7_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Sequence and Series for JEE Advanced 2026 Lec 8",
                 "uid": "ZMY5X7HFSIMFTP1MCV07",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZMY5X7HFSIMFTP1MCV07/Sequence_and_Series_for_JEE_Advanced_2026_Lec_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZMY5X7HFSIMFTP1MCV07/Sequence_and_Series_for_JEE_Advanced_2026_Lec_8_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Sequence and Series for JEE Advanced 2026 Lec 9",
                 "uid": "TAP8MMS5GXRL2GA8RX95",
-                "duration": "2h 44m"
+                "duration": "2h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TAP8MMS5GXRL2GA8RX95/Sequence_and_Series_for_JEE_Advanced_2026_Lec_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TAP8MMS5GXRL2GA8RX95/Sequence_and_Series_for_JEE_Advanced_2026_Lec_9_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Sequence and Series for JEE Advanced 2026 Lec 10",
                 "uid": "YZNURZ2K8PBKY5A5LL68",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YZNURZ2K8PBKY5A5LL68/Sequence_and_Series_for_JEE_Advanced_2026_Lec_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YZNURZ2K8PBKY5A5LL68/Sequence_and_Series_for_JEE_Advanced_2026_Lec_10_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Sequence and Series for JEE Advanced 2026 Lec 11",
                 "uid": "EKDYFQX7VSJDIPKCZ06Z",
-                "duration": "2h 46m"
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EKDYFQX7VSJDIPKCZ06Z/Sequence_and_Series_for_JEE_Advanced_2026_Lec_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EKDYFQX7VSJDIPKCZ06Z/Sequence_and_Series_for_JEE_Advanced_2026_Lec_11_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "geometry",
@@ -453,63 +592,86 @@ const COURSES = [
                 "rank": 1,
                 "title": "Properties of Triangle (SOT) Lec-1 for JEE Advanced 2026",
                 "uid": "ZHOB2MYR995HKNQJSTPH",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZHOB2MYR995HKNQJSTPH/Properties_of_Triangle_SOT_Lec1_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZHOB2MYR995HKNQJSTPH/Properties_of_Triangle_SOT_Lec1_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Properties of Triangle (SOT) Lec-2 for JEE Advanced 2026",
                 "uid": "TU2386SQC16X6KL5BN0T",
-                "duration": "2h 19m"
+                "duration": "2h 19m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TU2386SQC16X6KL5BN0T/Properties_of_Triangle_SOT_Lec2_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TU2386SQC16X6KL5BN0T/Properties_of_Triangle_SOT_Lec2_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Properties of Triangle (SOT) Lec-3 for JEE Advanced 2026",
                 "uid": "6HTZCQY543G8RZ4B71P1",
-                "duration": "1h 44m"
+                "duration": "1h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6HTZCQY543G8RZ4B71P1/Properties_of_Triangle_SOT_Lec3_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6HTZCQY543G8RZ4B71P1/Properties_of_Triangle_SOT_Lec3_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Properties of Triangle (SOT) Lec-4 for JEE Advanced 2026",
                 "uid": "2X9SU20GMMRH9XYS0YYP",
-                "duration": "1h 23m"
+                "duration": "1h 23m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2X9SU20GMMRH9XYS0YYP/Properties_of_Triangle_SOT_Lec4_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2X9SU20GMMRH9XYS0YYP/Properties_of_Triangle_SOT_Lec4_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Properties of Triangle (SOT) Lec-5 for JEE Advanced 2026",
                 "uid": "FEFC6N09N7ET83R10570",
-                "duration": "2h 41m"
+                "duration": "2h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FEFC6N09N7ET83R10570/Properties_of_Triangle_SOT_Lec5_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FEFC6N09N7ET83R10570/Properties_of_Triangle_SOT_Lec5_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Properties of Triangle (SOT) Lec-6 for JEE Advanced 2026",
                 "uid": "GIG7XERPQ2GCAMDHU04P",
-                "duration": "1h 56m"
+                "duration": "1h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GIG7XERPQ2GCAMDHU04P/Properties_of_Triangle_SOT_Lec6_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GIG7XERPQ2GCAMDHU04P/Properties_of_Triangle_SOT_Lec6_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Properties of Triangle (SOT) Lec-7 for JEE Advanced 2026",
                 "uid": "C7OQJL41I1TCOKC59CO8",
-                "duration": "2h 22m"
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C7OQJL41I1TCOKC59CO8/Properties_of_Triangle_SOT_Lec7_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C7OQJL41I1TCOKC59CO8/Properties_of_Triangle_SOT_Lec7_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Properties of Triangle (SOT) Lec-8 for JEE Advanced 2026",
                 "uid": "25S9X3RISZJ0KK9FOVIW",
-                "duration": "1h 46m"
+                "duration": "1h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/25S9X3RISZJ0KK9FOVIW/Properties_of_Triangle_SOT_Lec8_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/25S9X3RISZJ0KK9FOVIW/Properties_of_Triangle_SOT_Lec8_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Properties of Triangle (SOT) Lec-9 for JEE Advanced 2026",
                 "uid": "92EXTR9XP9D6ZFRL6RPY",
-                "duration": "2h 30m"
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/92EXTR9XP9D6ZFRL6RPY/Properties_of_Triangle_SOT_Lec9_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/92EXTR9XP9D6ZFRL6RPY/Properties_of_Triangle_SOT_Lec9_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Properties of Triangle (SOT) Lec-10 for JEE Advanced 2026",
                 "uid": "HZARGOEP1CRY5XWUP5AT",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HZARGOEP1CRY5XWUP5AT/Properties_of_Triangle_SOT_Lec10_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HZARGOEP1CRY5XWUP5AT/Properties_of_Triangle_SOT_Lec10_for_JEE_Advanced_2026_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "coordinate-geometry",
@@ -524,7 +686,9 @@ const COURSES = [
                 "rank": 1,
                 "title": "Straight Lines & Circles Lec-1 for JEE Advanced 2026",
                 "uid": "30OJGB1915BRQVLY36HI",
-                "duration": "3h 17m"
+                "duration": "3h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/30OJGB1915BRQVLY36HI/Straight_Lines__Circles_Lec1_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/30OJGB1915BRQVLY36HI/Straight_Lines__Circles_Lec1_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 2,
@@ -536,57 +700,78 @@ const COURSES = [
                 "rank": 3,
                 "title": "Straight Lines & Circles Lec-3 for JEE Advanced 2026",
                 "uid": "RRCG4NAEZWS34AK8C3UI",
-                "duration": "2h 21m"
+                "duration": "2h 21m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RRCG4NAEZWS34AK8C3UI/Straight_Lines__Circles_Lec3_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RRCG4NAEZWS34AK8C3UI/Straight_Lines__Circles_Lec3_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Straight Lines & Circles Lec-2 for JEE Advanced 2026",
                 "uid": "MCMK1T78QMOJVOJRBTVV",
-                "duration": "1h 29m"
+                "duration": "1h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MCMK1T78QMOJVOJRBTVV/Straight_Lines__Circles_Lec2_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MCMK1T78QMOJVOJRBTVV/Straight_Lines__Circles_Lec2_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Straight Lines & Circles Lec-5 for JEE Advanced 2026",
                 "uid": "OTLZ6GHYR43G81KZBO40",
-                "duration": "2h 13m"
+                "duration": "2h 13m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OTLZ6GHYR43G81KZBO40/Straight_Lines__Circles_Lec5_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OTLZ6GHYR43G81KZBO40/Straight_Lines__Circles_Lec5_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Straight Lines & Circles Lec-6 for JEE Advanced 2026",
                 "uid": "BVVN67URFEY3Q9EUG0EJ",
-                "duration": "1h 30m"
+                "duration": "1h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BVVN67URFEY3Q9EUG0EJ/Straight_Lines__Circles_Lec6_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BVVN67URFEY3Q9EUG0EJ/Straight_Lines__Circles_Lec6_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Straight Lines & Circles Lec-7 for JEE Advanced 2026",
                 "uid": "I81Y3225676FRLKLJG60",
-                "duration": "2h 34m"
+                "duration": "2h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I81Y3225676FRLKLJG60/Straight_Lines__Circles_Lec7_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I81Y3225676FRLKLJG60/Straight_Lines__Circles_Lec7_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Straight Lines & Circles Lec-8 for JEE Advanced 2026",
                 "uid": "3OU8IS8N0E3UIYGK1HJK",
-                "duration": "2h 22m"
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3OU8IS8N0E3UIYGK1HJK/Straight_Lines__Circles_Lec8_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3OU8IS8N0E3UIYGK1HJK/Straight_Lines__Circles_Lec8_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Straight Lines & Circles Lec-9 for JEE Advanced 2026",
                 "uid": "J5U3BDGUGOFKRL82NSCM",
-                "duration": "3h 45m"
+                "duration": "3h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J5U3BDGUGOFKRL82NSCM/Straight_Lines__Circles_Lec9_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J5U3BDGUGOFKRL82NSCM/Straight_Lines__Circles_Lec9_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Straight Lines & Circles Lec-10 for JEE Advanced 2026",
                 "uid": "7F274AHR8HKH2D9KVB3L",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7F274AHR8HKH2D9KVB3L/Straight_Lines__Circles_Lec10_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7F274AHR8HKH2D9KVB3L/Straight_Lines__Circles_Lec10_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Straight Lines & Circles Lec-11 for JEE Advanced 2026",
                 "uid": "LLBRV471W32XQD7UYCQK",
-                "duration": "2h 0m"
+                "duration": "2h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LLBRV471W32XQD7UYCQK/Straight_Lines__Circles_Lec11_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LLBRV471W32XQD7UYCQK/Straight_Lines__Circles_Lec11_for_JEE_Advanced_2026_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "vectors-3d",
@@ -601,7 +786,9 @@ const COURSES = [
                 "rank": 1,
                 "title": "Orientation",
                 "uid": "OMXQPCNWCAXJDSBBJFI4",
-                "duration": "1h 38m"
+                "duration": "1h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OMXQPCNWCAXJDSBBJFI4/Orientation_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OMXQPCNWCAXJDSBBJFI4/Orientation_no_anno.pdf"
             },
             {
                 "rank": 2,
@@ -613,105 +800,142 @@ const COURSES = [
                 "rank": 3,
                 "title": "Vector & 3D Geometry Lec 1",
                 "uid": "OG618X6HXVQTC21HEQ0A",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OG618X6HXVQTC21HEQ0A/Vector__3D_Geometry_Lec_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OG618X6HXVQTC21HEQ0A/Vector__3D_Geometry_Lec_1_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Vector & 3D Geometry Lec 2",
                 "uid": "ISAHKVUBUMPI8XUV0RJV",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ISAHKVUBUMPI8XUV0RJV/Vector__3D_Geometry_Lec_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ISAHKVUBUMPI8XUV0RJV/Vector__3D_Geometry_Lec_2_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Vector & 3D Geometry Lec 3",
                 "uid": "MDJFL9P0N7P0ZR53WS64",
-                "duration": "2h 46m"
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MDJFL9P0N7P0ZR53WS64/Vector__3D_Geometry_Lec_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MDJFL9P0N7P0ZR53WS64/Vector__3D_Geometry_Lec_3_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Vector & 3D Geometry Lec 4",
                 "uid": "OBF2GAJJ83DF7CKSO6YL",
-                "duration": "2h 25m"
+                "duration": "2h 25m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OBF2GAJJ83DF7CKSO6YL/Vector__3D_Geometry_Lec_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OBF2GAJJ83DF7CKSO6YL/Vector__3D_Geometry_Lec_4_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Vector & 3D Geometry Lec 5",
                 "uid": "49T7G67L02VRCG1CNLE4",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/49T7G67L02VRCG1CNLE4/Vector__3D_Geometry_Lec_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/49T7G67L02VRCG1CNLE4/Vector__3D_Geometry_Lec_5_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Vector & 3D Geometry Lec 6",
                 "uid": "SX9YYGAULL1ZKF3AZT0U",
-                "duration": "1h 50m"
+                "duration": "1h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SX9YYGAULL1ZKF3AZT0U/Vector__3D_Geometry_Lec_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SX9YYGAULL1ZKF3AZT0U/Vector__3D_Geometry_Lec_6_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Vector & 3D Geometry Lec 7",
                 "uid": "5R2LHSD9UF7KYPVQKITR",
-                "duration": "2h 30m"
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5R2LHSD9UF7KYPVQKITR/Vector__3D_Geometry_Lec_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5R2LHSD9UF7KYPVQKITR/Vector__3D_Geometry_Lec_7_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Vector & 3D Geometry Lec 8",
                 "uid": "F3BZN6UVXVVS206JHMCZ",
-                "duration": "3h 0m"
+                "duration": "3h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/F3BZN6UVXVVS206JHMCZ/Vector__3D_Geometry_Lec_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/F3BZN6UVXVVS206JHMCZ/Vector__3D_Geometry_Lec_8_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Vector & 3D Geometry Lec 9",
                 "uid": "5ZYZJBBJZYMF02BJX3JF",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5ZYZJBBJZYMF02BJX3JF/Vector__3D_Geometry_Lec_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5ZYZJBBJZYMF02BJX3JF/Vector__3D_Geometry_Lec_9_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Vector & 3D Geometry Lec 10",
                 "uid": "7PPXHYO3DMCP4UH7POIA",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7PPXHYO3DMCP4UH7POIA/Vector__3D_Geometry_Lec_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7PPXHYO3DMCP4UH7POIA/Vector__3D_Geometry_Lec_10_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Vector & 3D Geometry Lec 11",
                 "uid": "R2KLB2LDJI0QEDW7W5R4",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R2KLB2LDJI0QEDW7W5R4/Vector__3D_Geometry_Lec_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R2KLB2LDJI0QEDW7W5R4/Vector__3D_Geometry_Lec_11_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Vector & 3D Geometry Lec 12",
                 "uid": "WEVP0HOZXNDA79T8VM0K",
-                "duration": "2h 41m"
+                "duration": "2h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WEVP0HOZXNDA79T8VM0K/Vector__3D_Geometry_Lec_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WEVP0HOZXNDA79T8VM0K/Vector__3D_Geometry_Lec_12_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "Vector & 3D Geometry Lec 13",
                 "uid": "OYT5LV5X6PFN6H5OXILZ",
-                "duration": "2h 27m"
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OYT5LV5X6PFN6H5OXILZ/Vector__3D_Geometry_Lec_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OYT5LV5X6PFN6H5OXILZ/Vector__3D_Geometry_Lec_13_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Vector & 3D Geometry Lec 14",
                 "uid": "VDHCPROPTX4NMZDNF08B",
-                "duration": "2h 18m"
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VDHCPROPTX4NMZDNF08B/Vector__3D_Geometry_Lec_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VDHCPROPTX4NMZDNF08B/Vector__3D_Geometry_Lec_14_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Vector & 3D Geometry Lec 15",
                 "uid": "NP60RLBMOT7W8C9TOBTJ",
-                "duration": "3h 12m"
+                "duration": "3h 12m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NP60RLBMOT7W8C9TOBTJ/Vector__3D_Geometry_Lec_15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NP60RLBMOT7W8C9TOBTJ/Vector__3D_Geometry_Lec_15_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Vector & 3D Geometry Lec 16",
                 "uid": "SO0JZ8VD4VI8WSP61084",
-                "duration": "2h 49m"
+                "duration": "2h 49m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SO0JZ8VD4VI8WSP61084/Vector__3D_Geometry_Lec_16_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SO0JZ8VD4VI8WSP61084/Vector__3D_Geometry_Lec_16_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Vector & 3D Geometry Lec 17",
                 "uid": "4LLSQVODKB8E7J0CPQQE",
-                "duration": "1h 35m"
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4LLSQVODKB8E7J0CPQQE/Vector__3D_Geometry_Lec_17_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4LLSQVODKB8E7J0CPQQE/Vector__3D_Geometry_Lec_17_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "calculus-1",
@@ -726,291 +950,390 @@ const COURSES = [
                 "rank": 1,
                 "title": "Calculus for JEE Advanced Lec 1",
                 "uid": "371ARO0LCZM7PJUQ2JAU",
-                "duration": "2h 36m"
+                "duration": "2h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/371ARO0LCZM7PJUQ2JAU/Calculus_for_JEE_Advanced_Lec_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/371ARO0LCZM7PJUQ2JAU/Calculus_for_JEE_Advanced_Lec_1_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Calculus for JEE Advanced Lec 2",
                 "uid": "13HDZMHVYTX1V668LRVP",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/13HDZMHVYTX1V668LRVP/Calculus_for_JEE_Advanced_Lec_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/13HDZMHVYTX1V668LRVP/Calculus_for_JEE_Advanced_Lec_2_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Calculus for JEE Advanced Lec 3",
                 "uid": "C5LCAX59LMNF7S7398GN",
-                "duration": "8m"
+                "duration": "8m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C5LCAX59LMNF7S7398GN/Calculus_for_JEE_Advanced_Lec_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C5LCAX59LMNF7S7398GN/Calculus_for_JEE_Advanced_Lec_3_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Calculus for JEE Advanced Lec 4",
                 "uid": "E16AKBQQVQNPW8XQ8M0I",
-                "duration": "2h 32m"
+                "duration": "2h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E16AKBQQVQNPW8XQ8M0I/Calculus_for_JEE_Advanced_Lec_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E16AKBQQVQNPW8XQ8M0I/Calculus_for_JEE_Advanced_Lec_4_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Calculus for JEE Advanced Lec 5",
                 "uid": "N9404PDGNU88SRW68DFI",
-                "duration": "2h 41m"
+                "duration": "2h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N9404PDGNU88SRW68DFI/Calculus_for_JEE_Advanced_Lec_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N9404PDGNU88SRW68DFI/Calculus_for_JEE_Advanced_Lec_5_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Calculus for JEE Advanced Lec 6",
                 "uid": "U8PPT4PICJM88V4DVOF0",
-                "duration": "2h 44m"
+                "duration": "2h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U8PPT4PICJM88V4DVOF0/Calculus_for_JEE_Advanced_Lec_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U8PPT4PICJM88V4DVOF0/Calculus_for_JEE_Advanced_Lec_6_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Calculus for JEE Advanced Lec 7",
                 "uid": "VRHSIRO8CFBRKUSNHKSK",
-                "duration": "2h 38m"
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VRHSIRO8CFBRKUSNHKSK/Calculus_for_JEE_Advanced_Lec_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VRHSIRO8CFBRKUSNHKSK/Calculus_for_JEE_Advanced_Lec_7_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Calculus for JEE Advanced Lec 8",
                 "uid": "GZT66ZD5USBGA78THJ0Y",
-                "duration": "2h 42m"
+                "duration": "2h 42m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GZT66ZD5USBGA78THJ0Y/Calculus_for_JEE_Advanced_Lec_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GZT66ZD5USBGA78THJ0Y/Calculus_for_JEE_Advanced_Lec_8_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Calculus for JEE Advanced Lec 9",
                 "uid": "PNTQFTCTS7BVUNM67MKU",
-                "duration": "2h 20m"
+                "duration": "2h 20m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PNTQFTCTS7BVUNM67MKU/Calculus_for_JEE_Advanced_Lec_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PNTQFTCTS7BVUNM67MKU/Calculus_for_JEE_Advanced_Lec_9_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Calculus for JEE Advanced Lec 10",
                 "uid": "5BM3I7OBM82AEGW632MT",
-                "duration": "1h 57m"
+                "duration": "1h 57m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5BM3I7OBM82AEGW632MT/Calculus_for_JEE_Advanced_Lec_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5BM3I7OBM82AEGW632MT/Calculus_for_JEE_Advanced_Lec_10_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Calculus for JEE Advanced Lec 11",
                 "uid": "KMW1QSCQT4AHZXMLBUAT",
-                "duration": "3h 39m"
+                "duration": "3h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KMW1QSCQT4AHZXMLBUAT/Calculus_for_JEE_Advanced_Lec_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KMW1QSCQT4AHZXMLBUAT/Calculus_for_JEE_Advanced_Lec_11_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Calculus for JEE Advanced Lec 12",
                 "uid": "OO0W0EQK07OREHKU8PZD",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OO0W0EQK07OREHKU8PZD/Calculus_for_JEE_Advanced_Lec_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OO0W0EQK07OREHKU8PZD/Calculus_for_JEE_Advanced_Lec_12_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Calculus for JEE Advanced Lec 13",
                 "uid": "BFUDOF04ZKHYF67GYOJ8",
-                "duration": "2h 18m"
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BFUDOF04ZKHYF67GYOJ8/Calculus_for_JEE_Advanced_Lec_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BFUDOF04ZKHYF67GYOJ8/Calculus_for_JEE_Advanced_Lec_13_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Calculus for JEE Advanced Lec 14",
                 "uid": "Q1IBVO03ZK45IRWH8LQ9",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q1IBVO03ZK45IRWH8LQ9/Calculus_for_JEE_Advanced_Lec_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Q1IBVO03ZK45IRWH8LQ9/Calculus_for_JEE_Advanced_Lec_14_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "Calculus for JEE Advanced Lec 15",
                 "uid": "97WAW73ED4UMMW963NP1",
-                "duration": "2h 20m"
+                "duration": "2h 20m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/97WAW73ED4UMMW963NP1/Calculus_for_JEE_Advanced_Lec_15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/97WAW73ED4UMMW963NP1/Calculus_for_JEE_Advanced_Lec_15_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Calculus for JEE Advanced Lec 16",
                 "uid": "239T28ED98D6IIDTH5F6",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/239T28ED98D6IIDTH5F6/Calculus_for_JEE_Advanced_Lec_16_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/239T28ED98D6IIDTH5F6/Calculus_for_JEE_Advanced_Lec_16_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Calculus for JEE Advanced Lec 17",
                 "uid": "9ZIMRQW9OIPSF6UYXNV0",
-                "duration": "2h 26m"
+                "duration": "2h 26m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9ZIMRQW9OIPSF6UYXNV0/Calculus_for_JEE_Advanced_Lec_17_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9ZIMRQW9OIPSF6UYXNV0/Calculus_for_JEE_Advanced_Lec_17_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Calculus for JEE Advanced Lec 18",
                 "uid": "3C0CXNDZ32MQR0D7LI6E",
-                "duration": "1h 38m"
+                "duration": "1h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3C0CXNDZ32MQR0D7LI6E/Calculus_for_JEE_Advanced_Lec_18_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3C0CXNDZ32MQR0D7LI6E/Calculus_for_JEE_Advanced_Lec_18_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Calculus for JEE Advanced Lec 19",
                 "uid": "YWPFYZL3802JJXE8Y9O7",
-                "duration": "2h 32m"
+                "duration": "2h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YWPFYZL3802JJXE8Y9O7/Calculus_for_JEE_Advanced_Lec_19_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YWPFYZL3802JJXE8Y9O7/Calculus_for_JEE_Advanced_Lec_19_no_anno.pdf"
             },
             {
                 "rank": 20,
                 "title": "Calculus for JEE Advanced Lec 20",
                 "uid": "B0OQVW56O8D6HV3BMV01",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/B0OQVW56O8D6HV3BMV01/Calculus_for_JEE_Advanced_Lec_20_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/B0OQVW56O8D6HV3BMV01/Calculus_for_JEE_Advanced_Lec_20_no_anno.pdf"
             },
             {
                 "rank": 21,
                 "title": "Calculus for JEE Advanced Lec 21",
                 "uid": "IUA1UE5FGPZKLE7LZH50",
-                "duration": "2h 41m"
+                "duration": "2h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IUA1UE5FGPZKLE7LZH50/Calculus_for_JEE_Advanced_Lec_21_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IUA1UE5FGPZKLE7LZH50/Calculus_for_JEE_Advanced_Lec_21_no_anno.pdf"
             },
             {
                 "rank": 22,
                 "title": "Calculus for JEE Advanced Lec 22",
                 "uid": "W7BVS9QM651AZQ414H39",
-                "duration": "2h 18m"
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W7BVS9QM651AZQ414H39/Calculus_for_JEE_Advanced_Lec_22_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W7BVS9QM651AZQ414H39/Calculus_for_JEE_Advanced_Lec_22_no_anno.pdf"
             },
             {
                 "rank": 23,
                 "title": "Calculus for JEE Advanced Lec 23",
                 "uid": "AEBOHYHHPOUEQF1U36R9",
-                "duration": "2h 38m"
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AEBOHYHHPOUEQF1U36R9/Calculus_for_JEE_Advanced_Lec_23_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AEBOHYHHPOUEQF1U36R9/Calculus_for_JEE_Advanced_Lec_23_no_anno.pdf"
             },
             {
                 "rank": 24,
                 "title": "Calculus for JEE Advanced Lec 24",
                 "uid": "6904GBH75TID7GEZHMW8",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6904GBH75TID7GEZHMW8/Calculus_for_JEE_Advanced_Lec_24_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6904GBH75TID7GEZHMW8/Calculus_for_JEE_Advanced_Lec_24_no_anno.pdf"
             },
             {
                 "rank": 25,
                 "title": "Calculus for JEE Advanced Lec 25",
                 "uid": "FBFFTJ4T2HQZZSS7F77D",
-                "duration": "2h 11m"
+                "duration": "2h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FBFFTJ4T2HQZZSS7F77D/Calculus_for_JEE_Advanced_Lec_25_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FBFFTJ4T2HQZZSS7F77D/Calculus_for_JEE_Advanced_Lec_25_no_anno.pdf"
             },
             {
                 "rank": 26,
                 "title": "Calculus for JEE Advanced Lec 26",
                 "uid": "TK3Y8BHUJXC2941KERU0",
-                "duration": "2h 30m"
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TK3Y8BHUJXC2941KERU0/Calculus_for_JEE_Advanced_Lec_26_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TK3Y8BHUJXC2941KERU0/Calculus_for_JEE_Advanced_Lec_26_no_anno.pdf"
             },
             {
                 "rank": 27,
                 "title": "Calculus for JEE Advanced Lec 27",
                 "uid": "BOSGDGUPHY0PVHTUZW4R",
-                "duration": "1h 48m"
+                "duration": "1h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BOSGDGUPHY0PVHTUZW4R/Calculus_for_JEE_Advanced_Lec_27_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BOSGDGUPHY0PVHTUZW4R/Calculus_for_JEE_Advanced_Lec_27_no_anno.pdf"
             },
             {
                 "rank": 28,
                 "title": "Calculus for JEE Advanced Lec 28",
                 "uid": "TBEHC82VP8GGEIN7O82L",
-                "duration": "2h 43m"
+                "duration": "2h 43m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TBEHC82VP8GGEIN7O82L/Calculus_for_JEE_Advanced_Lec_28_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TBEHC82VP8GGEIN7O82L/Calculus_for_JEE_Advanced_Lec_28_no_anno.pdf"
             },
             {
                 "rank": 29,
                 "title": "Calculus for JEE Advanced Lec 29",
                 "uid": "CKAT2KFGEYUCTRZG4Z9S",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CKAT2KFGEYUCTRZG4Z9S/Calculus_for_JEE_Advanced_Lec_29_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CKAT2KFGEYUCTRZG4Z9S/Calculus_for_JEE_Advanced_Lec_29_no_anno.pdf"
             },
             {
                 "rank": 30,
                 "title": "Calculus for JEE Advanced Lec 30",
                 "uid": "IXUAGZACIVN10A0LTCCV",
-                "duration": "2h 23m"
+                "duration": "2h 23m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IXUAGZACIVN10A0LTCCV/Calculus_for_JEE_Advanced_Lec_30_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IXUAGZACIVN10A0LTCCV/Calculus_for_JEE_Advanced_Lec_30_no_anno.pdf"
             },
             {
                 "rank": 31,
                 "title": "Calculus for JEE Advanced Lec 31",
                 "uid": "LDML9VTNJA6H8UZKV9NR",
-                "duration": "2h 38m"
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LDML9VTNJA6H8UZKV9NR/Calculus_for_JEE_Advanced_Lec_31_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LDML9VTNJA6H8UZKV9NR/Calculus_for_JEE_Advanced_Lec_31_no_anno.pdf"
             },
             {
                 "rank": 32,
                 "title": "Calculus for JEE Advanced Lec 32",
                 "uid": "7I16MP9ILVG7QJSS63S5",
-                "duration": "2h 16m"
+                "duration": "2h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7I16MP9ILVG7QJSS63S5/Calculus_for_JEE_Advanced_Lec_32_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7I16MP9ILVG7QJSS63S5/Calculus_for_JEE_Advanced_Lec_32_no_anno.pdf"
             },
             {
                 "rank": 33,
                 "title": "Calculus for JEE Advanced Lec 33",
                 "uid": "96F9RJRLPJYYQKHDXYC7",
-                "duration": "2h 41m"
+                "duration": "2h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/96F9RJRLPJYYQKHDXYC7/Calculus_for_JEE_Advanced_Lec_33_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/96F9RJRLPJYYQKHDXYC7/Calculus_for_JEE_Advanced_Lec_33_no_anno.pdf"
             },
             {
                 "rank": 34,
                 "title": "Calculus for JEE Advanced Lec 34",
                 "uid": "WBJSA4A5GWTOTNOE8WEW",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WBJSA4A5GWTOTNOE8WEW/Calculus_for_JEE_Advanced_Lec_34_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WBJSA4A5GWTOTNOE8WEW/Calculus_for_JEE_Advanced_Lec_34_no_anno.pdf"
             },
             {
                 "rank": 35,
                 "title": "Calculus for JEE Advanced Lec 35",
                 "uid": "455VV39L2P2QWEONP6XQ",
-                "duration": "2h 7m"
+                "duration": "2h 07m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/455VV39L2P2QWEONP6XQ/Calculus_for_JEE_Advanced_Lec_35_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/455VV39L2P2QWEONP6XQ/Calculus_for_JEE_Advanced_Lec_35_no_anno.pdf"
             },
             {
                 "rank": 36,
                 "title": "Discussion Class",
                 "uid": "ZHZIE04M7E1RF8S52UQD",
-                "duration": "1h 10m"
+                "duration": "1h 10m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZHZIE04M7E1RF8S52UQD/Discussion_Class_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZHZIE04M7E1RF8S52UQD/Discussion_Class_no_anno.pdf"
             },
             {
                 "rank": 37,
                 "title": "Calculus for JEE Advanced Lec 36",
                 "uid": "Y2CEILJQEA6GOW4SP6UB",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y2CEILJQEA6GOW4SP6UB/Calculus_for_JEE_Advanced_Lec_36_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y2CEILJQEA6GOW4SP6UB/Calculus_for_JEE_Advanced_Lec_36_no_anno.pdf"
             },
             {
                 "rank": 38,
                 "title": "Calculus for JEE Advanced Lec 37",
                 "uid": "6JU4WZJDBX1T3EHOJUX8",
-                "duration": "2h 42m"
+                "duration": "2h 42m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6JU4WZJDBX1T3EHOJUX8/Calculus_for_JEE_Advanced_Lec_37_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6JU4WZJDBX1T3EHOJUX8/Calculus_for_JEE_Advanced_Lec_37_no_anno.pdf"
             },
             {
                 "rank": 39,
                 "title": "Calculus for JEE Advanced Lec 38",
                 "uid": "XJHKS26EO5RSBJJU0WDL",
-                "duration": "2h 32m"
+                "duration": "2h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XJHKS26EO5RSBJJU0WDL/Calculus_for_JEE_Advanced_Lec_38_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XJHKS26EO5RSBJJU0WDL/Calculus_for_JEE_Advanced_Lec_38_no_anno.pdf"
             },
             {
                 "rank": 40,
                 "title": "Calculus for JEE Advanced Lec 39",
                 "uid": "1VSNJTC44XY0VMUFR9B9",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1VSNJTC44XY0VMUFR9B9/Calculus_for_JEE_Advanced_Lec_39_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1VSNJTC44XY0VMUFR9B9/Calculus_for_JEE_Advanced_Lec_39_no_anno.pdf"
             },
             {
                 "rank": 41,
                 "title": "Calculus for JEE Advanced Lec 40",
                 "uid": "RDVGDZOPOM2L10XG1JR9",
-                "duration": "2h 44m"
+                "duration": "2h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RDVGDZOPOM2L10XG1JR9/Calculus_for_JEE_Advanced_Lec_40_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RDVGDZOPOM2L10XG1JR9/Calculus_for_JEE_Advanced_Lec_40_no_anno.pdf"
             },
             {
                 "rank": 42,
                 "title": "Calculus for JEE Advanced Lec 41",
                 "uid": "CXP4GZ1VNO3ZVR4S8GOM",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CXP4GZ1VNO3ZVR4S8GOM/Calculus_for_JEE_Advanced_Lec_41_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CXP4GZ1VNO3ZVR4S8GOM/Calculus_for_JEE_Advanced_Lec_41_no_anno.pdf"
             },
             {
                 "rank": 43,
                 "title": "Calculus for JEE Advanced Lec 42",
                 "uid": "3CUZ0T883H95GTINNJST",
-                "duration": "1h 28m"
+                "duration": "1h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3CUZ0T883H95GTINNJST/Calculus_for_JEE_Advanced_Lec_42_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3CUZ0T883H95GTINNJST/Calculus_for_JEE_Advanced_Lec_42_no_anno.pdf"
             },
             {
                 "rank": 44,
                 "title": "Calculus for JEE Advanced Lec 43",
                 "uid": "GR9R3R31NI08B0OVZD4Q",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GR9R3R31NI08B0OVZD4Q/Calculus_for_JEE_Advanced_Lec_43_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GR9R3R31NI08B0OVZD4Q/Calculus_for_JEE_Advanced_Lec_43_no_anno.pdf"
             },
             {
                 "rank": 45,
                 "title": "Calculus for JEE Advanced Lec 44",
                 "uid": "0TH1OQFIINGVYDPA8S85",
-                "duration": "2h 43m"
+                "duration": "2h 43m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0TH1OQFIINGVYDPA8S85/Calculus_for_JEE_Advanced_Lec_44_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0TH1OQFIINGVYDPA8S85/Calculus_for_JEE_Advanced_Lec_44_no_anno.pdf"
             },
             {
                 "rank": 46,
                 "title": "Calculus for JEE Advanced Lec 45",
                 "uid": "U9U8Y87P5D5S8BIWJY81",
-                "duration": "1h 46m"
+                "duration": "1h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U9U8Y87P5D5S8BIWJY81/Calculus_for_JEE_Advanced_Lec_45_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U9U8Y87P5D5S8BIWJY81/Calculus_for_JEE_Advanced_Lec_45_no_anno.pdf"
             },
             {
                 "rank": 47,
                 "title": "Calculus for JEE Advanced Lec 46",
                 "uid": "0M54MUO7EYBMMGEBFCI1",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0M54MUO7EYBMMGEBFCI1/Calculus_for_JEE_Advanced_Lec_46_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0M54MUO7EYBMMGEBFCI1/Calculus_for_JEE_Advanced_Lec_46_no_anno.pdf"
             },
             {
                 "rank": 48,
                 "title": "Calculus for JEE Advanced Lec 47",
                 "uid": "G7C1QBLXE9KKQZQEINRD",
-                "duration": "2h 47m"
+                "duration": "2h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/G7C1QBLXE9KKQZQEINRD/Calculus_for_JEE_Advanced_Lec_47_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/G7C1QBLXE9KKQZQEINRD/Calculus_for_JEE_Advanced_Lec_47_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "permutation-combination",
@@ -1025,19 +1348,25 @@ const COURSES = [
                 "rank": 1,
                 "title": "P&C and BT Lecture 1",
                 "uid": "T0DIHBX4EFAJT6SKGDX9",
-                "duration": "1h 59m"
+                "duration": "1h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T0DIHBX4EFAJT6SKGDX9/PC_and_BT_Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T0DIHBX4EFAJT6SKGDX9/PC_and_BT_Lecture_1_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "P&C and BT Lecture 2",
                 "uid": "2XPATQRO5LGS8N5ST8YU",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2XPATQRO5LGS8N5ST8YU/PC_and_BT_Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2XPATQRO5LGS8N5ST8YU/PC_and_BT_Lecture_2_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "P&C and BT Lecture 3",
                 "uid": "8FV5UXWDA4JRIQTD26L1",
-                "duration": "2h 26m"
+                "duration": "2h 26m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8FV5UXWDA4JRIQTD26L1/PC_and_BT_Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8FV5UXWDA4JRIQTD26L1/PC_and_BT_Lecture_3_no_anno.pdf"
             },
             {
                 "rank": 4,
@@ -1049,57 +1378,78 @@ const COURSES = [
                 "rank": 5,
                 "title": "P&C and BT Lecture 4",
                 "uid": "9ENARC0IVWLLY0Q1KUWI",
-                "duration": "2h 44m"
+                "duration": "2h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9ENARC0IVWLLY0Q1KUWI/PC_and_BT_Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9ENARC0IVWLLY0Q1KUWI/PC_and_BT_Lecture_4_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "P&C and BT Lecture 6",
                 "uid": "XKMABBSSASKHQASGDK1I",
-                "duration": "2h 47m"
+                "duration": "2h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XKMABBSSASKHQASGDK1I/PC_and_BT_Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XKMABBSSASKHQASGDK1I/PC_and_BT_Lecture_6_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "P&C and BT Lecture 7",
                 "uid": "V91H9O22HNJWHUJ379CO",
-                "duration": "2h 50m"
+                "duration": "2h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V91H9O22HNJWHUJ379CO/PC_and_BT_Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V91H9O22HNJWHUJ379CO/PC_and_BT_Lecture_7_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "P&C and BT Lecture 8",
                 "uid": "KLNMA4YJM8EIFF0IJMLM",
-                "duration": "2h 54m"
+                "duration": "2h 54m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KLNMA4YJM8EIFF0IJMLM/PC_and_BT_Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KLNMA4YJM8EIFF0IJMLM/PC_and_BT_Lecture_8_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "P&C and BT Lecture 9",
                 "uid": "LKFL6AIY1KHMHARMFZCI",
-                "duration": "2h 54m"
+                "duration": "2h 54m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LKFL6AIY1KHMHARMFZCI/PC_and_BT_Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LKFL6AIY1KHMHARMFZCI/PC_and_BT_Lecture_9_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "P&C and BT Lecture 10",
                 "uid": "7ONBWJLTJ06XVVUIT6TD",
-                "duration": "2h 19m"
+                "duration": "2h 19m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7ONBWJLTJ06XVVUIT6TD/PC_and_BT_Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7ONBWJLTJ06XVVUIT6TD/PC_and_BT_Lecture_10_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "P&C and BT Lecture 11",
                 "uid": "VLGH5Y3OG3X5QJWEH5N1",
-                "duration": "4h 0m"
+                "duration": "4h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VLGH5Y3OG3X5QJWEH5N1/PC_and_BT_Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VLGH5Y3OG3X5QJWEH5N1/PC_and_BT_Lecture_11_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "P&C and BT Lecture 12",
                 "uid": "4OO7WG7P6G45EIO406GE",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4OO7WG7P6G45EIO406GE/PC_and_BT_Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4OO7WG7P6G45EIO406GE/PC_and_BT_Lecture_12_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "P&C and BT Lecture 13",
                 "uid": "J88ITGKAF978YSMWNF2D",
-                "duration": "3h 45m"
+                "duration": "3h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J88ITGKAF978YSMWNF2D/PC_and_BT_Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J88ITGKAF978YSMWNF2D/PC_and_BT_Lecture_13_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "calculus-problem-solving",
@@ -1114,223 +1464,297 @@ const COURSES = [
                 "rank": 1,
                 "title": "Calculus Problem Solving Lec-1 for JEE Advanced & Mains",
                 "uid": "OYWOWO3FW8H8TYB25OE8",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OYWOWO3FW8H8TYB25OE8/Calculus_Problem_Solving_Lec1_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OYWOWO3FW8H8TYB25OE8/Calculus_Problem_Solving_Lec1_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Calculus Problem Solving Lec-2 for JEE Advanced & Mains",
                 "uid": "17GX1BOEU00DQ80YZC4I",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/17GX1BOEU00DQ80YZC4I/Calculus_Problem_Solving_Lec2_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/17GX1BOEU00DQ80YZC4I/Calculus_Problem_Solving_Lec2_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Calculus Problem Solving Lec-4 for JEE Advanced & Mains",
                 "uid": "8VG8V475GLFCLADG4IPC",
-                "duration": "3h 36m"
+                "duration": "3h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8VG8V475GLFCLADG4IPC/Calculus_Problem_Solving_Lec4_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8VG8V475GLFCLADG4IPC/Calculus_Problem_Solving_Lec4_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Calculus Problem Solving Lec-3 for JEE Advanced & Mains",
                 "uid": "805CYBQO7T8Z1BRGJQD6",
-                "duration": "2h 29m"
+                "duration": "2h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/805CYBQO7T8Z1BRGJQD6/Calculus_Problem_Solving_Lec3_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/805CYBQO7T8Z1BRGJQD6/Calculus_Problem_Solving_Lec3_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Calculus Problem Solving Lec-5 for JEE Advanced & Mains",
                 "uid": "21ZB7V5Q271PLK1T59FS",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/21ZB7V5Q271PLK1T59FS/Calculus_Problem_Solving_Lec5_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/21ZB7V5Q271PLK1T59FS/Calculus_Problem_Solving_Lec5_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Calculus Problem Solving Lec-6 for JEE Advanced & Mains",
                 "uid": "9EH66E2NVIJJIGNYDI8N",
-                "duration": "2h 50m"
+                "duration": "2h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9EH66E2NVIJJIGNYDI8N/Calculus_Problem_Solving_Lec6_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9EH66E2NVIJJIGNYDI8N/Calculus_Problem_Solving_Lec6_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Calculus Problem Solving Lec-7 for JEE Advanced & Mains",
                 "uid": "11FW80LD5TTSCAAXR219",
-                "duration": "4h 16m"
+                "duration": "4h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/11FW80LD5TTSCAAXR219/Calculus_Problem_Solving_Lec7_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/11FW80LD5TTSCAAXR219/Calculus_Problem_Solving_Lec7_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Calculus Problem Solving Lec-8 for JEE Advanced & Mains",
                 "uid": "5J69IJ3JU2UYXNG7ODME",
-                "duration": "3h 36m"
+                "duration": "3h 36m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5J69IJ3JU2UYXNG7ODME/Calculus_Problem_Solving_Lec8_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5J69IJ3JU2UYXNG7ODME/Calculus_Problem_Solving_Lec8_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Calculus Problem Solving Lec-9 for JEE Advanced & Mains",
                 "uid": "XH3E7AYHT5FZ6TGEXU8S",
-                "duration": "2h 51m"
+                "duration": "2h 51m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XH3E7AYHT5FZ6TGEXU8S/Calculus_Problem_Solving_Lec9_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XH3E7AYHT5FZ6TGEXU8S/Calculus_Problem_Solving_Lec9_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Calculus Problem Solving Lec-10 for JEE Advanced & Mains",
                 "uid": "USDGHSDLUYL21AZDHHJJ",
-                "duration": "2h 39m"
+                "duration": "2h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/USDGHSDLUYL21AZDHHJJ/Calculus_Problem_Solving_Lec10_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/USDGHSDLUYL21AZDHHJJ/Calculus_Problem_Solving_Lec10_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Calculus Problem Solving Lec-11 for JEE Advanced & Mains",
                 "uid": "82DY81ZQH638HDC9EWQD",
-                "duration": "2h 46m"
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/82DY81ZQH638HDC9EWQD/Calculus_Problem_Solving_Lec11_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/82DY81ZQH638HDC9EWQD/Calculus_Problem_Solving_Lec11_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Calculus Problem Solving Lec-12 for JEE Advanced & Mains",
                 "uid": "8TXTN4PLUVBIA2NZHSV7",
-                "duration": "2h 46m"
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8TXTN4PLUVBIA2NZHSV7/Calculus_Problem_Solving_Lec12_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8TXTN4PLUVBIA2NZHSV7/Calculus_Problem_Solving_Lec12_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Calculus Problem Solving Lec-13 for JEE Advanced & Mains",
                 "uid": "OXRUHCH5T9OGVJ87WSQE",
-                "duration": "2h 0m"
+                "duration": "2h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OXRUHCH5T9OGVJ87WSQE/Calculus_Problem_Solving_Lec13_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OXRUHCH5T9OGVJ87WSQE/Calculus_Problem_Solving_Lec13_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Calculus Problem Solving Lec-14 for JEE Advanced & Mains",
                 "uid": "PZQVQWIIKHT3Q1KDI0D3",
-                "duration": "2h 50m"
+                "duration": "2h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PZQVQWIIKHT3Q1KDI0D3/Calculus_Problem_Solving_Lec14_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PZQVQWIIKHT3Q1KDI0D3/Calculus_Problem_Solving_Lec14_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "Calculus Problem Solving Lec-15 for JEE Advanced & Mains",
                 "uid": "1SASP5UNP6P2RC69DULI",
-                "duration": "2h 48m"
+                "duration": "2h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1SASP5UNP6P2RC69DULI/Calculus_Problem_Solving_Lec15_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1SASP5UNP6P2RC69DULI/Calculus_Problem_Solving_Lec15_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Calculus Problem Solving Lec-16 for JEE Advanced & Mains",
                 "uid": "3R1GBZ8TVSOV5Z7WP3CZ",
-                "duration": "3h 47m"
+                "duration": "3h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3R1GBZ8TVSOV5Z7WP3CZ/Calculus_Problem_Solving_Lec16_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3R1GBZ8TVSOV5Z7WP3CZ/Calculus_Problem_Solving_Lec16_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Calculus Problem Solving Lec-17 for JEE Advanced & Mains",
                 "uid": "MWIDWE917IRWK1RF1KM1",
-                "duration": "2h 55m"
+                "duration": "2h 55m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MWIDWE917IRWK1RF1KM1/Calculus_Problem_Solving_Lec17_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MWIDWE917IRWK1RF1KM1/Calculus_Problem_Solving_Lec17_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Calculus Problem Solving Lec-18 for JEE Advanced & Mains",
                 "uid": "INYIAXTH30UR8PTQ4EDL",
-                "duration": "2h 11m"
+                "duration": "2h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/INYIAXTH30UR8PTQ4EDL/Calculus_Problem_Solving_Lec18_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/INYIAXTH30UR8PTQ4EDL/Calculus_Problem_Solving_Lec18_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Calculus Problem Solving Lec-19 for JEE Advanced & Mains",
                 "uid": "NFKEE2PY7STKYFE14QCL",
-                "duration": "3h 45m"
+                "duration": "3h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NFKEE2PY7STKYFE14QCL/Calculus_Problem_Solving_Lec19_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NFKEE2PY7STKYFE14QCL/Calculus_Problem_Solving_Lec19_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 20,
                 "title": "Calculus Problem Solving Lec-20 for JEE Advanced & Mains",
                 "uid": "M0M8PUSCF5CGAJ3FIRE5",
-                "duration": "59m"
+                "duration": "59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M0M8PUSCF5CGAJ3FIRE5/Calculus_Problem_Solving_Lec20_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M0M8PUSCF5CGAJ3FIRE5/Calculus_Problem_Solving_Lec20_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 21,
                 "title": "Calculus Problem Solving Lec-21 for JEE Advanced & Mains",
                 "uid": "GE4GKXYQ4A8346H156O4",
-                "duration": "2h 52m"
+                "duration": "2h 52m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GE4GKXYQ4A8346H156O4/Calculus_Problem_Solving_Lec21_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GE4GKXYQ4A8346H156O4/Calculus_Problem_Solving_Lec21_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 22,
                 "title": "Calculus Problem Solving Lec-22 for JEE Advanced & Mains",
                 "uid": "OL6OPRYZO1Q4L88HUV1K",
-                "duration": "3h 20m"
+                "duration": "3h 20m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OL6OPRYZO1Q4L88HUV1K/Calculus_Problem_Solving_Lec22_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OL6OPRYZO1Q4L88HUV1K/Calculus_Problem_Solving_Lec22_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 23,
                 "title": "Calculus Problem Solving Lec-23 for JEE Advanced & Mains",
                 "uid": "8UADNKS4BCW9UK3RRR3J",
-                "duration": "3h 7m"
+                "duration": "3h 07m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8UADNKS4BCW9UK3RRR3J/Calculus_Problem_Solving_Lec23_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8UADNKS4BCW9UK3RRR3J/Calculus_Problem_Solving_Lec23_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 24,
                 "title": "Calculus Problem Solving Lec-24 for JEE Advanced & Mains",
                 "uid": "C1492DNEP63IZOGZOQJ9",
-                "duration": "3h 14m"
+                "duration": "3h 14m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C1492DNEP63IZOGZOQJ9/Calculus_Problem_Solving_Lec24_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C1492DNEP63IZOGZOQJ9/Calculus_Problem_Solving_Lec24_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 25,
                 "title": "Calculus Problem Solving Lec-25 for JEE Advanced & Mains",
                 "uid": "ASJ0FS5TBTS5CLLEQB8W",
-                "duration": "2h 27m"
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ASJ0FS5TBTS5CLLEQB8W/Calculus_Problem_Solving_Lec25_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ASJ0FS5TBTS5CLLEQB8W/Calculus_Problem_Solving_Lec25_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 26,
                 "title": "Calculus Problem Solving Lec-26 for JEE Advanced & Mains",
                 "uid": "012AHXUV24CHJ2IB3U06",
-                "duration": "1h 48m"
+                "duration": "1h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/012AHXUV24CHJ2IB3U06/Calculus_Problem_Solving_Lec26_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/012AHXUV24CHJ2IB3U06/Calculus_Problem_Solving_Lec26_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 27,
                 "title": "Calculus Problem Solving Lec-27 for JEE Advanced & Mains",
                 "uid": "4GCQMS5BIEZC5CJNAZB7",
-                "duration": "2h 52m"
+                "duration": "2h 52m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4GCQMS5BIEZC5CJNAZB7/Calculus_Problem_Solving_Lec27_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4GCQMS5BIEZC5CJNAZB7/Calculus_Problem_Solving_Lec27_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 28,
                 "title": "Calculus Problem Solving Lec-28 for JEE Advanced & Mains",
                 "uid": "6FWIHDXE3HW0UK90A1ZH",
-                "duration": "1h 56m"
+                "duration": "1h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6FWIHDXE3HW0UK90A1ZH/Calculus_Problem_Solving_Lec28_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6FWIHDXE3HW0UK90A1ZH/Calculus_Problem_Solving_Lec28_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 29,
                 "title": "Calculus Problem Solving Lec-29 for JEE Advanced & Mains",
                 "uid": "EAFPOMY5I2WQN1ADKC56",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EAFPOMY5I2WQN1ADKC56/Calculus_Problem_Solving_Lec29_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EAFPOMY5I2WQN1ADKC56/Calculus_Problem_Solving_Lec29_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 30,
                 "title": "Calculus Problem Solving Lec-30 for JEE Advanced & Mains",
                 "uid": "ZKE60U1DWYFWA2PJK6FA",
-                "duration": "2h 26m"
+                "duration": "2h 26m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZKE60U1DWYFWA2PJK6FA/Calculus_Problem_Solving_Lec30_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZKE60U1DWYFWA2PJK6FA/Calculus_Problem_Solving_Lec30_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 31,
                 "title": "Calculus Problem Solving Lec-31 for JEE Advanced & Mains",
                 "uid": "074Y9W0WALP5AJOYFBKM",
-                "duration": "3h 56m"
+                "duration": "3h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/074Y9W0WALP5AJOYFBKM/Calculus_Problem_Solving_Lec31_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/074Y9W0WALP5AJOYFBKM/Calculus_Problem_Solving_Lec31_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 32,
                 "title": "Calculus Problem Solving Lec-32 for JEE Advanced & Mains",
                 "uid": "GAL63GLERVOB7K7G7Y2T",
-                "duration": "4h 17m"
+                "duration": "4h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GAL63GLERVOB7K7G7Y2T/Calculus_Problem_Solving_Lec32_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GAL63GLERVOB7K7G7Y2T/Calculus_Problem_Solving_Lec32_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 33,
                 "title": "Calculus Problem Solving Lec-33 for JEE Advanced & Mains",
                 "uid": "90FRIRPEKMRZYR6WJAQ3",
-                "duration": "3h 1m"
+                "duration": "3h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/90FRIRPEKMRZYR6WJAQ3/Calculus_Problem_Solving_Lec33_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/90FRIRPEKMRZYR6WJAQ3/Calculus_Problem_Solving_Lec33_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 34,
                 "title": "Calculus Problem Solving Lec-34 for JEE Advanced & Mains",
                 "uid": "69FDC1MWZZ6L8T0A2OCJ",
-                "duration": "3h 51m"
+                "duration": "3h 51m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/69FDC1MWZZ6L8T0A2OCJ/Calculus_Problem_Solving_Lec34_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/69FDC1MWZZ6L8T0A2OCJ/Calculus_Problem_Solving_Lec34_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 35,
                 "title": "Calculus Problem Solving Lec-35 for JEE Advanced & Mains",
                 "uid": "QUM33T85UWED4JDWUFIH",
-                "duration": "1h 35m"
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QUM33T85UWED4JDWUFIH/Calculus_Problem_Solving_Lec35_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QUM33T85UWED4JDWUFIH/Calculus_Problem_Solving_Lec35_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 36,
                 "title": "Calculus Problem Solving Lec-36 for JEE Advanced & Mains",
                 "uid": "46EFS1PUCVB8TJ4WFV06",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/46EFS1PUCVB8TJ4WFV06/Calculus_Problem_Solving_Lec36_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/46EFS1PUCVB8TJ4WFV06/Calculus_Problem_Solving_Lec36_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 37,
                 "title": "Calculus Problem Solving Lec-37 for JEE Advanced & Mains",
                 "uid": "T6KB7PRVM2M488N1TBMX",
-                "duration": "2h 6m"
+                "duration": "2h 06m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T6KB7PRVM2M488N1TBMX/Calculus_Problem_Solving_Lec37_for_JEE_Advanced__Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T6KB7PRVM2M488N1TBMX/Calculus_Problem_Solving_Lec37_for_JEE_Advanced__Mains_no_anno.pdf"
             },
             {
                 "rank": 38,
@@ -1338,7 +1762,10 @@ const COURSES = [
                 "uid": "YXS8VRSXFV0V6TY21I87",
                 "duration": "2h 25m"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "probability-stats",
@@ -1353,13 +1780,17 @@ const COURSES = [
                 "rank": 1,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-1",
                 "uid": "24N2G1YVNXH2YI9X9FLQ",
-                "duration": "2h 55m"
+                "duration": "2h 55m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/24N2G1YVNXH2YI9X9FLQ/Probability_for_JEE_Advanced__Mains_2026_Lecture1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/24N2G1YVNXH2YI9X9FLQ/Probability_for_JEE_Advanced__Mains_2026_Lecture1_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-2",
                 "uid": "IBCNG51TMA2SZAKLWYEN",
-                "duration": "3h 16m"
+                "duration": "3h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IBCNG51TMA2SZAKLWYEN/Probability_for_JEE_Advanced__Mains_2026_Lecture2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IBCNG51TMA2SZAKLWYEN/Probability_for_JEE_Advanced__Mains_2026_Lecture2_no_anno.pdf"
             },
             {
                 "rank": 3,
@@ -1371,33 +1802,46 @@ const COURSES = [
                 "rank": 4,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-3",
                 "uid": "0CQ75GITQ1NKBKWEHFLK",
-                "duration": "2h 12m"
+                "duration": "2h 12m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0CQ75GITQ1NKBKWEHFLK/Probability_for_JEE_Advanced__Mains_2026_Lecture3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0CQ75GITQ1NKBKWEHFLK/Probability_for_JEE_Advanced__Mains_2026_Lecture3_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-4",
                 "uid": "UYNBTR6WJE4JDP7RAII6",
-                "duration": "4h 9m"
+                "duration": "4h 09m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UYNBTR6WJE4JDP7RAII6/Probability_for_JEE_Advanced__Mains_2026_Lecture4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UYNBTR6WJE4JDP7RAII6/Probability_for_JEE_Advanced__Mains_2026_Lecture4_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-5",
                 "uid": "HXPO6A0XOJVNYW588XBQ",
-                "duration": "2h 47m"
+                "duration": "2h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HXPO6A0XOJVNYW588XBQ/Probability_for_JEE_Advanced__Mains_2026_Lecture5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HXPO6A0XOJVNYW588XBQ/Probability_for_JEE_Advanced__Mains_2026_Lecture5_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-6",
                 "uid": "HV5V52KKYXCEPBQ7BQBB",
-                "duration": "2h 5m"
+                "duration": "2h 05m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HV5V52KKYXCEPBQ7BQBB/Probability_for_JEE_Advanced__Mains_2026_Lecture6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HV5V52KKYXCEPBQ7BQBB/Probability_for_JEE_Advanced__Mains_2026_Lecture6_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Probability for JEE Advanced & Mains 2026 Lecture-7",
                 "uid": "RC0LLWD4ZJQHZEGYKDTU",
-                "duration": "1h 17m"
+                "duration": "1h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RC0LLWD4ZJQHZEGYKDTU/Probability_for_JEE_Advanced__Mains_2026_Lecture7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RC0LLWD4ZJQHZEGYKDTU/Probability_for_JEE_Advanced__Mains_2026_Lecture7_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "algebra-3",
@@ -1412,37 +1856,49 @@ const COURSES = [
                 "rank": 1,
                 "title": "Complex Numbers & Matrices Lec 1",
                 "uid": "UA9TXW5PTOOWROHBBLPB",
-                "duration": "2h 4m"
+                "duration": "2h 04m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UA9TXW5PTOOWROHBBLPB/Complex_Numbers__Matrices_Lec_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UA9TXW5PTOOWROHBBLPB/Complex_Numbers__Matrices_Lec_1_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Complex Numbers & Matrices Lec 3",
                 "uid": "CWSLBFFGMNN7RSKC4ZXV",
-                "duration": "3h 7m"
+                "duration": "3h 07m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CWSLBFFGMNN7RSKC4ZXV/Complex_Numbers__Matrices_Lec_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CWSLBFFGMNN7RSKC4ZXV/Complex_Numbers__Matrices_Lec_3_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Complex Numbers & Matrices Lec 4",
                 "uid": "6GL42WP9QRQNR8BE2614",
-                "duration": "2h 8m"
+                "duration": "2h 08m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6GL42WP9QRQNR8BE2614/Complex_Numbers__Matrices_Lec_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6GL42WP9QRQNR8BE2614/Complex_Numbers__Matrices_Lec_4_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Complex Numbers & Matrices Lec 2",
                 "uid": "QNYFFMBN9IE6MYTHR010",
-                "duration": "2h 37m"
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QNYFFMBN9IE6MYTHR010/Complex_Numbers__Matrices_Lec_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QNYFFMBN9IE6MYTHR010/Complex_Numbers__Matrices_Lec_2_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Complex Numbers & Matrices Lec 5",
                 "uid": "NDCUYX0GDC18YM2E03MV",
-                "duration": "3h 52m"
+                "duration": "3h 52m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NDCUYX0GDC18YM2E03MV/Complex_Numbers__Matrices_Lec_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NDCUYX0GDC18YM2E03MV/Complex_Numbers__Matrices_Lec_5_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Complex Numbers & Matrices Lec 6",
                 "uid": "9A0IQ5MTI0P0E36DDA3U",
-                "duration": "3h 3m"
+                "duration": "3h 03m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9A0IQ5MTI0P0E36DDA3U/Complex_Numbers__Matrices_Lec_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9A0IQ5MTI0P0E36DDA3U/Complex_Numbers__Matrices_Lec_6_no_anno.pdf"
             },
             {
                 "rank": 7,
@@ -1460,15 +1916,22 @@ const COURSES = [
                 "rank": 9,
                 "title": "Matrices for JEE 2026",
                 "uid": "VN25F684NZ11E4LMXM53",
-                "duration": "2h 49m"
+                "duration": "2h 49m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VN25F684NZ11E4LMXM53/Matrices_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VN25F684NZ11E4LMXM53/Matrices_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Matrices for JEE 2026 Problem Solving",
                 "uid": "5HKVKAX5NJCCO895Y1GV",
-                "duration": "1h 24m"
+                "duration": "1h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5HKVKAX5NJCCO895Y1GV/Matrices_for_JEE_2026_Problem_Solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5HKVKAX5NJCCO895Y1GV/Matrices_for_JEE_2026_Problem_Solving_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "rvp-1",
@@ -1483,19 +1946,25 @@ const COURSES = [
                 "rank": 1,
                 "title": "ORIENTATION",
                 "uid": "EX0SHO9VQUFOLSWURE0N",
-                "duration": "52m"
+                "duration": "52m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EX0SHO9VQUFOLSWURE0N/ORIENTATION_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EX0SHO9VQUFOLSWURE0N/ORIENTATION_no_anno.pdf"
             },
             {
                 "rank": 2,
                 "title": "Algebra Problem Discussion-1",
                 "uid": "HYCLWAKM4GB30R4MFYSG",
-                "duration": "2h 42m"
+                "duration": "2h 42m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HYCLWAKM4GB30R4MFYSG/Algebra_Problem_Discussion1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HYCLWAKM4GB30R4MFYSG/Algebra_Problem_Discussion1_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Algebra Problem Discussion-2",
                 "uid": "47ZWELQRUR3Q7SOIGIVE",
-                "duration": "1h 35m"
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/47ZWELQRUR3Q7SOIGIVE/Algebra_Problem_Discussion2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/47ZWELQRUR3Q7SOIGIVE/Algebra_Problem_Discussion2_no_anno.pdf"
             },
             {
                 "rank": 4,
@@ -1507,109 +1976,145 @@ const COURSES = [
                 "rank": 5,
                 "title": "Algebra Problem Discussion-3",
                 "uid": "QSC5NR30SL1H4WNFSQKG",
-                "duration": "2h 6m"
+                "duration": "2h 06m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QSC5NR30SL1H4WNFSQKG/Algebra_Problem_Discussion3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QSC5NR30SL1H4WNFSQKG/Algebra_Problem_Discussion3_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Algebra Problem Discussion-4",
                 "uid": "KRDCIC5FW346DZUHN1JJ",
-                "duration": "3h 3m"
+                "duration": "3h 03m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KRDCIC5FW346DZUHN1JJ/Algebra_Problem_Discussion4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KRDCIC5FW346DZUHN1JJ/Algebra_Problem_Discussion4_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "CALCULUS for JEE 2026: Discussion -1",
                 "uid": "10SRU8XY9ZC3WRZ9JX4H",
-                "duration": "3h 17m"
+                "duration": "3h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/10SRU8XY9ZC3WRZ9JX4H/CALCULUS_for_JEE_2026_Discussion_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/10SRU8XY9ZC3WRZ9JX4H/CALCULUS_for_JEE_2026_Discussion_1_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Permutations & Combinations Discussion for JEE Mains 2026",
                 "uid": "369VSZ7A0OUXDVTOWTIR",
-                "duration": "1h 56m"
+                "duration": "1h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/369VSZ7A0OUXDVTOWTIR/Permutations__Combinations_Discussion_for_JEE_Mains_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/369VSZ7A0OUXDVTOWTIR/Permutations__Combinations_Discussion_for_JEE_Mains_2026_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Binomial Theorem Discussion for JEE Mains 2026",
                 "uid": "9WKEDP63287IIVB1ONJY",
-                "duration": "1h 11m"
+                "duration": "1h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9WKEDP63287IIVB1ONJY/Binomial_Theorem_Discussion_for_JEE_Mains_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9WKEDP63287IIVB1ONJY/Binomial_Theorem_Discussion_for_JEE_Mains_2026_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "PNC Binomial and TEST Discussion",
                 "uid": "Q9NLN1FXA4EPPCL4FBFJ",
-                "duration": "1h 4m"
+                "duration": "1h 04m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q9NLN1FXA4EPPCL4FBFJ/PNC_Binomial_and_TEST_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Q9NLN1FXA4EPPCL4FBFJ/PNC_Binomial_and_TEST_Discussion_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Straight Lines Discussion",
                 "uid": "MGE7HGO5TEFWD8MZ0AMC",
-                "duration": "1h 49m"
+                "duration": "1h 49m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MGE7HGO5TEFWD8MZ0AMC/Straight_Lines_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MGE7HGO5TEFWD8MZ0AMC/Straight_Lines_Discussion_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Conic Section Discussion",
                 "uid": "T4SKWJADXD349FLVGMBV",
-                "duration": "22m"
+                "duration": "22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T4SKWJADXD349FLVGMBV/Conic_Section_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T4SKWJADXD349FLVGMBV/Conic_Section_Discussion_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Relations for JEE 2026",
                 "uid": "E65ATG7M4ZN3FTC3WKN9",
-                "duration": "2h 1m"
+                "duration": "2h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E65ATG7M4ZN3FTC3WKN9/Relations_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E65ATG7M4ZN3FTC3WKN9/Relations_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Vectors and 3D Geometry Discussion for JEE 2026",
                 "uid": "6Z8J9ZQ4ZXWF26Y4DCCV",
-                "duration": "1h 34m"
+                "duration": "1h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6Z8J9ZQ4ZXWF26Y4DCCV/Vectors_and_3D_Geometry_Discussion_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6Z8J9ZQ4ZXWF26Y4DCCV/Vectors_and_3D_Geometry_Discussion_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "3D Geometry Discussion for JEE 2026",
                 "uid": "JGXYJRLDRD0GQSMRPM9Y",
-                "duration": "1h 31m"
+                "duration": "1h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JGXYJRLDRD0GQSMRPM9Y/3D_Geometry_Discussion_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JGXYJRLDRD0GQSMRPM9Y/3D_Geometry_Discussion_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Statistics for JEE 2026",
                 "uid": "A7CK4LZQYT896PGBEQFE",
-                "duration": "2h 47m"
+                "duration": "2h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A7CK4LZQYT896PGBEQFE/Statistics_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A7CK4LZQYT896PGBEQFE/Statistics_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Test Discussion & Matrices for JEE 2026",
                 "uid": "9A1NGKRXDDCIROLDDDME",
-                "duration": "2h 28m"
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9A1NGKRXDDCIROLDDDME/Test_Discussion__Matrices_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9A1NGKRXDDCIROLDDDME/Test_Discussion__Matrices_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Area Bounded by Curves for JEE 2026",
                 "uid": "YJ4DT0I60NL9NKUAED6Q",
-                "duration": "1h 11m"
+                "duration": "1h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YJ4DT0I60NL9NKUAED6Q/Area_Bounded_by_Curves_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YJ4DT0I60NL9NKUAED6Q/Area_Bounded_by_Curves_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Test Discussion",
                 "uid": "3GVLGS8BY21NAB392ZIW",
-                "duration": "2h 38m"
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3GVLGS8BY21NAB392ZIW/Test_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3GVLGS8BY21NAB392ZIW/Test_Discussion_no_anno.pdf"
             },
             {
                 "rank": 20,
                 "title": "Definite Integration for JEE 2026",
                 "uid": "9TBR2Y3Y5OXE3FP85NYS",
-                "duration": "2h 7m"
+                "duration": "2h 07m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9TBR2Y3Y5OXE3FP85NYS/Definite_Integration_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9TBR2Y3Y5OXE3FP85NYS/Definite_Integration_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 21,
                 "title": "Differential Equations for JEE 2026",
                 "uid": "2ZNE5DN2EUXBAG4Q6LZ4",
-                "duration": "2h 48m"
+                "duration": "2h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2ZNE5DN2EUXBAG4Q6LZ4/Differential_Equations_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2ZNE5DN2EUXBAG4Q6LZ4/Differential_Equations_for_JEE_2026_no_anno.pdf"
             },
             {
                 "rank": 22,
                 "title": "Probability for JEE 2026 & Test Discussion",
                 "uid": "I0TWZ67AN0NTMPZP0RPW",
-                "duration": "2h 38m"
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I0TWZ67AN0NTMPZP0RPW/Probability_for_JEE_2026__Test_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I0TWZ67AN0NTMPZP0RPW/Probability_for_JEE_2026__Test_Discussion_no_anno.pdf"
             },
             {
                 "rank": 23,
@@ -1627,9 +2132,14 @@ const COURSES = [
                 "rank": 25,
                 "title": "Test Discussion for JEE 2026",
                 "uid": "SFFZEPMT7CVERR0VSRAL",
-                "duration": "38m"
+                "duration": "38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SFFZEPMT7CVERR0VSRAL/Test_Discussion_for_JEE_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SFFZEPMT7CVERR0VSRAL/Test_Discussion_for_JEE_2026_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "conic-sections",
@@ -1650,45 +2160,62 @@ const COURSES = [
                 "rank": 2,
                 "title": "Conic Sections Lec 01",
                 "uid": "4M3K5S3JZ4JL8QT8AC5I",
-                "duration": "3h 13m"
+                "duration": "3h 13m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4M3K5S3JZ4JL8QT8AC5I/Conic_Sections_Lec_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4M3K5S3JZ4JL8QT8AC5I/Conic_Sections_Lec_01_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Conic Sections Lec 02",
                 "uid": "GWMVR2SHTFHNDKKUN0CO",
-                "duration": "2h 15m"
+                "duration": "2h 15m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GWMVR2SHTFHNDKKUN0CO/Conic_Sections_Lec_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GWMVR2SHTFHNDKKUN0CO/Conic_Sections_Lec_02_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Conic Sections Lec 03",
                 "uid": "K1ITQ9B6HOZEP4Y6CQI3",
-                "duration": "3h 16m"
+                "duration": "3h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K1ITQ9B6HOZEP4Y6CQI3/Conic_Sections_Lec_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K1ITQ9B6HOZEP4Y6CQI3/Conic_Sections_Lec_03_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Conic Sections Lec 04",
                 "uid": "TMMRGRVW2DOGFP20IUG0",
-                "duration": "1h 2m"
+                "duration": "1h 02m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TMMRGRVW2DOGFP20IUG0/Conic_Sections_Lec_04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TMMRGRVW2DOGFP20IUG0/Conic_Sections_Lec_04_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Conic Sections Lec 05",
                 "uid": "U19RGLJ4YIPT3ZO7SK8F",
-                "duration": "3h 30m"
+                "duration": "3h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U19RGLJ4YIPT3ZO7SK8F/Conic_Sections_Lec_05_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U19RGLJ4YIPT3ZO7SK8F/Conic_Sections_Lec_05_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Conic Sections Lec 06",
                 "uid": "4LEPG72TYNAZEYD5WQLJ",
-                "duration": "3h 18m"
+                "duration": "3h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4LEPG72TYNAZEYD5WQLJ/Conic_Sections_Lec_06_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4LEPG72TYNAZEYD5WQLJ/Conic_Sections_Lec_06_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "DISCUSSION",
                 "uid": "ZTF1NNO1U6CH1U9RJ0HE",
-                "duration": "1h 45m"
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZTF1NNO1U6CH1U9RJ0HE/DISCUSSION_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZTF1NNO1U6CH1U9RJ0HE/DISCUSSION_no_anno.pdf"
             }
-        ]
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
     },
     {
         "id": "rvp-2",
@@ -1709,262 +2236,6444 @@ const COURSES = [
                 "rank": 2,
                 "title": "Problem Solving for JEE 2026 Lecture-1",
                 "uid": "47SRBZKZ777U2TMBBQ9S",
-                "duration": "1h 59m"
+                "duration": "1h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/47SRBZKZ777U2TMBBQ9S/Problem_Solving_for_JEE_2026_Lecture1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/47SRBZKZ777U2TMBBQ9S/Problem_Solving_for_JEE_2026_Lecture1_no_anno.pdf"
             },
             {
                 "rank": 3,
                 "title": "Problem Solving for JEE 2026 Lecture-2",
                 "uid": "RY80373439NPIGXQ2MSX",
-                "duration": "2h 2m"
+                "duration": "2h 02m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RY80373439NPIGXQ2MSX/Problem_Solving_for_JEE_2026_Lecture2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RY80373439NPIGXQ2MSX/Problem_Solving_for_JEE_2026_Lecture2_no_anno.pdf"
             },
             {
                 "rank": 4,
                 "title": "Problem Solving for JEE 2026 Lecture-3",
                 "uid": "9RLOMB3ZHQ6X9TL1L2TP",
-                "duration": "2h 11m"
+                "duration": "2h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9RLOMB3ZHQ6X9TL1L2TP/Problem_Solving_for_JEE_2026_Lecture3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9RLOMB3ZHQ6X9TL1L2TP/Problem_Solving_for_JEE_2026_Lecture3_no_anno.pdf"
             },
             {
                 "rank": 5,
                 "title": "Problem Solving for JEE 2026 Lecture-4",
                 "uid": "L2C642AR2WJN0RTXYLBZ",
-                "duration": "2h 59m"
+                "duration": "2h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/L2C642AR2WJN0RTXYLBZ/Problem_Solving_for_JEE_2026_Lecture4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/L2C642AR2WJN0RTXYLBZ/Problem_Solving_for_JEE_2026_Lecture4_no_anno.pdf"
             },
             {
                 "rank": 6,
                 "title": "Coordinate Geometry Problem Solving-1",
                 "uid": "DMZR1NMX1BAVFCQHLYWF",
-                "duration": "2h 59m"
+                "duration": "2h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DMZR1NMX1BAVFCQHLYWF/Coordinate_Geometry_Problem_Solving1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DMZR1NMX1BAVFCQHLYWF/Coordinate_Geometry_Problem_Solving1_no_anno.pdf"
             },
             {
                 "rank": 7,
                 "title": "Coordinate Geometry Problem Solving-2",
                 "uid": "SXMVOIS46Q0K7YREYX5V",
-                "duration": "2h 56m"
+                "duration": "2h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SXMVOIS46Q0K7YREYX5V/Coordinate_Geometry_Problem_Solving2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SXMVOIS46Q0K7YREYX5V/Coordinate_Geometry_Problem_Solving2_no_anno.pdf"
             },
             {
                 "rank": 8,
                 "title": "Coordinate Geometry Problem Solving-3",
                 "uid": "UCKBO7J1BP2SH02VC0VP",
-                "duration": "3h 51m"
+                "duration": "3h 51m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UCKBO7J1BP2SH02VC0VP/Coordinate_Geometry_Problem_Solving3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UCKBO7J1BP2SH02VC0VP/Coordinate_Geometry_Problem_Solving3_no_anno.pdf"
             },
             {
                 "rank": 9,
                 "title": "Mixed Problem Solving for JEE Mains 2026",
                 "uid": "UBV290LG7JXL0EGCNE83",
-                "duration": "2h 45m"
+                "duration": "2h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UBV290LG7JXL0EGCNE83/Mixed_Problem_Solving_for_JEE_Mains_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UBV290LG7JXL0EGCNE83/Mixed_Problem_Solving_for_JEE_Mains_2026_no_anno.pdf"
             },
             {
                 "rank": 10,
                 "title": "Coordinate Geometry Problem Solving-5",
                 "uid": "V7PSUQ5EZR6FOOKWNXRB",
-                "duration": "2h 33m"
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V7PSUQ5EZR6FOOKWNXRB/Coordinate_Geometry_Problem_Solving5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V7PSUQ5EZR6FOOKWNXRB/Coordinate_Geometry_Problem_Solving5_no_anno.pdf"
             },
             {
                 "rank": 11,
                 "title": "Coordinate Geometry Problem Solving-6",
                 "uid": "V6ZSJDQKVNAJQTHRDHW9",
-                "duration": "2h 59m"
+                "duration": "2h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V6ZSJDQKVNAJQTHRDHW9/Coordinate_Geometry_Problem_Solving6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V6ZSJDQKVNAJQTHRDHW9/Coordinate_Geometry_Problem_Solving6_no_anno.pdf"
             },
             {
                 "rank": 12,
                 "title": "Coordinate Geometry Problem Solving-7",
                 "uid": "QFSHKTTSMBC3RBAIPUW1",
-                "duration": "1h 12m"
+                "duration": "1h 12m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QFSHKTTSMBC3RBAIPUW1/Coordinate_Geometry_Problem_Solving7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QFSHKTTSMBC3RBAIPUW1/Coordinate_Geometry_Problem_Solving7_no_anno.pdf"
             },
             {
                 "rank": 13,
                 "title": "Coordinate Geometry Problem Solving-8",
                 "uid": "IPQL6K6ASAFKHT4OJXXR",
-                "duration": "3h 59m"
+                "duration": "3h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IPQL6K6ASAFKHT4OJXXR/Coordinate_Geometry_Problem_Solving8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IPQL6K6ASAFKHT4OJXXR/Coordinate_Geometry_Problem_Solving8_no_anno.pdf"
             },
             {
                 "rank": 14,
                 "title": "Coordinate Geometry Problem Solving-9",
                 "uid": "59OWWI595A32F644FXJW",
-                "duration": "2h 30m"
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/59OWWI595A32F644FXJW/Coordinate_Geometry_Problem_Solving9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/59OWWI595A32F644FXJW/Coordinate_Geometry_Problem_Solving9_no_anno.pdf"
             },
             {
                 "rank": 15,
                 "title": "Coordinate Geometry Problem Solving-10",
                 "uid": "F3Q2GHXIE4YUOTCZG6N8",
-                "duration": "1h 44m"
+                "duration": "1h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/F3Q2GHXIE4YUOTCZG6N8/Coordinate_Geometry_Problem_Solving10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/F3Q2GHXIE4YUOTCZG6N8/Coordinate_Geometry_Problem_Solving10_no_anno.pdf"
             },
             {
                 "rank": 16,
                 "title": "Calculus Problem Solving -1",
                 "uid": "Z8IO216LCOE9OG5HP7KI",
-                "duration": "2h 8m"
+                "duration": "2h 08m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z8IO216LCOE9OG5HP7KI/Calculus_Problem_Solving_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z8IO216LCOE9OG5HP7KI/Calculus_Problem_Solving_1_no_anno.pdf"
             },
             {
                 "rank": 17,
                 "title": "Calculus Problem Solving -2",
                 "uid": "T0TXU8TEKP8SHD88B259",
-                "duration": "2h 5m"
+                "duration": "2h 05m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T0TXU8TEKP8SHD88B259/Calculus_Problem_Solving_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T0TXU8TEKP8SHD88B259/Calculus_Problem_Solving_2_no_anno.pdf"
             },
             {
                 "rank": 18,
                 "title": "Calculus Problem Solving -3",
                 "uid": "953TP3ABZPED84Z5BDLD",
-                "duration": "2h 24m"
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/953TP3ABZPED84Z5BDLD/Calculus_Problem_Solving_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/953TP3ABZPED84Z5BDLD/Calculus_Problem_Solving_3_no_anno.pdf"
             },
             {
                 "rank": 19,
                 "title": "Coordinate Geometry Problem Solving-11",
                 "uid": "NL965LUW9MVXIVLPG7Y0",
-                "duration": "2h 23m"
+                "duration": "2h 23m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NL965LUW9MVXIVLPG7Y0/Coordinate_Geometry_Problem_Solving11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NL965LUW9MVXIVLPG7Y0/Coordinate_Geometry_Problem_Solving11_no_anno.pdf"
             },
             {
                 "rank": 20,
                 "title": "Coordinate Geometry Problem Solving-12",
                 "uid": "K01IIL436P7X0LGQVP7Z",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K01IIL436P7X0LGQVP7Z/Coordinate_Geometry_Problem_Solving12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K01IIL436P7X0LGQVP7Z/Coordinate_Geometry_Problem_Solving12_no_anno.pdf"
             },
             {
                 "rank": 21,
                 "title": "Coordinate Geometry Problem Solving-13",
                 "uid": "UF4Z8OW8D4F9ERA9401D",
-                "duration": "2h 15m"
+                "duration": "2h 15m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UF4Z8OW8D4F9ERA9401D/Coordinate_Geometry_Problem_Solving13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UF4Z8OW8D4F9ERA9401D/Coordinate_Geometry_Problem_Solving13_no_anno.pdf"
             },
             {
                 "rank": 22,
                 "title": "Coordinate Geometry Problem Solving-14",
                 "uid": "X1SCCF1B5O6NCITBT1F6",
-                "duration": "2h 0m"
+                "duration": "2h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X1SCCF1B5O6NCITBT1F6/Coordinate_Geometry_Problem_Solving14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X1SCCF1B5O6NCITBT1F6/Coordinate_Geometry_Problem_Solving14_no_anno.pdf"
             },
             {
                 "rank": 23,
                 "title": "Coordinate Geometry Problem Solving-15",
                 "uid": "PB2AGO8E955FESB2P1G2",
-                "duration": "2h 16m"
+                "duration": "2h 16m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PB2AGO8E955FESB2P1G2/Coordinate_Geometry_Problem_Solving15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PB2AGO8E955FESB2P1G2/Coordinate_Geometry_Problem_Solving15_no_anno.pdf"
             },
             {
                 "rank": 24,
                 "title": "Coordinate Geometry Problem Solving-16",
                 "uid": "UV3QL76S28GPHHRNQT63",
-                "duration": "3h 40m"
+                "duration": "3h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UV3QL76S28GPHHRNQT63/Coordinate_Geometry_Problem_Solving16_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UV3QL76S28GPHHRNQT63/Coordinate_Geometry_Problem_Solving16_no_anno.pdf"
             },
             {
                 "rank": 25,
                 "title": "Problem Solving Lecture-29 for JEE Advanced 2026",
                 "uid": "2TGRIE6RFQ1889IX7MV0",
-                "duration": "1h 58m"
+                "duration": "1h 58m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2TGRIE6RFQ1889IX7MV0/Problem_Solving_Lecture29_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2TGRIE6RFQ1889IX7MV0/Problem_Solving_Lecture29_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 26,
                 "title": "Problem Solving Lecture-30 for JEE Advanced 2026",
                 "uid": "1HL4BFGS1F2XR2WEIO9D",
-                "duration": "3h 0m"
+                "duration": "3h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1HL4BFGS1F2XR2WEIO9D/Problem_Solving_Lecture30_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1HL4BFGS1F2XR2WEIO9D/Problem_Solving_Lecture30_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 27,
                 "title": "Problem Solving Lecture-31 for JEE Advanced 2026",
                 "uid": "4EO2GWYA51UJNGCZV0RL",
-                "duration": "2h 40m"
+                "duration": "2h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4EO2GWYA51UJNGCZV0RL/Problem_Solving_Lecture31_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4EO2GWYA51UJNGCZV0RL/Problem_Solving_Lecture31_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 28,
                 "title": "Problem Solving Lecture-32 for JEE Advanced 2026",
                 "uid": "1T28UTYA7STZ3YS1DD2B",
-                "duration": "4h 0m"
+                "duration": "4h 00m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1T28UTYA7STZ3YS1DD2B/Problem_Solving_Lecture32_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1T28UTYA7STZ3YS1DD2B/Problem_Solving_Lecture32_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 29,
                 "title": "Problem Solving Lecture-33 for JEE Advanced 2026",
                 "uid": "7H6NIFA1C363O721ZKSK",
-                "duration": "3h 39m"
+                "duration": "3h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7H6NIFA1C363O721ZKSK/Problem_Solving_Lecture33_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7H6NIFA1C363O721ZKSK/Problem_Solving_Lecture33_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 30,
                 "title": "Problem Solving Lecture-34 for JEE Advanced 2026",
                 "uid": "IIXY3RLVHPOQALDZQGVW",
-                "duration": "3h 21m"
+                "duration": "3h 21m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IIXY3RLVHPOQALDZQGVW/Problem_Solving_Lecture34_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IIXY3RLVHPOQALDZQGVW/Problem_Solving_Lecture34_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 31,
                 "title": "Problem Solving Lecture-35 for JEE Advanced 2026",
                 "uid": "0XJHX02312DTAOI5810U",
-                "duration": "1h 56m"
+                "duration": "1h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0XJHX02312DTAOI5810U/Problem_Solving_Lecture35_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0XJHX02312DTAOI5810U/Problem_Solving_Lecture35_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 32,
                 "title": "Problem Solving Lecture-36 for JEE Advanced 2026",
                 "uid": "UQUOJ7LGRUCI704I0A90",
-                "duration": "3h 5m"
+                "duration": "3h 05m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UQUOJ7LGRUCI704I0A90/Problem_Solving_Lecture36_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UQUOJ7LGRUCI704I0A90/Problem_Solving_Lecture36_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 33,
                 "title": "Problem Solving Lecture-37 for JEE Advanced 2026",
                 "uid": "Y731VEQIXK1FM5KUISIF",
-                "duration": "1h 30m"
+                "duration": "1h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y731VEQIXK1FM5KUISIF/Problem_Solving_Lecture37_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y731VEQIXK1FM5KUISIF/Problem_Solving_Lecture37_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 34,
                 "title": "Problem Solving Lecture-38 for JEE Advanced 2026",
                 "uid": "DV5VIVERS6415MRJ18L3",
-                "duration": "2h 59m"
+                "duration": "2h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DV5VIVERS6415MRJ18L3/Problem_Solving_Lecture38_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DV5VIVERS6415MRJ18L3/Problem_Solving_Lecture38_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 35,
                 "title": "Problem Solving Lecture-39 for JEE Advanced 2026",
                 "uid": "9Z8IU4BJRPCSL6UOUCJH",
-                "duration": "2h 18m"
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9Z8IU4BJRPCSL6UOUCJH/Problem_Solving_Lecture39_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9Z8IU4BJRPCSL6UOUCJH/Problem_Solving_Lecture39_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 36,
                 "title": "Problem Solving Lecture-40 for JEE Advanced 2026",
                 "uid": "BXIW5P7UTK0D7DQ6CC09",
-                "duration": "1h 39m"
+                "duration": "1h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BXIW5P7UTK0D7DQ6CC09/Problem_Solving_Lecture40_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BXIW5P7UTK0D7DQ6CC09/Problem_Solving_Lecture40_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 37,
                 "title": "Problem Solving Lecture-41 for JEE Advanced 2026",
                 "uid": "72TSMSO0HLPHPODONNXI",
-                "duration": "2h 54m"
+                "duration": "2h 54m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/72TSMSO0HLPHPODONNXI/Problem_Solving_Lecture41_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/72TSMSO0HLPHPODONNXI/Problem_Solving_Lecture41_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 38,
                 "title": "Problem Solving Lecture-42 for JEE Advanced 2026",
                 "uid": "IJR0U5P566B4DXIA1AUJ",
-                "duration": "1h 46m"
+                "duration": "1h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IJR0U5P566B4DXIA1AUJ/Problem_Solving_Lecture42_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IJR0U5P566B4DXIA1AUJ/Problem_Solving_Lecture42_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 39,
                 "title": "Problem Solving Lecture-43 for JEE Advanced 2026",
                 "uid": "9PNMUH43F4M7STQZ0W99",
-                "duration": "1h 10m"
+                "duration": "1h 10m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9PNMUH43F4M7STQZ0W99/Problem_Solving_Lecture43_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9PNMUH43F4M7STQZ0W99/Problem_Solving_Lecture43_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 40,
                 "title": "Problem Solving Lecture-44 for JEE Advanced 2026",
                 "uid": "WYAOZ9RL1VYIM7I10AGU",
-                "duration": "1h 50m"
+                "duration": "1h 50m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WYAOZ9RL1VYIM7I10AGU/Problem_Solving_Lecture44_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WYAOZ9RL1VYIM7I10AGU/Problem_Solving_Lecture44_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 41,
                 "title": "Problem Solving Lecture-45 for JEE Advanced 2026",
                 "uid": "6B1BA52C7PRLMQFTGV17",
-                "duration": "1h 54m"
+                "duration": "1h 54m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6B1BA52C7PRLMQFTGV17/Problem_Solving_Lecture45_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6B1BA52C7PRLMQFTGV17/Problem_Solving_Lecture45_for_JEE_Advanced_2026_no_anno.pdf"
             },
             {
                 "rank": 42,
                 "title": "Problem Solving Lecture-46 for JEE Advanced 2026",
                 "uid": "0FXN5DKUK7S8EBD9CP8N",
-                "duration": "2h 31m"
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0FXN5DKUK7S8EBD9CP8N/Problem_Solving_Lecture46_for_JEE_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0FXN5DKUK7S8EBD9CP8N/Problem_Solving_Lecture46_for_JEE_Advanced_2026_no_anno.pdf"
+            }
+        ],
+        "subject": "Mathematics",
+        "subjectIcon": "fa-square-root-variable",
+        "subjectColor": "#6366f1"
+    },
+    {
+        "id": "basic-mathematics-physics",
+        "title": "Basic Mathematics for Physics (Mathematical Tools)",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Physics Starter - Mathematical Tools",
+        "description": "Essential mathematical tools for Physics: calculus foundations, vectors, trigonometry, differentiation, integration, and graphs for mechanics.",
+        "icon": "fa-calculator",
+        "startDate": "2024-12-15T00:00:00.000Z",
+        "badge": "12 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Basic Mathematics - Lecture 1",
+                "uid": "LSRUH0SE9YHGOZLI17SL",
+                "duration": "1h 30m",
+                "date": "15-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LSRUH0SE9YHGOZLI17SL/Basic_Mathematics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LSRUH0SE9YHGOZLI17SL/Basic_Mathematics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Basic Mathematics - Lecture 2",
+                "uid": "E4AE2EE56VX9FITA3BN9",
+                "duration": "2h 16m",
+                "date": "16-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E4AE2EE56VX9FITA3BN9/Basic_Mathematics__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E4AE2EE56VX9FITA3BN9/Basic_Mathematics__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Basic Mathematics - Lecture 3",
+                "uid": "DXC6M7W66MRC88KHGMRA",
+                "duration": "2h 44m",
+                "date": "17-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DXC6M7W66MRC88KHGMRA/Basic_Mathematics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DXC6M7W66MRC88KHGMRA/Basic_Mathematics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Basic Mathematics - Lecture 4",
+                "uid": "2GT6LNDHOKZ54WLMMME6",
+                "duration": "2h 06m",
+                "date": "18-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2GT6LNDHOKZ54WLMMME6/Basic_Mathematics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2GT6LNDHOKZ54WLMMME6/Basic_Mathematics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Basic Mathematics - Lecture 5",
+                "uid": "0Z2SYFAU6APATH4MOI2F",
+                "duration": "2h 03m",
+                "date": "19-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0Z2SYFAU6APATH4MOI2F/Basic_Mathematics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0Z2SYFAU6APATH4MOI2F/Basic_Mathematics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Basic Mathematics - Lecture 6",
+                "uid": "T29DVB6I79F1TDW9INLF",
+                "duration": "2h 07m",
+                "date": "21-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T29DVB6I79F1TDW9INLF/Basic_Mathematics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T29DVB6I79F1TDW9INLF/Basic_Mathematics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Basic Mathematics - Lecture 7",
+                "uid": "7EVSNF65DBONDPFO9VC6",
+                "duration": "2h 31m",
+                "date": "22-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7EVSNF65DBONDPFO9VC6/Basic_Mathematics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7EVSNF65DBONDPFO9VC6/Basic_Mathematics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Basic Mathematics - Lecture 8",
+                "uid": "XDE5ITJ8V32CQXRCR86J",
+                "duration": "1h 53m",
+                "date": "23-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XDE5ITJ8V32CQXRCR86J/Basic_Mathematics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XDE5ITJ8V32CQXRCR86J/Basic_Mathematics__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Basic Mathematics - Lecture 9",
+                "uid": "5AEZUZCNLVAGPZXWO0JE",
+                "duration": "1h 49m",
+                "date": "24-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5AEZUZCNLVAGPZXWO0JE/Basic_Mathematics__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5AEZUZCNLVAGPZXWO0JE/Basic_Mathematics__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Basic Mathematics - Lecture 10",
+                "uid": "BT59423ERM42I47C61P2",
+                "duration": "1h 56m",
+                "date": "25-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BT59423ERM42I47C61P2/Basic_Mathematics__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BT59423ERM42I47C61P2/Basic_Mathematics__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Basic Mathematics - Lecture 11",
+                "uid": "KZN8VXF0HX6YCZPSRCXY",
+                "duration": "2h 09m",
+                "date": "26-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KZN8VXF0HX6YCZPSRCXY/Basic_Mathematics__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KZN8VXF0HX6YCZPSRCXY/Basic_Mathematics__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Basic Mathematics - Lecture 12",
+                "uid": "YUS206S1YB79M9R7WPPR",
+                "duration": "1h 35m",
+                "date": "27-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YUS206S1YB79M9R7WPPR/Basic_Mathematics__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YUS206S1YB79M9R7WPPR/Basic_Mathematics__Lecture_12_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "kinematics-physics",
+        "title": "Kinematics & Motion in 1D & 2D",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Mechanics - JEE Advanced",
+        "description": "Rectilinear motion, calculus in kinematics, graphs, projectile motion, and relative velocity in 1D and 2D.",
+        "icon": "fa-person-running",
+        "startDate": "2024-12-30T00:00:00.000Z",
+        "badge": "8 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Kinematics - Lecture 1",
+                "uid": "S728AZ15S77FGIWTZ53J",
+                "duration": "1h 51m",
+                "date": "30-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S728AZ15S77FGIWTZ53J/Kinematics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S728AZ15S77FGIWTZ53J/Kinematics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Kinematics - Lecture 3",
+                "uid": "M4X1FI1Y8BJLQ6B344WQ",
+                "duration": "1h 45m",
+                "date": "01-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M4X1FI1Y8BJLQ6B344WQ/Kinematics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M4X1FI1Y8BJLQ6B344WQ/Kinematics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Kinematics - Lecture 4",
+                "uid": "H4JA1MBWNV14BPKCJZEE",
+                "duration": "2h 01m",
+                "date": "02-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/H4JA1MBWNV14BPKCJZEE/Kinematics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/H4JA1MBWNV14BPKCJZEE/Kinematics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Kinematics - Lecture 5",
+                "uid": "C844D49TC609X40VURJQ",
+                "duration": "2h 01m",
+                "date": "03-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C844D49TC609X40VURJQ/Kinematics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C844D49TC609X40VURJQ/Kinematics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Kinematics - Lecture 6",
+                "uid": "Q2ABPB9EI006VAJSY5Q5",
+                "duration": "3h 40m",
+                "date": "05-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q2ABPB9EI006VAJSY5Q5/Kinematics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Q2ABPB9EI006VAJSY5Q5/Kinematics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Kinematics - Lecture 7",
+                "uid": "AY88MKHLSMIA6HWO4MB5",
+                "duration": "53m",
+                "date": "06-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AY88MKHLSMIA6HWO4MB5/Kinematics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AY88MKHLSMIA6HWO4MB5/Kinematics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Kinematics - Lecture 8",
+                "uid": "UNHSFDVPVG5K3GJZ1LKP",
+                "duration": "2h 56m",
+                "date": "07-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UNHSFDVPVG5K3GJZ1LKP/Kinematics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UNHSFDVPVG5K3GJZ1LKP/Kinematics__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Kinematics - Lecture 9",
+                "uid": "2Y780PC2IG2CIQK89BQI",
+                "duration": "2h 05m",
+                "date": "08-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2Y780PC2IG2CIQK89BQI/Kinematics__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2Y780PC2IG2CIQK89BQI/Kinematics__Lecture_9_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "newtons-laws-friction",
+        "title": "Newton's Laws of Motion & Friction",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Mechanics - JEE Advanced",
+        "description": "Constraint relations, free body diagrams, pseudo force, static and kinetic friction, inclined planes, and pulley systems.",
+        "icon": "fa-weight-hanging",
+        "startDate": "2025-01-15T00:00:00.000Z",
+        "badge": "7 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Newton's Laws of Motion - Lecture 1",
+                "uid": "LBGO19H66LRCYVBX70CN",
+                "duration": "3h 25m",
+                "date": "15-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LBGO19H66LRCYVBX70CN/Newtons_Laws_of_Motion__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LBGO19H66LRCYVBX70CN/Newtons_Laws_of_Motion__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Newton's Laws of Motion - Lecture 2",
+                "uid": "AFRW7KS628N4AN0UDENH",
+                "duration": "2h 06m",
+                "date": "16-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AFRW7KS628N4AN0UDENH/Newtons_Laws_of_Motion__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AFRW7KS628N4AN0UDENH/Newtons_Laws_of_Motion__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Newton's Laws of Motion - Lecture 3",
+                "uid": "A8C7SEKYI0J3LKFGVJEY",
+                "duration": "2h 50m",
+                "date": "17-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A8C7SEKYI0J3LKFGVJEY/Newtons_Laws_of_Motion__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A8C7SEKYI0J3LKFGVJEY/Newtons_Laws_of_Motion__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Newton's Laws of Motion - Lecture 4",
+                "uid": "UY1RSPHDTPIE60YZCDA2",
+                "duration": "3h 02m",
+                "date": "18-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UY1RSPHDTPIE60YZCDA2/Newtons_Laws_of_Motion__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UY1RSPHDTPIE60YZCDA2/Newtons_Laws_of_Motion__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Newton's Laws of Motion - Lecture 5",
+                "uid": "12F7T5XO3AZTTT87UFZL",
+                "duration": "2h 09m",
+                "date": "21-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/12F7T5XO3AZTTT87UFZL/Newtons_Laws_of_Motion__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/12F7T5XO3AZTTT87UFZL/Newtons_Laws_of_Motion__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Newton's Laws of Motion - Lecture 6",
+                "uid": "B2YLEZUPP4DQZC0R17NZ",
+                "duration": "2h 32m",
+                "date": "22-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/B2YLEZUPP4DQZC0R17NZ/Newtons_Laws_of_Motion__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/B2YLEZUPP4DQZC0R17NZ/Newtons_Laws_of_Motion__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Newton's Laws of Motion - Lecture 7",
+                "uid": "68O5X34BC1YLPRX0C4KB",
+                "duration": "2h 18m",
+                "date": "23-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/68O5X34BC1YLPRX0C4KB/Newtons_Laws_of_Motion__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/68O5X34BC1YLPRX0C4KB/Newtons_Laws_of_Motion__Lecture_7_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "work-power-energy",
+        "title": "Work, Power & Energy",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Mechanics - JEE Advanced",
+        "description": "Work-energy theorem, conservative & non-conservative forces, potential energy curves, circular vertical motion, and power.",
+        "icon": "fa-bolt-lightning",
+        "startDate": "2025-01-27T00:00:00.000Z",
+        "badge": "6 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Work, Power & Energy - Lecture 1",
+                "uid": "B0M84Z52H2OWU7ERBRNI",
+                "duration": "2h 00m",
+                "date": "27-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/B0M84Z52H2OWU7ERBRNI/Work_Power__Energy__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/B0M84Z52H2OWU7ERBRNI/Work_Power__Energy__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Work, Power & Energy - Lecture 2",
+                "uid": "S1F0P765VEVS3YD9U26P",
+                "duration": "2h 26m",
+                "date": "28-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S1F0P765VEVS3YD9U26P/Work_Power__Energy__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S1F0P765VEVS3YD9U26P/Work_Power__Energy__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Work, Power & Energy - Lecture 3",
+                "uid": "EBWSK7J4X0ZO5BD0YBW1",
+                "duration": "1h 53m",
+                "date": "30-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EBWSK7J4X0ZO5BD0YBW1/Work_Power__Energy__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EBWSK7J4X0ZO5BD0YBW1/Work_Power__Energy__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Work, Power & Energy - Lecture 4",
+                "uid": "W6GN0OC0JA41BAEZVPVZ",
+                "duration": "2h 23m",
+                "date": "03-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W6GN0OC0JA41BAEZVPVZ/Work_Power__Energy__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W6GN0OC0JA41BAEZVPVZ/Work_Power__Energy__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Work, Power & Energy - Lecture 5",
+                "uid": "JQRZW1YWIK995LUOHD3I",
+                "duration": "2h 09m",
+                "date": "05-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JQRZW1YWIK995LUOHD3I/Work_Power__Energy__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JQRZW1YWIK995LUOHD3I/Work_Power__Energy__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Work, Power & Energy - Lecture 6",
+                "uid": "YDZ1C5TSP74COOYUFR4K",
+                "duration": "1h 53m",
+                "date": "06-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YDZ1C5TSP74COOYUFR4K/Work_Power__Energy__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YDZ1C5TSP74COOYUFR4K/Work_Power__Energy__Lecture_6_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "rotational-motion-com",
+        "title": "Centre of Mass, Momentum & Rotational Motion",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Mechanics - JEE Advanced",
+        "description": "Centre of mass, collision & momentum conservation, moment of inertia, torque, pure rolling, and angular momentum.",
+        "icon": "fa-rotate",
+        "startDate": "2025-02-25T00:00:00.000Z",
+        "badge": "22 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Rotation - Lecture 1",
+                "uid": "0AG3TSGDJ4XFHOU7RSTL",
+                "duration": "2h 29m",
+                "date": "25-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0AG3TSGDJ4XFHOU7RSTL/Rotation__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0AG3TSGDJ4XFHOU7RSTL/Rotation__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Rotation - Lecture 2",
+                "uid": "AV9FH618PZH1MLKVVNJN",
+                "duration": "2h 28m",
+                "date": "25-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AV9FH618PZH1MLKVVNJN/Rotation__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AV9FH618PZH1MLKVVNJN/Rotation__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Rotation - Lecture 4",
+                "uid": "WJDYAUNXMEU0Y1298EZV",
+                "duration": "18m",
+                "date": "03-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WJDYAUNXMEU0Y1298EZV/Rotation__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WJDYAUNXMEU0Y1298EZV/Rotation__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Rotation - Lecture 6",
+                "uid": "W5F1L766A5ZO5FYA63HU",
+                "duration": "1h 59m",
+                "date": "06-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W5F1L766A5ZO5FYA63HU/Rotation__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W5F1L766A5ZO5FYA63HU/Rotation__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Rotation - Lecture 7",
+                "uid": "IEOS9Z10HB04HOS7P672",
+                "duration": "1h 57m",
+                "date": "07-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IEOS9Z10HB04HOS7P672/Rotation__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IEOS9Z10HB04HOS7P672/Rotation__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Rotation - Lecture 8",
+                "uid": "S26LDQH42WX73HCWP5Y0",
+                "duration": "1h 46m",
+                "date": "10-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S26LDQH42WX73HCWP5Y0/Rotation__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S26LDQH42WX73HCWP5Y0/Rotation__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Rotation - Lecture 9",
+                "uid": "EFF3UDUZH5FST58HSOSV",
+                "duration": "2h 36m",
+                "date": "12-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EFF3UDUZH5FST58HSOSV/Rotation__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EFF3UDUZH5FST58HSOSV/Rotation__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Rotation - Lecture 10",
+                "uid": "VVZXEM4WPSK7PS9EYQWP",
+                "duration": "2h 37m",
+                "date": "13-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VVZXEM4WPSK7PS9EYQWP/Rotation__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VVZXEM4WPSK7PS9EYQWP/Rotation__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Rotation - Lecture 11",
+                "uid": "3SI31OOCXQI6AO6EEWA0",
+                "duration": "3h 53m",
+                "date": "16-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3SI31OOCXQI6AO6EEWA0/Rotation__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3SI31OOCXQI6AO6EEWA0/Rotation__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Rotation - Lecture 12",
+                "uid": "25JBLTZJJQZVZPBVISJW",
+                "duration": "2h 58m",
+                "date": "24-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/25JBLTZJJQZVZPBVISJW/Rotation__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/25JBLTZJJQZVZPBVISJW/Rotation__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Rotation - Lecture 13",
+                "uid": "KTCDT3TXCS0P9LIZJHBW",
+                "duration": "2h 20m",
+                "date": "26-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KTCDT3TXCS0P9LIZJHBW/Rotation__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KTCDT3TXCS0P9LIZJHBW/Rotation__Lecture_13_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Rotation - Lecture 14",
+                "uid": "CX35OQF6804HSXFYDLT6",
+                "duration": "2h 15m",
+                "date": "28-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CX35OQF6804HSXFYDLT6/Rotation__Lecture_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CX35OQF6804HSXFYDLT6/Rotation__Lecture_14_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Rotation - Lecture 15",
+                "uid": "KTFRA4RFZ6EEOXINHU9P",
+                "duration": "2h 56m",
+                "date": "31-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KTFRA4RFZ6EEOXINHU9P/Rotation__Lecture_15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KTFRA4RFZ6EEOXINHU9P/Rotation__Lecture_15_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Centre of Mass - Lecture 1",
+                "uid": "HR8H9KSCRF3RJYVXJVY3",
+                "duration": "2h 08m",
+                "date": "10-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HR8H9KSCRF3RJYVXJVY3/Centre_of_Mass__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HR8H9KSCRF3RJYVXJVY3/Centre_of_Mass__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Centre of Mass - Lecture 2",
+                "uid": "J1B3WJUMFUSZOC93YJ3W",
+                "duration": "2h 09m",
+                "date": "11-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J1B3WJUMFUSZOC93YJ3W/Centre_of_Mass__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J1B3WJUMFUSZOC93YJ3W/Centre_of_Mass__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Centre of Mass - Lecture 3",
+                "uid": "CK57A3B4CDY78XHWMAFE",
+                "duration": "2h 04m",
+                "date": "12-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CK57A3B4CDY78XHWMAFE/Centre_of_Mass__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CK57A3B4CDY78XHWMAFE/Centre_of_Mass__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Centre of Mass - Lecture 4",
+                "uid": "84YLEGUB2TJ4VDJKFNPX",
+                "duration": "2h 53m",
+                "date": "14-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/84YLEGUB2TJ4VDJKFNPX/Centre_of_Mass__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/84YLEGUB2TJ4VDJKFNPX/Centre_of_Mass__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Centre of Mass - Lecture 5",
+                "uid": "FR9EISK3RX5FX7QLT4FT",
+                "duration": "2h 18m",
+                "date": "15-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FR9EISK3RX5FX7QLT4FT/Centre_of_Mass__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FR9EISK3RX5FX7QLT4FT/Centre_of_Mass__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Centre of Mass - Lecture 6",
+                "uid": "V0IPKHQYYZ8VINA8Q8U1",
+                "duration": "2h 01m",
+                "date": "18-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V0IPKHQYYZ8VINA8Q8U1/Centre_of_Mass__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V0IPKHQYYZ8VINA8Q8U1/Centre_of_Mass__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Centre of Mass - Lecture 7",
+                "uid": "11AZITX9VIZ3WIPS0IH7",
+                "duration": "1h 49m",
+                "date": "19-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/11AZITX9VIZ3WIPS0IH7/Centre_of_Mass__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/11AZITX9VIZ3WIPS0IH7/Centre_of_Mass__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "Centre of Mass - Lecture 9",
+                "uid": "CKEXZWKN4WF56KKULDOL",
+                "duration": "2h 16m",
+                "date": "21-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CKEXZWKN4WF56KKULDOL/Centre_of_Mass__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CKEXZWKN4WF56KKULDOL/Centre_of_Mass__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 22,
+                "title": "Centre of Mass - Lecture 8",
+                "uid": "WI4A2CLMGJKWBXBLQGZ9",
+                "duration": "19m",
+                "date": "22-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WI4A2CLMGJKWBXBLQGZ9/Centre_of_Mass__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WI4A2CLMGJKWBXBLQGZ9/Centre_of_Mass__Lecture_8_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "gravitation-physics",
+        "title": "Gravitation",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Mechanics - JEE Advanced",
+        "description": "Newton's law of gravitation, gravitational field and potential, satellite orbits, escape velocity, and Kepler's laws.",
+        "icon": "fa-globe",
+        "startDate": "2025-04-03T00:00:00.000Z",
+        "badge": "5 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Gravitation - Lecture 1",
+                "uid": "KJ1324AGB1CR7PTYTRXW",
+                "duration": "1h 56m",
+                "date": "03-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KJ1324AGB1CR7PTYTRXW/Gravitation__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KJ1324AGB1CR7PTYTRXW/Gravitation__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Gravitation - Lecture 2",
+                "uid": "2Q7TWZQ5TU0T7TXCV15D",
+                "duration": "1h 58m",
+                "date": "04-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2Q7TWZQ5TU0T7TXCV15D/Gravitation__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2Q7TWZQ5TU0T7TXCV15D/Gravitation__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Gravitation - Lecture 3",
+                "uid": "KVGO6MJ1OVRRRXR41Z18",
+                "duration": "2h 15m",
+                "date": "05-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KVGO6MJ1OVRRRXR41Z18/Gravitation__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KVGO6MJ1OVRRRXR41Z18/Gravitation__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Gravitation - Lecture 5",
+                "uid": "9JDCCDOXYC32VCDMM4M8",
+                "duration": "1h 46m",
+                "date": "07-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9JDCCDOXYC32VCDMM4M8/Gravitation__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9JDCCDOXYC32VCDMM4M8/Gravitation__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Gravitation - Lecture 4",
+                "uid": "AR40JERTV5P60IC2IL81",
+                "duration": "2h 00m",
+                "date": "08-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AR40JERTV5P60IC2IL81/Gravitation__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AR40JERTV5P60IC2IL81/Gravitation__Lecture_4_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "oscillations-shm",
+        "title": "Oscillations & Simple Harmonic Motion",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Waves & Oscillations - JEE Advanced",
+        "description": "Kinematics & dynamics of SHM, spring-mass systems, simple and physical pendulums, superposition, and resonance.",
+        "icon": "fa-wave-square",
+        "startDate": "2025-11-10T00:00:00.000Z",
+        "badge": "4 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Oscillations - Lecture 1",
+                "uid": "PF413NCDYHYX8SFM8Z3E",
+                "duration": "2h 02m",
+                "date": "10-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PF413NCDYHYX8SFM8Z3E/Oscillations__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PF413NCDYHYX8SFM8Z3E/Oscillations__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Oscillations - Lecture 2",
+                "uid": "9555VN9SO36BTINJZFL9",
+                "duration": "1h 52m",
+                "date": "11-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9555VN9SO36BTINJZFL9/Oscillations__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9555VN9SO36BTINJZFL9/Oscillations__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Oscillations - Lecture 4",
+                "uid": "NGIQEE32KD9XVBBTGFT7",
+                "duration": "1h 48m",
+                "date": "13-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NGIQEE32KD9XVBBTGFT7/Oscillations__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NGIQEE32KD9XVBBTGFT7/Oscillations__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Oscillations - Lecture 5",
+                "uid": "DA6CF8XULKU3QB1LXA27",
+                "duration": "2h 07m",
+                "date": "14-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DA6CF8XULKU3QB1LXA27/Oscillations__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DA6CF8XULKU3QB1LXA27/Oscillations__Lecture_5_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "waves-sound",
+        "title": "Waves & Sound",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Waves & Acoustics - JEE Advanced",
+        "description": "Wave on a string, sound waves, speed of sound, interference, standing waves in organ pipes, beats, and Doppler effect.",
+        "icon": "fa-volume-high",
+        "startDate": "2025-09-22T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Waves - Lecture 1",
+                "uid": "XTZO2MO9IJITOYN510WP",
+                "duration": "2h 52m",
+                "date": "22-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XTZO2MO9IJITOYN510WP/Waves__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XTZO2MO9IJITOYN510WP/Waves__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Waves - Lecture 2",
+                "uid": "RT3L4CCOOS17252MU485",
+                "duration": "1h 46m",
+                "date": "23-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RT3L4CCOOS17252MU485/Waves__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RT3L4CCOOS17252MU485/Waves__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Waves - Lecture 3",
+                "uid": "V5S0DT921DFL6OYQAD3C",
+                "duration": "1h 35m",
+                "date": "24-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V5S0DT921DFL6OYQAD3C/Waves__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V5S0DT921DFL6OYQAD3C/Waves__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Waves - Lecture 4",
+                "uid": "DJNXWU8J4MAB58X46PQV",
+                "duration": "1h 06m",
+                "date": "25-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DJNXWU8J4MAB58X46PQV/Waves__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DJNXWU8J4MAB58X46PQV/Waves__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Waves - Lecture 5",
+                "uid": "Z21JIDNIKKDIMGV81M2T",
+                "duration": "1h 56m",
+                "date": "29-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z21JIDNIKKDIMGV81M2T/Waves__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z21JIDNIKKDIMGV81M2T/Waves__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Waves - Lecture 6",
+                "uid": "L92CYCA6XV984Z0Y0IVY",
+                "duration": "2h 07m",
+                "date": "30-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/L92CYCA6XV984Z0Y0IVY/Waves__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/L92CYCA6XV984Z0Y0IVY/Waves__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Waves - Lecture 7",
+                "uid": "00518CL8J8MAO4T2OV8U",
+                "duration": "2h 21m",
+                "date": "01-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/00518CL8J8MAO4T2OV8U/Waves__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/00518CL8J8MAO4T2OV8U/Waves__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Waves - Lecture 8",
+                "uid": "2RUJC22GSLXTYHXZVY8O",
+                "duration": "2h 10m",
+                "date": "03-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2RUJC22GSLXTYHXZVY8O/Waves__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2RUJC22GSLXTYHXZVY8O/Waves__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Waves - Lecture 9",
+                "uid": "SJ6W5FXKPOG2M9QDMHH1",
+                "duration": "1h 46m",
+                "date": "06-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SJ6W5FXKPOG2M9QDMHH1/Waves__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SJ6W5FXKPOG2M9QDMHH1/Waves__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Waves - Lecture 10",
+                "uid": "C17FB8UHASIXWG7OJEI3",
+                "duration": "2h 05m",
+                "date": "07-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C17FB8UHASIXWG7OJEI3/Waves__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C17FB8UHASIXWG7OJEI3/Waves__Lecture_10_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "thermal-physics-heat",
+        "title": "Thermal Physics & Heat Transfer",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Thermal Physics - JEE Advanced",
+        "description": "Thermal expansion, calorimetry, heat transfer by conduction, convection and radiation, Stefan-Boltzmann law, and Newton's law of cooling.",
+        "icon": "fa-temperature-high",
+        "startDate": "2025-10-19T00:00:00.000Z",
+        "badge": "13 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Thermal Physics - Lecture 1",
+                "uid": "19T73JI1TOEHK2QRS35C",
+                "duration": "2h 06m",
+                "date": "19-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/19T73JI1TOEHK2QRS35C/Thermal_Physics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/19T73JI1TOEHK2QRS35C/Thermal_Physics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Thermal Physics - Lecture 2",
+                "uid": "F1S8972DSDHCYFVPLBXF",
+                "duration": "1h 53m",
+                "date": "20-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/F1S8972DSDHCYFVPLBXF/Thermal_Physics__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/F1S8972DSDHCYFVPLBXF/Thermal_Physics__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Thermal Physics - Lecture 3",
+                "uid": "M2MVKJEQV3FU9T8L8H2C",
+                "duration": "2h 14m",
+                "date": "22-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M2MVKJEQV3FU9T8L8H2C/Thermal_Physics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M2MVKJEQV3FU9T8L8H2C/Thermal_Physics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Thermal Physics - Lecture 4",
+                "uid": "1CH7O1IU9H88LFYM5Y2U",
+                "duration": "2h 22m",
+                "date": "23-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1CH7O1IU9H88LFYM5Y2U/Thermal_Physics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1CH7O1IU9H88LFYM5Y2U/Thermal_Physics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Thermal Physics - Lecture 5",
+                "uid": "Y4XX2FF44QSHPYPH3G69",
+                "duration": "2h 05m",
+                "date": "24-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y4XX2FF44QSHPYPH3G69/Thermal_Physics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y4XX2FF44QSHPYPH3G69/Thermal_Physics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Thermal Physics - Lecture 6",
+                "uid": "O01E34T66M1UDCQ71MM6",
+                "duration": "2h 23m",
+                "date": "25-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/O01E34T66M1UDCQ71MM6/Thermal_Physics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/O01E34T66M1UDCQ71MM6/Thermal_Physics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Thermal Physics - Lecture 7",
+                "uid": "GS10DEZBRDHWB939IZWG",
+                "duration": "1h 54m",
+                "date": "26-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GS10DEZBRDHWB939IZWG/Thermal_Physics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GS10DEZBRDHWB939IZWG/Thermal_Physics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Thermal Physics - Lecture 8",
+                "uid": "QFCXVS5SM9AH7RVKS6DD",
+                "duration": "1h 58m",
+                "date": "27-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QFCXVS5SM9AH7RVKS6DD/Thermal_Physics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QFCXVS5SM9AH7RVKS6DD/Thermal_Physics__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Thermal Physics - Lecture 9",
+                "uid": "MVBSSJ0AIG2X8YAF2S3I",
+                "duration": "2h 05m",
+                "date": "28-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MVBSSJ0AIG2X8YAF2S3I/Thermal_Physics__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MVBSSJ0AIG2X8YAF2S3I/Thermal_Physics__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Thermal Physics - Lecture 10",
+                "uid": "BC9FO9MDW3H1L1W1KKQC",
+                "duration": "2h 06m",
+                "date": "29-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BC9FO9MDW3H1L1W1KKQC/Thermal_Physics__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BC9FO9MDW3H1L1W1KKQC/Thermal_Physics__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Thermal Physics - Lecture 11",
+                "uid": "AYB284XAWH2SFYE0MO9S",
+                "duration": "2h 57m",
+                "date": "30-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AYB284XAWH2SFYE0MO9S/Thermal_Physics__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AYB284XAWH2SFYE0MO9S/Thermal_Physics__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Thermal Physics - Lecture 12",
+                "uid": "9XS1KWZBAEPVUDM98C3T",
+                "duration": "1h 49m",
+                "date": "03-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9XS1KWZBAEPVUDM98C3T/Thermal_Physics__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9XS1KWZBAEPVUDM98C3T/Thermal_Physics__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Thermal Physics - Lecture 13",
+                "uid": "19JFMVXTLZWBA117P0KR",
+                "duration": "1h 43m",
+                "date": "04-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/19JFMVXTLZWBA117P0KR/Thermal_Physics__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/19JFMVXTLZWBA117P0KR/Thermal_Physics__Lecture_13_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "thermodynamics-physics",
+        "title": "Thermodynamics & KTG (Physics)",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Thermal Physics - JEE Advanced",
+        "description": "Kinetic theory of gases, degrees of freedom, First Law of Thermodynamics, PV diagrams, cyclic processes, and Carnot engine.",
+        "icon": "fa-fire-flame-curved",
+        "startDate": "2025-02-26T00:00:00.000Z",
+        "badge": "15 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Thermodynamics-02 JEE Advanced",
+                "uid": "XK89IGULHDVWYAJCCCDO",
+                "duration": "2h 15m",
+                "date": "26-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XK89IGULHDVWYAJCCCDO/L01__Thermodynamics02_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XK89IGULHDVWYAJCCCDO/L01__Thermodynamics02_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Thermodynamics-02 JEE Advanced",
+                "uid": "N2WU2WIJVAOQ6A2NRTK0",
+                "duration": "1h 44m",
+                "date": "27-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N2WU2WIJVAOQ6A2NRTK0/L02__Thermodynamics02_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N2WU2WIJVAOQ6A2NRTK0/L02__Thermodynamics02_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Thermodynamics-02 JEE Advanced",
+                "uid": "SNNWI9H2LKA7B1I5T7DF",
+                "duration": "2h 10m",
+                "date": "03-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SNNWI9H2LKA7B1I5T7DF/L03__Thermodynamics02_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SNNWI9H2LKA7B1I5T7DF/L03__Thermodynamics02_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Thermodynamics-02 JEE Advanced",
+                "uid": "166NV0YDYX21TYU9BQDC",
+                "duration": "1h 58m",
+                "date": "04-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/166NV0YDYX21TYU9BQDC/L04__Thermodynamics02_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/166NV0YDYX21TYU9BQDC/L04__Thermodynamics02_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Thermodynamics-02 JEE Advanced",
+                "uid": "2LCHKKTNF5QZUUBN14YY",
+                "duration": "1h 35m",
+                "date": "05-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2LCHKKTNF5QZUUBN14YY/L05__Thermodynamics02_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2LCHKKTNF5QZUUBN14YY/L05__Thermodynamics02_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Thermodynamics -01",
+                "uid": "R7BALQVYA6M5KA26E2WQ",
+                "duration": "2h 35m",
+                "date": "29-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Thermodynamics -02",
+                "uid": "HF2WC4KEYRWIGZ5FQQVE",
+                "duration": "2h 07m",
+                "date": "30-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "YJJQ6WJ9A9VEZPA3Y9W3",
+                "duration": "2h 16m",
+                "date": "17-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YJJQ6WJ9A9VEZPA3Y9W3/L01_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YJJQ6WJ9A9VEZPA3Y9W3/L01_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "PCQUCGPK59YN7I6Z9FHU",
+                "duration": "2h 17m",
+                "date": "18-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PCQUCGPK59YN7I6Z9FHU/L02_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PCQUCGPK59YN7I6Z9FHU/L02_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "ZU7SJZJB18SGF3QZ3GOJ",
+                "duration": "2h 10m",
+                "date": "19-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZU7SJZJB18SGF3QZ3GOJ/L03_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZU7SJZJB18SGF3QZ3GOJ/L03_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "56VJ1M7RASI5375U6LSQ",
+                "duration": "2h 09m",
+                "date": "20-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/56VJ1M7RASI5375U6LSQ/L04_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/56VJ1M7RASI5375U6LSQ/L04_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "2U2DURIVGVP1GJ66ICUU",
+                "duration": "1h 57m",
+                "date": "21-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2U2DURIVGVP1GJ66ICUU/L05_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2U2DURIVGVP1GJ66ICUU/L05_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "KLVOU7WTHF1X1LYMK9H8",
+                "duration": "2h 15m",
+                "date": "22-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KLVOU7WTHF1X1LYMK9H8/L06_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KLVOU7WTHF1X1LYMK9H8/L06_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "R1GLJQH9JJ6C8KQFED35",
+                "duration": "1h 16m",
+                "date": "24-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R1GLJQH9JJ6C8KQFED35/L07_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R1GLJQH9JJ6C8KQFED35/L07_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "N5MBT2FHY92REO3IA41Q",
+                "duration": "1h 18m",
+                "date": "25-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "electrostatics-physics",
+        "title": "Electrostatics & Gauss's Law",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Coulomb's law, electric field calculation, Gauss's law & flux, electric potential, electric dipoles, and conductors in electrostatic equilibrium.",
+        "icon": "fa-bolt",
+        "startDate": "2025-05-19T00:00:00.000Z",
+        "badge": "13 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Electrostatics - Lecture 1",
+                "uid": "U5OV5Q0SDQCYIBKJ4G66",
+                "duration": "2h 48m",
+                "date": "19-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U5OV5Q0SDQCYIBKJ4G66/Electrostatics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U5OV5Q0SDQCYIBKJ4G66/Electrostatics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Electrostatics - Lecture 2",
+                "uid": "QPQMJSMN322XC6MAKOLY",
+                "duration": "2h 15m",
+                "date": "21-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QPQMJSMN322XC6MAKOLY/Electrostatics__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QPQMJSMN322XC6MAKOLY/Electrostatics__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Electrostatics - Lecture 3",
+                "uid": "QCN4QJ4N5JOO9NPVEHOP",
+                "duration": "1h 57m",
+                "date": "22-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QCN4QJ4N5JOO9NPVEHOP/Electrostatics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QCN4QJ4N5JOO9NPVEHOP/Electrostatics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Electrostatics - Lecture 4",
+                "uid": "PHOCCG1TDH10GC420YRC",
+                "duration": "1h 58m",
+                "date": "23-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PHOCCG1TDH10GC420YRC/Electrostatics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PHOCCG1TDH10GC420YRC/Electrostatics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Electrostatics - Lecture 5",
+                "uid": "8H4OXVMEGMEJU86X4OI0",
+                "duration": "2h 01m",
+                "date": "26-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8H4OXVMEGMEJU86X4OI0/Electrostatics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8H4OXVMEGMEJU86X4OI0/Electrostatics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Electrostatics - Lecture 6",
+                "uid": "K4IVIOZXOY850O2Z50S7",
+                "duration": "2h 31m",
+                "date": "27-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K4IVIOZXOY850O2Z50S7/Electrostatics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K4IVIOZXOY850O2Z50S7/Electrostatics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Electrostatics - Lecture 7",
+                "uid": "4BJDR4ZBNGJ8SRC3L6JI",
+                "duration": "1h 57m",
+                "date": "29-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4BJDR4ZBNGJ8SRC3L6JI/Electrostatics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4BJDR4ZBNGJ8SRC3L6JI/Electrostatics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Electrostatics - Lecture 8",
+                "uid": "VXWR4YTM8FUKEB41V2HF",
+                "duration": "2h 03m",
+                "date": "30-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VXWR4YTM8FUKEB41V2HF/Electrostatics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VXWR4YTM8FUKEB41V2HF/Electrostatics__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Electrostatics - Lecture 9",
+                "uid": "GKFNSJH2NEHEFKNOULHO",
+                "duration": "2h 02m",
+                "date": "02-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GKFNSJH2NEHEFKNOULHO/Electrostatics__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GKFNSJH2NEHEFKNOULHO/Electrostatics__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Electrostatics - Lecture 10",
+                "uid": "ZN928BJ2GCSFOV8K0AQ9",
+                "duration": "1h 49m",
+                "date": "04-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZN928BJ2GCSFOV8K0AQ9/Electrostatics__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZN928BJ2GCSFOV8K0AQ9/Electrostatics__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Electrostatics - Lecture 11",
+                "uid": "R4E1PKQGNE6VMJPM9HLX",
+                "duration": "2h 26m",
+                "date": "06-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R4E1PKQGNE6VMJPM9HLX/Electrostatics__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R4E1PKQGNE6VMJPM9HLX/Electrostatics__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Electrostatics - Lecture 12",
+                "uid": "KNWFM32AB7C307FHYOFA",
+                "duration": "2h 07m",
+                "date": "07-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KNWFM32AB7C307FHYOFA/Electrostatics__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KNWFM32AB7C307FHYOFA/Electrostatics__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Electrostatics - Lecture 13",
+                "uid": "S9CGTESE9KU50YPQTME0",
+                "duration": "4h 13m",
+                "date": "08-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S9CGTESE9KU50YPQTME0/Electrostatics__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S9CGTESE9KU50YPQTME0/Electrostatics__Lecture_13_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "capacitance-physics",
+        "title": "Capacitance & Dielectrics",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Parallel plate capacitors, spherical & cylindrical capacitors, dielectric insertion, energy density, and RC charging/discharging circuits.",
+        "icon": "fa-microchip",
+        "startDate": "2025-06-14T00:00:00.000Z",
+        "badge": "6 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Capacitance - Lecture 1",
+                "uid": "X9QV52EQI9Z5MPADYAKP",
+                "duration": "3h 05m",
+                "date": "14-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X9QV52EQI9Z5MPADYAKP/Capacitance__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X9QV52EQI9Z5MPADYAKP/Capacitance__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Capacitance - Lecture 2",
+                "uid": "5YB49MW7TZWCVTY4K4UZ",
+                "duration": "2h 14m",
+                "date": "15-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5YB49MW7TZWCVTY4K4UZ/Capacitance__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5YB49MW7TZWCVTY4K4UZ/Capacitance__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Capacitance - Lecture 3",
+                "uid": "MOMZ36HLM46UHPCSWZ0E",
+                "duration": "2h 10m",
+                "date": "16-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MOMZ36HLM46UHPCSWZ0E/Capacitance__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MOMZ36HLM46UHPCSWZ0E/Capacitance__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Capacitance - Lecture 4",
+                "uid": "W3VT9NDB9O1LMU0YEY5L",
+                "duration": "2h 59m",
+                "date": "17-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W3VT9NDB9O1LMU0YEY5L/Capacitance__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W3VT9NDB9O1LMU0YEY5L/Capacitance__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Capacitance - Lecture 5",
+                "uid": "TM6EP91PY8Y3WVSKCJKR",
+                "duration": "2h 53m",
+                "date": "19-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TM6EP91PY8Y3WVSKCJKR/Capacitance__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TM6EP91PY8Y3WVSKCJKR/Capacitance__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Capacitance - Lecture 6",
+                "uid": "CNYRC6P7P8B44Q7R9VPQ",
+                "duration": "1h 58m",
+                "date": "22-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CNYRC6P7P8B44Q7R9VPQ/Capacitance__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CNYRC6P7P8B44Q7R9VPQ/Capacitance__Lecture_6_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "current-electricity",
+        "title": "Current Electricity",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Drift velocity, Ohm's law, Kirchhoff's laws, symmetry methods, Wheatstone bridge, potentiometer, and heating effects.",
+        "icon": "fa-plug",
+        "startDate": "2025-06-25T00:00:00.000Z",
+        "badge": "4 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Current Electricity - Lecture 1",
+                "uid": "JA9GA9LNAMMHMBLM1FZO",
+                "duration": "1h 51m",
+                "date": "25-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JA9GA9LNAMMHMBLM1FZO/Current_Electricity__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JA9GA9LNAMMHMBLM1FZO/Current_Electricity__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Current Electricity - Lecture 2",
+                "uid": "UELIHRDV5UNBRXTGPCOP",
+                "duration": "1h 46m",
+                "date": "26-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UELIHRDV5UNBRXTGPCOP/Current_Electricity__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UELIHRDV5UNBRXTGPCOP/Current_Electricity__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Current Electricity - Lecture 5",
+                "uid": "JTTVEEPORSZVOMIJILYF",
+                "duration": "1h 58m",
+                "date": "01-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JTTVEEPORSZVOMIJILYF/Current_Electricity__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JTTVEEPORSZVOMIJILYF/Current_Electricity__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Current Electricity - Lecture 6",
+                "uid": "8P4DWKG5WQIGWZ6VFS3S",
+                "duration": "1h 44m",
+                "date": "03-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8P4DWKG5WQIGWZ6VFS3S/Current_Electricity__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8P4DWKG5WQIGWZ6VFS3S/Current_Electricity__Lecture_6_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "magnetism-physics",
+        "title": "Magnetism & Magnetic Effects of Current",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Biot-Savart law, Ampere's circuital law, Lorentz force, motion of charges in magnetic fields, and magnetic dipoles.",
+        "icon": "fa-magnet",
+        "startDate": "2025-07-08T00:00:00.000Z",
+        "badge": "3 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Magnetism - Lecture 1",
+                "uid": "6OM1I0DQX9AK25WITB1D",
+                "duration": "2h 13m",
+                "date": "08-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6OM1I0DQX9AK25WITB1D/Magnetism__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6OM1I0DQX9AK25WITB1D/Magnetism__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Magnetism - Lecture 2",
+                "uid": "DS314N4PIARZJAVXLRJQ",
+                "duration": "1h 55m",
+                "date": "10-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DS314N4PIARZJAVXLRJQ/Magnetism__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DS314N4PIARZJAVXLRJQ/Magnetism__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Magnetism - Lecture 3",
+                "uid": "BK866XV5OV52E2NMUJCA",
+                "duration": "1h 37m",
+                "date": "17-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BK866XV5OV52E2NMUJCA/Magnetism__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BK866XV5OV52E2NMUJCA/Magnetism__Lecture_3_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "electromagnetic-induction",
+        "title": "Electromagnetic Induction (EMI)",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Magnetic flux, Faraday's laws, Lenz's law, motional EMF, self & mutual inductance, and LR circuits.",
+        "icon": "fa-arrows-spin",
+        "startDate": "2025-07-22T00:00:00.000Z",
+        "badge": "13 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Electromagnetic Induction - Lecture 1",
+                "uid": "KNW93CD1IVP0ZKYCNXDH",
+                "duration": "2h 57m",
+                "date": "22-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KNW93CD1IVP0ZKYCNXDH/Electromagnetic_Induction__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KNW93CD1IVP0ZKYCNXDH/Electromagnetic_Induction__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Electromagnetic Induction - Lecture 2",
+                "uid": "THPUV16NVDCHBEIBKK6U",
+                "duration": "1h 49m",
+                "date": "23-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/THPUV16NVDCHBEIBKK6U/Electromagnetic_Induction__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/THPUV16NVDCHBEIBKK6U/Electromagnetic_Induction__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Electromagnetic Induction - Lecture 3",
+                "uid": "W7J3NNG35P24E4BOYLI1",
+                "duration": "1h 51m",
+                "date": "24-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W7J3NNG35P24E4BOYLI1/Electromagnetic_Induction__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W7J3NNG35P24E4BOYLI1/Electromagnetic_Induction__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Electromagnetic Induction - Lecture 4",
+                "uid": "UC2XA7LH7LIRZNQ3KTWX",
+                "duration": "1h 24m",
+                "date": "25-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UC2XA7LH7LIRZNQ3KTWX/Electromagnetic_Induction__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UC2XA7LH7LIRZNQ3KTWX/Electromagnetic_Induction__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Electromagnetic Induction - Lecture 5",
+                "uid": "VKB8DLI6D2XE87FB9BWY",
+                "duration": "1h 45m",
+                "date": "29-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VKB8DLI6D2XE87FB9BWY/Electromagnetic_Induction__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VKB8DLI6D2XE87FB9BWY/Electromagnetic_Induction__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Electromagnetic Induction - Lecture 6",
+                "uid": "XUAQGVJLWL773I6460AW",
+                "duration": "1h 46m",
+                "date": "31-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XUAQGVJLWL773I6460AW/Electromagnetic_Induction__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XUAQGVJLWL773I6460AW/Electromagnetic_Induction__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Electromagnetic Induction - Lecture 7",
+                "uid": "GFY75YPZCCTCENVAQUJZ",
+                "duration": "2h 02m",
+                "date": "04-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GFY75YPZCCTCENVAQUJZ/Electromagnetic_Induction__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GFY75YPZCCTCENVAQUJZ/Electromagnetic_Induction__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Electromagnetic Induction - Lecture 8",
+                "uid": "AMAD3GTSKRAKNLG35ILL",
+                "duration": "1h 38m",
+                "date": "06-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AMAD3GTSKRAKNLG35ILL/Electromagnetic_Induction__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AMAD3GTSKRAKNLG35ILL/Electromagnetic_Induction__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Electromagnetic Induction - Lecture 9",
+                "uid": "2YFA8ZSEA5B74BBBTHJB",
+                "duration": "1h 57m",
+                "date": "07-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2YFA8ZSEA5B74BBBTHJB/Electromagnetic_Induction__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2YFA8ZSEA5B74BBBTHJB/Electromagnetic_Induction__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Electromagnetic Induction - Lecture 10",
+                "uid": "04FCP6NKZH5EMAPZJ0SR",
+                "duration": "2h 00m",
+                "date": "08-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/04FCP6NKZH5EMAPZJ0SR/Electromagnetic_Induction__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/04FCP6NKZH5EMAPZJ0SR/Electromagnetic_Induction__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Electromagnetic Induction - Lecture 11",
+                "uid": "LECXCIHKTXU3F91CI16G",
+                "duration": "1h 58m",
+                "date": "12-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LECXCIHKTXU3F91CI16G/Electromagnetic_Induction__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LECXCIHKTXU3F91CI16G/Electromagnetic_Induction__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Electromagnetic Induction - Lecture 12",
+                "uid": "DCYPKD34I0X9DIDNQ1JO",
+                "duration": "2h 01m",
+                "date": "13-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DCYPKD34I0X9DIDNQ1JO/Electromagnetic_Induction__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DCYPKD34I0X9DIDNQ1JO/Electromagnetic_Induction__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Electromagnetic Induction - Lecture 13",
+                "uid": "5WJRTT238YI1UCNUI30N",
+                "duration": "3h 00m",
+                "date": "15-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5WJRTT238YI1UCNUI30N/Electromagnetic_Induction__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5WJRTT238YI1UCNUI30N/Electromagnetic_Induction__Lecture_13_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "alternating-current",
+        "title": "Alternating Current (AC)",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Electromagnetism - JEE Advanced",
+        "description": "Peak & RMS values, phasor diagrams, AC through R, L, C, series LCR circuits, power factor, resonance, and transformers.",
+        "icon": "fa-arrows-left-right",
+        "startDate": "2025-08-20T00:00:00.000Z",
+        "badge": "5 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Alternating Current - Lecture 1",
+                "uid": "YS5DQ7X3JDJ1513555SP",
+                "duration": "2h 07m",
+                "date": "20-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YS5DQ7X3JDJ1513555SP/Alternating_Current__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YS5DQ7X3JDJ1513555SP/Alternating_Current__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Alternating Current - Lecture 3",
+                "uid": "9RH5NVK5RLB87USTSQRC",
+                "duration": "1h 53m",
+                "date": "22-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9RH5NVK5RLB87USTSQRC/Alternating_Current__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9RH5NVK5RLB87USTSQRC/Alternating_Current__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Alternating Current - Lecture 2",
+                "uid": "ZPPJIW0J8A7B96BEYVY9",
+                "duration": "2h 03m",
+                "date": "24-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZPPJIW0J8A7B96BEYVY9/Alternating_Current__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZPPJIW0J8A7B96BEYVY9/Alternating_Current__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Alternating Current - Lecture 4",
+                "uid": "VFZU1JOV7Y8HTX3K84PP",
+                "duration": "1h 58m",
+                "date": "25-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VFZU1JOV7Y8HTX3K84PP/Alternating_Current__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VFZU1JOV7Y8HTX3K84PP/Alternating_Current__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Alternating Current - Lecture 5",
+                "uid": "PSZ00VY6X2JOKOKLKTM4",
+                "duration": "2h 09m",
+                "date": "27-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PSZ00VY6X2JOKOKLKTM4/Alternating_Current__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PSZ00VY6X2JOKOKLKTM4/Alternating_Current__Lecture_5_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "ray-optics-instruments",
+        "title": "Ray Optics & Optical Instruments",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Optics - JEE Advanced",
+        "description": "Reflection from spherical mirrors, Snell's law, total internal reflection, refraction through prisms, thin lenses, and optical instruments.",
+        "icon": "fa-eye",
+        "startDate": "2025-09-02T00:00:00.000Z",
+        "badge": "8 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Ray Optics - Lecture 1",
+                "uid": "KRBAOLTTDZWGJEBAPFSK",
+                "duration": "2h 56m",
+                "date": "02-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KRBAOLTTDZWGJEBAPFSK/Ray_Optics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KRBAOLTTDZWGJEBAPFSK/Ray_Optics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Ray Optics - Lecture 2",
+                "uid": "SS3RZ6O0ZQXT3HZV1ENX",
+                "duration": "2h 55m",
+                "date": "03-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SS3RZ6O0ZQXT3HZV1ENX/Ray_Optics__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SS3RZ6O0ZQXT3HZV1ENX/Ray_Optics__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Ray Optics - Lecture 3",
+                "uid": "RH23P7HZ7IO495ZMU1Q0",
+                "duration": "1h 58m",
+                "date": "04-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RH23P7HZ7IO495ZMU1Q0/Ray_Optics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RH23P7HZ7IO495ZMU1Q0/Ray_Optics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Ray Optics - Lecture 4",
+                "uid": "K2BFMGU37CPREW8L2D2W",
+                "duration": "1h 55m",
+                "date": "08-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K2BFMGU37CPREW8L2D2W/Ray_Optics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K2BFMGU37CPREW8L2D2W/Ray_Optics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Ray Optics - Lecture 5",
+                "uid": "FVYT5E04AZOFTECC0LGE",
+                "duration": "2h 15m",
+                "date": "09-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FVYT5E04AZOFTECC0LGE/Ray_Optics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FVYT5E04AZOFTECC0LGE/Ray_Optics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Ray Optics - Lecture 6",
+                "uid": "9PZJWT111NCIURS8W8GX",
+                "duration": "1h 59m",
+                "date": "10-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9PZJWT111NCIURS8W8GX/Ray_Optics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9PZJWT111NCIURS8W8GX/Ray_Optics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Ray Optics - Lecture 7",
+                "uid": "1BM7N52OPX0V8L56KZ2W",
+                "duration": "1h 50m",
+                "date": "11-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1BM7N52OPX0V8L56KZ2W/Ray_Optics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1BM7N52OPX0V8L56KZ2W/Ray_Optics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Ray Optics - Lecture 8",
+                "uid": "YHJE4YCWYHX8SW669F97",
+                "duration": "1h 38m",
+                "date": "15-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YHJE4YCWYHX8SW669F97/Ray_Optics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YHJE4YCWYHX8SW669F97/Ray_Optics__Lecture_8_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "modern-physics",
+        "title": "Modern Physics & Nuclear Physics",
+        "subject": "Physics",
+        "subjectIcon": "fa-atom",
+        "subjectColor": "#0ea5e9",
+        "subtitle": "Modern Physics - JEE Advanced",
+        "description": "Photoelectric effect, de Broglie wavelength, Bohr model of hydrogen, X-rays, radioactive decay, mass defect, and nuclear reactions.",
+        "icon": "fa-satellite-dish",
+        "startDate": "2025-04-11T00:00:00.000Z",
+        "badge": "13 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Modern Physics - Lecture 1",
+                "uid": "D5X4MHHBI6C4P8YA20UX",
+                "duration": "2h 08m",
+                "date": "11-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D5X4MHHBI6C4P8YA20UX/Modern_Physics__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D5X4MHHBI6C4P8YA20UX/Modern_Physics__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Modern Physics - Lecture 2",
+                "uid": "5PAJBQAB6A1OMGZRHGW4",
+                "duration": "2h 28m",
+                "date": "14-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5PAJBQAB6A1OMGZRHGW4/Modern_Physics__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5PAJBQAB6A1OMGZRHGW4/Modern_Physics__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Modern Physics - Lecture 3",
+                "uid": "0I93RW52J7MYCJW7GUZS",
+                "duration": "2h 14m",
+                "date": "16-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0I93RW52J7MYCJW7GUZS/Modern_Physics__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0I93RW52J7MYCJW7GUZS/Modern_Physics__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Modern Physics - Lecture 4",
+                "uid": "W326JGH0UYACDTHSIEK4",
+                "duration": "1h 29m",
+                "date": "19-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W326JGH0UYACDTHSIEK4/Modern_Physics__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W326JGH0UYACDTHSIEK4/Modern_Physics__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Modern Physics - Lecture 5",
+                "uid": "BHWZ0ZKLE7REKQLM229I",
+                "duration": "1h 42m",
+                "date": "23-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BHWZ0ZKLE7REKQLM229I/Modern_Physics__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BHWZ0ZKLE7REKQLM229I/Modern_Physics__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Modern Physics - Lecture 6",
+                "uid": "DZFDWJNK5NM96052ADFR",
+                "duration": "1h 27m",
+                "date": "02-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DZFDWJNK5NM96052ADFR/Modern_Physics__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DZFDWJNK5NM96052ADFR/Modern_Physics__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Modern Physics - Lecture 7",
+                "uid": "U56VWRJ8311PW0KL27JZ",
+                "duration": "2h 10m",
+                "date": "03-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U56VWRJ8311PW0KL27JZ/Modern_Physics__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U56VWRJ8311PW0KL27JZ/Modern_Physics__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Modern Physics - Lecture 8",
+                "uid": "Z8XM0MGXS4WXT0URA2WL",
+                "duration": "1h 54m",
+                "date": "06-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z8XM0MGXS4WXT0URA2WL/Modern_Physics__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z8XM0MGXS4WXT0URA2WL/Modern_Physics__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Modern Physics - Lecture 9",
+                "uid": "J7EYWURKQIE516PX793D",
+                "duration": "1h 44m",
+                "date": "07-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J7EYWURKQIE516PX793D/Modern_Physics__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J7EYWURKQIE516PX793D/Modern_Physics__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Modern Physics - Lecture 10",
+                "uid": "W5FREUDASLICQCQ4OHV1",
+                "duration": "1h 59m",
+                "date": "08-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W5FREUDASLICQCQ4OHV1/Modern_Physics__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W5FREUDASLICQCQ4OHV1/Modern_Physics__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Modern Physics - Lecture 11",
+                "uid": "TXPR3NMPI5PELOZX5H1B",
+                "duration": "2h 22m",
+                "date": "12-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TXPR3NMPI5PELOZX5H1B/Modern_Physics__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TXPR3NMPI5PELOZX5H1B/Modern_Physics__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Modern Physics - Lecture 13",
+                "uid": "3H6NT9KM8SWQ8Y3KF4JP",
+                "duration": "2h 15m",
+                "date": "14-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3H6NT9KM8SWQ8Y3KF4JP/Modern_Physics__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3H6NT9KM8SWQ8Y3KF4JP/Modern_Physics__Lecture_13_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Modern Physics - Lecture 14",
+                "uid": "3PHUPG77ZLY7044HLGM6",
+                "duration": "1h 16m",
+                "date": "15-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3PHUPG77ZLY7044HLGM6/Modern_Physics__Lecture_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3PHUPG77ZLY7044HLGM6/Modern_Physics__Lecture_14_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "mole-concept-redox",
+        "title": "Mole Concept, Stoichiometry & Redox",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Atomic & molar masses, empirical formula, limiting reagent, concentration terms (Molarity, Molality, Normality), and equivalent concept.",
+        "icon": "fa-scale-balanced",
+        "startDate": "2024-12-24T00:00:00.000Z",
+        "badge": "20 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Redox and Equivalent Concept for Jee Advanced",
+                "uid": "GNXZS7TD38H477DGIQ6W",
+                "duration": "2h 02m",
+                "date": "24-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GNXZS7TD38H477DGIQ6W/L01_Redox_and_Equivalent_Concept_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GNXZS7TD38H477DGIQ6W/L01_Redox_and_Equivalent_Concept_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Redox and Equivalent Concept For Jee Advanced",
+                "uid": "YGQYBNXUIJ6JTM5U3QTM",
+                "duration": "2h 02m",
+                "date": "25-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YGQYBNXUIJ6JTM5U3QTM/L02_Redox_and_Equivalent_Concept_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YGQYBNXUIJ6JTM5U3QTM/L02_Redox_and_Equivalent_Concept_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Redox and Equivalent Concept For Jee Advanced",
+                "uid": "LKNCJIRLRJD8DTKNBXSP",
+                "duration": "1h 55m",
+                "date": "26-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LKNCJIRLRJD8DTKNBXSP/L03_Redox_and_Equivalent_Concept_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LKNCJIRLRJD8DTKNBXSP/L03_Redox_and_Equivalent_Concept_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Redox and Equivalent Concept For Jee Advanced",
+                "uid": "DQIG1DEB9VE5Q3FOGR86",
+                "duration": "1h 58m",
+                "date": "28-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DQIG1DEB9VE5Q3FOGR86/L05Redox_and_Equivalent_Concept_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DQIG1DEB9VE5Q3FOGR86/L05Redox_and_Equivalent_Concept_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Redox and Equivalent Concept For Jee Advanced",
+                "uid": "A5KRHQRQLFKI6N8NP733",
+                "duration": "1h 55m",
+                "date": "30-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A5KRHQRQLFKI6N8NP733/L06Redox_and_Equivalent_Concept_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A5KRHQRQLFKI6N8NP733/L06Redox_and_Equivalent_Concept_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Redox and Equivalent Concept for Jee Advanced",
+                "uid": "NX38WZMQF6T0QQFBXDSY",
+                "duration": "1h 53m",
+                "date": "31-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NX38WZMQF6T0QQFBXDSY/L07_Redox_and_Equivalent_Concept_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NX38WZMQF6T0QQFBXDSY/L07_Redox_and_Equivalent_Concept_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Redox and Equivalent Concept for Jee Advanced",
+                "uid": "TOFXONZM4WM43F1BVN3K",
+                "duration": "1h 57m",
+                "date": "01-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TOFXONZM4WM43F1BVN3K/L08_Redox_and_Equivalent_Concept_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TOFXONZM4WM43F1BVN3K/L08_Redox_and_Equivalent_Concept_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Redox and Equivalent Concept for Jee Advanced",
+                "uid": "QY3HH394O9HRHQPLSU0E",
+                "duration": "2h 00m",
+                "date": "02-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QY3HH394O9HRHQPLSU0E/L09_Redox_and_Equivalent_Concept_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QY3HH394O9HRHQPLSU0E/L09_Redox_and_Equivalent_Concept_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Redox and Equivalent Concept for Jee Advanced",
+                "uid": "5N5RRI3CA1LSSHTM794N",
+                "duration": "2h 15m",
+                "date": "03-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5N5RRI3CA1LSSHTM794N/L10_Redox_and_Equivalent_Concept_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5N5RRI3CA1LSSHTM794N/L10_Redox_and_Equivalent_Concept_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Redox and equivalent Concept For Jee Advanced",
+                "uid": "AFPCNHXQ7UW1CO6V8GPB",
+                "duration": "2h 06m",
+                "date": "27-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AFPCNHXQ7UW1CO6V8GPB/L04_Redox_and_equivalent_Concept_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AFPCNHXQ7UW1CO6V8GPB/L04_Redox_and_equivalent_Concept_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Mole and redox-01",
+                "uid": "AOSL4FMIXCRQI6ZMDEU1",
+                "duration": "1h 34m",
+                "date": "22-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AOSL4FMIXCRQI6ZMDEU1/Mole_and_redox01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AOSL4FMIXCRQI6ZMDEU1/Mole_and_redox01_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Mole and Redox -02",
+                "uid": "KGLCRJ8K4RL8SU77YCDJ",
+                "duration": "1h 39m",
+                "date": "25-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KGLCRJ8K4RL8SU77YCDJ/Mole_and_Redox_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KGLCRJ8K4RL8SU77YCDJ/Mole_and_Redox_02_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Mole Concept And Concentration terms Lecture-01",
+                "uid": "IMRM01CJOOYLPVU46GIN",
+                "duration": "2h 00m",
+                "date": "15-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IMRM01CJOOYLPVU46GIN/Mole_Concept_And_Concentration_terms_Lecture01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IMRM01CJOOYLPVU46GIN/Mole_Concept_And_Concentration_terms_Lecture01_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Mole Concept and Concentration terms Lecture-02",
+                "uid": "P7QUHDPFIWQP6VM33RK0",
+                "duration": "1h 47m",
+                "date": "16-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P7QUHDPFIWQP6VM33RK0/Mole_Concept_and_Concentration_terms_Lecture02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P7QUHDPFIWQP6VM33RK0/Mole_Concept_and_Concentration_terms_Lecture02_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Mole Concept and Concentration terms Lecture-3",
+                "uid": "KMZNOHOCG67O01Q15LJB",
+                "duration": "1h 49m",
+                "date": "17-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KMZNOHOCG67O01Q15LJB/Mole_Concept_and_Concentration_terms_Lecture3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KMZNOHOCG67O01Q15LJB/Mole_Concept_and_Concentration_terms_Lecture3_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Mole concept and Concentration Terms Lecture-04",
+                "uid": "27COQOTBLSRSFKTGG0K1",
+                "duration": "1h 54m",
+                "date": "18-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/27COQOTBLSRSFKTGG0K1/Mole_concept_and_Concentration_Terms_Lecture04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/27COQOTBLSRSFKTGG0K1/Mole_concept_and_Concentration_Terms_Lecture04_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Mole concept and Concentration Terms Lecture-05",
+                "uid": "B96SC3M51KZ5Q5F0PBMY",
+                "duration": "1h 52m",
+                "date": "19-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/B96SC3M51KZ5Q5F0PBMY/Mole_concept_and_Concentration_Terms_Lecture05_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/B96SC3M51KZ5Q5F0PBMY/Mole_concept_and_Concentration_Terms_Lecture05_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Mole concept and Concentration Terms Lecture-06",
+                "uid": "37ET8ANH1MUMVN4JINY4",
+                "duration": "1h 35m",
+                "date": "20-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/37ET8ANH1MUMVN4JINY4/Mole_concept_and_Concentration_Terms_Lecture06_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/37ET8ANH1MUMVN4JINY4/Mole_concept_and_Concentration_Terms_Lecture06_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Mole concept and Concentration Terms Lecture-07",
+                "uid": "EFOLETVO3GC2UYL7IHGN",
+                "duration": "2h 01m",
+                "date": "21-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EFOLETVO3GC2UYL7IHGN/Mole_concept_and_Concentration_Terms_Lecture07_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EFOLETVO3GC2UYL7IHGN/Mole_concept_and_Concentration_Terms_Lecture07_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Mole concept and Concentration Terms Lecture-08",
+                "uid": "CCVG26XLQMXZ8HNUHHWU",
+                "duration": "2h 02m",
+                "date": "23-12-2024",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CCVG26XLQMXZ8HNUHHWU/Mole_concept_and_Concentration_Terms_Lecture08_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CCVG26XLQMXZ8HNUHHWU/Mole_concept_and_Concentration_Terms_Lecture08_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "atomic-structure",
+        "title": "Atomic Structure & Quantum Mechanics",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Bohr's atomic model, dual nature of matter, Heisenberg uncertainty principle, quantum numbers, and radial distribution functions.",
+        "icon": "fa-atom",
+        "startDate": "2025-01-04T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "9R1VIRSQXB16EC86J3R0",
+                "duration": "2h 19m",
+                "date": "04-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9R1VIRSQXB16EC86J3R0/L01_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9R1VIRSQXB16EC86J3R0/L01_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "OZ568BRGWBKPYKEVIZ6T",
+                "duration": "1h 57m",
+                "date": "06-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OZ568BRGWBKPYKEVIZ6T/L02_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OZ568BRGWBKPYKEVIZ6T/L02_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "LPIJKJ82JX4KI1AKTQJP",
+                "duration": "2h 03m",
+                "date": "07-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LPIJKJ82JX4KI1AKTQJP/L03_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LPIJKJ82JX4KI1AKTQJP/L03_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "19UAG7ZK39MJCMXA22SK",
+                "duration": "2h 01m",
+                "date": "08-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/19UAG7ZK39MJCMXA22SK/L04_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/19UAG7ZK39MJCMXA22SK/L04_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "6A1Z8CDQE2012BBG2BG6",
+                "duration": "2h 04m",
+                "date": "09-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6A1Z8CDQE2012BBG2BG6/L05_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6A1Z8CDQE2012BBG2BG6/L05_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "U953IROXD53KQZQIAE2T",
+                "duration": "2h 05m",
+                "date": "10-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U953IROXD53KQZQIAE2T/L06Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U953IROXD53KQZQIAE2T/L06Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "SD3NAEWIYPU0BRJOLQQU",
+                "duration": "2h 18m",
+                "date": "11-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SD3NAEWIYPU0BRJOLQQU/L07_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SD3NAEWIYPU0BRJOLQQU/L07_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "LRNKPUVDTPS66H7YY01O",
+                "duration": "2h 15m",
+                "date": "13-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LRNKPUVDTPS66H7YY01O/L08_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LRNKPUVDTPS66H7YY01O/L08_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "6LYVAHFKMODDY4H24A6J",
+                "duration": "1h 58m",
+                "date": "14-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6LYVAHFKMODDY4H24A6J/L09_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6LYVAHFKMODDY4H24A6J/L09_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Atomic Structure for JEE ADVANCED",
+                "uid": "Z3LN4WQF3OZL0JDSG6SB",
+                "duration": "1h 57m",
+                "date": "15-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z3LN4WQF3OZL0JDSG6SB/L10_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z3LN4WQF3OZL0JDSG6SB/L10_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "gaseous-state",
+        "title": "Gaseous State (Ideal & Real Gases)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Gas laws, Dalton's law of partial pressures, Graham's law of diffusion, KTG, van der Waals equation for real gases, and critical state.",
+        "icon": "fa-wind",
+        "startDate": "2025-02-08T00:00:00.000Z",
+        "badge": "7 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Ideal Gases Jee Advanced",
+                "uid": "I5O85CTNGU4ZWL9OWND6",
+                "duration": "2h 11m",
+                "date": "08-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I5O85CTNGU4ZWL9OWND6/L01_Ideal_Gases_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I5O85CTNGU4ZWL9OWND6/L01_Ideal_Gases_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Ideal Gases Jee Advanced",
+                "uid": "TFSSPYYOL6HTX9A0IGI8",
+                "duration": "1h 31m",
+                "date": "10-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TFSSPYYOL6HTX9A0IGI8/L02_Ideal_Gases_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TFSSPYYOL6HTX9A0IGI8/L02_Ideal_Gases_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Ideal Gases for Jee Advanced",
+                "uid": "E1WDHU1QL51FD8HSTY8E",
+                "duration": "2h 03m",
+                "date": "11-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E1WDHU1QL51FD8HSTY8E/L03_Ideal_Gases_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E1WDHU1QL51FD8HSTY8E/L03_Ideal_Gases_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Ideal Gases for Jee Advanced",
+                "uid": "S6DFM3LL00C58V3PGXPF",
+                "duration": "1h 34m",
+                "date": "12-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S6DFM3LL00C58V3PGXPF/L04_Ideal_Gases_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S6DFM3LL00C58V3PGXPF/L04_Ideal_Gases_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Ideal Gases for Jee Advanced",
+                "uid": "ZH1PZ69XL62WOOIQ5W8Q",
+                "duration": "2h 13m",
+                "date": "13-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZH1PZ69XL62WOOIQ5W8Q/L05_Ideal_Gases_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZH1PZ69XL62WOOIQ5W8Q/L05_Ideal_Gases_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Real Gases for Jee Advanced",
+                "uid": "VM3MW2OBGY1OZFDF39FY",
+                "duration": "2h 08m",
+                "date": "14-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VM3MW2OBGY1OZFDF39FY/L06_Real_Gases_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VM3MW2OBGY1OZFDF39FY/L06_Real_Gases_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Real Gases for Jee Advanced",
+                "uid": "3L84JQC0ID8D30KOCKGO",
+                "duration": "1h 59m",
+                "date": "15-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3L84JQC0ID8D30KOCKGO/L07_Real_Gases_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3L84JQC0ID8D30KOCKGO/L07_Real_Gases_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "chemical-thermodynamics",
+        "title": "Thermodynamics & Thermochemistry (Chem)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "State functions, First Law, enthalpy changes (combustion, formation), Hess's law, Second & Third Laws, and Gibbs Free Energy criteria.",
+        "icon": "fa-fire",
+        "startDate": "2025-11-29T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Thermodynamics -01",
+                "uid": "R7BALQVYA6M5KA26E2WQ",
+                "duration": "2h 35m",
+                "date": "29-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Thermodynamics -02",
+                "uid": "HF2WC4KEYRWIGZ5FQQVE",
+                "duration": "2h 07m",
+                "date": "30-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "YJJQ6WJ9A9VEZPA3Y9W3",
+                "duration": "2h 16m",
+                "date": "17-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YJJQ6WJ9A9VEZPA3Y9W3/L01_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YJJQ6WJ9A9VEZPA3Y9W3/L01_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "PCQUCGPK59YN7I6Z9FHU",
+                "duration": "2h 17m",
+                "date": "18-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PCQUCGPK59YN7I6Z9FHU/L02_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PCQUCGPK59YN7I6Z9FHU/L02_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "ZU7SJZJB18SGF3QZ3GOJ",
+                "duration": "2h 10m",
+                "date": "19-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZU7SJZJB18SGF3QZ3GOJ/L03_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZU7SJZJB18SGF3QZ3GOJ/L03_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "56VJ1M7RASI5375U6LSQ",
+                "duration": "2h 09m",
+                "date": "20-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/56VJ1M7RASI5375U6LSQ/L04_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/56VJ1M7RASI5375U6LSQ/L04_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "2U2DURIVGVP1GJ66ICUU",
+                "duration": "1h 57m",
+                "date": "21-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2U2DURIVGVP1GJ66ICUU/L05_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2U2DURIVGVP1GJ66ICUU/L05_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "KLVOU7WTHF1X1LYMK9H8",
+                "duration": "2h 15m",
+                "date": "22-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KLVOU7WTHF1X1LYMK9H8/L06_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KLVOU7WTHF1X1LYMK9H8/L06_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "R1GLJQH9JJ6C8KQFED35",
+                "duration": "1h 16m",
+                "date": "24-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R1GLJQH9JJ6C8KQFED35/L07_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R1GLJQH9JJ6C8KQFED35/L07_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "THERMODYNAMICS-1 JEE ADVANCED",
+                "uid": "N5MBT2FHY92REO3IA41Q",
+                "duration": "1h 18m",
+                "date": "25-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "chemical-ionic-equilibrium",
+        "title": "Chemical & Ionic Equilibrium",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Equilibrium constant (Kp, Kc), Le Chatelier's principle, Ostwald's dilution, pH calculations, buffer solutions, and solubility product (Ksp).",
+        "icon": "fa-scale-unbalanced",
+        "startDate": "2025-12-04T00:00:00.000Z",
+        "badge": "11 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Equilibrium -01",
+                "uid": "U5OXZY23XSOHERDHLYLA",
+                "duration": "2h 31m",
+                "date": "04-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U5OXZY23XSOHERDHLYLA/Equilibrium_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U5OXZY23XSOHERDHLYLA/Equilibrium_01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Equilibrium -02",
+                "uid": "70R1YD2ECSVKBX23F3HP",
+                "duration": "2h 02m",
+                "date": "05-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/70R1YD2ECSVKBX23F3HP/Equilibrium_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/70R1YD2ECSVKBX23F3HP/Equilibrium_02_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Equilibrium -03",
+                "uid": "VJPH9JXFNA12V71DIQXO",
+                "duration": "2h 22m",
+                "date": "06-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VJPH9JXFNA12V71DIQXO/Equilibrium_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VJPH9JXFNA12V71DIQXO/Equilibrium_03_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Equilibrium Main PYQs",
+                "uid": "QJMCS1WL4258UXJ20KOS",
+                "duration": "2h 01m",
+                "date": "08-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QJMCS1WL4258UXJ20KOS/Equilibrium_Main_PYQs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QJMCS1WL4258UXJ20KOS/Equilibrium_Main_PYQs_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "GIB8Q78UBU2MGEAETSDE",
+                "duration": "2h 18m",
+                "date": "06-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GIB8Q78UBU2MGEAETSDE/L01__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GIB8Q78UBU2MGEAETSDE/L01__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "V29SVUAV6UV04YTCY3WH",
+                "duration": "2h 07m",
+                "date": "07-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V29SVUAV6UV04YTCY3WH/L02__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V29SVUAV6UV04YTCY3WH/L02__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "9AOLFUEY5AHGEC6A9DMB",
+                "duration": "1h 44m",
+                "date": "08-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9AOLFUEY5AHGEC6A9DMB/L03__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9AOLFUEY5AHGEC6A9DMB/L03__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "4M22U4FT8YBPPQP3OHKE",
+                "duration": "2h 18m",
+                "date": "10-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4M22U4FT8YBPPQP3OHKE/L04__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4M22U4FT8YBPPQP3OHKE/L04__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "BBNPTJKWQ56H14JYU0L0",
+                "duration": "2h 14m",
+                "date": "12-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BBNPTJKWQ56H14JYU0L0/L06__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BBNPTJKWQ56H14JYU0L0/L06__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "7NJBAR9PVE4AM7TX7NAA",
+                "duration": "2h 16m",
+                "date": "13-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7NJBAR9PVE4AM7TX7NAA/L07__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7NJBAR9PVE4AM7TX7NAA/L07__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Equilibrium for JEE Advanced",
+                "uid": "BJV60MGA809WKSM2AZIP",
+                "duration": "2h 10m",
+                "date": "14-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BJV60MGA809WKSM2AZIP/L08__Equilibrium_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BJV60MGA809WKSM2AZIP/L08__Equilibrium_for_JEE_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "chemical-kinetics",
+        "title": "Chemical Kinetics & Nuclear Chemistry",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Rate of reaction, rate law & order, integrated rate equations (0th, 1st, 2nd order), Arrhenius equation, and collision theory.",
+        "icon": "fa-stopwatch",
+        "startDate": "2025-05-05T00:00:00.000Z",
+        "badge": "11 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "CF4UFKK77HVOEKPM7WML",
+                "duration": "2h 00m",
+                "date": "05-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CF4UFKK77HVOEKPM7WML/L01_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CF4UFKK77HVOEKPM7WML/L01_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "JS8VSNKOBTH40MRCQ2XC",
+                "duration": "1h 59m",
+                "date": "06-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JS8VSNKOBTH40MRCQ2XC/L02_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JS8VSNKOBTH40MRCQ2XC/L02_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "HFLRCI6HTMJ5BZWJ0J55",
+                "duration": "2h 05m",
+                "date": "07-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HFLRCI6HTMJ5BZWJ0J55/L03_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HFLRCI6HTMJ5BZWJ0J55/L03_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "M7HHRERF656AR4STI260",
+                "duration": "2h 01m",
+                "date": "08-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M7HHRERF656AR4STI260/L04_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M7HHRERF656AR4STI260/L04_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "1RP2G0BHNJPNYXYOAH1N",
+                "duration": "1h 59m",
+                "date": "09-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1RP2G0BHNJPNYXYOAH1N/L05_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1RP2G0BHNJPNYXYOAH1N/L05_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "NRN6ARLMPSX6JG1ZNHYJ",
+                "duration": "6m",
+                "date": "10-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NRN6ARLMPSX6JG1ZNHYJ/notes_with_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "FR0VQBMRPIG37NNC6LX7",
+                "duration": "1h 57m",
+                "date": "12-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FR0VQBMRPIG37NNC6LX7/L06_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FR0VQBMRPIG37NNC6LX7/L06_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "6SH8QVP0ONA87CD5D1A9",
+                "duration": "2h 02m",
+                "date": "13-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6SH8QVP0ONA87CD5D1A9/L07_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6SH8QVP0ONA87CD5D1A9/L07_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Chemical Kinetics for Jee Advanced",
+                "uid": "AZP9487F458CFCBH2RGV",
+                "duration": "2h 00m",
+                "date": "14-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AZP9487F458CFCBH2RGV/L08_Chemical_Kinetics_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AZP9487F458CFCBH2RGV/L08_Chemical_Kinetics_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Chemical Kinetics -01",
+                "uid": "8Y8HPUVL000XLED1MXYJ",
+                "duration": "1h 54m",
+                "date": "21-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8Y8HPUVL000XLED1MXYJ/Chemical_Kinetics_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8Y8HPUVL000XLED1MXYJ/Chemical_Kinetics_01_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Chemical Kinetics -02",
+                "uid": "VPX7EM4FFY9UGE5YHKCN",
+                "duration": "1h 47m",
+                "date": "22-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "electrochemistry",
+        "title": "Electrochemistry & Conductance",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Galvanic cells, Nernst equation, electrolytic cells & Faraday's laws, Kohlrausch law, molar conductivity, and electrochemical series.",
+        "icon": "fa-car-battery",
+        "startDate": "2025-12-19T00:00:00.000Z",
+        "badge": "13 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Electrocheistry-01",
+                "uid": "OI2IAPOQW8PH9548BB7W",
+                "duration": "1h 59m",
+                "date": "19-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OI2IAPOQW8PH9548BB7W/Electrocheistry01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OI2IAPOQW8PH9548BB7W/Electrocheistry01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Electrochemistry-02",
+                "uid": "ZOVOQBT74L2GNZGUMEYK",
+                "duration": "2h 22m",
+                "date": "20-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZOVOQBT74L2GNZGUMEYK/Electrochemistry02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZOVOQBT74L2GNZGUMEYK/Electrochemistry02_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "XQRCFIYZA3VKBW8YW0FF",
+                "duration": "1h 53m",
+                "date": "20-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XQRCFIYZA3VKBW8YW0FF/L01_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XQRCFIYZA3VKBW8YW0FF/L01_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "VQZSZYECSKK9AEAPUDCO",
+                "duration": "2h 07m",
+                "date": "22-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VQZSZYECSKK9AEAPUDCO/L02_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VQZSZYECSKK9AEAPUDCO/L02_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "IBRJS2B3CD6XMW17VQXJ",
+                "duration": "2h 03m",
+                "date": "23-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IBRJS2B3CD6XMW17VQXJ/L03_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IBRJS2B3CD6XMW17VQXJ/L03_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "KMY0VDUTHF29TBACEZ3Q",
+                "duration": "2h 02m",
+                "date": "24-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KMY0VDUTHF29TBACEZ3Q/L04_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KMY0VDUTHF29TBACEZ3Q/L04_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "D3NEZVG5B5R78EQ9KZNO",
+                "duration": "2h 04m",
+                "date": "25-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D3NEZVG5B5R78EQ9KZNO/L05_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D3NEZVG5B5R78EQ9KZNO/L05_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "K2498NSAHGP3J3K1YLTS",
+                "duration": "2h 03m",
+                "date": "26-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K2498NSAHGP3J3K1YLTS/L06_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K2498NSAHGP3J3K1YLTS/L06_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "R017YBCILJ64U7CHENU3",
+                "duration": "2h 02m",
+                "date": "28-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R017YBCILJ64U7CHENU3/L07_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R017YBCILJ64U7CHENU3/L07_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "3DQ059TQWOPADHDBNCLX",
+                "duration": "2h 04m",
+                "date": "29-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3DQ059TQWOPADHDBNCLX/L08_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3DQ059TQWOPADHDBNCLX/L08_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "HBMSGUVMQFF6B9VHJ0LA",
+                "duration": "2h 00m",
+                "date": "30-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HBMSGUVMQFF6B9VHJ0LA/L09_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HBMSGUVMQFF6B9VHJ0LA/L09_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "R0PZYBLNLBK3TSFWMAIB",
+                "duration": "1h 59m",
+                "date": "01-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R0PZYBLNLBK3TSFWMAIB/L10_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R0PZYBLNLBK3TSFWMAIB/L10_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Electrochemistry for Jee Advanced",
+                "uid": "BT4DYRB4DLA36HSQTKDU",
+                "duration": "1h 48m",
+                "date": "02-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BT4DYRB4DLA36HSQTKDU/L11_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BT4DYRB4DLA36HSQTKDU/L11_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "liquid-solutions",
+        "title": "Liquid Solutions & Colligative Properties",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Raoult's law, ideal & non-ideal solutions, azeotropes, elevation in boiling point, depression in freezing point, and van 't Hoff factor.",
+        "icon": "fa-water",
+        "startDate": "2025-12-15T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Liquid Solutions-01",
+                "uid": "7QGMUF9VLU5G5VJJZKH8",
+                "duration": "2h 51m",
+                "date": "15-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7QGMUF9VLU5G5VJJZKH8/Liquid_Solutions01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7QGMUF9VLU5G5VJJZKH8/Liquid_Solutions01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "R4C0U87J1RURJX9BS7HR",
+                "duration": "1h 36m",
+                "date": "08-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R4C0U87J1RURJX9BS7HR/L01__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R4C0U87J1RURJX9BS7HR/L01__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "VCKYE6HTERID69RHM1YF",
+                "duration": "1h 49m",
+                "date": "09-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VCKYE6HTERID69RHM1YF/L02__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VCKYE6HTERID69RHM1YF/L02__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "KSRKKFYDYZ4S98F4RZDJ",
+                "duration": "51m",
+                "date": "10-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KSRKKFYDYZ4S98F4RZDJ/L03__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KSRKKFYDYZ4S98F4RZDJ/L03__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "CPD13I5D7P0080LHDHF2",
+                "duration": "1h 55m",
+                "date": "11-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CPD13I5D7P0080LHDHF2/L04__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CPD13I5D7P0080LHDHF2/L04__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "UR7D4QUX7FEO0H03Q7Q2",
+                "duration": "2h 03m",
+                "date": "15-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UR7D4QUX7FEO0H03Q7Q2/L06__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UR7D4QUX7FEO0H03Q7Q2/L06__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "9TAB1H4L5O9MXCVS90EA",
+                "duration": "1h 55m",
+                "date": "16-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9TAB1H4L5O9MXCVS90EA/L07__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9TAB1H4L5O9MXCVS90EA/L07__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "2YEZ9SKXUE16WW3C1UQ8",
+                "duration": "1h 33m",
+                "date": "17-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2YEZ9SKXUE16WW3C1UQ8/L08__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2YEZ9SKXUE16WW3C1UQ8/L08__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Liquid Solutions For JEE Advanced",
+                "uid": "LQ60MXNUTEQM1VNDJBV2",
+                "duration": "2h 01m",
+                "date": "18-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LQ60MXNUTEQM1VNDJBV2/L09__Liquid_Solutions_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LQ60MXNUTEQM1VNDJBV2/L09__Liquid_Solutions_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Liquid solutions for Jee Advanced",
+                "uid": "1ID9Z55SWQ5PGJ1ORGCV",
+                "duration": "2h 08m",
+                "date": "14-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1ID9Z55SWQ5PGJ1ORGCV/L05__Liquid_solutions_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1ID9Z55SWQ5PGJ1ORGCV/L05__Liquid_solutions_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "solid-state",
+        "title": "Solid State",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Crystal lattices & unit cells, packing efficiency, cubic systems (SC, BCC, FCC), voids, coordination numbers, and crystal defects.",
+        "icon": "fa-cubes",
+        "startDate": "2025-10-29T00:00:00.000Z",
+        "badge": "6 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Solid states for Jee Advanced",
+                "uid": "L2J5LN4PFGT4VF5OSU0Q",
+                "duration": "2h 10m",
+                "date": "29-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/L2J5LN4PFGT4VF5OSU0Q/L01__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/L2J5LN4PFGT4VF5OSU0Q/L01__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Solid states for Jee Advanced",
+                "uid": "I0ETPNWP65XMMI5B7P4E",
+                "duration": "1h 30m",
+                "date": "31-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I0ETPNWP65XMMI5B7P4E/L02__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I0ETPNWP65XMMI5B7P4E/L02__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Solid states for Jee Advanced",
+                "uid": "6GNXLTRATP0J41YZ0D8G",
+                "duration": "1h 48m",
+                "date": "03-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6GNXLTRATP0J41YZ0D8G/L03__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6GNXLTRATP0J41YZ0D8G/L03__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Solid states for Jee Advanced",
+                "uid": "I4HU6KS0I8FKZYG57AZX",
+                "duration": "1h 46m",
+                "date": "04-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I4HU6KS0I8FKZYG57AZX/L04__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I4HU6KS0I8FKZYG57AZX/L04__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Solid states for Jee Advanced",
+                "uid": "422R94LB9X82V9W1TADX",
+                "duration": "2h 00m",
+                "date": "07-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/422R94LB9X82V9W1TADX/L05__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/422R94LB9X82V9W1TADX/L05__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Solid states for Jee Advanced",
+                "uid": "ML4O24OG0WPYSZZQ6G81",
+                "duration": "1h 20m",
+                "date": "10-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ML4O24OG0WPYSZZQ6G81/L06__Solid_states_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ML4O24OG0WPYSZZQ6G81/L06__Solid_states_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "physical-chem-pyqs",
+        "title": "Physical Chemistry Advanced PYQs & Mixed",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Physical Chemistry - JEE Advanced",
+        "description": "Comprehensive problem solving and multi-concept integer and numerical questions across all Physical Chemistry units.",
+        "icon": "fa-list-check",
+        "startDate": "2026-02-07T00:00:00.000Z",
+        "badge": "7 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Mixed problem solving [physical chemistry]",
+                "uid": "MN5SKTYJR9PX770J2DA5",
+                "duration": "2h 04m",
+                "date": "07-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MN5SKTYJR9PX770J2DA5/L01__Mixed_problem_solving_physical_chemistry_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MN5SKTYJR9PX770J2DA5/L01__Mixed_problem_solving_physical_chemistry_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Mixed problem solving [Physical chemistry]",
+                "uid": "Y3VBBG583F6R0BK3T5OD",
+                "duration": "1h 46m",
+                "date": "14-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y3VBBG583F6R0BK3T5OD/L05__Mixed_problem_solving_Physical_chemistry_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y3VBBG583F6R0BK3T5OD/L05__Mixed_problem_solving_Physical_chemistry_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "12th Physical Chemistry- Mixed Pyqs",
+                "uid": "1EVOLDRXE7GJJX8DG3WF",
+                "duration": "2h 07m",
+                "date": "23-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1EVOLDRXE7GJJX8DG3WF/12th_Physical_Chemistry_Mixed_Pyqs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1EVOLDRXE7GJJX8DG3WF/12th_Physical_Chemistry_Mixed_Pyqs_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Physical chemistry mixed-01",
+                "uid": "JB1TLZAH8KHJ4TAQEN57",
+                "duration": "2h 05m",
+                "date": "05-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JB1TLZAH8KHJ4TAQEN57/Physical_chemistry_mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JB1TLZAH8KHJ4TAQEN57/Physical_chemistry_mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Physical chemistry mixed-02",
+                "uid": "XV2PIFAJ0GV90LDBH5RR",
+                "duration": "2h 21m",
+                "date": "06-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XV2PIFAJ0GV90LDBH5RR/Physical_chemistry_mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XV2PIFAJ0GV90LDBH5RR/Physical_chemistry_mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Physical chemistry mixed-03",
+                "uid": "KKSZP084J3F3RTGHVABD",
+                "duration": "1h 59m",
+                "date": "07-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KKSZP084J3F3RTGHVABD/Physical_chemistry_mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KKSZP084J3F3RTGHVABD/Physical_chemistry_mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Physical chemistry integer problems",
+                "uid": "VR8S5YQ5GVR38GJ6K9GC",
+                "duration": "1h 53m",
+                "date": "16-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "periodic-table-periodicity",
+        "title": "Periodic Table & Periodicity in Properties",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Modern periodic law, periodic trends in atomic radii, ionization enthalpy, electron gain enthalpy, electronegativity, and diagonal relationships.",
+        "icon": "fa-table-cells",
+        "startDate": "2025-01-16T00:00:00.000Z",
+        "badge": "8 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Periodic Table and Periodicity in Properties for JEE Advanced",
+                "uid": "MQAJVBV836MORS7X9OKQ",
+                "duration": "2h 02m",
+                "date": "16-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MQAJVBV836MORS7X9OKQ/L01_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MQAJVBV836MORS7X9OKQ/L01_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Periodic Table and Periodicity in Properties for JEE Advanced",
+                "uid": "J7C8U6B1530MXS079CDX",
+                "duration": "2h 00m",
+                "date": "17-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J7C8U6B1530MXS079CDX/L02_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J7C8U6B1530MXS079CDX/L02_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Periodic Table and Periodicity in Properties for JEE Advanced",
+                "uid": "VHPYUXLSWGM04RWL77WY",
+                "duration": "1h 50m",
+                "date": "18-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VHPYUXLSWGM04RWL77WY/L03_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VHPYUXLSWGM04RWL77WY/L03_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Periodic Table and Periodicity in Properties for JEE Advanced",
+                "uid": "MBDT5VDUYXLYU6FDI60S",
+                "duration": "2h 30m",
+                "date": "20-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MBDT5VDUYXLYU6FDI60S/L04_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MBDT5VDUYXLYU6FDI60S/L04_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Periodic Table and Periodicity in Properties for JEE Advanced",
+                "uid": "E1R4H7TXY6ALRYMR993D",
+                "duration": "1h 59m",
+                "date": "21-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/E1R4H7TXY6ALRYMR993D/L05_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E1R4H7TXY6ALRYMR993D/L05_Periodic_Table_and_Periodicity_in_Properties_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Periodic table and Chemical Bonding-01",
+                "uid": "GFITVYIIL8NXPAZVSRNT",
+                "duration": "2h 11m",
+                "date": "26-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Periodic table and Chemical Bonding-02",
+                "uid": "828YU5SO45JFP0J2SWKI",
+                "duration": "2h 11m",
+                "date": "27-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Periodic table and Chemical Bonding-03",
+                "uid": "UVVTWAYODAEHLBB57FAH",
+                "duration": "1h 40m",
+                "date": "28-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "chemical-bonding",
+        "title": "Chemical Bonding & Molecular Structure",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Lewis structures, VSEPR theory, hybridization, dipole moments, Molecular Orbital Theory (MOT), and hydrogen bonding.",
+        "icon": "fa-circle-nodes",
+        "startDate": "2025-01-30T00:00:00.000Z",
+        "badge": "18 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "DPE33K7W7JJRGIITWF29",
+                "duration": "2h 08m",
+                "date": "30-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DPE33K7W7JJRGIITWF29/L01_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DPE33K7W7JJRGIITWF29/L01_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "3TXLQARUY8EGOU3AH2YC",
+                "duration": "1h 35m",
+                "date": "31-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3TXLQARUY8EGOU3AH2YC/L02_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3TXLQARUY8EGOU3AH2YC/L02_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "13YMQ1K9VYA1WLCMNP2W",
+                "duration": "1h 57m",
+                "date": "01-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/13YMQ1K9VYA1WLCMNP2W/L03_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/13YMQ1K9VYA1WLCMNP2W/L03_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "ZQ8EQ9SVU8JBXPKS2OA3",
+                "duration": "2h 01m",
+                "date": "03-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZQ8EQ9SVU8JBXPKS2OA3/L04_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZQ8EQ9SVU8JBXPKS2OA3/L04_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "TNXL0FOITIRSYMFQEXEX",
+                "duration": "2h 13m",
+                "date": "04-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TNXL0FOITIRSYMFQEXEX/L05_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TNXL0FOITIRSYMFQEXEX/L05_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "R5D8YWIOFTN8A05TAY4N",
+                "duration": "1h 57m",
+                "date": "05-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R5D8YWIOFTN8A05TAY4N/L06_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R5D8YWIOFTN8A05TAY4N/L06_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "9AL3GMOLPOZNG1TSONCT",
+                "duration": "2h 27m",
+                "date": "06-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9AL3GMOLPOZNG1TSONCT/L07_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9AL3GMOLPOZNG1TSONCT/L07_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Chemical Bonding-02 JEE ADVANCED",
+                "uid": "EDUP7HLRDURSADIFSGBN",
+                "duration": "2h 12m",
+                "date": "07-02-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EDUP7HLRDURSADIFSGBN/L08_Chemical_Bonding02_JEE_ADVANCED_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EDUP7HLRDURSADIFSGBN/L08_Chemical_Bonding02_JEE_ADVANCED_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "S317RF0HRDJ8OZA1907M",
+                "duration": "2h 10m",
+                "date": "22-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S317RF0HRDJ8OZA1907M/L01_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S317RF0HRDJ8OZA1907M/L01_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "8NT2ZP0F2VXSCXJNGT47",
+                "duration": "2h 16m",
+                "date": "23-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8NT2ZP0F2VXSCXJNGT47/L02_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8NT2ZP0F2VXSCXJNGT47/L02_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "0TGG6PMHPYOW5AP4L2H3",
+                "duration": "2h 14m",
+                "date": "24-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0TGG6PMHPYOW5AP4L2H3/L03_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0TGG6PMHPYOW5AP4L2H3/L03_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "XPMO20FH88BDWG71MZD4",
+                "duration": "2h 20m",
+                "date": "26-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XPMO20FH88BDWG71MZD4/L04_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XPMO20FH88BDWG71MZD4/L04_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "OCWK58JWNFGYOWLLXOSC",
+                "duration": "2h 16m",
+                "date": "27-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OCWK58JWNFGYOWLLXOSC/L05_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OCWK58JWNFGYOWLLXOSC/L05_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "3DMHSW8K3GYNRZSCUM44",
+                "duration": "2h 15m",
+                "date": "28-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3DMHSW8K3GYNRZSCUM44/L06_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3DMHSW8K3GYNRZSCUM44/L06_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Chemical Bonding-01 Jee Advanced",
+                "uid": "M1RP1Z8AAQ9POV6LD5Q4",
+                "duration": "2h 17m",
+                "date": "29-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M1RP1Z8AAQ9POV6LD5Q4/L07_Chemical_Bonding01_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M1RP1Z8AAQ9POV6LD5Q4/L07_Chemical_Bonding01_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Periodic table and Chemical Bonding-01",
+                "uid": "GFITVYIIL8NXPAZVSRNT",
+                "duration": "2h 11m",
+                "date": "26-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Periodic table and Chemical Bonding-02",
+                "uid": "828YU5SO45JFP0J2SWKI",
+                "duration": "2h 11m",
+                "date": "27-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Periodic table and Chemical Bonding-03",
+                "uid": "UVVTWAYODAEHLBB57FAH",
+                "duration": "1h 40m",
+                "date": "28-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "coordination-chemistry",
+        "title": "Coordination Chemistry & Metal Complexes",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "IUPAC nomenclature, Werner's theory, isomerism in coordination compounds, Valence Bond Theory, and Crystal Field Theory (CFT).",
+        "icon": "fa-gem",
+        "startDate": "2025-12-26T00:00:00.000Z",
+        "badge": "14 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Coordination Chemistry-01",
+                "uid": "FTT11XX2XDGHLX3J6OXP",
+                "duration": "2h 18m",
+                "date": "26-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FTT11XX2XDGHLX3J6OXP/Coordination_Chemistry01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FTT11XX2XDGHLX3J6OXP/Coordination_Chemistry01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Coordination Chemistry-02",
+                "uid": "PDE4T5C8VY5KVAQ7UG8L",
+                "duration": "2h 06m",
+                "date": "27-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PDE4T5C8VY5KVAQ7UG8L/Coordination_Chemistry02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PDE4T5C8VY5KVAQ7UG8L/Coordination_Chemistry02_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "02NXWCQ8U6EKE05M72UH",
+                "duration": "2h 20m",
+                "date": "30-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/02NXWCQ8U6EKE05M72UH/L01__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/02NXWCQ8U6EKE05M72UH/L01__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "AZ3T8LZZAL7PR41JKIMU",
+                "duration": "2h 18m",
+                "date": "02-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AZ3T8LZZAL7PR41JKIMU/L02__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AZ3T8LZZAL7PR41JKIMU/L02__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "ZJ6E9JKMLISTQGJX3GJF",
+                "duration": "2h 18m",
+                "date": "07-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZJ6E9JKMLISTQGJX3GJF/L03__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZJ6E9JKMLISTQGJX3GJF/L03__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "8VKLORMABN8OWRAS1YLE",
+                "duration": "1h 50m",
+                "date": "09-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8VKLORMABN8OWRAS1YLE/L04__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8VKLORMABN8OWRAS1YLE/L04__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "W9JOGL3XB9WZNE4FWTV5",
+                "duration": "2h 21m",
+                "date": "14-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W9JOGL3XB9WZNE4FWTV5/L05__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W9JOGL3XB9WZNE4FWTV5/L05__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "PAIEP7BFBCJ1DKZNPXF7",
+                "duration": "1h 48m",
+                "date": "16-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PAIEP7BFBCJ1DKZNPXF7/L06__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PAIEP7BFBCJ1DKZNPXF7/L06__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "4K1IWASKA4UUZ8P8MM9O",
+                "duration": "2h 16m",
+                "date": "21-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4K1IWASKA4UUZ8P8MM9O/L07__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4K1IWASKA4UUZ8P8MM9O/L07__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "2RXAKZGCDDSTZEDJI4GP",
+                "duration": "2h 03m",
+                "date": "23-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2RXAKZGCDDSTZEDJI4GP/L08__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2RXAKZGCDDSTZEDJI4GP/L08__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "8NU7AIT4IEQDHQLF0C85",
+                "duration": "1h 33m",
+                "date": "31-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8NU7AIT4IEQDHQLF0C85/L09__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8NU7AIT4IEQDHQLF0C85/L09__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "RCCKRZKQUOBCTR0P4AWS",
+                "duration": "1h 42m",
+                "date": "01-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RCCKRZKQUOBCTR0P4AWS/L10__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RCCKRZKQUOBCTR0P4AWS/L10__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "WEK2A27Y6Q66GKM6POZM",
+                "duration": "1h 43m",
+                "date": "07-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WEK2A27Y6Q66GKM6POZM/L11__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WEK2A27Y6Q66GKM6POZM/L11__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Co-ordination Chemistry for Jee Advanced",
+                "uid": "94GNW7M249MM02N1D0WO",
+                "duration": "1h 41m",
+                "date": "08-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/94GNW7M249MM02N1D0WO/L12__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/94GNW7M249MM02N1D0WO/L12__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "salt-analysis",
+        "title": "Qualitative Inorganic Salt Analysis",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Systematic group analysis of basic radicals (cations) and acidic radicals (anions), flame tests, and confirmatory color reactions.",
+        "icon": "fa-vial",
+        "startDate": "2026-05-03T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "MELTING POINT AND SOLUBILITY",
+                "uid": "1PNOY2BL8JY0L0OGRU0B",
+                "duration": "1h 19m",
+                "date": "03-05-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1PNOY2BL8JY0L0OGRU0B/L45__MELTING_POINT_AND_SOLUBILITY_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1PNOY2BL8JY0L0OGRU0B/L45__MELTING_POINT_AND_SOLUBILITY_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "WJJZP1UO1YB4GQO6D7DE",
+                "duration": "1h 51m",
+                "date": "08-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WJJZP1UO1YB4GQO6D7DE/L01__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WJJZP1UO1YB4GQO6D7DE/L01__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "ND8TR9ACLEXZLTB4ZGV2",
+                "duration": "1h 37m",
+                "date": "10-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ND8TR9ACLEXZLTB4ZGV2/L03__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ND8TR9ACLEXZLTB4ZGV2/L03__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "0D6QBMT60QU2CZKGLM8L",
+                "duration": "1h 37m",
+                "date": "13-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0D6QBMT60QU2CZKGLM8L/L02__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0D6QBMT60QU2CZKGLM8L/L02__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "CLZW392DIW7MOJSV3HR2",
+                "duration": "1h 38m",
+                "date": "15-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CLZW392DIW7MOJSV3HR2/L04__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CLZW392DIW7MOJSV3HR2/L04__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "QZJ4ZX451WB7V2ZH61DO",
+                "duration": "1h 27m",
+                "date": "16-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QZJ4ZX451WB7V2ZH61DO/L05__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QZJ4ZX451WB7V2ZH61DO/L05__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "QA7UZY02I5YIUMCCV2J8",
+                "duration": "1h 09m",
+                "date": "17-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QA7UZY02I5YIUMCCV2J8/L06__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QA7UZY02I5YIUMCCV2J8/L06__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "XSJQ0YQ5VQILH4B6WTMI",
+                "duration": "1h 22m",
+                "date": "21-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XSJQ0YQ5VQILH4B6WTMI/L07__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XSJQ0YQ5VQILH4B6WTMI/L07__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Salt Analysis for Jee Advanced 2026",
+                "uid": "4G0RB7AT18KFYXNI1BLN",
+                "duration": "1h 42m",
+                "date": "23-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4G0RB7AT18KFYXNI1BLN/L08__Salt_Analysis_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4G0RB7AT18KFYXNI1BLN/L08__Salt_Analysis_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Salt Analysis Theory Revision",
+                "uid": "7HDG9KBCH29Q75IVCPH8",
+                "duration": "3h 25m",
+                "date": "28-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "metallurgy-inorganic",
+        "title": "Metallurgy & Principles of Extraction",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Concentration of ores, Ellingham diagrams, pyrometallurgy, hydrometallurgy, electrometallurgy, and refining techniques (Al, Fe, Cu, Zn).",
+        "icon": "fa-mountain",
+        "startDate": "2026-02-08T00:00:00.000Z",
+        "badge": "5 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Metallurgy for JEE Advanced",
+                "uid": "Y1OIU0SZDAC0058EGOHN",
+                "duration": "1h 36m",
+                "date": "08-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y1OIU0SZDAC0058EGOHN/L01__Metallurgy_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y1OIU0SZDAC0058EGOHN/L01__Metallurgy_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Metallurgy for JEE Advanced",
+                "uid": "Z5NEAZIBIUO14HSH28CW",
+                "duration": "58m",
+                "date": "09-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z5NEAZIBIUO14HSH28CW/L02__Metallurgy_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z5NEAZIBIUO14HSH28CW/L02__Metallurgy_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Metallurgy for JEE Advanced",
+                "uid": "DCREMWOKZTLTKOV3JNFM",
+                "duration": "1h 45m",
+                "date": "10-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DCREMWOKZTLTKOV3JNFM/L03__Metallurgy_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DCREMWOKZTLTKOV3JNFM/L03__Metallurgy_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Metallurgy for JEE Advanced",
+                "uid": "74JMJ7ORCPNTUOTHCH3E",
+                "duration": "1h 45m",
+                "date": "11-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/74JMJ7ORCPNTUOTHCH3E/L04__Metallurgy_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/74JMJ7ORCPNTUOTHCH3E/L04__Metallurgy_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Metallurgy for JEE Advanced",
+                "uid": "LK4MJYY8VMUAD8OZYQ0H",
+                "duration": "57m",
+                "date": "14-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LK4MJYY8VMUAD8OZYQ0H/L05__Metallurgy_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LK4MJYY8VMUAD8OZYQ0H/L05__Metallurgy_for_JEE_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "p-block-chemistry",
+        "title": "p-Block Elements (Groups 13 to 18)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Inert pair effect, allotropy, structures of oxoacids of P and S, halides of B and Si, interhalogens, and noble gas compounds.",
+        "icon": "fa-layer-group",
+        "startDate": "2025-11-12T00:00:00.000Z",
+        "badge": "8 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "RLDKOJGNBIPMRU3CKDBW",
+                "duration": "1h 27m",
+                "date": "12-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RLDKOJGNBIPMRU3CKDBW/L01__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RLDKOJGNBIPMRU3CKDBW/L01__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "2NSCZUGNGOPSSDX7S24V",
+                "duration": "2h 09m",
+                "date": "14-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2NSCZUGNGOPSSDX7S24V/L02__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2NSCZUGNGOPSSDX7S24V/L02__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "RSWCZRYX22VLA27M9J4X",
+                "duration": "1h 48m",
+                "date": "15-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RSWCZRYX22VLA27M9J4X/L03__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RSWCZRYX22VLA27M9J4X/L03__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "BH7H2OPKBH0TO9UB1TP8",
+                "duration": "1h 16m",
+                "date": "17-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BH7H2OPKBH0TO9UB1TP8/L04__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BH7H2OPKBH0TO9UB1TP8/L04__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "TQRJXFHVBF8ZCEJ40GRO",
+                "duration": "2h 05m",
+                "date": "18-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TQRJXFHVBF8ZCEJ40GRO/L05__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TQRJXFHVBF8ZCEJ40GRO/L05__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "ZAPDHEV1QPAWETIZI04S",
+                "duration": "1h 13m",
+                "date": "19-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZAPDHEV1QPAWETIZI04S/L06__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZAPDHEV1QPAWETIZI04S/L06__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "U3IRHZKNLUAZ7RP9RIR7",
+                "duration": "1h 27m",
+                "date": "20-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U3IRHZKNLUAZ7RP9RIR7/L07__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U3IRHZKNLUAZ7RP9RIR7/L07__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "P block NCERT for JEE Mains",
+                "uid": "HOU54O42PSXILNULSG6X",
+                "duration": "56m",
+                "date": "23-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HOU54O42PSXILNULSG6X/L08__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HOU54O42PSXILNULSG6X/L08__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "d-f-block-elements",
+        "title": "d- and f-Block Elements & Coordination",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Electronic configurations, variable oxidation states, magnetic properties, catalytic behavior, potassium dichromate, KMnO4, and lanthanoid contraction.",
+        "icon": "fa-circle-dot",
+        "startDate": "2025-12-24T00:00:00.000Z",
+        "badge": "6 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "D & F block-01",
+                "uid": "LBK70UJNCFI81OOS30JJ",
+                "duration": "2h 24m",
+                "date": "24-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LBK70UJNCFI81OOS30JJ/D__F_block01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LBK70UJNCFI81OOS30JJ/D__F_block01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "D & F block elements for Jee Advanced",
+                "uid": "4WDRIMB1DQH6H9ZFVUY7",
+                "duration": "2h 02m",
+                "date": "07-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4WDRIMB1DQH6H9ZFVUY7/L01__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4WDRIMB1DQH6H9ZFVUY7/L01__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "D & F block elements for Jee Advanced",
+                "uid": "ETE1ZYIM5CVHT9AB5IKG",
+                "duration": "1h 53m",
+                "date": "08-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ETE1ZYIM5CVHT9AB5IKG/L02__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ETE1ZYIM5CVHT9AB5IKG/L02__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "D & F block elements for Jee Advanced",
+                "uid": "BLJ6D4K8SB0NZ2DIQOQ9",
+                "duration": "1h 38m",
+                "date": "09-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BLJ6D4K8SB0NZ2DIQOQ9/L03__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BLJ6D4K8SB0NZ2DIQOQ9/L03__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "D & F block elements for Jee Advanced",
+                "uid": "32IDS5WF370UM8AY01Y9",
+                "duration": "1h 09m",
+                "date": "10-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/32IDS5WF370UM8AY01Y9/L04__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/32IDS5WF370UM8AY01Y9/L04__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "D & F block elements for Jee Advanced",
+                "uid": "IB4H79T02JYFHM9T80TM",
+                "duration": "1h 03m",
+                "date": "13-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IB4H79T02JYFHM9T80TM/L05__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IB4H79T02JYFHM9T80TM/L05__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "block-chemistry-mixed",
+        "title": "Block Chemistry & Inorganic Mixed PYQs",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Inorganic Chemistry - JEE Advanced",
+        "description": "Comprehensive multi-concept revision, reaction mapping, and advanced inorganic questions across all blocks.",
+        "icon": "fa-flask",
+        "startDate": "2026-02-10T00:00:00.000Z",
+        "badge": "15 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Mixed problem solving [Inorganic chem]",
+                "uid": "I0GNK7V69KHNAT9PAJXT",
+                "duration": "1h 59m",
+                "date": "10-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "24ZEI6UPJUBNSUI9KTSQ",
+                "duration": "1h 22m",
+                "date": "25-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/24ZEI6UPJUBNSUI9KTSQ/L01__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/24ZEI6UPJUBNSUI9KTSQ/L01__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "BK4KYV5KAPJAZLJX2TUI",
+                "duration": "2h 36m",
+                "date": "26-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BK4KYV5KAPJAZLJX2TUI/L02__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BK4KYV5KAPJAZLJX2TUI/L02__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "A3LCX2I6YJ5TBQVRYIE7",
+                "duration": "2h 25m",
+                "date": "27-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A3LCX2I6YJ5TBQVRYIE7/L03__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A3LCX2I6YJ5TBQVRYIE7/L03__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "55TGWTEH3Y714M4ETGTK",
+                "duration": "2h 09m",
+                "date": "28-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/55TGWTEH3Y714M4ETGTK/L04__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/55TGWTEH3Y714M4ETGTK/L04__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "ZI1SY51591NBTFG94APC",
+                "duration": "2h 01m",
+                "date": "29-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZI1SY51591NBTFG94APC/L05__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZI1SY51591NBTFG94APC/L05__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "OC3EORGN6NK3UZDW14CG",
+                "duration": "1h 35m",
+                "date": "30-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OC3EORGN6NK3UZDW14CG/L06__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OC3EORGN6NK3UZDW14CG/L06__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "C75BVH5BVAVLIQN174II",
+                "duration": "3h 00m",
+                "date": "31-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/C75BVH5BVAVLIQN174II/L07__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C75BVH5BVAVLIQN174II/L07__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "P93H73ZHZU7063R1SY78",
+                "duration": "57m",
+                "date": "01-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P93H73ZHZU7063R1SY78/L08__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P93H73ZHZU7063R1SY78/L08__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "7RJ6JT9OYTSYU5AXQIM3",
+                "duration": "1h 38m",
+                "date": "03-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7RJ6JT9OYTSYU5AXQIM3/L09__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7RJ6JT9OYTSYU5AXQIM3/L09__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Block Chemistry for Jee Advanced",
+                "uid": "2YUC1XMCLC8EMDER5T7P",
+                "duration": "1h 45m",
+                "date": "04-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2YUC1XMCLC8EMDER5T7P/L10__Block_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2YUC1XMCLC8EMDER5T7P/L10__Block_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Inorganic chemistry mixed-01",
+                "uid": "GJ4BVU65CR93AMV8A4ZG",
+                "duration": "2h 13m",
+                "date": "08-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Inorganic chemistry mixed-02",
+                "uid": "X7O27BLQ3KJ30219X73Z",
+                "duration": "1h 30m",
+                "date": "09-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Inorganic chemistry mixed-03",
+                "uid": "P3JOH0EQECG68MZUQX8N",
+                "duration": "1h 58m",
+                "date": "10-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Inorganic 2025 all pyqs",
+                "uid": "HT80U03HNIU95MWPDRKI",
+                "duration": "2h 34m",
+                "date": "20-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "iupac-goc",
+        "title": "IUPAC Nomenclature & General Organic Chemistry (GOC)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "IUPAC rules, inductive effect, resonance & mesomeric effect, hyperconjugation, aromaticity (Hückel's rule), and stability of carbocations/carbanions/radicals.",
+        "icon": "fa-dna",
+        "startDate": "2025-08-18T00:00:00.000Z",
+        "badge": "29 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "9ANWMV3IFIJZG97L9JB6",
+                "duration": "1h 45m",
+                "date": "18-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9ANWMV3IFIJZG97L9JB6/L01__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9ANWMV3IFIJZG97L9JB6/L01__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "ID94ZZQH79YLR0W0VVWS",
+                "duration": "1h 47m",
+                "date": "19-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ID94ZZQH79YLR0W0VVWS/L02__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ID94ZZQH79YLR0W0VVWS/L02__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "LA32SBOHQF8MHN4M5RE9",
+                "duration": "1h 38m",
+                "date": "20-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LA32SBOHQF8MHN4M5RE9/L03__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LA32SBOHQF8MHN4M5RE9/L03__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "U81AP0XXNMZ92EDUVN8A",
+                "duration": "2h 04m",
+                "date": "25-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U81AP0XXNMZ92EDUVN8A/L04__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U81AP0XXNMZ92EDUVN8A/L04__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "6DEU29HE6EVKNCKMWBA0",
+                "duration": "1h 45m",
+                "date": "26-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6DEU29HE6EVKNCKMWBA0/L05__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6DEU29HE6EVKNCKMWBA0/L05__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "DYW9HLLVGA59V6JOQSPF",
+                "duration": "1h 56m",
+                "date": "27-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DYW9HLLVGA59V6JOQSPF/L06__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DYW9HLLVGA59V6JOQSPF/L06__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "W5LKLJKNG8UHSIOS9K3D",
+                "duration": "1h 47m",
+                "date": "01-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W5LKLJKNG8UHSIOS9K3D/L07__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W5LKLJKNG8UHSIOS9K3D/L07__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "9LH0PINHT7IKE7LCMOV4",
+                "duration": "1h 57m",
+                "date": "02-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9LH0PINHT7IKE7LCMOV4/L08__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9LH0PINHT7IKE7LCMOV4/L08__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "5ZHQQTX1930AARRXQ0E1",
+                "duration": "1h 32m",
+                "date": "03-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5ZHQQTX1930AARRXQ0E1/L09__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5ZHQQTX1930AARRXQ0E1/L09__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "JHFF36DMFBTVM394N1UG",
+                "duration": "1h 43m",
+                "date": "04-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JHFF36DMFBTVM394N1UG/L10__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JHFF36DMFBTVM394N1UG/L10__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "G.I.O.C for Jee Advanced 2026",
+                "uid": "MNPISHWO5FGQRWW38D52",
+                "duration": "1h 28m",
+                "date": "05-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MNPISHWO5FGQRWW38D52/L11__GIOC_for_Jee_Advanced_2026_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MNPISHWO5FGQRWW38D52/L11__GIOC_for_Jee_Advanced_2026_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "IUPAC + GOC -01",
+                "uid": "D5OYGIFSIHMQB5ZYKY71",
+                "duration": "2h 27m",
+                "date": "09-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D5OYGIFSIHMQB5ZYKY71/IUPAC__GOC_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D5OYGIFSIHMQB5ZYKY71/IUPAC__GOC_01_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "IUPAC + GOC -02",
+                "uid": "1GGISZWB011IPPYZNELS",
+                "duration": "1h 35m",
+                "date": "10-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1GGISZWB011IPPYZNELS/IUPAC__GOC_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1GGISZWB011IPPYZNELS/IUPAC__GOC_02_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "IUPAC Nomenclature For Jee Advanced",
+                "uid": "IY2TT661HHZHCW3L34FD",
+                "duration": "1h 40m",
+                "date": "15-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IY2TT661HHZHCW3L34FD/L01__IUPAC_Nomenclature_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IY2TT661HHZHCW3L34FD/L01__IUPAC_Nomenclature_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "IUPAC Nomenclature For Jee Advanced",
+                "uid": "7DTAUBCUE3SA526Y6PW5",
+                "duration": "1h 37m",
+                "date": "17-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7DTAUBCUE3SA526Y6PW5/L02__IUPAC_Nomenclature_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7DTAUBCUE3SA526Y6PW5/L02__IUPAC_Nomenclature_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "IUPAC Nomenclature For Jee Advanced",
+                "uid": "N4EJP88E1DK2E5CR5X3B",
+                "duration": "1h 52m",
+                "date": "18-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N4EJP88E1DK2E5CR5X3B/L03__IUPAC_Nomenclature_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N4EJP88E1DK2E5CR5X3B/L03__IUPAC_Nomenclature_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "IUPAC Nomenclature For Jee Advanced",
+                "uid": "UVZCBI6MJCGIPDZMDSTZ",
+                "duration": "1h 06m",
+                "date": "19-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UVZCBI6MJCGIPDZMDSTZ/L04__IUPAC_Nomenclature_For_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVZCBI6MJCGIPDZMDSTZ/L04__IUPAC_Nomenclature_For_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "72CK57YI5C42Y7XUT5YH",
+                "duration": "2h 13m",
+                "date": "20-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/72CK57YI5C42Y7XUT5YH/L01__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/72CK57YI5C42Y7XUT5YH/L01__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "ACK2BKC9RZ92GMZ6WLFQ",
+                "duration": "2h 19m",
+                "date": "21-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ACK2BKC9RZ92GMZ6WLFQ/L02__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ACK2BKC9RZ92GMZ6WLFQ/L02__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "FIRWIM8SPV2GWX37VXXB",
+                "duration": "2h 24m",
+                "date": "22-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FIRWIM8SPV2GWX37VXXB/L03__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FIRWIM8SPV2GWX37VXXB/L03__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "Complete G.O.C For JEE Advnaced",
+                "uid": "1EIGDVLLRSDKB0S21EFP",
+                "duration": "2h 04m",
+                "date": "24-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1EIGDVLLRSDKB0S21EFP/L04__Complete_GOC_For_JEE_Advnaced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1EIGDVLLRSDKB0S21EFP/L04__Complete_GOC_For_JEE_Advnaced_no_anno.pdf"
+            },
+            {
+                "rank": 22,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "PW38ZIHV3UCF1H6OKG1P",
+                "duration": "2h 14m",
+                "date": "25-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PW38ZIHV3UCF1H6OKG1P/L05__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PW38ZIHV3UCF1H6OKG1P/L05__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 23,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "PCFZDTW1EYYA1BYF7J64",
+                "duration": "2h 06m",
+                "date": "26-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PCFZDTW1EYYA1BYF7J64/L06__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PCFZDTW1EYYA1BYF7J64/L06__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 24,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "8SZSFGKG49IW3AG1DPEU",
+                "duration": "2h 13m",
+                "date": "27-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8SZSFGKG49IW3AG1DPEU/L07__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8SZSFGKG49IW3AG1DPEU/L07__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 25,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "9S7GBVSNTUDQ2E6KIVLJ",
+                "duration": "1h 10m",
+                "date": "28-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9S7GBVSNTUDQ2E6KIVLJ/L08__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9S7GBVSNTUDQ2E6KIVLJ/L08__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 26,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "AA2V35P9YIQZJMQRCIWX",
+                "duration": "2h 15m",
+                "date": "30-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AA2V35P9YIQZJMQRCIWX/L09__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AA2V35P9YIQZJMQRCIWX/L09__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 27,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "TU9OF9KGJCX4NCLX9X4H",
+                "duration": "2h 40m",
+                "date": "31-03-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TU9OF9KGJCX4NCLX9X4H/L10__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TU9OF9KGJCX4NCLX9X4H/L10__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 28,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "14EFQCLZA0F9XZ51IDNN",
+                "duration": "1h 09m",
+                "date": "04-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/14EFQCLZA0F9XZ51IDNN/L11__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/14EFQCLZA0F9XZ51IDNN/L11__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 29,
+                "title": "Complete G.O.C For JEE Advanced",
+                "uid": "16CRBOS1FB5FWS7A1GW4",
+                "duration": "1h 47m",
+                "date": "06-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/16CRBOS1FB5FWS7A1GW4/L12__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/16CRBOS1FB5FWS7A1GW4/L12__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "isomerism-organic",
+        "title": "Complete Isomerism (Structural & Stereo)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Chain, positional, functional, tautomerism, geometrical isomerism (cis/trans, E/Z), optical isomerism (chirality, enantiomers, diastereomers), and conformations.",
+        "icon": "fa-shapes",
+        "startDate": "2025-05-15T00:00:00.000Z",
+        "badge": "14 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "JQVQ3JTTD118MR2H3NCF",
+                "duration": "2h 04m",
+                "date": "15-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JQVQ3JTTD118MR2H3NCF/L01__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JQVQ3JTTD118MR2H3NCF/L01__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "I49JOTQMBEYSLJKMTY5A",
+                "duration": "2h 02m",
+                "date": "16-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I49JOTQMBEYSLJKMTY5A/L02__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I49JOTQMBEYSLJKMTY5A/L02__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "2RS9VB0YJJK0QSFQ0IKI",
+                "duration": "2h 02m",
+                "date": "17-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2RS9VB0YJJK0QSFQ0IKI/L03__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2RS9VB0YJJK0QSFQ0IKI/L03__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "63SPXVZ1IVMNS4IHV6WS",
+                "duration": "2h 07m",
+                "date": "20-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/63SPXVZ1IVMNS4IHV6WS/L04__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/63SPXVZ1IVMNS4IHV6WS/L04__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "9RBACSOF9RKTFIVCA9TI",
+                "duration": "2h 03m",
+                "date": "21-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9RBACSOF9RKTFIVCA9TI/L05__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9RBACSOF9RKTFIVCA9TI/L05__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "97V45NQCM90HH1JFYVV2",
+                "duration": "2h 02m",
+                "date": "22-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/97V45NQCM90HH1JFYVV2/L06__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/97V45NQCM90HH1JFYVV2/L06__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "NLKG3VAW7J8DOA569WR8",
+                "duration": "2h 07m",
+                "date": "23-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NLKG3VAW7J8DOA569WR8/L07__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NLKG3VAW7J8DOA569WR8/L07__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "YSA6V4BRTUOJ0ERZD8X8",
+                "duration": "2h 04m",
+                "date": "26-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YSA6V4BRTUOJ0ERZD8X8/L08__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YSA6V4BRTUOJ0ERZD8X8/L08__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "0URHQSABGNWK2D17KPEZ",
+                "duration": "2h 02m",
+                "date": "27-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0URHQSABGNWK2D17KPEZ/L09__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0URHQSABGNWK2D17KPEZ/L09__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "2MIUOIIRE3YJYGB1URGS",
+                "duration": "2h 05m",
+                "date": "28-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2MIUOIIRE3YJYGB1URGS/L10__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2MIUOIIRE3YJYGB1URGS/L10__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "SC63S317A6AZEPC78EXN",
+                "duration": "2h 14m",
+                "date": "29-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SC63S317A6AZEPC78EXN/L11__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SC63S317A6AZEPC78EXN/L11__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "4CSTN2TIYUENPN7IC5UZ",
+                "duration": "1h 56m",
+                "date": "30-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4CSTN2TIYUENPN7IC5UZ/L12__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4CSTN2TIYUENPN7IC5UZ/L12__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "BJUD0WWFHH6NTXN7NR9G",
+                "duration": "2h 03m",
+                "date": "02-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BJUD0WWFHH6NTXN7NR9G/L13__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BJUD0WWFHH6NTXN7NR9G/L13__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Complete ISOMERISM for Jee Advanced",
+                "uid": "8C7ONFYLQOROG3SQO0LT",
+                "duration": "1h 39m",
+                "date": "03-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8C7ONFYLQOROG3SQO0LT/L14__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8C7ONFYLQOROG3SQO0LT/L14__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "reaction-mechanisms",
+        "title": "Organic Reaction Mechanisms (Substitution & Elimination)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Nucleophilic substitution (SN1, SN2, SNi), Elimination reactions (E1, E2, E1cb), Electrophilic additions, and carbocation rearrangements.",
+        "icon": "fa-route",
+        "startDate": "2025-06-04T00:00:00.000Z",
+        "badge": "18 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "U93TH4EE6SH5950ZBU16",
+                "duration": "2h 07m",
+                "date": "04-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U93TH4EE6SH5950ZBU16/L01__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U93TH4EE6SH5950ZBU16/L01__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "UTI4AY5GAJJHV3Q0VCW3",
+                "duration": "2h 04m",
+                "date": "05-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UTI4AY5GAJJHV3Q0VCW3/L02__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UTI4AY5GAJJHV3Q0VCW3/L02__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "0R1MNNSOIDTSRHTGN0OU",
+                "duration": "2h 06m",
+                "date": "06-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0R1MNNSOIDTSRHTGN0OU/L03__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0R1MNNSOIDTSRHTGN0OU/L03__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "S6FRYUHDXL7KJZ8QTT92",
+                "duration": "2h 11m",
+                "date": "09-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S6FRYUHDXL7KJZ8QTT92/L04__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S6FRYUHDXL7KJZ8QTT92/L04__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "22ANYSGU8EZCMCDU413I",
+                "duration": "2h 05m",
+                "date": "10-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/22ANYSGU8EZCMCDU413I/L05__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/22ANYSGU8EZCMCDU413I/L05__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "5R17NMX8Z3KU7IWXJPIV",
+                "duration": "2h 05m",
+                "date": "11-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5R17NMX8Z3KU7IWXJPIV/L06__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5R17NMX8Z3KU7IWXJPIV/L06__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "KUY7MIG5LNTKW9QOUN0Z",
+                "duration": "2h 08m",
+                "date": "12-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KUY7MIG5LNTKW9QOUN0Z/L07__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KUY7MIG5LNTKW9QOUN0Z/L07__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "SSOH1HS6VWW7RD3CWDIY",
+                "duration": "2h 04m",
+                "date": "13-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SSOH1HS6VWW7RD3CWDIY/L08__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SSOH1HS6VWW7RD3CWDIY/L08__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "QSR7RX61YNGGZJM1SVR3",
+                "duration": "1h 45m",
+                "date": "16-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QSR7RX61YNGGZJM1SVR3/L09__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QSR7RX61YNGGZJM1SVR3/L09__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "OG5030WVP66OD1H1ZD28",
+                "duration": "2h 06m",
+                "date": "17-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OG5030WVP66OD1H1ZD28/L10__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OG5030WVP66OD1H1ZD28/L10__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "OYG9QY2Y419BUY3MULUL",
+                "duration": "2h 06m",
+                "date": "18-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OYG9QY2Y419BUY3MULUL/L11__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OYG9QY2Y419BUY3MULUL/L11__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "GHGRDQW4DCX60K6MHA21",
+                "duration": "2h 07m",
+                "date": "19-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GHGRDQW4DCX60K6MHA21/L12__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GHGRDQW4DCX60K6MHA21/L12__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "5ERUSKQF9I7Q6KGJQU7C",
+                "duration": "2h 02m",
+                "date": "20-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5ERUSKQF9I7Q6KGJQU7C/L13__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5ERUSKQF9I7Q6KGJQU7C/L13__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "ZAT0SOT7ZD94ST4ZOX6U",
+                "duration": "2h 09m",
+                "date": "23-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZAT0SOT7ZD94ST4ZOX6U/L14__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZAT0SOT7ZD94ST4ZOX6U/L14__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "S6UOGRBTZQ3RWMPRPXU0",
+                "duration": "2h 13m",
+                "date": "24-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S6UOGRBTZQ3RWMPRPXU0/L15__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S6UOGRBTZQ3RWMPRPXU0/L15__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "BS2PHPB2V3MXP7FE1YC4",
+                "duration": "2h 04m",
+                "date": "25-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BS2PHPB2V3MXP7FE1YC4/L16__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BS2PHPB2V3MXP7FE1YC4/L16__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "R2JT88LN1TJW0IGVSFBQ",
+                "duration": "2h 16m",
+                "date": "26-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R2JT88LN1TJW0IGVSFBQ/L17__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R2JT88LN1TJW0IGVSFBQ/L17__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Reaction Mechanism for Jee Advanced",
+                "uid": "VU6D8PBWLG16U68RR1C8",
+                "duration": "2h 16m",
+                "date": "27-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VU6D8PBWLG16U68RR1C8/L18__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VU6D8PBWLG16U68RR1C8/L18__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "hydrocarbons-halogen",
+        "title": "Hydrocarbons & Halogen Derivatives (Alkanes, Alkenes, Alkynes)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Preparation and reactions of alkanes, alkenes (Markovnikov addition, ozonolysis), alkynes, and alkyl/aryl halides (haloalkanes & haloarenes).",
+        "icon": "fa-droplet",
+        "startDate": "2025-08-21T00:00:00.000Z",
+        "badge": "7 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Hydrocarbons and halogen containing compounds",
+                "uid": "ISBM9B5OFCANNKOIYXI4",
+                "duration": "1h 53m",
+                "date": "21-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ISBM9B5OFCANNKOIYXI4/L01__Hydrocarbons_and_halogen_containing_compounds_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ISBM9B5OFCANNKOIYXI4/L01__Hydrocarbons_and_halogen_containing_compounds_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Hydrocarbons and halogen containing compounds",
+                "uid": "L0CRMK8KC9FV8DQ4SHR9",
+                "duration": "1h 42m",
+                "date": "22-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/L0CRMK8KC9FV8DQ4SHR9/L02__Hydrocarbons_and_halogen_containing_compounds_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/L0CRMK8KC9FV8DQ4SHR9/L02__Hydrocarbons_and_halogen_containing_compounds_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Hydrocarbons and halogen containing compounds",
+                "uid": "G5PZER6R63J6P6OOBDPM",
+                "duration": "2h 10m",
+                "date": "28-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/G5PZER6R63J6P6OOBDPM/L03__Hydrocarbons_and_halogen_containing_compounds_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/G5PZER6R63J6P6OOBDPM/L03__Hydrocarbons_and_halogen_containing_compounds_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Hydrocarbons and halogen containing compounds",
+                "uid": "J93U6WOO6DCEBXI6G7Q7",
+                "duration": "2h 05m",
+                "date": "29-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J93U6WOO6DCEBXI6G7Q7/L04__Hydrocarbons_and_halogen_containing_compounds_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J93U6WOO6DCEBXI6G7Q7/L04__Hydrocarbons_and_halogen_containing_compounds_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Hydrocarbons and halogen containing compounds",
+                "uid": "QOYV1SS89R5Z110KWTBC",
+                "duration": "3h 04m",
+                "date": "30-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QOYV1SS89R5Z110KWTBC/L05__Hydrocarbons_and_halogen_containing_compounds_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QOYV1SS89R5Z110KWTBC/L05__Hydrocarbons_and_halogen_containing_compounds_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Hydrocarbons-01",
+                "uid": "64NJMS20DD53EB3BSBOQ",
+                "duration": "1h 49m",
+                "date": "12-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/64NJMS20DD53EB3BSBOQ/Hydrocarbons01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/64NJMS20DD53EB3BSBOQ/Hydrocarbons01_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Hydrocarbons-02",
+                "uid": "LGBDCMFK7PD46ICUVI28",
+                "duration": "2h 30m",
+                "date": "14-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "carbonyl-compounds",
+        "title": "Carbonyl Compounds (Aldehydes, Ketones & Acids)",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Nucleophilic addition, Aldol condensation, Cannizzaro reaction, Grignard additions, oxidation/reduction, and carboxylic acid derivatives.",
+        "icon": "fa-circle-half-stroke",
+        "startDate": "2025-07-01T00:00:00.000Z",
+        "badge": "15 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "WTAI7DJUD9955GUJ7NPI",
+                "duration": "2h 11m",
+                "date": "01-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WTAI7DJUD9955GUJ7NPI/L01__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WTAI7DJUD9955GUJ7NPI/L01__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "7YWY89ERIN1603OVYGEC",
+                "duration": "2h 12m",
+                "date": "03-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7YWY89ERIN1603OVYGEC/L02__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7YWY89ERIN1603OVYGEC/L02__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "2CPPY6LJTCM5QT5ORFLG",
+                "duration": "2h 18m",
+                "date": "04-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2CPPY6LJTCM5QT5ORFLG/L03__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2CPPY6LJTCM5QT5ORFLG/L03__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "2PR4ADZF18J68WIO3DRA",
+                "duration": "2h 16m",
+                "date": "08-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2PR4ADZF18J68WIO3DRA/L04__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2PR4ADZF18J68WIO3DRA/L04__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "WICXI8GH2I0XQ1K3URCM",
+                "duration": "2h 15m",
+                "date": "10-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WICXI8GH2I0XQ1K3URCM/L05__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WICXI8GH2I0XQ1K3URCM/L05__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "2YZVWOVZ6QGY6GSO8II8",
+                "duration": "2h 04m",
+                "date": "11-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2YZVWOVZ6QGY6GSO8II8/L06__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2YZVWOVZ6QGY6GSO8II8/L06__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "GSEJXB3YSQDF2QH9L1CN",
+                "duration": "2h 15m",
+                "date": "15-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GSEJXB3YSQDF2QH9L1CN/L07__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GSEJXB3YSQDF2QH9L1CN/L07__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "U5YGC7RHT1JG8YUXGRDY",
+                "duration": "2h 22m",
+                "date": "17-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U5YGC7RHT1JG8YUXGRDY/L08__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U5YGC7RHT1JG8YUXGRDY/L08__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "D50G19Y53LQ3LZNUOZW0",
+                "duration": "2h 26m",
+                "date": "18-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D50G19Y53LQ3LZNUOZW0/L09__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D50G19Y53LQ3LZNUOZW0/L09__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "1XPDMQP7AA4L5F8LLP6G",
+                "duration": "2h 11m",
+                "date": "22-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1XPDMQP7AA4L5F8LLP6G/L10__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1XPDMQP7AA4L5F8LLP6G/L10__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "LWTZQTVM5P2Z7YJ71EVO",
+                "duration": "1h 14m",
+                "date": "24-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LWTZQTVM5P2Z7YJ71EVO/L11__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LWTZQTVM5P2Z7YJ71EVO/L11__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "ONJ7EFNEU3RACGKSGS5O",
+                "duration": "1h 54m",
+                "date": "25-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ONJ7EFNEU3RACGKSGS5O/L12__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ONJ7EFNEU3RACGKSGS5O/L12__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "7C2O6LPT7M6TJ4P6BASC",
+                "duration": "2h 20m",
+                "date": "28-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7C2O6LPT7M6TJ4P6BASC/L13__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7C2O6LPT7M6TJ4P6BASC/L13__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "OUVR5IDEV595V6E5MIRU",
+                "duration": "2h 23m",
+                "date": "29-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OUVR5IDEV595V6E5MIRU/L14__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OUVR5IDEV595V6E5MIRU/L14__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Carbonyl compounds for JEE Advanced",
+                "uid": "61GRSG4K2AC3KP7DGL6Z",
+                "duration": "1h 32m",
+                "date": "30-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/61GRSG4K2AC3KP7DGL6Z/L15__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/61GRSG4K2AC3KP7DGL6Z/L15__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "biomolecules-polymers",
+        "title": "Biomolecules, Polymers & Everyday Chemistry",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Carbohydrates (glucose, fructose), amino acids, peptide bonds, proteins, nucleic acids, addition & condensation polymers, and classification.",
+        "icon": "fa-leaf",
+        "startDate": "2025-09-24T00:00:00.000Z",
+        "badge": "10 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "57SS4BDF8SVPDKJXX13X",
+                "duration": "1h 46m",
+                "date": "24-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/57SS4BDF8SVPDKJXX13X/L01__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/57SS4BDF8SVPDKJXX13X/L01__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "J56BD4QNHE9618ANC67T",
+                "duration": "1h 56m",
+                "date": "25-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J56BD4QNHE9618ANC67T/L02__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J56BD4QNHE9618ANC67T/L02__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "7DHW3WS1DSO7FJJLCVPN",
+                "duration": "1h 39m",
+                "date": "26-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7DHW3WS1DSO7FJJLCVPN/L03__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7DHW3WS1DSO7FJJLCVPN/L03__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "N09L17GWOIDYI9TRTT3L",
+                "duration": "1h 45m",
+                "date": "29-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N09L17GWOIDYI9TRTT3L/L04__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N09L17GWOIDYI9TRTT3L/L04__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "LT1STTRBCDP0JW0HX4FT",
+                "duration": "1h 15m",
+                "date": "30-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LT1STTRBCDP0JW0HX4FT/L05__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LT1STTRBCDP0JW0HX4FT/L05__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "6YNTFMUFA794WTQU8LJI",
+                "duration": "1h 50m",
+                "date": "01-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6YNTFMUFA794WTQU8LJI/L06__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6YNTFMUFA794WTQU8LJI/L06__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "PPACMZYMPGXUO8WUNCJ6",
+                "duration": "1h 12m",
+                "date": "02-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PPACMZYMPGXUO8WUNCJ6/L07__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PPACMZYMPGXUO8WUNCJ6/L07__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "CP0O4BDBLQJWIZDJYUD6",
+                "duration": "1h 33m",
+                "date": "03-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CP0O4BDBLQJWIZDJYUD6/L08__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CP0O4BDBLQJWIZDJYUD6/L08__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Biomolecules and polymers for jee advanced",
+                "uid": "QYSZZLMWZBO0ZYK92KT1",
+                "duration": "1h 13m",
+                "date": "06-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QYSZZLMWZBO0ZYK92KT1/L09__Biomolecules_and_polymers_for_jee_advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QYSZZLMWZBO0ZYK92KT1/L09__Biomolecules_and_polymers_for_jee_advanced_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "P.O.C & Biomolecules",
+                "uid": "JRUKOKPL2A6ZKMS9GO8M",
+                "duration": "1h 35m",
+                "date": "11-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "aromatic-chemistry",
+        "title": "Aromatic Compounds & Electrophilic Substitution",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Benzene electrophilic substitution (nitration, halogenation, Friedel-Crafts), activating & deactivating groups, orientation, and directing effects.",
+        "icon": "fa-draw-polygon",
+        "startDate": "2025-08-04T00:00:00.000Z",
+        "badge": "7 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "LNP7AS64ZHERZHQT3ETD",
+                "duration": "1h 56m",
+                "date": "04-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LNP7AS64ZHERZHQT3ETD/L01__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LNP7AS64ZHERZHQT3ETD/L01__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "GWATBSN4DQXE0RR4COUE",
+                "duration": "1h 42m",
+                "date": "05-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GWATBSN4DQXE0RR4COUE/L02__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GWATBSN4DQXE0RR4COUE/L02__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "R4SAOHY9YMU3I9IW8EDF",
+                "duration": "1h 02m",
+                "date": "06-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R4SAOHY9YMU3I9IW8EDF/L03__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R4SAOHY9YMU3I9IW8EDF/L03__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "DYJ6EXIU0TFW382LKJ3Z",
+                "duration": "1h 53m",
+                "date": "11-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DYJ6EXIU0TFW382LKJ3Z/L04__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DYJ6EXIU0TFW382LKJ3Z/L04__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "8D62HH1YJR53KDRJOLW0",
+                "duration": "1h 51m",
+                "date": "12-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8D62HH1YJR53KDRJOLW0/L05__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8D62HH1YJR53KDRJOLW0/L05__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "0LI4PZ237AKKMJ8VPTYG",
+                "duration": "1h 51m",
+                "date": "13-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0LI4PZ237AKKMJ8VPTYG/L06__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0LI4PZ237AKKMJ8VPTYG/L06__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Aromatic Chemistry for Jee Advanced",
+                "uid": "CVD55V61H8VRRS9RX5MJ",
+                "duration": "1h 49m",
+                "date": "14-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CVD55V61H8VRRS9RX5MJ/L07__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CVD55V61H8VRRS9RX5MJ/L07__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "alcohols-amines-ethers",
+        "title": "Alcohols, Phenols, Ethers & Amines",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Acidity of phenols, Reimer-Tiemann reaction, Kolbe's reaction, Williamson ether synthesis, Gabriel phthalimide synthesis, and Hinsberg test.",
+        "icon": "fa-wine-bottle",
+        "startDate": "2025-09-11T00:00:00.000Z",
+        "badge": "4 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Alcohols, Amines and ethers for Jee Advanced",
+                "uid": "S6638HGU2E2GN2LWU8K9",
+                "duration": "24m",
+                "date": "11-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S6638HGU2E2GN2LWU8K9/L01__Alcohols_Amines_and_ethers_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S6638HGU2E2GN2LWU8K9/L01__Alcohols_Amines_and_ethers_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Alcohols, Amines and ethers for Jee Advanced",
+                "uid": "DN7OWP7KRHBT6J7LCDJJ",
+                "duration": "1h 52m",
+                "date": "12-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DN7OWP7KRHBT6J7LCDJJ/L02__Alcohols_Amines_and_ethers_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DN7OWP7KRHBT6J7LCDJJ/L02__Alcohols_Amines_and_ethers_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Alcohols, Amines and ethers for Jee Advanced",
+                "uid": "LLE27NROZI2VY28EJ37Q",
+                "duration": "1h 38m",
+                "date": "18-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LLE27NROZI2VY28EJ37Q/L03__Alcohols_Amines_and_ethers_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LLE27NROZI2VY28EJ37Q/L03__Alcohols_Amines_and_ethers_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Alcohols, Amines and ethers for Jee Advanced",
+                "uid": "P1BSOQSYYY0SGGGJTC2B",
+                "duration": "1h 40m",
+                "date": "19-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P1BSOQSYYY0SGGGJTC2B/L04__Alcohols_Amines_and_ethers_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P1BSOQSYYY0SGGGJTC2B/L04__Alcohols_Amines_and_ethers_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "practical-organic-chem",
+        "title": "Practical Organic Chemistry (POC) & Tests",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Functional group detection (Lucas test, Tollens' test, Fehling's test, 2,4-DNP, Iodoform test, Carbylamine test) and qualitative organic analysis.",
+        "icon": "fa-vial-circle-check",
+        "startDate": "2025-10-20T00:00:00.000Z",
+        "badge": "6 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "QIT93X9WBDQD5B9XNSRA",
+                "duration": "1h 23m",
+                "date": "20-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QIT93X9WBDQD5B9XNSRA/L01__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QIT93X9WBDQD5B9XNSRA/L01__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "7YZREAHIOSBHYOTDCP3P",
+                "duration": "1h 59m",
+                "date": "21-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7YZREAHIOSBHYOTDCP3P/L02__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7YZREAHIOSBHYOTDCP3P/L02__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "ZUG1JSVDMBMT5EO09H2J",
+                "duration": "1h 54m",
+                "date": "22-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZUG1JSVDMBMT5EO09H2J/L03__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZUG1JSVDMBMT5EO09H2J/L03__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "ILNSOP336ROP4DL3X0CR",
+                "duration": "2h 05m",
+                "date": "23-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ILNSOP336ROP4DL3X0CR/L04__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ILNSOP336ROP4DL3X0CR/L04__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "W4TDQ0NEOB99ZOCYT1PN",
+                "duration": "1h 39m",
+                "date": "24-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W4TDQ0NEOB99ZOCYT1PN/L05__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W4TDQ0NEOB99ZOCYT1PN/L05__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "NTW1KAPZP0APWO4RNDNK",
+                "duration": "1h 11m",
+                "date": "28-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "organic-mixed-pyqs",
+        "title": "Organic Chemistry Advanced Mixed PYQs",
+        "subject": "Chemistry",
+        "subjectIcon": "fa-flask-vial",
+        "subjectColor": "#10b981",
+        "subtitle": "Organic Chemistry - JEE Advanced",
+        "description": "Multi-step syntheses, integer type problems, roadmap problems, and comprehensive JEE Advanced PYQ discussions.",
+        "icon": "fa-pen-ruler",
+        "startDate": "2026-02-08T00:00:00.000Z",
+        "badge": "19 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Mixed problem solving [Organic chemistry]",
+                "uid": "JLTYBZ146D7BKV5TI8DY",
+                "duration": "2h 02m",
+                "date": "08-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JLTYBZ146D7BKV5TI8DY/L02__Mixed_problem_solving_Organic_chemistry_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JLTYBZ146D7BKV5TI8DY/L02__Mixed_problem_solving_Organic_chemistry_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Mixed problem solving [Organic chemistry]",
+                "uid": "RMKCB6OM658TXU3SNW0I",
+                "duration": "1h 42m",
+                "date": "11-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RMKCB6OM658TXU3SNW0I/L04__Mixed_problem_solving_Organic_chemistry_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RMKCB6OM658TXU3SNW0I/L04__Mixed_problem_solving_Organic_chemistry_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Mixed problem solving [Inorganic chem]",
+                "uid": "I0GNK7V69KHNAT9PAJXT",
+                "duration": "1h 59m",
+                "date": "10-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Organic Mixed-01",
+                "uid": "V290FX3LYV8HFRBJK2U1",
+                "duration": "2h 21m",
+                "date": "29-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V290FX3LYV8HFRBJK2U1/Organic_Mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V290FX3LYV8HFRBJK2U1/Organic_Mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Organic Mixed-02",
+                "uid": "IFMF4SNAF7OD2AGPCK2W",
+                "duration": "2h 00m",
+                "date": "30-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IFMF4SNAF7OD2AGPCK2W/Organic_Mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IFMF4SNAF7OD2AGPCK2W/Organic_Mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Organic Mixed-03",
+                "uid": "WPMFOW4Y363F6ILPNS3C",
+                "duration": "2h 24m",
+                "date": "31-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WPMFOW4Y363F6ILPNS3C/Organic_Mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WPMFOW4Y363F6ILPNS3C/Organic_Mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Organic ncert reading",
+                "uid": "4DK5O8BV4236F2GRTEJB",
+                "duration": "2h 46m",
+                "date": "02-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4DK5O8BV4236F2GRTEJB/Organic_ncert_reading_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4DK5O8BV4236F2GRTEJB/Organic_ncert_reading_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Organic Mixed-04",
+                "uid": "LCNNE0ZAEMR6YZDW5B6E",
+                "duration": "2h 00m",
+                "date": "03-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LCNNE0ZAEMR6YZDW5B6E/Organic_Mixed04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LCNNE0ZAEMR6YZDW5B6E/Organic_Mixed04_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Inorganic chemistry mixed-01",
+                "uid": "GJ4BVU65CR93AMV8A4ZG",
+                "duration": "2h 13m",
+                "date": "08-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Inorganic chemistry mixed-02",
+                "uid": "X7O27BLQ3KJ30219X73Z",
+                "duration": "1h 30m",
+                "date": "09-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Inorganic chemistry mixed-03",
+                "uid": "P3JOH0EQECG68MZUQX8N",
+                "duration": "1h 58m",
+                "date": "10-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Organic Chemistry Mixed Problems",
+                "uid": "LQ081X3LTQJZ7GPUVQ7A",
+                "duration": "1h 46m",
+                "date": "13-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LQ081X3LTQJZ7GPUVQ7A/Organic_Chemistry_Mixed_Problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LQ081X3LTQJZ7GPUVQ7A/Organic_Chemistry_Mixed_Problems_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Organic Chem. Integer Problems",
+                "uid": "AFFGTHPJ5Z4L6CP1BSF4",
+                "duration": "1h 29m",
+                "date": "15-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AFFGTHPJ5Z4L6CP1BSF4/Organic_Chem_Integer_Problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AFFGTHPJ5Z4L6CP1BSF4/Organic_Chem_Integer_Problems_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "QIT93X9WBDQD5B9XNSRA",
+                "duration": "1h 23m",
+                "date": "20-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QIT93X9WBDQD5B9XNSRA/L01__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QIT93X9WBDQD5B9XNSRA/L01__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "7YZREAHIOSBHYOTDCP3P",
+                "duration": "1h 59m",
+                "date": "21-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7YZREAHIOSBHYOTDCP3P/L02__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7YZREAHIOSBHYOTDCP3P/L02__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "ZUG1JSVDMBMT5EO09H2J",
+                "duration": "1h 54m",
+                "date": "22-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZUG1JSVDMBMT5EO09H2J/L03__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZUG1JSVDMBMT5EO09H2J/L03__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "ILNSOP336ROP4DL3X0CR",
+                "duration": "2h 05m",
+                "date": "23-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ILNSOP336ROP4DL3X0CR/L04__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ILNSOP336ROP4DL3X0CR/L04__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "W4TDQ0NEOB99ZOCYT1PN",
+                "duration": "1h 39m",
+                "date": "24-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W4TDQ0NEOB99ZOCYT1PN/L05__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W4TDQ0NEOB99ZOCYT1PN/L05__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Practical Organic Chemistry for Jee Advanced",
+                "uid": "NTW1KAPZP0APWO4RNDNK",
+                "duration": "1h 11m",
+                "date": "28-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "im-all-stars-mentorship",
+        "title": "IM All Stars Intensive Mentorship (JEE Main & Advanced)",
+        "subject": "Mentorship",
+        "subjectIcon": "fa-trophy",
+        "subjectColor": "#f59e0b",
+        "subtitle": "All Stars Rank Accelerator",
+        "description": "Comprehensive problem solving and high-impact strategy sessions across physics, chemistry, and mathematics for top JEE percentiles.",
+        "icon": "fa-star",
+        "startDate": "2025-11-28T00:00:00.000Z",
+        "badge": "36 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "IM All Stars (JM) - Lecture 1",
+                "uid": "G70VMGJTEFHJX04NBHH3",
+                "duration": "3h 06m",
+                "date": "28-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/G70VMGJTEFHJX04NBHH3/IM_All_Stars_JM__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/G70VMGJTEFHJX04NBHH3/IM_All_Stars_JM__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "IM All Stars (JM) - Lecture 2",
+                "uid": "NAEN50CTY50KU95GCXRV",
+                "duration": "2h 36m",
+                "date": "01-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NAEN50CTY50KU95GCXRV/IM_All_Stars_JM__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NAEN50CTY50KU95GCXRV/IM_All_Stars_JM__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "IM All Stars (JM) - Lecture 3",
+                "uid": "82C73QCUQHEVEP0XMVJ7",
+                "duration": "3h 00m",
+                "date": "03-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/82C73QCUQHEVEP0XMVJ7/IM_All_Stars_JM__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/82C73QCUQHEVEP0XMVJ7/IM_All_Stars_JM__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "IM All Stars (JM) - Lecture 4",
+                "uid": "2CE3Y0S8IVYW73DLX0TT",
+                "duration": "2h 15m",
+                "date": "08-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2CE3Y0S8IVYW73DLX0TT/IM_All_Stars_JM__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2CE3Y0S8IVYW73DLX0TT/IM_All_Stars_JM__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "IM All Stars (JM) - Lecture 5",
+                "uid": "WX84DIRF1H0YJR26KKYO",
+                "duration": "2h 04m",
+                "date": "10-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WX84DIRF1H0YJR26KKYO/IM_All_Stars_JM__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WX84DIRF1H0YJR26KKYO/IM_All_Stars_JM__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "IM All Stars (JM) - Lecture 6",
+                "uid": "I4UAP7F3Y0DPTQQUIISB",
+                "duration": "2h 10m",
+                "date": "12-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I4UAP7F3Y0DPTQQUIISB/IM_All_Stars_JM__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I4UAP7F3Y0DPTQQUIISB/IM_All_Stars_JM__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "IM All Stars (JM) - Lecture 7",
+                "uid": "EAEUPA32UZBD0Q9EBHSL",
+                "duration": "2h 56m",
+                "date": "16-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EAEUPA32UZBD0Q9EBHSL/IM_All_Stars_JM__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EAEUPA32UZBD0Q9EBHSL/IM_All_Stars_JM__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "IM All Stars (JM) - Lecture 8",
+                "uid": "B858D2Y2GUVUBVCDBAXU",
+                "duration": "1h 51m",
+                "date": "17-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/B858D2Y2GUVUBVCDBAXU/IM_All_Stars_JM__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/B858D2Y2GUVUBVCDBAXU/IM_All_Stars_JM__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "IM All Stars (JM) - Lecture 9",
+                "uid": "OIKZ9A5S6NU8ETCYHTTH",
+                "duration": "2h 08m",
+                "date": "19-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OIKZ9A5S6NU8ETCYHTTH/IM_All_Stars_JM__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OIKZ9A5S6NU8ETCYHTTH/IM_All_Stars_JM__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "IM All Stars (JM) - Lecture 10",
+                "uid": "BMUIFDCX9S7LW3GZWJP8",
+                "duration": "1h 51m",
+                "date": "24-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BMUIFDCX9S7LW3GZWJP8/IM_All_Stars_JM__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BMUIFDCX9S7LW3GZWJP8/IM_All_Stars_JM__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "IM All Stars (JM) - Lecture 11",
+                "uid": "54G0GT6W66JYQJEK28KN",
+                "duration": "1h 54m",
+                "date": "26-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/54G0GT6W66JYQJEK28KN/IM_All_Stars_JM__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/54G0GT6W66JYQJEK28KN/IM_All_Stars_JM__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "IM All Stars (JM) - Lecture 12",
+                "uid": "A5OQYFVK3QB5D0K9611A",
+                "duration": "2h 00m",
+                "date": "29-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/A5OQYFVK3QB5D0K9611A/IM_All_Stars_JM__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A5OQYFVK3QB5D0K9611A/IM_All_Stars_JM__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "IM All Stars (JM) - Lecture 13",
+                "uid": "RHI79N8X0RA3P9N2S09E",
+                "duration": "1h 51m",
+                "date": "30-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RHI79N8X0RA3P9N2S09E/IM_All_Stars_JM__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RHI79N8X0RA3P9N2S09E/IM_All_Stars_JM__Lecture_13_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "IM All Stars (JM) - Lecture 14",
+                "uid": "1ERG6LQ1KVZRS5XITLV2",
+                "duration": "57m",
+                "date": "31-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1ERG6LQ1KVZRS5XITLV2/IM_All_Stars_JM__Lecture_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1ERG6LQ1KVZRS5XITLV2/IM_All_Stars_JM__Lecture_14_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "IM All Stars (JM) - Lecture 15",
+                "uid": "2CZN0MZWQCV83SYECJ1A",
+                "duration": "2h 15m",
+                "date": "01-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2CZN0MZWQCV83SYECJ1A/IM_All_Stars_JM__Lecture_15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2CZN0MZWQCV83SYECJ1A/IM_All_Stars_JM__Lecture_15_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "IM All Stars (JM) - Lecture 16",
+                "uid": "RLEV68E66IWCR8IA3Z1L",
+                "duration": "1h 49m",
+                "date": "06-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RLEV68E66IWCR8IA3Z1L/IM_All_Stars_JM__Lecture_16_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RLEV68E66IWCR8IA3Z1L/IM_All_Stars_JM__Lecture_16_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "IM All Stars (JM) - Lecture 17",
+                "uid": "60XHP1R2W4WFA2VNDBV2",
+                "duration": "2h 02m",
+                "date": "12-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/60XHP1R2W4WFA2VNDBV2/IM_All_Stars_JM__Lecture_17_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/60XHP1R2W4WFA2VNDBV2/IM_All_Stars_JM__Lecture_17_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "IM All Stars (JM) - Lecture 18",
+                "uid": "L5F5FX8RZR64NXIVQOU2",
+                "duration": "1h 51m",
+                "date": "13-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/L5F5FX8RZR64NXIVQOU2/IM_All_Stars_JM__Lecture_18_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/L5F5FX8RZR64NXIVQOU2/IM_All_Stars_JM__Lecture_18_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 1",
+                "uid": "IV8S8QFLLA23FS82BEDD",
+                "duration": "1h 52m",
+                "date": "07-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IV8S8QFLLA23FS82BEDD/IM_All_Stars_for_JEE_Advanced_2026__Lecture_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IV8S8QFLLA23FS82BEDD/IM_All_Stars_for_JEE_Advanced_2026__Lecture_1_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 2",
+                "uid": "QWUK5B7XDCQFDE2YU136",
+                "duration": "2h 55m",
+                "date": "09-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QWUK5B7XDCQFDE2YU136/IM_All_Stars_for_JEE_Advanced_2026__Lecture_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QWUK5B7XDCQFDE2YU136/IM_All_Stars_for_JEE_Advanced_2026__Lecture_2_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 3",
+                "uid": "TTAG8UTD2Q87JIBMDINI",
+                "duration": "3h 13m",
+                "date": "12-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TTAG8UTD2Q87JIBMDINI/IM_All_Stars_for_JEE_Advanced_2026__Lecture_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TTAG8UTD2Q87JIBMDINI/IM_All_Stars_for_JEE_Advanced_2026__Lecture_3_no_anno.pdf"
+            },
+            {
+                "rank": 22,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 4",
+                "uid": "QGYWRLGLOYLWVB6QVODB",
+                "duration": "2h 54m",
+                "date": "17-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QGYWRLGLOYLWVB6QVODB/IM_All_Stars_for_JEE_Advanced_2026__Lecture_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QGYWRLGLOYLWVB6QVODB/IM_All_Stars_for_JEE_Advanced_2026__Lecture_4_no_anno.pdf"
+            },
+            {
+                "rank": 23,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 5",
+                "uid": "3TE6J2DO3ITCEXRZQEZJ",
+                "duration": "3h 16m",
+                "date": "19-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3TE6J2DO3ITCEXRZQEZJ/IM_All_Stars_for_JEE_Advanced_2026__Lecture_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3TE6J2DO3ITCEXRZQEZJ/IM_All_Stars_for_JEE_Advanced_2026__Lecture_5_no_anno.pdf"
+            },
+            {
+                "rank": 24,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 6",
+                "uid": "OIBVA4JX2G5EFJ1K0GOU",
+                "duration": "2h 15m",
+                "date": "02-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OIBVA4JX2G5EFJ1K0GOU/IM_All_Stars_for_JEE_Advanced_2026__Lecture_6_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OIBVA4JX2G5EFJ1K0GOU/IM_All_Stars_for_JEE_Advanced_2026__Lecture_6_no_anno.pdf"
+            },
+            {
+                "rank": 25,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 7",
+                "uid": "QCN69DFNUHAAWURI3KHM",
+                "duration": "1h 53m",
+                "date": "05-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QCN69DFNUHAAWURI3KHM/IM_All_Stars_for_JEE_Advanced_2026__Lecture_7_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QCN69DFNUHAAWURI3KHM/IM_All_Stars_for_JEE_Advanced_2026__Lecture_7_no_anno.pdf"
+            },
+            {
+                "rank": 26,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 8",
+                "uid": "Q06Q305KCCYJSVQCPMR8",
+                "duration": "2h 21m",
+                "date": "12-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q06Q305KCCYJSVQCPMR8/IM_All_Stars_for_JEE_Advanced_2026__Lecture_8_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Q06Q305KCCYJSVQCPMR8/IM_All_Stars_for_JEE_Advanced_2026__Lecture_8_no_anno.pdf"
+            },
+            {
+                "rank": 27,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 9",
+                "uid": "KIP26S89UXXA9JZAP2V3",
+                "duration": "2h 32m",
+                "date": "16-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KIP26S89UXXA9JZAP2V3/IM_All_Stars_for_JEE_Advanced_2026__Lecture_9_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KIP26S89UXXA9JZAP2V3/IM_All_Stars_for_JEE_Advanced_2026__Lecture_9_no_anno.pdf"
+            },
+            {
+                "rank": 28,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 10",
+                "uid": "RD44TEUFH44YIJ3ROOGA",
+                "duration": "3h 12m",
+                "date": "03-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RD44TEUFH44YIJ3ROOGA/IM_All_Stars_for_JEE_Advanced_2026__Lecture_10_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RD44TEUFH44YIJ3ROOGA/IM_All_Stars_for_JEE_Advanced_2026__Lecture_10_no_anno.pdf"
+            },
+            {
+                "rank": 29,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 11",
+                "uid": "S55ZF4SWZ5G54DTTFR7N",
+                "duration": "3h 09m",
+                "date": "11-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S55ZF4SWZ5G54DTTFR7N/IM_All_Stars_for_JEE_Advanced_2026__Lecture_11_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S55ZF4SWZ5G54DTTFR7N/IM_All_Stars_for_JEE_Advanced_2026__Lecture_11_no_anno.pdf"
+            },
+            {
+                "rank": 30,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 12",
+                "uid": "CEHF6HR1Y3WP5E8SK2Z3",
+                "duration": "1h 42m",
+                "date": "12-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CEHF6HR1Y3WP5E8SK2Z3/IM_All_Stars_for_JEE_Advanced_2026__Lecture_12_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CEHF6HR1Y3WP5E8SK2Z3/IM_All_Stars_for_JEE_Advanced_2026__Lecture_12_no_anno.pdf"
+            },
+            {
+                "rank": 31,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 13",
+                "uid": "NYPMX8MVR3L8OMYTG8ND",
+                "duration": "2h 02m",
+                "date": "17-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NYPMX8MVR3L8OMYTG8ND/IM_All_Stars_for_JEE_Advanced_2026__Lecture_13_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NYPMX8MVR3L8OMYTG8ND/IM_All_Stars_for_JEE_Advanced_2026__Lecture_13_no_anno.pdf"
+            },
+            {
+                "rank": 32,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 14",
+                "uid": "X35MN4UBKJGKL5Z2OWVS",
+                "duration": "2h 15m",
+                "date": "18-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X35MN4UBKJGKL5Z2OWVS/IM_All_Stars_for_JEE_Advanced_2026__Lecture_14_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X35MN4UBKJGKL5Z2OWVS/IM_All_Stars_for_JEE_Advanced_2026__Lecture_14_no_anno.pdf"
+            },
+            {
+                "rank": 33,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 15",
+                "uid": "W4JF829JV4J8W9EUZPRU",
+                "duration": "2h 53m",
+                "date": "05-05-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/W4JF829JV4J8W9EUZPRU/IM_All_Stars_for_JEE_Advanced_2026__Lecture_15_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/W4JF829JV4J8W9EUZPRU/IM_All_Stars_for_JEE_Advanced_2026__Lecture_15_no_anno.pdf"
+            },
+            {
+                "rank": 34,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 16",
+                "uid": "MUV3NGQUHJYBIM4RL8Q0",
+                "duration": "2h 41m",
+                "date": "07-05-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MUV3NGQUHJYBIM4RL8Q0/IM_All_Stars_for_JEE_Advanced_2026__Lecture_16_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MUV3NGQUHJYBIM4RL8Q0/IM_All_Stars_for_JEE_Advanced_2026__Lecture_16_no_anno.pdf"
+            },
+            {
+                "rank": 35,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 17",
+                "uid": "PB1AI7XTU136JLV7LCNT",
+                "duration": "1h 58m",
+                "date": "11-05-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PB1AI7XTU136JLV7LCNT/IM_All_Stars_for_JEE_Advanced_2026__Lecture_17_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PB1AI7XTU136JLV7LCNT/IM_All_Stars_for_JEE_Advanced_2026__Lecture_17_no_anno.pdf"
+            },
+            {
+                "rank": 36,
+                "title": "IM All Stars for JEE Advanced 2026 - Lecture 18",
+                "uid": "K4TJY23K0XDUQBI415GO",
+                "duration": "2h 53m",
+                "date": "13-05-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/K4TJY23K0XDUQBI415GO/IM_All_Stars_for_JEE_Advanced_2026__Lecture_18_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K4TJY23K0XDUQBI415GO/IM_All_Stars_for_JEE_Advanced_2026__Lecture_18_no_anno.pdf"
+            }
+        ]
+    },
+    {
+        "id": "mixed-problem-solving-modules",
+        "title": "Advanced Mixed Problem Solving & Module Discussions",
+        "subject": "Mentorship",
+        "subjectIcon": "fa-trophy",
+        "subjectColor": "#f59e0b",
+        "subtitle": "Problem Solving Situation Sets",
+        "description": "Integrated problem solving situation sets, module discussions, doubt clearings, and challenging multi-concept situation sets.",
+        "icon": "fa-brain",
+        "startDate": "2026-02-10T00:00:00.000Z",
+        "badge": "84 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Mixed problem solving [Inorganic chem]",
+                "uid": "I0GNK7V69KHNAT9PAJXT",
+                "duration": "1h 59m",
+                "date": "10-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/I0GNK7V69KHNAT9PAJXT/L03__Mixed_problem_solving_Inorganic_chem_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Mixed problem solving",
+                "uid": "7FIIL7N8DINTEB58YHTR",
+                "duration": "1h 59m",
+                "date": "16-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7FIIL7N8DINTEB58YHTR/L06__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7FIIL7N8DINTEB58YHTR/L06__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Mixed problem solving",
+                "uid": "HEAFW3IR4O2RS21OV4HK",
+                "duration": "2h 30m",
+                "date": "17-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HEAFW3IR4O2RS21OV4HK/L07__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HEAFW3IR4O2RS21OV4HK/L07__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Mixed problem solving",
+                "uid": "8SQP0UIUW7ZJ99UG2Y9P",
+                "duration": "2h 30m",
+                "date": "18-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8SQP0UIUW7ZJ99UG2Y9P/L08__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8SQP0UIUW7ZJ99UG2Y9P/L08__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Mixed problem solving",
+                "uid": "JZJKT3QISD3CY0BX1FY5",
+                "duration": "2h 21m",
+                "date": "19-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JZJKT3QISD3CY0BX1FY5/L09__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JZJKT3QISD3CY0BX1FY5/L09__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Mixed problem solving",
+                "uid": "CKCN55JWP5FPAOIYPA5N",
+                "duration": "2h 22m",
+                "date": "20-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CKCN55JWP5FPAOIYPA5N/L10__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CKCN55JWP5FPAOIYPA5N/L10__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Mixed problem solving",
+                "uid": "IX2ZMUDB8910XB7MGS8W",
+                "duration": "2h 51m",
+                "date": "23-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IX2ZMUDB8910XB7MGS8W/L11__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IX2ZMUDB8910XB7MGS8W/L11__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Mixed problem solving",
+                "uid": "TQWLKDFMLTXTAH5H0DKK",
+                "duration": "3h 00m",
+                "date": "24-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TQWLKDFMLTXTAH5H0DKK/L12__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TQWLKDFMLTXTAH5H0DKK/L12__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Mixed problem solving",
+                "uid": "64Z9GPMP8ACTIE9ECUIY",
+                "duration": "2h 37m",
+                "date": "25-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/64Z9GPMP8ACTIE9ECUIY/L13__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/64Z9GPMP8ACTIE9ECUIY/L13__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Mixed problem solving",
+                "uid": "NE62OXWN1E9LX31BWC06",
+                "duration": "1h 17m",
+                "date": "26-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NE62OXWN1E9LX31BWC06/L14__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NE62OXWN1E9LX31BWC06/L14__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Mixed problem solving",
+                "uid": "Q1WVQPHDH923QBBVPYBV",
+                "duration": "3h 03m",
+                "date": "27-02-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q1WVQPHDH923QBBVPYBV/L15__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Q1WVQPHDH923QBBVPYBV/L15__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Mixed problem solving",
+                "uid": "9Z6IQDCHYI4SGW2RXAPV",
+                "duration": "2h 28m",
+                "date": "02-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9Z6IQDCHYI4SGW2RXAPV/L16__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9Z6IQDCHYI4SGW2RXAPV/L16__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Mixed problem solving",
+                "uid": "LUHZV6IKP2HQ8G2D0ACC",
+                "duration": "2h 44m",
+                "date": "03-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LUHZV6IKP2HQ8G2D0ACC/L17__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LUHZV6IKP2HQ8G2D0ACC/L17__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Mixed problem solving",
+                "uid": "65WTA2WXQTMXDODWDR3O",
+                "duration": "1h 06m",
+                "date": "04-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/65WTA2WXQTMXDODWDR3O/L18__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/65WTA2WXQTMXDODWDR3O/L18__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Mixed problem solving",
+                "uid": "7WSUGUZW27VZFKJ5XYFZ",
+                "duration": "2h 23m",
+                "date": "05-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7WSUGUZW27VZFKJ5XYFZ/L19__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7WSUGUZW27VZFKJ5XYFZ/L19__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Mixed problem solving",
+                "uid": "8KZGNQQ6R9LFNM2Y8X7D",
+                "duration": "2h 24m",
+                "date": "11-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8KZGNQQ6R9LFNM2Y8X7D/L20__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8KZGNQQ6R9LFNM2Y8X7D/L20__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Mixed problem solving",
+                "uid": "KBJLNPYZYUC84YJX9F0Z",
+                "duration": "1h 40m",
+                "date": "12-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KBJLNPYZYUC84YJX9F0Z/L21__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KBJLNPYZYUC84YJX9F0Z/L21__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Mixed problem solving",
+                "uid": "EG2OW990HE660O51I9HA",
+                "duration": "2h 31m",
+                "date": "13-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EG2OW990HE660O51I9HA/L22__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EG2OW990HE660O51I9HA/L22__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Mixed problem solving",
+                "uid": "UN1BC9Q48PZ1ATYAWI9W",
+                "duration": "1h 21m",
+                "date": "14-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UN1BC9Q48PZ1ATYAWI9W/L23__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UN1BC9Q48PZ1ATYAWI9W/L23__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Mixed problem solving",
+                "uid": "EJPESK12M5EGCNJGOP95",
+                "duration": "2h 41m",
+                "date": "15-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EJPESK12M5EGCNJGOP95/L24__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EJPESK12M5EGCNJGOP95/L24__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "Mixed problem solving",
+                "uid": "0K45EJJ3GVWJYGJYFFNF",
+                "duration": "2h 23m",
+                "date": "17-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0K45EJJ3GVWJYGJYFFNF/L25__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0K45EJJ3GVWJYGJYFFNF/L25__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 22,
+                "title": "Mixed problem solving",
+                "uid": "87WRYSZSCTB4XVUQQU4F",
+                "duration": "2h 16m",
+                "date": "18-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/87WRYSZSCTB4XVUQQU4F/L26__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/87WRYSZSCTB4XVUQQU4F/L26__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 23,
+                "title": "Mixed problem solving",
+                "uid": "2VIGP4KNUY7KKGYV51JQ",
+                "duration": "2h 15m",
+                "date": "19-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2VIGP4KNUY7KKGYV51JQ/L27__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2VIGP4KNUY7KKGYV51JQ/L27__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 24,
+                "title": "Mixed problem solving",
+                "uid": "2BDLMZRUV09O0XKQHO8H",
+                "duration": "2h 03m",
+                "date": "20-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/2BDLMZRUV09O0XKQHO8H/L28__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2BDLMZRUV09O0XKQHO8H/L28__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 25,
+                "title": "Mixed problem solving",
+                "uid": "SXZ62IVDUYHYBO3TWQHY",
+                "duration": "2h 09m",
+                "date": "24-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SXZ62IVDUYHYBO3TWQHY/L29__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SXZ62IVDUYHYBO3TWQHY/L29__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 26,
+                "title": "Mixed problem solving",
+                "uid": "EBGYS095V8FVJGNPX1X9",
+                "duration": "1h 39m",
+                "date": "25-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EBGYS095V8FVJGNPX1X9/L30__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EBGYS095V8FVJGNPX1X9/L30__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 27,
+                "title": "Mixed problem solving",
+                "uid": "6RIEBDNVB9EGXC5EJHTX",
+                "duration": "2h 04m",
+                "date": "26-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6RIEBDNVB9EGXC5EJHTX/L31__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/6RIEBDNVB9EGXC5EJHTX/L31__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 28,
+                "title": "Mixed problem solving",
+                "uid": "S3Q2PVI71385XWQL5XJX",
+                "duration": "2h 22m",
+                "date": "27-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S3Q2PVI71385XWQL5XJX/L32__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S3Q2PVI71385XWQL5XJX/L32__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 29,
+                "title": "Mixed problem solving",
+                "uid": "ATWMBP4CZ5LVIK9TZZZI",
+                "duration": "3h 02m",
+                "date": "28-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ATWMBP4CZ5LVIK9TZZZI/L33__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ATWMBP4CZ5LVIK9TZZZI/L33__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 30,
+                "title": "Mixed problem solving",
+                "uid": "JNB5JZPZ0O4RYU6HIDSI",
+                "duration": "3h 02m",
+                "date": "29-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JNB5JZPZ0O4RYU6HIDSI/L34__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JNB5JZPZ0O4RYU6HIDSI/L34__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 31,
+                "title": "Mixed problem solving",
+                "uid": "3RM0NMW540MW1JCXVLRB",
+                "duration": "2h 55m",
+                "date": "30-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3RM0NMW540MW1JCXVLRB/L35__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3RM0NMW540MW1JCXVLRB/L35__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 32,
+                "title": "Mixed problem solving",
+                "uid": "WAVRHKJWM2BWWF03MNMD",
+                "duration": "2h 20m",
+                "date": "31-03-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WAVRHKJWM2BWWF03MNMD/L36__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WAVRHKJWM2BWWF03MNMD/L36__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 33,
+                "title": "Mixed problem solving",
+                "uid": "8BMDO6W1BHEMWNCQ3PL1",
+                "duration": "1h 39m",
+                "date": "10-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8BMDO6W1BHEMWNCQ3PL1/L37__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8BMDO6W1BHEMWNCQ3PL1/L37__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 34,
+                "title": "Mixed problem solving",
+                "uid": "HXFEBD12YQRR3G6NXVKJ",
+                "duration": "1h 42m",
+                "date": "11-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HXFEBD12YQRR3G6NXVKJ/L38__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HXFEBD12YQRR3G6NXVKJ/L38__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 35,
+                "title": "Mixed problem solving",
+                "uid": "KCFNZDGANQ7FDNSAKYRA",
+                "duration": "2h 09m",
+                "date": "12-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KCFNZDGANQ7FDNSAKYRA/L39__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KCFNZDGANQ7FDNSAKYRA/L39__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 36,
+                "title": "Mixed problem solving",
+                "uid": "57PRUXEYMZ5PQ74M1F8R",
+                "duration": "1h 54m",
+                "date": "13-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/57PRUXEYMZ5PQ74M1F8R/L40__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/57PRUXEYMZ5PQ74M1F8R/L40__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 37,
+                "title": "Mixed problem solving",
+                "uid": "RGT4A1BDXUW4DB081KHE",
+                "duration": "2h 05m",
+                "date": "14-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/RGT4A1BDXUW4DB081KHE/L41__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RGT4A1BDXUW4DB081KHE/L41__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 38,
+                "title": "Mixed problem solving",
+                "uid": "LMHW47J4TOO8VTQ3292B",
+                "duration": "2h 29m",
+                "date": "19-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LMHW47J4TOO8VTQ3292B/L42__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LMHW47J4TOO8VTQ3292B/L42__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 39,
+                "title": "Mixed problem solving",
+                "uid": "9EBF2TMVFSXCCDWZTU1I",
+                "duration": "1h 39m",
+                "date": "25-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9EBF2TMVFSXCCDWZTU1I/L43__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9EBF2TMVFSXCCDWZTU1I/L43__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 40,
+                "title": "Mixed problem solving",
+                "uid": "BID4I6U5T1VBFDVIH7DS",
+                "duration": "2h 05m",
+                "date": "27-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/BID4I6U5T1VBFDVIH7DS/L44__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BID4I6U5T1VBFDVIH7DS/L44__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 41,
+                "title": "Mixed problem solving",
+                "uid": "857C5ZUVAUC9GATZ8ZCW",
+                "duration": "2h 13m",
+                "date": "30-04-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/857C5ZUVAUC9GATZ8ZCW/L45__Mixed_problem_solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/857C5ZUVAUC9GATZ8ZCW/L45__Mixed_problem_solving_no_anno.pdf"
+            },
+            {
+                "rank": 42,
+                "title": "Problem Solving",
+                "uid": "3K22JGUBUHBRL07GORO8",
+                "duration": "1h 30m",
+                "date": "27-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3K22JGUBUHBRL07GORO8/Problem_Solving_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3K22JGUBUHBRL07GORO8/Problem_Solving_no_anno.pdf"
+            },
+            {
+                "rank": 43,
+                "title": "Module Discussion",
+                "uid": "ZGA97BFI8K98QOB1OZ1Z",
+                "duration": "2h 02m",
+                "date": "27-04-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZGA97BFI8K98QOB1OZ1Z/notes_with_anno.pdf"
+            },
+            {
+                "rank": 44,
+                "title": "Module Discussion",
+                "uid": "T6KRWRQ7MHAI75C2VPZ0",
+                "duration": "1h 31m",
+                "date": "04-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T6KRWRQ7MHAI75C2VPZ0/notes_with_anno.pdf"
+            },
+            {
+                "rank": 45,
+                "title": "Module Discussion",
+                "uid": "7K61T6E0YSUKNDWQ4KIP",
+                "duration": "1h 56m",
+                "date": "11-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7K61T6E0YSUKNDWQ4KIP/notes_with_anno.pdf"
+            },
+            {
+                "rank": 46,
+                "title": "Module Discussion",
+                "uid": "KOWIMBN980Z4TEKTYAP2",
+                "duration": "1h 16m",
+                "date": "12-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KOWIMBN980Z4TEKTYAP2/notes_with_anno.pdf"
+            },
+            {
+                "rank": 47,
+                "title": "Module Discussion",
+                "uid": "TS3Q7OKTRKHRFVC9ACNG",
+                "duration": "1h 40m",
+                "date": "18-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TS3Q7OKTRKHRFVC9ACNG/notes_with_anno.pdf"
+            },
+            {
+                "rank": 48,
+                "title": "Module Discussion",
+                "uid": "TYRQNBHL2HOA5YKVT8LI",
+                "duration": "1h 50m",
+                "date": "26-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TYRQNBHL2HOA5YKVT8LI/notes_with_anno.pdf"
+            },
+            {
+                "rank": 49,
+                "title": "Module Discussion",
+                "uid": "T40IOZ621YP0KPPGUMNP",
+                "duration": "2h 11m",
+                "date": "29-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T40IOZ621YP0KPPGUMNP/notes_with_anno.pdf"
+            },
+            {
+                "rank": 50,
+                "title": "Module Discussion",
+                "uid": "IYJE6VOTP4NYUBA4Q3UC",
+                "duration": "1h 03m",
+                "date": "30-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IYJE6VOTP4NYUBA4Q3UC/notes_with_anno.pdf"
+            },
+            {
+                "rank": 51,
+                "title": "Module Discussion",
+                "uid": "04U27GRV8AXI9C8YO2UG",
+                "duration": "2h 08m",
+                "date": "25-05-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/04U27GRV8AXI9C8YO2UG/notes_with_anno.pdf"
+            },
+            {
+                "rank": 52,
+                "title": "Module Discussion",
+                "uid": "6CO5PM0VJQM124B40837",
+                "duration": "1h 30m",
+                "date": "01-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6CO5PM0VJQM124B40837/notes_with_anno.pdf"
+            },
+            {
+                "rank": 53,
+                "title": "Module Discussion",
+                "uid": "5V9O4Y000XCET9J5I5BE",
+                "duration": "1h 28m",
+                "date": "13-07-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/5V9O4Y000XCET9J5I5BE/notes_with_anno.pdf"
+            },
+            {
+                "rank": 54,
+                "title": "Module Discussion",
+                "uid": "N3LUGOTO2EBOOP5CNL8H",
+                "duration": "1h 49m",
+                "date": "08-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/N3LUGOTO2EBOOP5CNL8H/notes_with_anno.pdf"
+            },
+            {
+                "rank": 55,
+                "title": "Module Discussion",
+                "uid": "TIJLL2SNQEXPU51L7V3A",
+                "duration": "58m",
+                "date": "09-11-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TIJLL2SNQEXPU51L7V3A/notes_with_anno.pdf"
+            },
+            {
+                "rank": 56,
+                "title": "Module Discussion",
+                "uid": "Q14PCHRPURPLRJUKZUPR",
+                "duration": "1h 30m",
+                "date": "19-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Q14PCHRPURPLRJUKZUPR/notes_with_anno.pdf"
+            },
+            {
+                "rank": 57,
+                "title": "Module Discussion",
+                "uid": "PS8DC1CQ14NTTSDBW98A",
+                "duration": "1h 52m",
+                "date": "25-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PS8DC1CQ14NTTSDBW98A/notes_with_anno.pdf"
+            },
+            {
+                "rank": 58,
+                "title": "Module Discussion",
+                "uid": "VBG5N4542ES5SC2C9N01",
+                "duration": "1h 38m",
+                "date": "26-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VBG5N4542ES5SC2C9N01/notes_with_anno.pdf"
+            },
+            {
+                "rank": 59,
+                "title": "Module Discussion",
+                "uid": "S8VA33PJEX2MNQS32GZU",
+                "duration": "1h 42m",
+                "date": "27-10-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/S8VA33PJEX2MNQS32GZU/notes_with_anno.pdf"
+            },
+            {
+                "rank": 60,
+                "title": "Module Discussion",
+                "uid": "NWLWTOWNAXPH6IH57ORI",
+                "duration": "1h 58m",
+                "date": "29-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NWLWTOWNAXPH6IH57ORI/notes_with_anno.pdf"
+            },
+            {
+                "rank": 61,
+                "title": "Module Discussion",
+                "uid": "KCMWPB33U573O2L5NJIO",
+                "duration": "2h 42m",
+                "date": "31-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KCMWPB33U573O2L5NJIO/notes_with_anno.pdf"
+            },
+            {
+                "rank": 62,
+                "title": "Module Discussion",
+                "uid": "7XBPNJFPL91Z9L6VSG8H",
+                "duration": "1h 33m",
+                "date": "28-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7XBPNJFPL91Z9L6VSG8H/notes_with_anno.pdf"
+            },
+            {
+                "rank": 63,
+                "title": "Module Discussion",
+                "uid": "Y3TWUSN8LE9H2IPEQV51",
+                "duration": "1h 29m",
+                "date": "21-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y3TWUSN8LE9H2IPEQV51/Module_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y3TWUSN8LE9H2IPEQV51/Module_Discussion_no_anno.pdf"
+            },
+            {
+                "rank": 64,
+                "title": "DPP Discussion",
+                "uid": "M2DAMEZKM3NQ0KE4Z7V3",
+                "duration": "2h 36m",
+                "date": "29-01-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M2DAMEZKM3NQ0KE4Z7V3/DPP_Discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M2DAMEZKM3NQ0KE4Z7V3/DPP_Discussion_no_anno.pdf"
+            },
+            {
+                "rank": 65,
+                "title": "MODULE DISCUSSION",
+                "uid": "6ZIHCV6NO7MY1I0Q8S8F",
+                "duration": "1h 38m",
+                "date": "09-08-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/6ZIHCV6NO7MY1I0Q8S8F/notes_with_anno.pdf"
+            },
+            {
+                "rank": 66,
+                "title": "MODULE DISCUSSION",
+                "uid": "9UDIDO4IFITMB58UTES1",
+                "duration": "2h 02m",
+                "date": "29-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/9UDIDO4IFITMB58UTES1/MODULE_DISCUSSION_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/9UDIDO4IFITMB58UTES1/MODULE_DISCUSSION_no_anno.pdf"
+            },
+            {
+                "rank": 67,
+                "title": "12th Physical Chemistry- Mixed Pyqs",
+                "uid": "1EVOLDRXE7GJJX8DG3WF",
+                "duration": "2h 07m",
+                "date": "23-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1EVOLDRXE7GJJX8DG3WF/12th_Physical_Chemistry_Mixed_Pyqs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1EVOLDRXE7GJJX8DG3WF/12th_Physical_Chemistry_Mixed_Pyqs_no_anno.pdf"
+            },
+            {
+                "rank": 68,
+                "title": "Organic Mixed-01",
+                "uid": "V290FX3LYV8HFRBJK2U1",
+                "duration": "2h 21m",
+                "date": "29-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/V290FX3LYV8HFRBJK2U1/Organic_Mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/V290FX3LYV8HFRBJK2U1/Organic_Mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 69,
+                "title": "Organic Mixed-02",
+                "uid": "IFMF4SNAF7OD2AGPCK2W",
+                "duration": "2h 00m",
+                "date": "30-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/IFMF4SNAF7OD2AGPCK2W/Organic_Mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IFMF4SNAF7OD2AGPCK2W/Organic_Mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 70,
+                "title": "Organic Mixed-03",
+                "uid": "WPMFOW4Y363F6ILPNS3C",
+                "duration": "2h 24m",
+                "date": "31-12-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WPMFOW4Y363F6ILPNS3C/Organic_Mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WPMFOW4Y363F6ILPNS3C/Organic_Mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 71,
+                "title": "Organic Mixed-04",
+                "uid": "LCNNE0ZAEMR6YZDW5B6E",
+                "duration": "2h 00m",
+                "date": "03-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LCNNE0ZAEMR6YZDW5B6E/Organic_Mixed04_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LCNNE0ZAEMR6YZDW5B6E/Organic_Mixed04_no_anno.pdf"
+            },
+            {
+                "rank": 72,
+                "title": "Physical chemistry mixed-01",
+                "uid": "JB1TLZAH8KHJ4TAQEN57",
+                "duration": "2h 05m",
+                "date": "05-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JB1TLZAH8KHJ4TAQEN57/Physical_chemistry_mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JB1TLZAH8KHJ4TAQEN57/Physical_chemistry_mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 73,
+                "title": "Physical chemistry mixed-02",
+                "uid": "XV2PIFAJ0GV90LDBH5RR",
+                "duration": "2h 21m",
+                "date": "06-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XV2PIFAJ0GV90LDBH5RR/Physical_chemistry_mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XV2PIFAJ0GV90LDBH5RR/Physical_chemistry_mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 74,
+                "title": "Physical chemistry mixed-03",
+                "uid": "KKSZP084J3F3RTGHVABD",
+                "duration": "1h 59m",
+                "date": "07-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KKSZP084J3F3RTGHVABD/Physical_chemistry_mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KKSZP084J3F3RTGHVABD/Physical_chemistry_mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 75,
+                "title": "Inorganic chemistry mixed-01",
+                "uid": "GJ4BVU65CR93AMV8A4ZG",
+                "duration": "2h 13m",
+                "date": "08-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GJ4BVU65CR93AMV8A4ZG/Inorganic_chemistry_mixed01_no_anno.pdf"
+            },
+            {
+                "rank": 76,
+                "title": "Inorganic chemistry mixed-02",
+                "uid": "X7O27BLQ3KJ30219X73Z",
+                "duration": "1h 30m",
+                "date": "09-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/X7O27BLQ3KJ30219X73Z/Inorganic_chemistry_mixed02_no_anno.pdf"
+            },
+            {
+                "rank": 77,
+                "title": "Inorganic chemistry mixed-03",
+                "uid": "P3JOH0EQECG68MZUQX8N",
+                "duration": "1h 58m",
+                "date": "10-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P3JOH0EQECG68MZUQX8N/Inorganic_chemistry_mixed03_no_anno.pdf"
+            },
+            {
+                "rank": 78,
+                "title": "Organic Chemistry Mixed Problems",
+                "uid": "LQ081X3LTQJZ7GPUVQ7A",
+                "duration": "1h 46m",
+                "date": "13-01-2026",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LQ081X3LTQJZ7GPUVQ7A/Organic_Chemistry_Mixed_Problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LQ081X3LTQJZ7GPUVQ7A/Organic_Chemistry_Mixed_Problems_no_anno.pdf"
+            },
+            {
+                "rank": 79,
+                "title": "Problem Solving - Session 1",
+                "uid": "WZ1JZ0DK7V494MLDSDPB",
+                "duration": "3h 06m",
+                "date": "09-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WZ1JZ0DK7V494MLDSDPB/Problem_Solving__Session_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WZ1JZ0DK7V494MLDSDPB/Problem_Solving__Session_1_no_anno.pdf"
+            },
+            {
+                "rank": 80,
+                "title": "Problem Solving - Session 2",
+                "uid": "ZGPOV1BE9FC8EWMZKSKQ",
+                "duration": "3h 02m",
+                "date": "10-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZGPOV1BE9FC8EWMZKSKQ/Problem_Solving__Session_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZGPOV1BE9FC8EWMZKSKQ/Problem_Solving__Session_2_no_anno.pdf"
+            },
+            {
+                "rank": 81,
+                "title": "Problem Solving - Session 3",
+                "uid": "EXX3G9IP0GZSH16DHIFZ",
+                "duration": "3h 10m",
+                "date": "11-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EXX3G9IP0GZSH16DHIFZ/Problem_Solving__Session_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EXX3G9IP0GZSH16DHIFZ/Problem_Solving__Session_3_no_anno.pdf"
+            },
+            {
+                "rank": 82,
+                "title": "Problem Solving - Session 4",
+                "uid": "FLZ263PZCX5MV2H6JVG9",
+                "duration": "3h 31m",
+                "date": "12-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FLZ263PZCX5MV2H6JVG9/Problem_Solving__Session_4_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FLZ263PZCX5MV2H6JVG9/Problem_Solving__Session_4_no_anno.pdf"
+            },
+            {
+                "rank": 83,
+                "title": "Problem Solving - Session 5",
+                "uid": "WEFRN2XQY55FSEID9JRR",
+                "duration": "15m",
+                "date": "18-06-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/WEFRN2XQY55FSEID9JRR/Problem_Solving__Session_5_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WEFRN2XQY55FSEID9JRR/Problem_Solving__Session_5_no_anno.pdf"
+            },
+            {
+                "rank": 84,
+                "title": "Module discussion",
+                "uid": "460LK9AUL5004H4YGRLJ",
+                "duration": "1h 15m",
+                "date": "14-09-2025",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/460LK9AUL5004H4YGRLJ/Module_discussion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/460LK9AUL5004H4YGRLJ/Module_discussion_no_anno.pdf"
             }
         ]
     }
 ];
 
-window.activeCourseId = COURSES[0].id;
-window.activeUid = COURSES[0].lectures[0].uid;
-
 function findCourseByLectureUid(uid) {
-    for (const c of COURSES) {
-        if (c.lectures.some(l => l.uid === uid)) return c;
-    }
-    return COURSES[0];
+    if (!uid) return null;
+    return COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid));
 }
 
-export { COURSES, findCourseByLectureUid };
-window.COURSES = COURSES;
-window.findCourseByLectureUid = findCourseByLectureUid;
+function findLectureInCourses(uid) {
+    if (!uid) return null;
+    for (const c of COURSES) {
+        const lec = c.lectures.find(l => l.uid === uid);
+        if (lec) return { course: c, lecture: lec };
+    }
+    return null;
+}
+
+export { COURSES, findCourseByLectureUid, findLectureInCourses };

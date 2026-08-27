@@ -111,7 +111,9 @@ function toggleEnrollCourse(courseId, event) {
     _memoEnrolled = list;
     localStorage.setItem(ENROLLED_KEY, JSON.stringify(list));
     renderMyCourses();
-    renderAllCourses();
+    if (currentView === "math") renderSubjectGrid("Mathematics", "math-courses-grid");
+    else if (currentView === "physics") renderSubjectGrid("Physics", "physics-courses-grid");
+    else if (currentView === "chemistry") renderSubjectGrid("Chemistry", "chemistry-courses-grid");
 }
 
 function getLastWatched() {
@@ -252,7 +254,9 @@ function switchView(viewName, params = {}, skipPush = false) {
         }
 
         const viewMyCourses = document.getElementById("view-my-courses");
-        const viewAllCourses = document.getElementById("view-all-courses");
+        const viewMath = document.getElementById("view-math");
+        const viewPhysics = document.getElementById("view-physics");
+        const viewChemistry = document.getElementById("view-chemistry");
         const viewOfflineMode = document.getElementById("view-offline-mode");
         const viewDetails = document.getElementById("view-course-details");
         const dbLogo = document.getElementById("db-logo");
@@ -261,7 +265,9 @@ function switchView(viewName, params = {}, skipPush = false) {
         
         // Hide all sub-views first
         if (viewMyCourses) viewMyCourses.classList.remove("active");
-        if (viewAllCourses) viewAllCourses.classList.remove("active");
+        if (viewMath) viewMath.classList.remove("active");
+        if (viewPhysics) viewPhysics.classList.remove("active");
+        if (viewChemistry) viewChemistry.classList.remove("active");
         if (viewOfflineMode) viewOfflineMode.classList.remove("active");
         if (viewDetails) viewDetails.classList.remove("active");
 
@@ -271,12 +277,24 @@ function switchView(viewName, params = {}, skipPush = false) {
             if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
             if (dbHeaderRight) dbHeaderRight.style.display = "block";
             renderMyCourses();
-        } else if (viewName === "all-courses") {
-            if (viewAllCourses) viewAllCourses.classList.add("active");
+        } else if (viewName === "math" || viewName === "mathematics") {
+            if (viewMath) viewMath.classList.add("active");
             if (dbLogo) dbLogo.style.display = "flex";
             if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
             if (dbHeaderRight) dbHeaderRight.style.display = "block";
-            renderAllCourses();
+            renderSubjectGrid("Mathematics", "math-courses-grid");
+        } else if (viewName === "physics") {
+            if (viewPhysics) viewPhysics.classList.add("active");
+            if (dbLogo) dbLogo.style.display = "flex";
+            if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
+            if (dbHeaderRight) dbHeaderRight.style.display = "block";
+            renderSubjectGrid("Physics", "physics-courses-grid");
+        } else if (viewName === "chemistry") {
+            if (viewChemistry) viewChemistry.classList.add("active");
+            if (dbLogo) dbLogo.style.display = "flex";
+            if (dbHeaderBackBtn) dbHeaderBackBtn.style.display = "none";
+            if (dbHeaderRight) dbHeaderRight.style.display = "block";
+            renderSubjectGrid("Chemistry", "chemistry-courses-grid");
         } else if (viewName === "offline-mode") {
             if (viewOfflineMode) viewOfflineMode.classList.add("active");
             if (dbLogo) dbLogo.style.display = "flex";
@@ -304,28 +322,25 @@ function toggleNavMenu() {
 }
 
 function switchNavView(target) {
-    const navItemMy = document.getElementById("nav-item-my-courses");
-    const navItemAll = document.getElementById("nav-item-all-courses");
-    const navItemOffline = document.getElementById("nav-item-offline-mode");
+    const navMap = {
+        "my-courses": document.getElementById("nav-item-my-courses"),
+        "math": document.getElementById("nav-item-math"),
+        "mathematics": document.getElementById("nav-item-math"),
+        "physics": document.getElementById("nav-item-physics"),
+        "chemistry": document.getElementById("nav-item-chemistry"),
+        "offline-mode": document.getElementById("nav-item-offline-mode")
+    };
     const navDrawer = document.getElementById("db-nav-drawer");
     if (navDrawer) navDrawer.classList.remove("show");
     
-    if (target === "my-courses") {
-        if (navItemMy) navItemMy.classList.add("active");
-        if (navItemAll) navItemAll.classList.remove("active");
-        if (navItemOffline) navItemOffline.classList.remove("active");
-        switchView("my-courses");
-    } else if (target === "all-courses") {
-        if (navItemMy) navItemMy.classList.remove("active");
-        if (navItemAll) navItemAll.classList.add("active");
-        if (navItemOffline) navItemOffline.classList.remove("active");
-        switchView("all-courses");
-    } else if (target === "offline-mode") {
-        if (navItemMy) navItemMy.classList.remove("active");
-        if (navItemAll) navItemAll.classList.remove("active");
-        if (navItemOffline) navItemOffline.classList.add("active");
-        switchView("offline-mode");
-    }
+    Object.keys(navMap).forEach(key => {
+        if (navMap[key]) {
+            if (key === target) navMap[key].classList.add("active");
+            else navMap[key].classList.remove("active");
+        }
+    });
+
+    switchView(target);
 }
 
 function getCourseStatsText(course) {
@@ -405,10 +420,14 @@ function renderMyCourses() {
 
     if (enrolledCourses.length === 0) {
         grid.innerHTML = `
-            <div class="empty-courses-state">
-                <i class="fas fa-folder-open"></i>
-                <p>No courses added to your list yet.</p>
-                <button class="explore-nav-btn" onclick="switchNavView('all-courses')">Explore All Courses</button>
+            <div class="empty-courses-state" style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: #71717a;">
+                <i class="fas fa-bookmark" style="font-size: 32px; margin-bottom: 12px; display: block; opacity: 0.4;"></i>
+                <p style="font-size: 15px; color: #f4f4f5; font-weight: 600; margin-bottom: 14px;">No courses enrolled yet.</p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                    <button class="explore-nav-btn" onclick="switchNavView('math')"><i class="fas fa-square-root-variable"></i> Mathematics</button>
+                    <button class="explore-nav-btn" onclick="switchNavView('physics')"><i class="fas fa-atom"></i> Physics</button>
+                    <button class="explore-nav-btn" onclick="switchNavView('chemistry')"><i class="fas fa-flask-vial"></i> Chemistry</button>
+                </div>
             </div>
         `;
         return;
@@ -418,11 +437,9 @@ function renderMyCourses() {
         const card = document.createElement("div");
         card.className = "course-card";
         card.onclick = () => switchView("course", { courseId: course.id });
+
         card.innerHTML = `
             <div class="course-card-left">
-                <div class="course-card-icon-wrap">
-                    <i class="fas ${course.icon}"></i>
-                </div>
                 <h3 class="course-card-title">${course.title}</h3>
                 <p class="course-card-desc">${course.description}</p>
             </div>
@@ -432,7 +449,6 @@ function renderMyCourses() {
                     <button class="course-continue-btn" title="Continue watching" onclick="event.stopPropagation(); launchCourseContinue('${course.id}')">
                         <i class="fas fa-play" style="font-size:10px;"></i> Continue
                     </button>
-                    <button class="course-card-btn">Explore Course</button>
                 </div>
             </div>
         `;
@@ -453,26 +469,32 @@ function launchCourseContinue(courseId) {
 }
 
 // ══════════════════════════════════════════════════
-// ALL COURSES CATALOG RENDERER (STRICTLY ONLINE ONLY)
+// SUBJECT CATALOGS RENDERER (MATH, PHYSICS, CHEMISTRY)
 // ══════════════════════════════════════════════════
-function renderAllCourses() {
-    const grid = document.getElementById("all-courses-grid");
+function renderSubjectGrid(subject, gridId) {
+    const grid = document.getElementById(gridId);
     if (!grid) return;
     grid.innerHTML = "";
 
-    // Strictly show official catalog courses only (never local imported folders)
-    const onlineCourses = COURSES.filter(c => !c.isLocal);
+    const subjectCourses = COURSES.filter(c => !c.isLocal && c.subject === subject);
 
-    onlineCourses.forEach(course => {
+    if (subjectCourses.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-courses-state" style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: #71717a;">
+                <p style="font-size: 15px; color: #f4f4f5; font-weight: 600;">No ${subject} courses found.</p>
+            </div>
+        `;
+        return;
+    }
+
+    subjectCourses.forEach(course => {
         const enrolled = isCourseEnrolled(course.id);
         const card = document.createElement("div");
         card.className = "course-card";
         card.onclick = () => switchView("course", { courseId: course.id });
+
         card.innerHTML = `
             <div class="course-card-left">
-                <div class="course-card-icon-wrap">
-                    <i class="fas ${course.icon}"></i>
-                </div>
                 <h3 class="course-card-title">${course.title}</h3>
                 <p class="course-card-desc">${course.description}</p>
             </div>
@@ -482,7 +504,6 @@ function renderAllCourses() {
                     <button class="course-add-btn ${enrolled ? 'added' : ''}" title="${enrolled ? 'Remove from My Courses' : 'Add to My Courses'}" onclick="toggleEnrollCourse('${course.id}', event)">
                         <i class="fas ${enrolled ? 'fa-check' : 'fa-plus'}"></i> ${enrolled ? 'Added' : 'Add'}
                     </button>
-                    <button class="course-card-btn">Explore Course</button>
                 </div>
             </div>
         `;
@@ -580,7 +601,7 @@ function renderOfflineMode() {
                             <div class="lecture-card-title">${title}</div>
                             <div class="lecture-card-duration">
                                 <span>${courseName}</span> • <i class="far fa-clock"></i> ${duration || '--'}
-                                <span class="offline-badge" style="background:rgba(14,165,233,0.15);color:var(--accent);border-color:rgba(14,165,233,0.3);"><i class="fas fa-bolt"></i> Instant Ready</span>
+                                <span class="offline-badge" style="background:rgba(239,68,68,0.15);color:var(--accent);border-color:rgba(239,68,68,0.3);"><i class="fas fa-bolt"></i> Instant Ready</span>
                             </div>
                         </div>
                     </div>
@@ -621,7 +642,7 @@ function renderCourseDetails(courseId) {
     }
 
     const countChip = document.getElementById("lecture-count-chip");
-    if (countChip) countChip.textContent = `${course.lectures.length} Lectures`;
+    if (countChip) countChip.textContent = getCourseStatsText(course);
 
     const searchInput = document.getElementById("lecture-search-input");
     if (searchInput) searchInput.value = "";
@@ -837,7 +858,7 @@ initHistoryRouting();
 export { 
     switchView, 
     renderMyCourses, 
-    renderAllCourses, 
+    renderSubjectGrid,
     renderOfflineMode,
     clearOfflineStorage,
     renderCourseDetails, 
@@ -862,7 +883,7 @@ export {
 
 window.switchView = switchView;
 window.renderMyCourses = renderMyCourses;
-window.renderAllCourses = renderAllCourses;
+window.renderSubjectGrid = renderSubjectGrid;
 window.renderOfflineMode = renderOfflineMode;
 window.clearOfflineStorage = clearOfflineStorage;
 window.renderCourseDetails = renderCourseDetails;

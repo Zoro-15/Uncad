@@ -22,8 +22,16 @@ downloads/
 # Scratch & Raw Data Dumps
 *.txt
 new txt/
+1_*.html
+*.dump.html
 informatio.md
 PROJECT_CONTEXT.md
+
+# Video & Notes Downloads
+*.webm
+*.mp4
+*.pdf
+downloads/
 
 # Environment Variables & Secrets
 .env
