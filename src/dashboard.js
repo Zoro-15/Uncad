@@ -438,7 +438,7 @@ function renderMyCourses() {
                     <button class="explore-nav-btn" onclick="switchNavView('math')"><i class="fas fa-square-root-variable"></i> Mathematics</button>
                     <button class="explore-nav-btn" onclick="switchNavView('physics')"><i class="fas fa-atom"></i> Physics</button>
                     <button class="explore-nav-btn" onclick="switchNavView('chemistry')"><i class="fas fa-flask-vial"></i> Chemistry</button>
-                    <button class="explore-nav-btn" onclick="switchNavView('mentorship')"><i class="fas fa-graduation-cap"></i> Mentorship & Modules</button>
+                    <button class="explore-nav-btn" onclick="switchNavView('mentorship')"><i class="fas fa-bolt"></i> Crash Courses & Mentorship</button>
                 </div>
             </div>
         `;
