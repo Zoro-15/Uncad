@@ -5,14 +5,93 @@
 ---
 
 ## 📑 Table of Contents
-1. [Core Architecture & Why Naive Scraping Fails](#1-core-architecture--why-naive-scraping-fails)
-2. [The Single-Link Extraction Methodology (Next.js SSR Hydration)](#2-the-single-link-extraction-methodology-nextjs-ssr-hydration)
-3. [Unacademy CDN Endpoint Architecture](#3-unacademy-cdn-endpoint-architecture)
-4. [Slide Notes & PDF Resolution Rules](#4-slide-notes--pdf-resolution-rules)
-5. [Web App Integration Workflow](#5-web-app-integration-workflow)
-6. [Offline Mode & Local Folder Engine](#6-offline-mode--local-folder-engine)
-7. [Google Colab Automation Blueprints](#7-google-colab-automation-blueprints)
-8. [Gotchas, Pitfalls & Known Edge Cases](#8-gotchas-pitfalls--known-edge-cases)
+1. [🧭 Step-by-Step Protocol for Future Conversations](#-step-by-step-protocol-for-future-conversations)
+2. [Core Architecture & Why Naive Scraping Fails](#1-core-architecture--why-naive-scraping-fails)
+3. [The Single-Link Extraction Methodology (Next.js SSR Hydration)](#2-the-single-link-extraction-methodology-nextjs-ssr-hydration)
+4. [Unacademy CDN Endpoint Architecture](#3-unacademy-cdn-endpoint-architecture)
+5. [Slide Notes & PDF Resolution Rules](#4-slide-notes--pdf-resolution-rules)
+6. [Web App Integration Workflow](#5-web-app-integration-workflow)
+7. [Offline Mode & Local Folder Engine](#6-offline-mode--local-folder-engine)
+8. [Google Colab Automation Blueprints](#7-google-colab-automation-blueprints)
+9. [Gotchas, Pitfalls & Known Edge Cases](#8-gotchas-pitfalls--known-edge-cases)
+
+---
+
+## 🧭 Step-by-Step Protocol for Future Conversations
+
+> **INSTRUCTION FOR NEXT LLM:** When the user gives you an Unacademy course link in a new chat (e.g. `https://unacademy.com/course/.../{COURSE_UID}`), **DO NOT attempt external scraping or tell the user they need a subscription.** Follow these exact 5 steps:
+
+```
+Step 1: Guide User with 1-Line Console Extractor
+   └── Ask user to open the URL in Chrome/Edge and paste the snippet in F12 Console.
+
+Step 2: User Pastes the JSON Payload
+   └── Parse courseFallbackData (title, educator) and lessonListFallbackData (lectures).
+
+Step 3: Extract Stream UIDs, Durations & Slide PDFs
+   └── Map 20-char UID from videoUrl / slidesPdf, convert videoDuration to "Xh Ym".
+
+Step 4: Integrate into Web App Catalog
+   └── Append course object to src/courses.js and update scripts/pdf_links_cache.json.
+
+Step 5: Deliver Tailored Google Drive Downloader & Space Analyzer
+   └── Provide Google Colab script targeting https://uamedia.uacdn.net/lesson-raw/{UID}/output.webm.
+```
+
+### 🔹 Step 1: The Initial Instruction to Give to User
+When user provides a link:
+```text
+To extract this course immediately without requiring login or subscription:
+1. Open the course link in your browser: <COURSE_URL>
+2. Press F12 (Developer Tools) -> click the 'Console' tab.
+3. Paste and run this 1-line extractor:
+   copy(JSON.stringify(window.__NEXT_DATA__?.props?.pageProps || "NOT_FOUND")); alert("Copied to clipboard!");
+4. Press Ctrl + V to paste the output here!
+```
+
+### 🔹 Step 2: Parse the Extracted Payload
+When user pastes the JSON, extract:
+* `courseFallbackData.name` $\rightarrow$ Course Title
+* `courseFallbackData.author.name` $\rightarrow$ Educator Name
+* `lessonListFallbackData.results` $\rightarrow$ Array of lectures:
+  * `rank`: `item.rank`
+  * `title`: `item.value.title`
+  * `uid`: Extracted 20-character alphanumerical ID from `item.value.liveClass.slidesPdf.withAnnotation` or `item.value.liveClass.videoUrl` (e.g. `EDXNDNFRLD5BYZLYI12I`)
+  * `duration`: Formatted from `item.value.liveClass.videoDuration` (seconds $\rightarrow$ `"1h 38m"`)
+  * `pdfUrl`: `item.value.liveClass.slidesPdf.withAnnotation`
+  * `pdfCleanUrl`: `item.value.liveClass.slidesPdf.noAnnotation`
+
+### 🔹 Step 3: Insert into `src/courses.js`
+Format the course object and append to `COURSES` in `src/courses.js`:
+```javascript
+{
+    id: "<slug-id>",
+    title: "<Course Title>",
+    subtitle: "<Educator> • Comprehensive Problem Solving & Revision",
+    description: "...",
+    badge: "<Count> Lessons • Crash Course",
+    educator: "<Educator Name>",
+    educatorRole: "JEE Specialist",
+    rating: "4.95",
+    reviewsCount: "1.5k",
+    lessonsCount: <Lectures Length>,
+    totalDuration: "<Calculated Total Time>",
+    subject: "Chemistry", // or "Mathematics", "Physics", "Crash Course", "Phy OS"
+    subjectIcon: "fa-flask-vial",
+    subjectColor: "#ec4899",
+    lectures: [...]
+}
+```
+
+### 🔹 Step 4: Deliver Google Colab Downloader
+Provide the user with a Colab script downloading:
+1. **Video Stream:** `https://uamedia.uacdn.net/lesson-raw/{UID}/output.webm` (Save as `output.webm`)
+2. **Telemetry Events:** `https://uamedia.uacdn.net/lesson-raw/{UID}/data.json` (Save as `data.json`)
+3. **Annotated PDF:** `notes_with_anno.pdf`
+4. **Clean PDF:** `notes_no_anno.pdf`
+5. **Metadata:** `metadata.json`
+
+*(Do NOT create redundant duplicate files like `replay_high.webm` or `events.json` to save 50% Drive storage).*
 
 ---
 
