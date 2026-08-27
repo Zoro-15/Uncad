@@ -8952,7 +8952,7 @@ const COURSES = [
                 "title": "Kinematics 1",
                 "topic": "Kinematics",
                 "uid": "A4BW2JFS5Y0OECY9C3DW",
-                "duration": "1h 45m",
+                "duration": "3h 04m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/A4BW2JFS5Y0OECY9C3DW/Kinematics_1_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A4BW2JFS5Y0OECY9C3DW/Kinematics_1_no_anno.pdf"
             },
@@ -8961,7 +8961,7 @@ const COURSES = [
                 "title": "Kinematics 2",
                 "topic": "Kinematics",
                 "uid": "S8MUL5T22ZUI4ZPZOBG0",
-                "duration": "1h 45m",
+                "duration": "5h 02m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/S8MUL5T22ZUI4ZPZOBG0/Kinematics_2_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S8MUL5T22ZUI4ZPZOBG0/Kinematics_2_no_anno.pdf"
             },
@@ -8970,7 +8970,7 @@ const COURSES = [
                 "title": "Newton's Laws of Motion: NLM",
                 "topic": "Newton's Laws of Motion",
                 "uid": "E3N3I66ETKSP8F7AP5CG",
-                "duration": "1h 45m",
+                "duration": "4h 19m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/E3N3I66ETKSP8F7AP5CG/NLM_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/E3N3I66ETKSP8F7AP5CG/NLM_no_anno.pdf"
             },
@@ -8979,7 +8979,7 @@ const COURSES = [
                 "title": "Work, Power & Energy: WPE",
                 "topic": "Work, Power & Energy",
                 "uid": "TJ3407RXK6XQD5MXMFGD",
-                "duration": "1h 45m",
+                "duration": "3h 38m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/TJ3407RXK6XQD5MXMFGD/WPE_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TJ3407RXK6XQD5MXMFGD/WPE_no_anno.pdf"
             },
@@ -8988,7 +8988,7 @@ const COURSES = [
                 "title": "Work, Power & Energy",
                 "topic": "Work, Power & Energy",
                 "uid": "KR92KVWMEUWUS7G23T6E",
-                "duration": "1h 45m",
+                "duration": "2h 46m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/KR92KVWMEUWUS7G23T6E/Work_Power__Energy_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KR92KVWMEUWUS7G23T6E/Work%2C_Power_%26_Energy_no_anno.pdf"
             },
@@ -8997,7 +8997,7 @@ const COURSES = [
                 "title": "Collision & Conservation of Momentum",
                 "topic": "Collision & Momentum",
                 "uid": "RK64LSZ1EV6KG96J6ER6",
-                "duration": "1h 45m",
+                "duration": "3h 43m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/RK64LSZ1EV6KG96J6ER6/Collision__Conservation_of_Momentum_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/RK64LSZ1EV6KG96J6ER6/Collision_%26_Conservation_of_Momentum_no_anno.pdf"
             },
@@ -9006,7 +9006,7 @@ const COURSES = [
                 "title": "Centre of Mass",
                 "topic": "Centre of Mass",
                 "uid": "R36FBWS31FAUWLK7LJ3U",
-                "duration": "1h 45m",
+                "duration": "4h 55m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/R36FBWS31FAUWLK7LJ3U/Centre_of_Mass_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R36FBWS31FAUWLK7LJ3U/Centre_of_Mass_no_anno.pdf"
             },
@@ -9015,7 +9015,7 @@ const COURSES = [
                 "title": "Rotational Motion: Rotation",
                 "topic": "Rotational Motion",
                 "uid": "SAO073RJI1NOFXBXAE3L",
-                "duration": "1h 45m",
+                "duration": "5h 37m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/SAO073RJI1NOFXBXAE3L/Rotation_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SAO073RJI1NOFXBXAE3L/Rotation_no_anno.pdf"
             },
@@ -9024,7 +9024,7 @@ const COURSES = [
                 "title": "Rotational Motion: Rotation 2",
                 "topic": "Rotational Motion",
                 "uid": "YGFM669P89R0KWJFLA5E",
-                "duration": "1h 45m",
+                "duration": "4h 41m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/YGFM669P89R0KWJFLA5E/Rotation_2_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YGFM669P89R0KWJFLA5E/Rotation_2_no_anno.pdf"
             },
@@ -9033,7 +9033,7 @@ const COURSES = [
                 "title": "Electrostatics 1",
                 "topic": "Electrostatics",
                 "uid": "A9BUX16M62VMOAUBIEI2",
-                "duration": "1h 45m",
+                "duration": "2h 35m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/A9BUX16M62VMOAUBIEI2/Electrostatics_1_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/A9BUX16M62VMOAUBIEI2/Electrostatics_1_no_anno.pdf"
             },
@@ -9042,7 +9042,7 @@ const COURSES = [
                 "title": "Electrostatics 2",
                 "topic": "Electrostatics",
                 "uid": "LKXZ0L06LL80P33XYS5X",
-                "duration": "1h 45m",
+                "duration": "3h 00m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/LKXZ0L06LL80P33XYS5X/Electrostatics_2_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LKXZ0L06LL80P33XYS5X/Electrostatics_2_no_anno.pdf"
             },
@@ -9051,7 +9051,7 @@ const COURSES = [
                 "title": "Gravitation",
                 "topic": "Gravitation",
                 "uid": "5SGI2CDMUOT974DD96VM",
-                "duration": "1h 45m",
+                "duration": "3h 11m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/5SGI2CDMUOT974DD96VM/Gravitation_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5SGI2CDMUOT974DD96VM/Gravitation_no_anno.pdf"
             },
@@ -9060,7 +9060,7 @@ const COURSES = [
                 "title": "Capacitance",
                 "topic": "Capacitance",
                 "uid": "240LQP3Y73Q5C13JRJ6Z",
-                "duration": "1h 45m",
+                "duration": "2h 04m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/240LQP3Y73Q5C13JRJ6Z/Capacitance_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/240LQP3Y73Q5C13JRJ6Z/Capacitance_no_anno.pdf"
             },
@@ -9069,7 +9069,7 @@ const COURSES = [
                 "title": "Current Electricity",
                 "topic": "Current Electricity",
                 "uid": "7VJ2WY09WTYV4ZBQS104",
-                "duration": "1h 45m",
+                "duration": "1h 49m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/7VJ2WY09WTYV4ZBQS104/Current_Electricity_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7VJ2WY09WTYV4ZBQS104/Current_Electricity_no_anno.pdf"
             },
@@ -9078,7 +9078,7 @@ const COURSES = [
                 "title": "Fluid mechanics",
                 "topic": "Fluid Mechanics",
                 "uid": "QAL352QKONZZNW4543DD",
-                "duration": "1h 45m",
+                "duration": "1h 57m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/QAL352QKONZZNW4543DD/Fluid_mechanics_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QAL352QKONZZNW4543DD/Fluid_mechanics_no_anno.pdf"
             }
