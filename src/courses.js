@@ -8659,6 +8659,281 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/460LK9AUL5004H4YGRLJ/Module_discussion_no_anno.pdf"
             }
         ]
+    },
+    {
+        "id": "trio-miscellaneous",
+        "title": "Miscellaneous Crash Course Discussions",
+        "subject": "Mentorship",
+        "subjectIcon": "fa-bolt",
+        "subjectColor": "#f59e0b",
+        "subtitle": "Chemistry & Physics Crash Course Sessions",
+        "description": "29 high-yield problem solving, NCERT reading, integer questions, and PYQ discussion sessions covering Physical, Inorganic & Organic Chemistry, and Thermodynamics.",
+        "icon": "fa-layer-group",
+        "startDate": "2025-11-22T08:00:00Z",
+        "badge": "29 Lectures",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Mole and redox-01",
+                "uid": "AOSL4FMIXCRQI6ZMDEU1",
+                "date": "22-11-2025",
+                "duration": "1h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AOSL4FMIXCRQI6ZMDEU1/Mole_and_redox01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AOSL4FMIXCRQI6ZMDEU1/Mole_and_redox01_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Mole and Redox -02",
+                "uid": "KGLCRJ8K4RL8SU77YCDJ",
+                "date": "25-11-2025",
+                "duration": "1h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KGLCRJ8K4RL8SU77YCDJ/Mole_and_Redox_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KGLCRJ8K4RL8SU77YCDJ/Mole_and_Redox_02_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Periodic table and Chemical Bonding-01",
+                "uid": "GFITVYIIL8NXPAZVSRNT",
+                "date": "26-11-2025",
+                "duration": "2h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GFITVYIIL8NXPAZVSRNT/Periodic_table_and_Chemical_Bonding01_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Periodic table and Chemical Bonding-02",
+                "uid": "828YU5SO45JFP0J2SWKI",
+                "date": "27-11-2025",
+                "duration": "2h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/828YU5SO45JFP0J2SWKI/Periodic_table_and_Chemical_Bonding02_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Periodic table and Chemical Bonding-03",
+                "uid": "UVVTWAYODAEHLBB57FAH",
+                "date": "28-11-2025",
+                "duration": "1h 40m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Thermodynamics -01",
+                "uid": "R7BALQVYA6M5KA26E2WQ",
+                "date": "29-11-2025",
+                "duration": "2h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/R7BALQVYA6M5KA26E2WQ/Thermodynamics_01_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Thermodynamics -02",
+                "uid": "HF2WC4KEYRWIGZ5FQQVE",
+                "date": "30-11-2025",
+                "duration": "2h 07m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HF2WC4KEYRWIGZ5FQQVE/Thermodynamics_02_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Equilibrium -01",
+                "uid": "U5OXZY23XSOHERDHLYLA",
+                "date": "04-12-2025",
+                "duration": "2h 31m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/U5OXZY23XSOHERDHLYLA/Equilibrium_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/U5OXZY23XSOHERDHLYLA/Equilibrium_01_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Equilibrium -02",
+                "uid": "70R1YD2ECSVKBX23F3HP",
+                "date": "05-12-2025",
+                "duration": "2h 02m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/70R1YD2ECSVKBX23F3HP/Equilibrium_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/70R1YD2ECSVKBX23F3HP/Equilibrium_02_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Equilibrium -03",
+                "uid": "VJPH9JXFNA12V71DIQXO",
+                "date": "06-12-2025",
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VJPH9JXFNA12V71DIQXO/Equilibrium_03_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VJPH9JXFNA12V71DIQXO/Equilibrium_03_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Equilibrium Main PYQs",
+                "uid": "QJMCS1WL4258UXJ20KOS",
+                "date": "08-12-2025",
+                "duration": "2h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/QJMCS1WL4258UXJ20KOS/Equilibrium_Main_PYQs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QJMCS1WL4258UXJ20KOS/Equilibrium_Main_PYQs_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "IUPAC + GOC -01",
+                "uid": "D5OYGIFSIHMQB5ZYKY71",
+                "date": "09-12-2025",
+                "duration": "2h 27m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/D5OYGIFSIHMQB5ZYKY71/IUPAC__GOC_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/D5OYGIFSIHMQB5ZYKY71/IUPAC__GOC_01_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "IUPAC + GOC -02",
+                "uid": "1GGISZWB011IPPYZNELS",
+                "date": "10-12-2025",
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/1GGISZWB011IPPYZNELS/IUPAC__GOC_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1GGISZWB011IPPYZNELS/IUPAC__GOC_02_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Hydrocarbons-01",
+                "uid": "64NJMS20DD53EB3BSBOQ",
+                "date": "12-12-2025",
+                "duration": "1h 49m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/64NJMS20DD53EB3BSBOQ/Hydrocarbons01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/64NJMS20DD53EB3BSBOQ/Hydrocarbons01_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "Hydrocarbons-02",
+                "uid": "LGBDCMFK7PD46ICUVI28",
+                "date": "14-12-2025",
+                "duration": "2h 30m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "Liquid Solutions-01",
+                "uid": "7QGMUF9VLU5G5VJJZKH8",
+                "date": "15-12-2025",
+                "duration": "2h 51m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7QGMUF9VLU5G5VJJZKH8/Liquid_Solutions01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7QGMUF9VLU5G5VJJZKH8/Liquid_Solutions01_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Electrocheistry-01",
+                "uid": "OI2IAPOQW8PH9548BB7W",
+                "date": "19-12-2025",
+                "duration": "1h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OI2IAPOQW8PH9548BB7W/Electrocheistry01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OI2IAPOQW8PH9548BB7W/Electrocheistry01_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Electrochemistry-02",
+                "uid": "ZOVOQBT74L2GNZGUMEYK",
+                "date": "20-12-2025",
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZOVOQBT74L2GNZGUMEYK/Electrochemistry02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZOVOQBT74L2GNZGUMEYK/Electrochemistry02_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Chemical Kinetics -01",
+                "uid": "8Y8HPUVL000XLED1MXYJ",
+                "date": "21-12-2025",
+                "duration": "1h 54m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8Y8HPUVL000XLED1MXYJ/Chemical_Kinetics_01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8Y8HPUVL000XLED1MXYJ/Chemical_Kinetics_01_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Chemical Kinetics -02",
+                "uid": "VPX7EM4FFY9UGE5YHKCN",
+                "date": "22-12-2025",
+                "duration": "1h 47m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "D & F block-01",
+                "uid": "LBK70UJNCFI81OOS30JJ",
+                "date": "24-12-2025",
+                "duration": "2h 24m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/LBK70UJNCFI81OOS30JJ/D__F_block01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LBK70UJNCFI81OOS30JJ/D__F_block01_no_anno.pdf"
+            },
+            {
+                "rank": 22,
+                "title": "Coordination Chemistry-01",
+                "uid": "FTT11XX2XDGHLX3J6OXP",
+                "date": "26-12-2025",
+                "duration": "2h 18m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FTT11XX2XDGHLX3J6OXP/Coordination_Chemistry01_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FTT11XX2XDGHLX3J6OXP/Coordination_Chemistry01_no_anno.pdf"
+            },
+            {
+                "rank": 23,
+                "title": "Coordination Chemistry-02",
+                "uid": "PDE4T5C8VY5KVAQ7UG8L",
+                "date": "27-12-2025",
+                "duration": "2h 06m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PDE4T5C8VY5KVAQ7UG8L/Coordination_Chemistry02_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PDE4T5C8VY5KVAQ7UG8L/Coordination_Chemistry02_no_anno.pdf"
+            },
+            {
+                "rank": 24,
+                "title": "Salt Analysis Theory Revision",
+                "uid": "7HDG9KBCH29Q75IVCPH8",
+                "date": "28-12-2025",
+                "duration": "3h 25m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_no_anno.pdf"
+            },
+            {
+                "rank": 25,
+                "title": "Organic ncert reading",
+                "uid": "4DK5O8BV4236F2GRTEJB",
+                "date": "02-01-2026",
+                "duration": "2h 46m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4DK5O8BV4236F2GRTEJB/Organic_ncert_reading_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4DK5O8BV4236F2GRTEJB/Organic_ncert_reading_no_anno.pdf"
+            },
+            {
+                "rank": 26,
+                "title": "P.O.C & Biomolecules",
+                "uid": "JRUKOKPL2A6ZKMS9GO8M",
+                "date": "11-01-2026",
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_no_anno.pdf"
+            },
+            {
+                "rank": 27,
+                "title": "Organic Chem. Integer Problems",
+                "uid": "AFFGTHPJ5Z4L6CP1BSF4",
+                "date": "15-01-2026",
+                "duration": "1h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/AFFGTHPJ5Z4L6CP1BSF4/Organic_Chem_Integer_Problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AFFGTHPJ5Z4L6CP1BSF4/Organic_Chem_Integer_Problems_no_anno.pdf"
+            },
+            {
+                "rank": 28,
+                "title": "Physical chemistry integer problems",
+                "uid": "VR8S5YQ5GVR38GJ6K9GC",
+                "date": "16-01-2026",
+                "duration": "1h 53m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_no_anno.pdf"
+            },
+            {
+                "rank": 29,
+                "title": "Inorganic 2025 all pyqs",
+                "uid": "HT80U03HNIU95MWPDRKI",
+                "date": "20-01-2026",
+                "duration": "2h 34m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_no_anno.pdf"
+            }
+        ]
     }
 ];
 
