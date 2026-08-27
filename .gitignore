@@ -54,6 +54,7 @@ nexus_*.html
 *.db
 *.md
 !README.md
+!FUTURE.md
 
 # ─── 5. Offline Scripts & Local Cache Files ───
 scripts/
