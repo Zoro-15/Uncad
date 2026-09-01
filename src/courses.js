@@ -9302,6 +9302,466 @@ const COURSES = [
             }
         ]
     }
+,
+    {
+        "id": "crash-course-in-chemistry-for-jee-main-advanced",
+        "title": "JEE Endgame: Crash Course on Chemistry for JEE Main 2026",
+        "subtitle": "Mohit Saarim Ryan • Complete Crash Course & Problem Solving",
+        "description": "In this course, Mohit Ryan Sir will provide in-depth knowledge of Important Chapters of Chemistry. The course will be helpful for aspirants preparing for IIT JEE. Learners Targeting JEE Main & Advanced 2026 will be Highly benefited from the course. The course will be covered in Hinglish and the notes will be provided in English.",
+        "badge": "26 Lessons • Phy OS",
+        "educator": "Mohit Saarim Ryan",
+        "educatorRole": "JEE Specialist",
+        "rating": "4.95",
+        "reviewsCount": "1.2k",
+        "lessonsCount": 26,
+        "totalDuration": "49h 03m",
+        "subject": "Phy OS",
+        "subjectIcon": "fa-microchip",
+        "subjectColor": "#06b6d4",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Orientation + Periodic Properties",
+                "uid": "ZBOZ1FQRI01VWXVVSES9",
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZBOZ1FQRI01VWXVVSES9/Orientation__Periodic_Properties_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZBOZ1FQRI01VWXVVSES9/Orientation__Periodic_Properties_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Chemical Bonding -1",
+                "uid": "0K229RHL0UYLO9TYX9FS",
+                "duration": "1h 32m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/0K229RHL0UYLO9TYX9FS/Chemical_Bonding_1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/0K229RHL0UYLO9TYX9FS/Chemical_Bonding_1_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Chemical Bonding -2",
+                "uid": "OP6VQZDBZ9UXF0AX15RQ",
+                "duration": "2h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OP6VQZDBZ9UXF0AX15RQ/Chemical_Bonding_2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OP6VQZDBZ9UXF0AX15RQ/Chemical_Bonding_2_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "General Organic Chemistry-GOC",
+                "uid": "J0CW61FUX8LBTD72179I",
+                "duration": "1h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/J0CW61FUX8LBTD72179I/General_Organic_ChemistryGOC_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/J0CW61FUX8LBTD72179I/General_Organic_ChemistryGOC_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "General Organic Chemistry-GOC",
+                "uid": "TGQLDHXF46HGVR5JZF0Y",
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TGQLDHXF46HGVR5JZF0Y/General_Organic_ChemistryGOC_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TGQLDHXF46HGVR5JZF0Y/General_Organic_ChemistryGOC_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Chemical Bonding -3",
+                "uid": "YZSL3ZUHFS99FTMWD0Z8",
+                "duration": "2h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YZSL3ZUHFS99FTMWD0Z8/Chemical_Bonding_3_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YZSL3ZUHFS99FTMWD0Z8/Chemical_Bonding_3_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "General Organic Chemistry-GOC",
+                "uid": "TFWTL04UATONELX8JJJL",
+                "duration": "1h 38m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TFWTL04UATONELX8JJJL/General_Organic_ChemistryGOC_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TFWTL04UATONELX8JJJL/General_Organic_ChemistryGOC_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Chemical Kinetics",
+                "uid": "KKSJ844OWRZKNN4TVUCG",
+                "duration": "2h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/KKSJ844OWRZKNN4TVUCG/Chemical_Kinetics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KKSJ844OWRZKNN4TVUCG/Chemical_Kinetics_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Liquid Solution",
+                "uid": "ZMWBOSBD91464728K5VW",
+                "duration": "1h 41m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZMWBOSBD91464728K5VW/Liquid_Solution_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZMWBOSBD91464728K5VW/Liquid_Solution_no_anno.pdf"
+            },
+            {
+                "rank": 10,
+                "title": "Isomerism",
+                "uid": "7QAMQRKQB1CN9LYZVKLG",
+                "duration": "1h 45m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7QAMQRKQB1CN9LYZVKLG/Isomerism_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7QAMQRKQB1CN9LYZVKLG/Isomerism_no_anno.pdf"
+            },
+            {
+                "rank": 11,
+                "title": "Reaction Mechanism",
+                "uid": "EMH8F6WIW3XOWQH5QHDY",
+                "duration": "1h 51m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EMH8F6WIW3XOWQH5QHDY/Reaction_Mechanism_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EMH8F6WIW3XOWQH5QHDY/Reaction_Mechanism_no_anno.pdf"
+            },
+            {
+                "rank": 12,
+                "title": "Alkyl Halide",
+                "uid": "TT5VNE0HOXMRTD5VIXDJ",
+                "duration": "2h 04m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/TT5VNE0HOXMRTD5VIXDJ/Alkyl_Halide_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/TT5VNE0HOXMRTD5VIXDJ/Alkyl_Halide_no_anno.pdf"
+            },
+            {
+                "rank": 13,
+                "title": "Alcohols and Ethers",
+                "uid": "T9VETUOYSULC0KL3REK9",
+                "duration": "1h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/T9VETUOYSULC0KL3REK9/Alcohols_and_Ethers_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/T9VETUOYSULC0KL3REK9/Alcohols_and_Ethers_no_anno.pdf"
+            },
+            {
+                "rank": 14,
+                "title": "Coordination Compound",
+                "uid": "M8TDS0KT3M3PQB49CXRY",
+                "duration": "2h 22m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M8TDS0KT3M3PQB49CXRY/Coordination_Compound_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M8TDS0KT3M3PQB49CXRY/Coordination_Compound_no_anno.pdf"
+            },
+            {
+                "rank": 15,
+                "title": "D and F block",
+                "uid": "PJHLZZSPIU1TC1S0H7UP",
+                "duration": "2h 44m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PJHLZZSPIU1TC1S0H7UP/D_and_F_block_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PJHLZZSPIU1TC1S0H7UP/D_and_F_block_no_anno.pdf"
+            },
+            {
+                "rank": 16,
+                "title": "P block",
+                "uid": "64KMU2C3OZIM75KILUAZ",
+                "duration": "2h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/64KMU2C3OZIM75KILUAZ/P_block_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/64KMU2C3OZIM75KILUAZ/P_block_no_anno.pdf"
+            },
+            {
+                "rank": 17,
+                "title": "Aldehydes & Ketones",
+                "uid": "FDHJF4OM2ZI3MO0Z8321",
+                "duration": "1h 37m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FDHJF4OM2ZI3MO0Z8321/Aldehydes__Ketones_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FDHJF4OM2ZI3MO0Z8321/Aldehydes__Ketones_no_anno.pdf"
+            },
+            {
+                "rank": 18,
+                "title": "Carboxylic Acid",
+                "uid": "3OX3I0QFJLTNHWO78ODX",
+                "duration": "1h 11m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/3OX3I0QFJLTNHWO78ODX/Carboxylic_Acid_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3OX3I0QFJLTNHWO78ODX/Carboxylic_Acid_no_anno.pdf"
+            },
+            {
+                "rank": 19,
+                "title": "Thermodyanmics",
+                "uid": "Y2PVOJUG73FJHWHHDZED",
+                "duration": "1h 43m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Y2PVOJUG73FJHWHHDZED/Thermodyanmics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Y2PVOJUG73FJHWHHDZED/Thermodyanmics_no_anno.pdf"
+            },
+            {
+                "rank": 20,
+                "title": "Electrochemistry",
+                "uid": "Z8IFCR363SLKW6A3K5IT",
+                "duration": "2h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/Z8IFCR363SLKW6A3K5IT/Electrochemistry_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z8IFCR363SLKW6A3K5IT/Electrochemistry_no_anno.pdf"
+            },
+            {
+                "rank": 21,
+                "title": "Amines",
+                "uid": "BGGTQ33X",
+                "duration": "1h 30m",
+                "pdfUrl": "",
+                "pdfCleanUrl": ""
+            },
+            {
+                "rank": 22,
+                "title": "Biomolecules & POC",
+                "uid": "ZV4FKB72SPHWV7220VM0",
+                "duration": "1h 35m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZV4FKB72SPHWV7220VM0/Biomolecules__POC_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZV4FKB72SPHWV7220VM0/Biomolecules__POC_no_anno.pdf"
+            },
+            {
+                "rank": 23,
+                "title": "Mole and Redox",
+                "uid": "CKKIY061UH786XEAT8KU",
+                "duration": "1h 42m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/CKKIY061UH786XEAT8KU/Mole_and_Redox_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CKKIY061UH786XEAT8KU/Mole_and_Redox_no_anno.pdf"
+            },
+            {
+                "rank": 24,
+                "title": "Salt Analysis",
+                "uid": "UGLSJFTLZZX632IS6WPW",
+                "duration": "1h 43m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/UGLSJFTLZZX632IS6WPW/Salt_Analysis_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UGLSJFTLZZX632IS6WPW/Salt_Analysis_no_anno.pdf"
+            },
+            {
+                "rank": 25,
+                "title": "Chemical Equilibrium",
+                "uid": "XQJODE0KN0V7IR25Y96Q",
+                "duration": "1h 56m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/XQJODE0KN0V7IR25Y96Q/Chemical_Equilibrium_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/XQJODE0KN0V7IR25Y96Q/Chemical_Equilibrium_no_anno.pdf"
+            },
+            {
+                "rank": 26,
+                "title": "Ionic Equilibrium",
+                "uid": "GY5JPTYPDB7H1KHEXQ9J",
+                "duration": "1h 48m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GY5JPTYPDB7H1KHEXQ9J/Ionic_Equilibrium_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GY5JPTYPDB7H1KHEXQ9J/Ionic_Equilibrium_no_anno.pdf"
+            }
+        ]
+    }
+,
+    {
+        "id": "nexus-reloaded-course-on-high-weightage-physics-chapters",
+        "title": "Crash Course on Physics for JEE Main 2025",
+        "subtitle": "Aditya Kumar Jha • Complete Crash Course & Problem Solving",
+        "description": "In this course Aditya Kumar Jha will be teaching the high weightage topics of physics for JEE Mains 2025. The course will be helpful for aspirants preparing for IIT JEE. Learners at any stage of their preparation will be benefited from the course. The course will be covered in Hinglish and the notes will be provided in English.",
+        "badge": "7 Lessons • Phy OS",
+        "educator": "Aditya Kumar Jha",
+        "educatorRole": "JEE Specialist",
+        "rating": "4.95",
+        "reviewsCount": "1.2k",
+        "lessonsCount": 7,
+        "totalDuration": "10h 24m",
+        "subject": "Phy OS",
+        "subjectIcon": "fa-microchip",
+        "subjectColor": "#06b6d4",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Modern Physics",
+                "uid": "DPNIPRIL5EI4VQSKQHY7",
+                "duration": "1h 57m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DPNIPRIL5EI4VQSKQHY7/Modern_Physics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DPNIPRIL5EI4VQSKQHY7/Modern_Physics_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Ray Optics",
+                "uid": "MTBPFG3ZPS0KN1N0ZWRA",
+                "duration": "2h 28m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/MTBPFG3ZPS0KN1N0ZWRA/Ray_Optics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/MTBPFG3ZPS0KN1N0ZWRA/Ray_Optics_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Lenses, Surface Tension, Basic Magnetism",
+                "uid": "SHAI8JFCEB3C36YHFLQU",
+                "duration": "1h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SHAI8JFCEB3C36YHFLQU/Lenses_Surface_Tension_Basic_Magnetism_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SHAI8JFCEB3C36YHFLQU/Lenses_Surface_Tension_Basic_Magnetism_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Alternating Current",
+                "uid": "TTKJWSIL",
+                "duration": "1m",
+                "pdfUrl": "",
+                "pdfCleanUrl": ""
+            },
+            {
+                "rank": 5,
+                "title": "Electromagnetic Induction",
+                "uid": "HPJL2X01NF92YZQ2JWWO",
+                "duration": "1h 39m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/HPJL2X01NF92YZQ2JWWO/Electromagnetic_Induction_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HPJL2X01NF92YZQ2JWWO/Electromagnetic_Induction_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Simple Harmonic Motion",
+                "uid": "EWERG96DMGUAQVJ3E761",
+                "duration": "1h 17m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/EWERG96DMGUAQVJ3E761/Simple_Harmonic_Motion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/EWERG96DMGUAQVJ3E761/Simple_Harmonic_Motion_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Thermodynamics",
+                "uid": "JUHCQXWGWOQO6S2TZUZU",
+                "duration": "1h 29m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/JUHCQXWGWOQO6S2TZUZU/Thermodynamics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JUHCQXWGWOQO6S2TZUZU/Thermodynamics_no_anno.pdf"
+            }
+        ]
+    }
+,
+    {
+        "id": "nexus-crash-course-for-jee-main-physics-2026-part-1",
+        "title": "Nexus Crash Course for JEE Main Physics 2026",
+        "subtitle": "Janardanudu Thallaparthi • Complete Crash Course & Problem Solving",
+        "description": "In this course educator Janardhan Sir will teach Physics Topics to aspirants who wish to secure top ranks in IIT JEE 2026. The course will start from basic and will stretch to JEE. All doubts related to the topic will be clarified during the doubt clearing sessions in the course. The course will be covered in Hinglish and the notes will be provided in English.",
+        "badge": "9 Lessons • Phy OS",
+        "educator": "Janardanudu Thallaparthi",
+        "educatorRole": "JEE Specialist",
+        "rating": "4.95",
+        "reviewsCount": "1.2k",
+        "lessonsCount": 9,
+        "totalDuration": "27h 27m",
+        "subject": "Phy OS",
+        "subjectIcon": "fa-microchip",
+        "subjectColor": "#06b6d4",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "NLM & Constraint relations",
+                "uid": "FMOWXIAE5HTTSIEQ416H",
+                "duration": "3h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/FMOWXIAE5HTTSIEQ416H/NLM__Constraint_relations_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/FMOWXIAE5HTTSIEQ416H/NLM__Constraint_relations_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Friction & Circular Motion",
+                "uid": "SQ65D9L6HBKZE6H7GA6N",
+                "duration": "3h 02m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/SQ65D9L6HBKZE6H7GA6N/Friction__Circular_Motion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/SQ65D9L6HBKZE6H7GA6N/Friction__Circular_Motion_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "Rotational Motion - 1",
+                "uid": "8M7Y9UZOTN0DMJZBVVTK",
+                "duration": "3h 08m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/8M7Y9UZOTN0DMJZBVVTK/Rotational_Motion__1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8M7Y9UZOTN0DMJZBVVTK/Rotational_Motion__1_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Rotational Motion - 2",
+                "uid": "ABXGOCCTAUA3GPYW7C5X",
+                "duration": "2h 59m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ABXGOCCTAUA3GPYW7C5X/Rotational_Motion__2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ABXGOCCTAUA3GPYW7C5X/Rotational_Motion__2_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Complete Fluids",
+                "uid": "4BWZL2CNG1KKLIO2Y6UB",
+                "duration": "3h 05m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4BWZL2CNG1KKLIO2Y6UB/Complete_Fluids_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4BWZL2CNG1KKLIO2Y6UB/Complete_Fluids_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Electrostatics - 1",
+                "uid": "YTOXXRU1MEA4MZHKPEFT",
+                "duration": "3h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/YTOXXRU1MEA4MZHKPEFT/Electrostatics__1_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YTOXXRU1MEA4MZHKPEFT/Electrostatics__1_no_anno.pdf"
+            },
+            {
+                "rank": 7,
+                "title": "Electrostatics - 2",
+                "uid": "M7P8Z90JKOMXJYET7WX8",
+                "duration": "3h 05m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/M7P8Z90JKOMXJYET7WX8/Electrostatics__2_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/M7P8Z90JKOMXJYET7WX8/Electrostatics__2_no_anno.pdf"
+            },
+            {
+                "rank": 8,
+                "title": "Capacitors & Dielectrics",
+                "uid": "GSUQI6N0KF8AYXPF5MI6",
+                "duration": "3h 04m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/GSUQI6N0KF8AYXPF5MI6/Capacitors__Dielectrics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GSUQI6N0KF8AYXPF5MI6/Capacitors__Dielectrics_no_anno.pdf"
+            },
+            {
+                "rank": 9,
+                "title": "Current Electricity & RC Circuits",
+                "uid": "NIUG1U0BZLT9CRL6UDUM",
+                "duration": "3h 02m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/NIUG1U0BZLT9CRL6UDUM/Current_Electricity__RC_Circuits_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NIUG1U0BZLT9CRL6UDUM/Current_Electricity__RC_Circuits_no_anno.pdf"
+            }
+        ]
+    }
+,
+    {
+        "id": "mechanics-crash-course-2026-jee-main-endgame",
+        "title": "JEE Endgame: Crash Course on Physics for JEE Main 2026",
+        "subtitle": "Janardanudu Thallaparthi • Complete Crash Course & Problem Solving",
+        "description": "In this course, Janardhan Sir will discuss important Concepts & Problem Solving of Mechanics for JEE Main Physics. The course will be helpful for aspirants preparing for IIT JEE. Learners at any stage of their preparation will be benefited from the course. The course will be covered in Hinglish and the notes will be provided in English.",
+        "badge": "6 Lessons • Phy OS",
+        "educator": "Janardanudu Thallaparthi",
+        "educatorRole": "JEE Specialist",
+        "rating": "4.95",
+        "reviewsCount": "1.2k",
+        "lessonsCount": 6,
+        "totalDuration": "16h 50m",
+        "subject": "Phy OS",
+        "subjectIcon": "fa-microchip",
+        "subjectColor": "#06b6d4",
+        "lectures": [
+            {
+                "rank": 1,
+                "title": "Orientation + (Vectors & 1D Kinematics)",
+                "uid": "ZCH2GTLB16CKPHI2OSXZ",
+                "duration": "2h 33m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/ZCH2GTLB16CKPHI2OSXZ/Orientation__Vectors__1D_Kinematics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ZCH2GTLB16CKPHI2OSXZ/Orientation__Vectors__1D_Kinematics_no_anno.pdf"
+            },
+            {
+                "rank": 2,
+                "title": "Kinematics, Error Analysis & Measurements",
+                "uid": "7VJIUPW0HQDZ9RTAR8Q5",
+                "duration": "2h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/7VJIUPW0HQDZ9RTAR8Q5/Kinematics_Error_Analysis__Measurements_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7VJIUPW0HQDZ9RTAR8Q5/Kinematics_Error_Analysis__Measurements_no_anno.pdf"
+            },
+            {
+                "rank": 3,
+                "title": "NLM, Friction & Circular Motion",
+                "uid": "OPC4DQB798ZKF1F1KOO8",
+                "duration": "3h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/OPC4DQB798ZKF1F1KOO8/NLM_Friction__Circular_Motion_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/OPC4DQB798ZKF1F1KOO8/NLM_Friction__Circular_Motion_no_anno.pdf"
+            },
+            {
+                "rank": 4,
+                "title": "Work, Energy, Power",
+                "uid": "DN74FJLQ1SSY728NTQRG",
+                "duration": "3h 06m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/DN74FJLQ1SSY728NTQRG/Work_Energy_Power_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DN74FJLQ1SSY728NTQRG/Work_Energy_Power_no_anno.pdf"
+            },
+            {
+                "rank": 5,
+                "title": "Center of Mass, COLM & Collisions",
+                "uid": "PDKPLKE0C88YCGTSXAEM",
+                "duration": "3h 08m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/PDKPLKE0C88YCGTSXAEM/Center_of_Mass_COLM__Collisions_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PDKPLKE0C88YCGTSXAEM/Center_of_Mass_COLM__Collisions_no_anno.pdf"
+            },
+            {
+                "rank": 6,
+                "title": "Rotational Dynamics",
+                "uid": "4Y45EOWV189Z8VZFU2UN",
+                "duration": "3h 01m",
+                "pdfUrl": "https://player.uacdn.net/slides_pdf/4Y45EOWV189Z8VZFU2UN/Rotational_Dynamics_with_anno.pdf",
+                "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/4Y45EOWV189Z8VZFU2UN/Rotational_Dynamics_no_anno.pdf"
+            }
+        ]
+    }
 ];
 
 function findCourseByLectureUid(uid) {
