@@ -16,6 +16,9 @@ function renderChapterMarks(slideList, totalDurationSec, onSeekToSec) {
         const timeSec = (slide.timestampUs || 0) / 1e6;
         const pct = Math.min(100, Math.max(0, (timeSec / totalDurationSec) * 100));
         
+        // Skip tick marks at the very start or end to prevent visual clipping
+        if (pct < 1 || pct > 99) return;
+        
         const tick = document.createElement("div");
         tick.className = "chapter-tick-mark";
         tick.style.left = `${pct}%`;

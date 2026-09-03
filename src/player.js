@@ -1213,22 +1213,33 @@ window.updateSplash = (txt, pct) => {
             video.src = videoUrl;
             video.load();
 
-            if (startSec > 0) {
-                const applyResumePosition = () => {
-                    try {
-                        video.currentTime = startSec;
-                        doSeek(startSec * 1e6);
-                    } catch (e) {
-                        console.warn("[Player] Seek on load error:", e);
-                    }
-                };
+            const applyResumePosition = () => {
+                try {
+                    video.currentTime = startSec;
+                    doSeek(startSec * 1e6);
+                } catch (e) {
+                    console.warn("[Player] Seek on load error:", e);
+                }
+            };
 
+            if (startSec > 0) {
                 if (video.readyState >= 1) {
                     applyResumePosition();
                 } else {
                     video.addEventListener("loadedmetadata", applyResumePosition, { once: true });
                 }
+            } else {
+                try { video.currentTime = 0; } catch (_) {}
+                const resetToZero = () => {
+                    try {
+                        video.currentTime = 0;
+                        doSeek(0);
+                    } catch (_) {}
+                };
+                if (video.readyState >= 1) resetToZero();
+                else video.addEventListener("loadedmetadata", resetToZero, { once: true });
             }
+            ensureSyncLoop();
 
             // 0. MEMORY LRU CACHE (0ms instant session resume)
             if (TELEMETRY_SESSION_CACHE.has(uid)) {
@@ -1853,6 +1864,7 @@ window.updateSplash = (txt, pct) => {
             } else {
                 doSeek(0);
             }
+            ensureSyncLoop();
         }
 
         function getInterpolatedPointer(targetUs) {
@@ -2211,7 +2223,7 @@ window.updateSplash = (txt, pct) => {
         function ensureSyncLoop() {
             if (!syncLoopRunning) {
                 const appEl = $("app");
-                if (engineLoaded && appEl && appEl.style.display !== "none") {
+                if (appEl && appEl.style.display !== "none") {
                     syncLoopRunning = true;
                     requestAnimationFrame(syncLoop);
                 }
@@ -2221,7 +2233,7 @@ window.updateSplash = (txt, pct) => {
 
         function syncLoop(ts) {
             const appEl = $("app");
-            if (!engineLoaded || (appEl && appEl.style.display === "none")) {
+            if (appEl && appEl.style.display === "none") {
                 syncLoopRunning = false;
                 return;
             }
@@ -2267,7 +2279,7 @@ window.updateSplash = (txt, pct) => {
                 updateTimeDisplaysFast(dUs, videoCurTime, videoDuration);
             }
 
-            if (!video.paused && !isSeeking && !isDraggingSeek) {
+            if (engineLoaded && !video.paused && !isSeeking && !isDraggingSeek) {
                 tickDraw(vUs);
             }
 
@@ -2291,6 +2303,7 @@ window.updateSplash = (txt, pct) => {
                 if (ot) ot.textContent = fmt(maxDuration / 1e6);
             }
             if (engineLoaded) buildChapterMarks();
+            ensureSyncLoop();
         });
         video.addEventListener("play", () => {
             isSeeking = false;
@@ -2300,6 +2313,7 @@ window.updateSplash = (txt, pct) => {
             requestWakeLock();
             showControls(true);
             updateYtCenterIcon();
+            ensureSyncLoop();
             if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
         video.addEventListener("pause", () => {
@@ -2315,6 +2329,7 @@ window.updateSplash = (txt, pct) => {
         });
         video.addEventListener("seeked", () => {
             if (engineLoaded) doSeek(curVideoUs());
+            ensureSyncLoop();
             if (autoResumeAfterSeek) {
                 autoResumeAfterSeek = false;
                 video.play().catch(() => { });
@@ -2331,6 +2346,7 @@ window.updateSplash = (txt, pct) => {
             isBuffering = false; 
             isSeeking = false; 
             if (bufferingOverlay) bufferingOverlay.classList.remove("show"); 
+            ensureSyncLoop();
         });
         video.addEventListener("canplay", () => {
             isBuffering = false;
@@ -3261,8 +3277,25 @@ window.updateSplash = (txt, pct) => {
             engineLoaded = false;
             releaseWakeLock();
             if (video) {
-                try { video.pause(); } catch (e) {}
+                try { 
+                    video.pause(); 
+                    video.currentTime = 0;
+                } catch (e) {}
             }
+            if (seekBar) {
+                seekBar.value = 0;
+                seekBar.style.setProperty("--pct", "0%");
+            }
+            lastRenderedPct = 0;
+            if (tCurr) tCurr.textContent = "0:00";
+            if (tTotal) tTotal.textContent = "0:00";
+            const otCurr = $("t-curr-overlay");
+            if (otCurr) otCurr.textContent = "0:00";
+            const otTotal = $("t-total-overlay");
+            if (otTotal) otTotal.textContent = "0:00";
+            if (chapterMarks) chapterMarks.innerHTML = "";
+            finalSlideList = [];
+            maxDuration = 0;
             activeBlobUrls.forEach(u => {
                 try { URL.revokeObjectURL(u); } catch (_) {}
             });
@@ -3363,7 +3396,18 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
         } else {
             video.addEventListener("loadedmetadata", applyResume, { once: true });
         }
+    } else {
+        try { video.currentTime = 0; } catch (_) {}
+        const resetToZero = () => {
+            try {
+                video.currentTime = 0;
+                doSeek(0);
+            } catch (_) {}
+        };
+        if (video.readyState >= 1) resetToZero();
+        else video.addEventListener("loadedmetadata", resetToZero, { once: true });
     }
+    ensureSyncLoop();
 
     try {
         let rawData;
