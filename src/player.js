@@ -167,6 +167,7 @@ window.updateSplash = (txt, pct) => {
         let activeUid = "";
         let engineLoaded = false;
         let drawOffset = 0;
+        let maxDuration = 0;
         let CW = 1, CH = 1;
         let recordStartMs = -1;
         let lastPaintedPanX = 0, lastPaintedPanY = 0, lastPaintedZoom = 1;
@@ -1831,7 +1832,7 @@ window.updateSplash = (txt, pct) => {
             let curSnapshotState = { sid: "init", slideUrl: '', bgColor: "#111118", bgImageUrl: '', color: "#ffff00", mode: "marker", penSize: 2, eraserSize: 10, panX: 0, panY: 0, zoom: 1, rotation: 0, gifUrl: '', screenShare: false };
             let nextSnap = 0;
             const SNAP_INTERVAL = 2500000; // 2.5 seconds keyframe density for instant seek response
-            const maxDuration = allEvents.length ? allEvents[allEvents.length - 1].t : 0;
+            maxDuration = allEvents.length ? allEvents[allEvents.length - 1].t : 0;
             for (let i = 0; i < allEvents.length; i++) {
                 const e = allEvents[i];
                 while (e.t >= nextSnap && nextSnap <= maxDuration + SNAP_INTERVAL) {
