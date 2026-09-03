@@ -9,7 +9,7 @@
     "dev:sub": "vite --port 3000 --open /ramanujan-20-ioqm-2026/",
     "build": "vite build",
     "preview": "vite preview",
-    "archive": "node scripts/download_course.js"
+    "audit": "node scripts/audit_project.cjs"
   },
   "devDependencies": {
     "vite": "^4.5.2"

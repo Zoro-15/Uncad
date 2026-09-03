@@ -1,12 +1,8 @@
 import { findCourseByLectureUid, COURSES } from './courses.js';
 import { switchView, saveLastWatched, getLectureProgress, getLastWatched } from './dashboard.js';
-import { SECRET_KEY, decryptBytes, tryDecryptAndParse } from './engine/crypto.js';
-import { maths, bezier } from './engine/bezier.js';
-import { fetchWithFallback, loadCachedImage, clearImageCache } from './engine/networkLoader.js';
+import { tryDecryptAndParse } from './engine/crypto.js';
 import { getOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
-import { initCanvasContexts, renderSlideBackground } from './engine/canvasRenderer.js';
-import { parseTelemetryData } from './engine/telemetryParser.js';
-import { requestWakeLock, releaseWakeLock, createSyncLoop } from './engine/mediaSync.js';
+import { requestWakeLock, releaseWakeLock } from './engine/mediaSync.js';
 import { renderChapterMarks } from './ui/seekChapterBar.js';
 import { initLocalFileLoader } from './ui/localFileLoader.js';
 
@@ -2016,6 +2012,7 @@ window.updateSplash = (txt, pct) => {
                             const fItem = finalSlideList.find(s => s._sid === curSid);
                             if (fItem) curSlideIdx = finalSlideList.indexOf(fItem);
                             if (pageIndicator) { const pg = getPdfPage(curSlideUrl); pageIndicator.textContent = pg ? `Slide ${curSlideIdx + 1} (Page ${pg})` : `Slide ${curSlideIdx + 1}`; }
+                            updateSlideNavUI();
                         }
                         break;
                     case "bg": if (curBgColor !== ev.color || curBgImageUrl !== (ev.bg || '')) { curBgColor = ev.color; curBgImageUrl = ev.bg || ''; bgChanged = true; } break;
@@ -2210,8 +2207,27 @@ window.updateSplash = (txt, pct) => {
         }
 
         // 60FPS High-Precision Sync & Render Loop
+        let syncLoopRunning = false;
+        function ensureSyncLoop() {
+            if (!syncLoopRunning) {
+                const appEl = $("app");
+                if (engineLoaded && appEl && appEl.style.display !== "none") {
+                    syncLoopRunning = true;
+                    requestAnimationFrame(syncLoop);
+                }
+            }
+        }
+        window.startSyncLoop = ensureSyncLoop;
+
         function syncLoop(ts) {
+            const appEl = $("app");
+            if (!engineLoaded || (appEl && appEl.style.display === "none")) {
+                syncLoopRunning = false;
+                return;
+            }
+            syncLoopRunning = true;
             requestAnimationFrame(syncLoop);
+
             if (prevRafTs > 0) {
                 fpsSamples.push(ts - prevRafTs);
                 if (fpsSamples.length > 30) fpsSamples.shift();
@@ -2221,8 +2237,6 @@ window.updateSplash = (txt, pct) => {
                 }
             }
             prevRafTs = ts;
-            const appEl = $("app");
-            if (!engineLoaded || (appEl && appEl.style.display === "none")) return;
 
             const vUs = curVideoUs();
             const dUs = drawingUs(vUs);
@@ -2262,7 +2276,7 @@ window.updateSplash = (txt, pct) => {
                 updateIstClockFast(wallMs);
             }
         }
-        requestAnimationFrame(syncLoop);
+        ensureSyncLoop();
 
         video.addEventListener("loadedmetadata", () => {
             if (Number.isFinite(video.duration) && video.duration > 0) {
@@ -2284,10 +2298,16 @@ window.updateSplash = (txt, pct) => {
             if (bufferingOverlay) bufferingOverlay.classList.remove("show");
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
             requestWakeLock();
+            showControls(true);
+            updateYtCenterIcon();
+            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
         video.addEventListener("pause", () => {
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`;
             releaseWakeLock();
+            showControls(true);
+            updateYtCenterIcon();
+            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
         });
         video.addEventListener("seeking", () => {
             isSeeking = true;
@@ -2632,20 +2652,6 @@ window.updateSplash = (txt, pct) => {
         });
         }
 
-        video.addEventListener("pause", () => {
-            releaseWakeLock();
-            showControls(true);
-            updateYtCenterIcon();
-            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
-        });
-
-        video.addEventListener("play", () => {
-            requestWakeLock();
-            showControls(true);
-            updateYtCenterIcon();
-            if (activeUid) saveLastWatched(activeUid, activeCourseId, video.currentTime);
-        });
-
         let lastProgressSaveSec = 0;
         video.addEventListener("timeupdate", () => {
             const curSec = Math.floor(video.currentTime);
@@ -2717,14 +2723,15 @@ window.updateSplash = (txt, pct) => {
 
         let mouseTimer;
         function handleActivity() {
-            if (!document.fullscreenElement) {
+            const appEl = $("app");
+            if (!document.fullscreenElement || !appEl || appEl.style.display === "none") {
                 document.body.style.cursor = "default";
                 return;
             }
             document.body.style.cursor = "default";
             clearTimeout(mouseTimer);
             mouseTimer = setTimeout(() => {
-                if (document.fullscreenElement) {
+                if (document.fullscreenElement && appEl && appEl.style.display !== "none") {
                     document.body.style.cursor = "none";
                 }
             }, 1200);
@@ -2737,6 +2744,8 @@ window.updateSplash = (txt, pct) => {
         const speeds = [1, 1.25, 1.5, 1.75, 2];
         document.addEventListener("keydown", e => {
             if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
+            const appEl = $("app");
+            if (!appEl || appEl.style.display === "none") return;
             
             if (e.code === "Space" || e.code === "KeyK") {
                 e.preventDefault();
@@ -3193,6 +3202,9 @@ window.updateSplash = (txt, pct) => {
                     activeTouchId = null;
                     vc.style.cursor = 'grab';
                     vc.style.userSelect = '';
+                    window.removeEventListener('touchmove', onTouchMoveHandler);
+                    window.removeEventListener('touchend', stopDrag);
+                    window.removeEventListener('touchcancel', stopDrag);
                 }
 
                 function onTouchMoveHandler(e) {
@@ -3213,22 +3225,13 @@ window.updateSplash = (txt, pct) => {
                         const t = e.touches[0];
                         activeTouchId = t.identifier;
                         initDrag(t.clientX, t.clientY);
+                        window.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
+                        window.addEventListener('touchend', stopDrag, { passive: false });
+                        window.addEventListener('touchcancel', stopDrag, { passive: false });
                         if (e.cancelable) e.preventDefault();
                         e.stopPropagation();
                     }
                 }, { passive: false });
-
-                vc.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
-                document.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
-                window.addEventListener('touchmove', onTouchMoveHandler, { passive: false });
-
-                vc.addEventListener('touchend', stopDrag, { passive: false });
-                document.addEventListener('touchend', stopDrag, { passive: false });
-                window.addEventListener('touchend', stopDrag, { passive: false });
-
-                vc.addEventListener('touchcancel', stopDrag, { passive: false });
-                document.addEventListener('touchcancel', stopDrag, { passive: false });
-                window.addEventListener('touchcancel', stopDrag, { passive: false });
 
                 // MOUSE EVENTS (Desktop fallback)
                 vc.addEventListener('mousedown', function (e) {

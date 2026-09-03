@@ -92,7 +92,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 10,
+        "totalDuration": "26h 15m"
     },
     {
         "id": "algebra-1",
@@ -266,7 +269,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Part I - Sandal Agarwal",
+        "lessonsCount": 20,
+        "totalDuration": "48h 13m"
     },
     {
         "id": "algebra-2",
@@ -352,7 +358,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Part II - Sandal Agarwal",
+        "lessonsCount": 9,
+        "totalDuration": "21h 30m"
     },
     {
         "id": "trigonometry",
@@ -462,7 +471,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 12,
+        "totalDuration": "26h 35m"
     },
     {
         "id": "sequence-series",
@@ -564,7 +576,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 11,
+        "totalDuration": "28h 16m"
     },
     {
         "id": "geometry",
@@ -658,7 +673,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 10,
+        "totalDuration": "21h 59m"
     },
     {
         "id": "coordinate-geometry",
@@ -758,7 +776,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 11,
+        "totalDuration": "26h 33m"
     },
     {
         "id": "vectors-3d",
@@ -922,7 +943,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 19,
+        "totalDuration": "45h 18m"
     },
     {
         "id": "calculus-1",
@@ -1320,7 +1344,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Part I - Sandal Agarwal",
+        "lessonsCount": 48,
+        "totalDuration": "115h 10m"
     },
     {
         "id": "permutation-combination",
@@ -1436,7 +1463,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 13,
+        "totalDuration": "35h 52m"
     },
     {
         "id": "calculus-problem-solving",
@@ -1752,7 +1782,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 38,
+        "totalDuration": "107h 14m"
     },
     {
         "id": "probability-stats",
@@ -1828,7 +1861,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 8,
+        "totalDuration": "21h 17m"
     },
     {
         "id": "algebra-3",
@@ -1918,7 +1954,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Part III - Sandal Agarwal",
+        "lessonsCount": 10,
+        "totalDuration": "28h 05m"
     },
     {
         "id": "rvp-1",
@@ -2126,7 +2165,10 @@ const COURSES = [
         ],
         "subject": "Mentorship",
         "subjectIcon": "fa-bolt",
-        "subjectColor": "#f59e0b"
+        "subjectColor": "#f59e0b",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 25,
+        "totalDuration": "46h 08m"
     },
     {
         "id": "conic-sections",
@@ -2202,7 +2244,10 @@ const COURSES = [
         ],
         "subject": "Mathematics",
         "subjectIcon": "fa-square-root-variable",
-        "subjectColor": "#6366f1"
+        "subjectColor": "#6366f1",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 8,
+        "totalDuration": "18h 34m"
     },
     {
         "id": "rvp-2",
@@ -2550,7 +2595,10 @@ const COURSES = [
         ],
         "subject": "Mentorship",
         "subjectIcon": "fa-bolt",
-        "subjectColor": "#f59e0b"
+        "subjectColor": "#f59e0b",
+        "educator": "Sandal Agarwal",
+        "lessonsCount": 42,
+        "totalDuration": "103h 08m"
     },
     {
         "id": "basic-mathematics-physics",
@@ -2672,7 +2720,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/YUS206S1YB79M9R7WPPR/Basic_Mathematics__Lecture_12_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YUS206S1YB79M9R7WPPR/Basic_Mathematics__Lecture_12_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physics Starter - Mathematical Tools",
+        "lessonsCount": 12,
+        "totalDuration": "24h 39m"
     },
     {
         "id": "kinematics-physics",
@@ -2758,7 +2809,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/2Y780PC2IG2CIQK89BQI/Kinematics__Lecture_9_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/2Y780PC2IG2CIQK89BQI/Kinematics__Lecture_9_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Mechanics - JEE Advanced",
+        "lessonsCount": 8,
+        "totalDuration": "17h 12m"
     },
     {
         "id": "newtons-laws-friction",
@@ -2835,7 +2889,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/68O5X34BC1YLPRX0C4KB/Newtons_Laws_of_Motion__Lecture_7_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/68O5X34BC1YLPRX0C4KB/Newtons_Laws_of_Motion__Lecture_7_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Mechanics - JEE Advanced",
+        "lessonsCount": 7,
+        "totalDuration": "18h 22m"
     },
     {
         "id": "work-power-energy",
@@ -2903,7 +2960,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/YDZ1C5TSP74COOYUFR4K/Work_Power__Energy__Lecture_6_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YDZ1C5TSP74COOYUFR4K/Work_Power__Energy__Lecture_6_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Mechanics - JEE Advanced",
+        "lessonsCount": 6,
+        "totalDuration": "12h 44m"
     },
     {
         "id": "rotational-motion-com",
@@ -3115,7 +3175,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/WI4A2CLMGJKWBXBLQGZ9/Centre_of_Mass__Lecture_8_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/WI4A2CLMGJKWBXBLQGZ9/Centre_of_Mass__Lecture_8_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Mechanics - JEE Advanced",
+        "lessonsCount": 22,
+        "totalDuration": "48h 29m"
     },
     {
         "id": "gravitation-physics",
@@ -3174,7 +3237,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/AR40JERTV5P60IC2IL81/Gravitation__Lecture_4_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/AR40JERTV5P60IC2IL81/Gravitation__Lecture_4_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Mechanics - JEE Advanced",
+        "lessonsCount": 5,
+        "totalDuration": "9h 55m"
     },
     {
         "id": "oscillations-shm",
@@ -3224,7 +3290,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/DA6CF8XULKU3QB1LXA27/Oscillations__Lecture_5_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/DA6CF8XULKU3QB1LXA27/Oscillations__Lecture_5_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Waves & Oscillations - JEE Advanced",
+        "lessonsCount": 4,
+        "totalDuration": "7h 49m"
     },
     {
         "id": "waves-sound",
@@ -3328,7 +3397,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/C17FB8UHASIXWG7OJEI3/Waves__Lecture_10_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/C17FB8UHASIXWG7OJEI3/Waves__Lecture_10_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Waves & Acoustics - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "19h 44m"
     },
     {
         "id": "thermal-physics-heat",
@@ -3459,7 +3531,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/19JFMVXTLZWBA117P0KR/Thermal_Physics__Lecture_13_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/19JFMVXTLZWBA117P0KR/Thermal_Physics__Lecture_13_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Thermal Physics - JEE Advanced",
+        "lessonsCount": 13,
+        "totalDuration": "27h 35m"
     },
     {
         "id": "thermodynamics-physics",
@@ -3608,7 +3683,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Thermal Physics - JEE Advanced",
+        "lessonsCount": 15,
+        "totalDuration": "30h 02m"
     },
     {
         "id": "electrostatics-physics",
@@ -3739,7 +3817,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/S9CGTESE9KU50YPQTME0/Electrostatics__Lecture_13_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/S9CGTESE9KU50YPQTME0/Electrostatics__Lecture_13_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 13,
+        "totalDuration": "30h 07m"
     },
     {
         "id": "capacitance-physics",
@@ -3807,7 +3888,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/CNYRC6P7P8B44Q7R9VPQ/Capacitance__Lecture_6_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CNYRC6P7P8B44Q7R9VPQ/Capacitance__Lecture_6_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 6,
+        "totalDuration": "15h 19m"
     },
     {
         "id": "current-electricity",
@@ -3857,7 +3941,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/8P4DWKG5WQIGWZ6VFS3S/Current_Electricity__Lecture_6_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8P4DWKG5WQIGWZ6VFS3S/Current_Electricity__Lecture_6_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 4,
+        "totalDuration": "7h 19m"
     },
     {
         "id": "magnetism-physics",
@@ -3898,7 +3985,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/BK866XV5OV52E2NMUJCA/Magnetism__Lecture_3_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BK866XV5OV52E2NMUJCA/Magnetism__Lecture_3_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 3,
+        "totalDuration": "5h 45m"
     },
     {
         "id": "electromagnetic-induction",
@@ -4029,7 +4119,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/5WJRTT238YI1UCNUI30N/Electromagnetic_Induction__Lecture_13_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/5WJRTT238YI1UCNUI30N/Electromagnetic_Induction__Lecture_13_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 13,
+        "totalDuration": "26h 08m"
     },
     {
         "id": "alternating-current",
@@ -4088,7 +4181,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/PSZ00VY6X2JOKOKLKTM4/Alternating_Current__Lecture_5_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/PSZ00VY6X2JOKOKLKTM4/Alternating_Current__Lecture_5_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Electromagnetism - JEE Advanced",
+        "lessonsCount": 5,
+        "totalDuration": "10h 10m"
     },
     {
         "id": "ray-optics-instruments",
@@ -4174,7 +4270,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/YHJE4YCWYHX8SW669F97/Ray_Optics__Lecture_8_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/YHJE4YCWYHX8SW669F97/Ray_Optics__Lecture_8_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Optics - JEE Advanced",
+        "lessonsCount": 8,
+        "totalDuration": "17h 26m"
     },
     {
         "id": "modern-physics",
@@ -4305,7 +4404,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/3PHUPG77ZLY7044HLGM6/Modern_Physics__Lecture_14_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3PHUPG77ZLY7044HLGM6/Modern_Physics__Lecture_14_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Modern Physics - JEE Advanced",
+        "lessonsCount": 13,
+        "totalDuration": "25h 08m"
     },
     {
         "id": "mole-concept-redox",
@@ -4499,7 +4601,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/CCVG26XLQMXZ8HNUHHWU/Mole_concept_and_Concentration_Terms_Lecture08_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CCVG26XLQMXZ8HNUHHWU/Mole_concept_and_Concentration_Terms_Lecture08_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 20,
+        "totalDuration": "38h 16m"
     },
     {
         "id": "atomic-structure",
@@ -4603,7 +4708,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/Z3LN4WQF3OZL0JDSG6SB/L10_Atomic_Structure_for_JEE_ADVANCED_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/Z3LN4WQF3OZL0JDSG6SB/L10_Atomic_Structure_for_JEE_ADVANCED_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "20h 57m"
     },
     {
         "id": "gaseous-state",
@@ -4680,7 +4788,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/3L84JQC0ID8D30KOCKGO/L07_Real_Gases_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/3L84JQC0ID8D30KOCKGO/L07_Real_Gases_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 7,
+        "totalDuration": "13h 39m"
     },
     {
         "id": "chemical-thermodynamics",
@@ -4784,7 +4895,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/N5MBT2FHY92REO3IA41Q/L08_THERMODYNAMICS1_JEE_ADVANCED_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "20h 20m"
     },
     {
         "id": "chemical-ionic-equilibrium",
@@ -4897,7 +5011,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/BJV60MGA809WKSM2AZIP/L08__Equilibrium_for_JEE_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BJV60MGA809WKSM2AZIP/L08__Equilibrium_for_JEE_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 11,
+        "totalDuration": "24h 03m"
     },
     {
         "id": "chemical-kinetics",
@@ -5009,7 +5126,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VPX7EM4FFY9UGE5YHKCN/Chemical_Kinetics_02_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 11,
+        "totalDuration": "19h 50m"
     },
     {
         "id": "electrochemistry",
@@ -5140,7 +5260,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/BT4DYRB4DLA36HSQTKDU/L11_Electrochemistry_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/BT4DYRB4DLA36HSQTKDU/L11_Electrochemistry_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 13,
+        "totalDuration": "26h 26m"
     },
     {
         "id": "liquid-solutions",
@@ -5244,7 +5367,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/1ID9Z55SWQ5PGJ1ORGCV/L05__Liquid_solutions_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/1ID9Z55SWQ5PGJ1ORGCV/L05__Liquid_solutions_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "18h 42m"
     },
     {
         "id": "solid-state",
@@ -5312,7 +5438,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/ML4O24OG0WPYSZZQ6G81/L06__Solid_states_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/ML4O24OG0WPYSZZQ6G81/L06__Solid_states_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 6,
+        "totalDuration": "10h 34m"
     },
     {
         "id": "physical-chem-pyqs",
@@ -5389,7 +5518,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VR8S5YQ5GVR38GJ6K9GC/Physical_chemistry_integer_problems_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Physical Chemistry - JEE Advanced",
+        "lessonsCount": 7,
+        "totalDuration": "14h 15m"
     },
     {
         "id": "periodic-table-periodicity",
@@ -5475,7 +5607,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 8,
+        "totalDuration": "16h 23m"
     },
     {
         "id": "chemical-bonding",
@@ -5651,7 +5786,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/UVVTWAYODAEHLBB57FAH/Periodic_table_and_Chemical_Bonding03_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 18,
+        "totalDuration": "38h 20m"
     },
     {
         "id": "coordination-chemistry",
@@ -5791,7 +5929,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/94GNW7M249MM02N1D0WO/L12__Coordination_Chemistry_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/94GNW7M249MM02N1D0WO/L12__Coordination_Chemistry_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 14,
+        "totalDuration": "28h 17m"
     },
     {
         "id": "salt-analysis",
@@ -5895,7 +6036,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/7HDG9KBCH29Q75IVCPH8/Salt_Analysis_Theory_Revision_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "17h 07m"
     },
     {
         "id": "metallurgy-inorganic",
@@ -5954,7 +6098,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/LK4MJYY8VMUAD8OZYQ0H/L05__Metallurgy_for_JEE_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LK4MJYY8VMUAD8OZYQ0H/L05__Metallurgy_for_JEE_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 5,
+        "totalDuration": "7h 01m"
     },
     {
         "id": "p-block-chemistry",
@@ -6040,7 +6187,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/HOU54O42PSXILNULSG6X/L08__P_block_NCERT_for_JEE_Mains_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HOU54O42PSXILNULSG6X/L08__P_block_NCERT_for_JEE_Mains_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 8,
+        "totalDuration": "12h 21m"
     },
     {
         "id": "d-f-block-elements",
@@ -6108,7 +6258,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/IB4H79T02JYFHM9T80TM/L05__D__F_block_elements_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/IB4H79T02JYFHM9T80TM/L05__D__F_block_elements_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 6,
+        "totalDuration": "10h 09m"
     },
     {
         "id": "block-chemistry-mixed",
@@ -6257,7 +6410,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Inorganic Chemistry - JEE Advanced",
+        "lessonsCount": 15,
+        "totalDuration": "29h 42m"
     },
     {
         "id": "iupac-goc",
@@ -6532,7 +6688,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/16CRBOS1FB5FWS7A1GW4/L12__Complete_GOC_For_JEE_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/16CRBOS1FB5FWS7A1GW4/L12__Complete_GOC_For_JEE_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 29,
+        "totalDuration": "54h 13m"
     },
     {
         "id": "isomerism-organic",
@@ -6672,7 +6831,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/8C7ONFYLQOROG3SQO0LT/L14__Complete_ISOMERISM_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/8C7ONFYLQOROG3SQO0LT/L14__Complete_ISOMERISM_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 14,
+        "totalDuration": "28h 30m"
     },
     {
         "id": "reaction-mechanisms",
@@ -6848,7 +7010,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/VU6D8PBWLG16U68RR1C8/L18__Reaction_Mechanism_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/VU6D8PBWLG16U68RR1C8/L18__Reaction_Mechanism_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 18,
+        "totalDuration": "37h 54m"
     },
     {
         "id": "hydrocarbons-halogen",
@@ -6925,7 +7090,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/LGBDCMFK7PD46ICUVI28/Hydrocarbons02_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 7,
+        "totalDuration": "15h 13m"
     },
     {
         "id": "carbonyl-compounds",
@@ -7074,7 +7242,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/61GRSG4K2AC3KP7DGL6Z/L15__Carbonyl_compounds_for_JEE_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/61GRSG4K2AC3KP7DGL6Z/L15__Carbonyl_compounds_for_JEE_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 15,
+        "totalDuration": "31h 53m"
     },
     {
         "id": "biomolecules-polymers",
@@ -7178,7 +7349,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JRUKOKPL2A6ZKMS9GO8M/POC__Biomolecules_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 10,
+        "totalDuration": "15h 44m"
     },
     {
         "id": "aromatic-chemistry",
@@ -7255,7 +7429,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/CVD55V61H8VRRS9RX5MJ/L07__Aromatic_Chemistry_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/CVD55V61H8VRRS9RX5MJ/L07__Aromatic_Chemistry_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 7,
+        "totalDuration": "12h 04m"
     },
     {
         "id": "alcohols-amines-ethers",
@@ -7305,7 +7482,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/P1BSOQSYYY0SGGGJTC2B/L04__Alcohols_Amines_and_ethers_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/P1BSOQSYYY0SGGGJTC2B/L04__Alcohols_Amines_and_ethers_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 4,
+        "totalDuration": "5h 34m"
     },
     {
         "id": "practical-organic-chem",
@@ -7373,7 +7553,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 6,
+        "totalDuration": "10h 11m"
     },
     {
         "id": "organic-mixed-pyqs",
@@ -7558,7 +7741,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NTW1KAPZP0APWO4RNDNK/L06__Practical_Organic_Chemistry_for_Jee_Advanced_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Organic Chemistry - JEE Advanced",
+        "lessonsCount": 19,
+        "totalDuration": "36h 21m"
     },
     {
         "id": "im-all-stars-mentorship",
@@ -7896,7 +8082,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/K4TJY23K0XDUQBI415GO/IM_All_Stars_for_JEE_Advanced_2026__Lecture_18_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/K4TJY23K0XDUQBI415GO/IM_All_Stars_for_JEE_Advanced_2026__Lecture_18_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "All Stars Rank Accelerator",
+        "lessonsCount": 36,
+        "totalDuration": "84h 32m"
     },
     {
         "id": "mixed-problem-solving-modules",
@@ -8645,7 +8834,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/460LK9AUL5004H4YGRLJ/Module_discussion_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/460LK9AUL5004H4YGRLJ/Module_discussion_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Problem Solving Situation Sets",
+        "lessonsCount": 84,
+        "totalDuration": "174h 47m"
     },
     {
         "id": "trio-miscellaneous",
@@ -8920,7 +9112,10 @@ const COURSES = [
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/HT80U03HNIU95MWPDRKI/Inorganic_2025_all_pyqs_no_anno.pdf"
             }
-        ]
+        ],
+        "educator": "Chemistry & Physics Crash Course Sessions",
+        "lessonsCount": 29,
+        "totalDuration": "62h 37m"
     },
     {
         "id": "nexus-physics-jee-2025",
@@ -9295,8 +9490,7 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/QYX9FGU4B28NPM6HT379/Salt_Analysis__L03_no_anno.pdf"
             }
         ]
-    }
-,
+    },
     {
         "id": "crash-course-in-chemistry-for-jee-main-advanced",
         "title": "JEE Endgame: Crash Course on Chemistry for JEE Main 2026",
@@ -9522,8 +9716,7 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/GY5JPTYPDB7H1KHEXQ9J/Ionic_Equilibrium_no_anno.pdf"
             }
         ]
-    }
-,
+    },
     {
         "id": "nexus-reloaded-course-on-high-weightage-physics-chapters",
         "title": "Crash Course on Physics for JEE Main 2025",
@@ -9597,8 +9790,7 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/JUHCQXWGWOQO6S2TZUZU/Thermodynamics_no_anno.pdf"
             }
         ]
-    }
-,
+    },
     {
         "id": "nexus-crash-course-for-jee-main-physics-2026-part-1",
         "title": "Nexus Crash Course for JEE Main Physics 2026",
@@ -9688,8 +9880,7 @@ const COURSES = [
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/NIUG1U0BZLT9CRL6UDUM/Current_Electricity__RC_Circuits_no_anno.pdf"
             }
         ]
-    }
-,
+    },
     {
         "id": "mechanics-crash-course-2026-jee-main-endgame",
         "title": "JEE Endgame: Crash Course on Physics for JEE Main 2026",

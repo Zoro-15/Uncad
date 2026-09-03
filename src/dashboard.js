@@ -205,8 +205,18 @@ function initHistoryRouting() {
     });
 }
 
+let lastCatalogView = "my-courses";
+
+function handleBackNavigation() {
+    switchView(lastCatalogView || "my-courses");
+}
+
 function switchView(viewName, params = {}, skipPush = false) {
     currentView = viewName;
+
+    if (["my-courses", "home", "math", "mathematics", "physics", "chemistry", "mentorship", "modules", "crash-course", "phy-os", "phyos", "offline-mode"].includes(viewName)) {
+        lastCatalogView = viewName;
+    }
 
     if (!skipPush) {
         history.pushState({ view: viewName, params }, '', '#' + viewName);
@@ -227,6 +237,7 @@ function switchView(viewName, params = {}, skipPush = false) {
         if (vc) vc.style.display = "block";
         if (toggleBtn) toggleBtn.style.display = "flex";
         if (window.resizeCanvas) window.resizeCanvas();
+        if (window.startSyncLoop) window.startSyncLoop();
         
         setTimeout(() => {
             if (window.repositionCam) window.repositionCam();
@@ -340,27 +351,28 @@ function toggleNavMenu() {
 }
 
 function switchNavView(target) {
-    const navMap = {
-        "my-courses": document.getElementById("nav-item-my-courses"),
-        "math": document.getElementById("nav-item-math"),
-        "mathematics": document.getElementById("nav-item-math"),
-        "physics": document.getElementById("nav-item-physics"),
-        "chemistry": document.getElementById("nav-item-chemistry"),
-        "mentorship": document.getElementById("nav-item-mentorship"),
-        "crash-course": document.getElementById("nav-item-mentorship"),
-        "modules": document.getElementById("nav-item-mentorship"),
-        "phy-os": document.getElementById("nav-item-phy-os"),
-        "phyos": document.getElementById("nav-item-phy-os"),
-        "offline-mode": document.getElementById("nav-item-offline-mode")
+    const targetToNavId = {
+        "my-courses": "nav-item-my-courses",
+        "home": "nav-item-my-courses",
+        "math": "nav-item-math",
+        "mathematics": "nav-item-math",
+        "physics": "nav-item-physics",
+        "chemistry": "nav-item-chemistry",
+        "mentorship": "nav-item-mentorship",
+        "crash-course": "nav-item-mentorship",
+        "modules": "nav-item-mentorship",
+        "phy-os": "nav-item-phy-os",
+        "phyos": "nav-item-phy-os",
+        "offline-mode": "nav-item-offline-mode"
     };
     const navDrawer = document.getElementById("db-nav-drawer");
     if (navDrawer) navDrawer.classList.remove("show");
     
-    Object.keys(navMap).forEach(key => {
-        if (navMap[key]) {
-            if (key === target) navMap[key].classList.add("active");
-            else navMap[key].classList.remove("active");
-        }
+    const activeNavId = targetToNavId[target] || "nav-item-my-courses";
+    const allNavItems = document.querySelectorAll(".db-nav-item");
+    allNavItems.forEach(item => {
+        if (item.id === activeNavId) item.classList.add("active");
+        else item.classList.remove("active");
     });
 
     switchView(target);
@@ -421,7 +433,7 @@ function renderMyCourses() {
                         <div class="last-watched-title">${lastWatched.lectureTitle}</div>
                         <div class="last-watched-sub">${lastWatched.courseTitle} • Stopped at ${formattedTime}</div>
                     </div>
-                    <button class="last-watched-btn" onclick="launchLecture('${lastWatched.uid}', ${lastWatched.timeSec || 0})">
+                    <button class="last-watched-btn" onclick="launchLecture('${lastWatched.uid}', ${lastWatched.timeSec || 0}, '${lastWatched.courseId}')">
                         <i class="fas fa-play"></i> Continue
                     </button>
                 </div>
@@ -694,9 +706,20 @@ function renderLecturesList(lectures) {
     lectures.forEach(lec => {
         const isOffline = cachedUidsSet.has(lec.uid);
         const isLocal = !!(lec.videoFile || lec.jsonFile || lec.isLocal);
+        const prog = getLectureProgress(lec.uid);
+        const watchedSec = prog ? prog.timeSec : 0;
+        let progBadge = "";
+        if (watchedSec > 60) {
+            const wM = Math.floor(watchedSec / 60);
+            const wH = Math.floor(wM / 60);
+            const remM = wM % 60;
+            const timeStr = wH > 0 ? `${wH}h ${remM}m` : `${remM}m`;
+            progBadge = `<span class="offline-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);" title="Resume position: ${timeStr}"><i class="fas fa-history"></i> At ${timeStr}</span>`;
+        }
+
         const card = document.createElement("div");
         card.className = "lecture-card";
-        card.onclick = () => launchLecture(lec.uid);
+        card.onclick = () => launchLecture(lec.uid, null, activeCourseId);
         card.innerHTML = `
             <div class="lecture-card-left">
                 <div class="lecture-number">${lec.rank}</div>
@@ -704,6 +727,7 @@ function renderLecturesList(lectures) {
                     <div class="lecture-card-title">${lec.title}</div>
                     <div class="lecture-card-duration">
                         <i class="far fa-clock"></i> ${lec.duration || '--'}
+                        ${progBadge}
                         ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : '')}
                         ${lec.pdfFile ? `<span class="offline-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="PDF Notes Attached"><i class="fas fa-file-pdf"></i> Notes</span>` : ''}
                     </div>
@@ -742,8 +766,23 @@ function filterLectures() {
     }, 60);
 }
 
-async function launchLecture(uid, startTimeSec = null) {
+async function launchLecture(uid, startTimeSec = null, courseId = null) {
     activeUid = uid;
+    if (courseId) {
+        activeCourseId = courseId;
+    } else {
+        const foundLocal = LOCAL_COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid));
+        if (foundLocal) {
+            activeCourseId = foundLocal.id;
+        } else {
+            const foundCourse = findCourseById(activeCourseId);
+            const hasLec = foundCourse && foundCourse.lectures && foundCourse.lectures.some(l => l.uid === uid);
+            if (!hasLec) {
+                const canonical = COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid));
+                if (canonical) activeCourseId = canonical.id;
+            }
+        }
+    }
     const sp = document.getElementById("splash");
     if (sp) {
         sp.style.display = "flex";
@@ -896,6 +935,7 @@ export {
     filterLectures, 
     launchLecture, 
     goBackToCourse,
+    handleBackNavigation,
     toggleEnrollCourse,
     toggleNavMenu,
     switchNavView,
@@ -912,6 +952,7 @@ export {
 };
 
 window.switchView = switchView;
+window.handleBackNavigation = handleBackNavigation;
 window.renderMyCourses = renderMyCourses;
 window.renderSubjectGrid = renderSubjectGrid;
 window.renderOfflineMode = renderOfflineMode;

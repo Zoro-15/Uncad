@@ -1,5 +1,5 @@
 // Main Application Bootstrapper
-import { renderMyCourses, switchView } from './dashboard.js';
+import { renderMyCourses, switchView, switchNavView } from './dashboard.js';
 import { runEngine } from './player.js';
 import { restoreSavedFolderOnStartup } from './ui/localFileLoader.js';
 
@@ -103,7 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } else {
-            switchView("my-courses");
+            const rawHash = (window.location.hash || "").replace(/^#/, "").trim().toLowerCase();
+            const validNavViews = ["my-courses", "home", "math", "mathematics", "physics", "chemistry", "mentorship", "crash-course", "modules", "phy-os", "phyos", "offline-mode"];
+            if (rawHash && validNavViews.includes(rawHash)) {
+                switchNavView(rawHash);
+            } else {
+                switchView("my-courses");
+            }
             const sp = document.getElementById("splash");
             if (sp) {
                 sp.classList.add("hidden");
