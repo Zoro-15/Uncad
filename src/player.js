@@ -556,6 +556,10 @@ window.updateSplash = (txt, pct) => {
 
                     drawImageContain(slideCtx, img, CW, CH);
                     slideCtx.restore();
+                } else {
+                    // Offline fallback: draw clean background canvas so pen strokes are visible
+                    slideCtx.fillStyle = getDisplayColor(curBgColor, true);
+                    slideCtx.fillRect(0, 0, CW, CH);
                 }
             } else {
                 if (curBgImageUrl) {
@@ -2232,7 +2236,7 @@ window.updateSplash = (txt, pct) => {
             const vUs = curVideoUs();
             const dUs = drawingUs(vUs);
             const videoCurTime = video.currentTime;
-            const videoDuration = video.duration || 1;
+            const videoDuration = (Number.isFinite(video.duration) && video.duration > 0) ? video.duration : (maxDuration > 0 ? maxDuration / 1e6 : 1);
 
             if (!isDraggingSeek) {
                 const masterMax = parseFloat(seekBar.max) || 1;
@@ -2270,10 +2274,17 @@ window.updateSplash = (txt, pct) => {
         requestAnimationFrame(syncLoop);
 
         video.addEventListener("loadedmetadata", () => {
-            seekBar.max = Math.round(video.duration * 1e6);
-            tTotal.textContent = fmt(video.duration);
-            const ot = $("t-total-overlay");
-            if (ot) ot.textContent = fmt(video.duration);
+            if (Number.isFinite(video.duration) && video.duration > 0) {
+                seekBar.max = Math.round(video.duration * 1e6);
+                tTotal.textContent = fmt(video.duration);
+                const ot = $("t-total-overlay");
+                if (ot) ot.textContent = fmt(video.duration);
+            } else if (maxDuration > 0) {
+                seekBar.max = maxDuration;
+                tTotal.textContent = fmt(maxDuration / 1e6);
+                const ot = $("t-total-overlay");
+                if (ot) ot.textContent = fmt(maxDuration / 1e6);
+            }
             if (engineLoaded) buildChapterMarks();
         });
         video.addEventListener("play", () => {
@@ -2928,7 +2939,7 @@ window.updateSplash = (txt, pct) => {
             if (!nav) return;
             nav.innerHTML = '';
             
-            const activeCourse = COURSES.find(c => c.id === activeCourseId) || COURSES[0];
+            const activeCourse = (window.LOCAL_COURSES && window.LOCAL_COURSES.find(c => c.id === activeCourseId)) || COURSES.find(c => c.id === activeCourseId) || COURSES[0];
             
             const titleEl = document.createElement('div');
             titleEl.className = 'drawer-course-header';
@@ -2948,7 +2959,11 @@ window.updateSplash = (txt, pct) => {
                 `;
                 item.onclick = () => {
                     if (lec.uid !== activeUid) {
-                        loadLectureByUid(lec.uid);
+                        if (window.launchLecture) {
+                            window.launchLecture(lec.uid);
+                        } else {
+                            loadLectureByUid(lec.uid);
+                        }
                     }
                 };
                 nav.appendChild(item);

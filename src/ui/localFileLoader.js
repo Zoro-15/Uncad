@@ -1,6 +1,8 @@
 // Multi-Format Local File & Folder Loader (Single Lecture, Course Folders, Drag & Drop, File Picker)
 'use strict';
 
+import { findLectureInCourses, COURSES } from '../courses.js';
+
 let onLocalCourseLoadedCallback = null;
 let onSingleLectureLoadedCallback = null;
 
@@ -45,27 +47,58 @@ function cleanCourseTitle(rawName) {
 /**
  * Helper to clean lecture title from folder name
  * e.g. "Lec_25_Test Discussion for JEE 2026_SFFZEPMT7CVERROVSRAL" -> "Test Discussion for JEE 2026"
- * or "Lec_40_Problem Solving Lecture-44 for JEE Advanced 2026_WYAOZ9RL1VYIM7I10AGU-20260826T065911Z-1-001"
+ * or "Lec_14_Current Electricity_Current Electricity 1_4YUBA2ZET6TMRBHVK5JT"
  */
 function parseLectureFolderName(folderName) {
     let cleanName = (folderName || "").replace(/-\d{8}T\d{6}Z.*$/i, '').replace(/-\d+-\d+$/i, '').replace(/-\d+$/i, '').replace(/\s*\(\d+\)$/i, '').trim();
     let rank = 1;
     let title = cleanName;
     let uid = `local_${Date.now()}`;
+    let topic = "";
+    let duration = "";
+    let matchedCourse = null;
 
-    // Pattern: Lec_25_Title_UID or Lec 25 - Title_UID
+    // First extract 20-char UID if present anywhere in folder name
+    const uidMatch = cleanName.match(/([A-Z0-9]{15,25})/);
+    if (uidMatch) {
+        uid = uidMatch[1];
+        // Check if UID exists in catalog
+        const catalogMatch = findLectureInCourses(uid);
+        if (catalogMatch && catalogMatch.lecture) {
+            const l = catalogMatch.lecture;
+            return {
+                rank: l.rank,
+                title: l.title,
+                uid: l.uid,
+                topic: l.topic || "",
+                duration: l.duration || "",
+                matchedCourse: catalogMatch.course
+            };
+        }
+    }
+
+    // Pattern: Lec_25_Topic_Title_UID or Lec_25_Title_UID
     const match = cleanName.match(/^Lec[_\s]+(\d+)[_\s]+(.*?)(?:[_\s]+([A-Z0-9]{15,25}))?$/i);
     if (match) {
         rank = parseInt(match[1], 10);
-        title = match[2].replace(/_/g, ' ').trim();
+        let middlePart = match[2].trim();
         if (match[3]) uid = match[3];
+
+        // If folder is Lec_14_Topic_Title, split by underscore
+        const underscoreParts = middlePart.split('_').map(p => p.trim()).filter(Boolean);
+        if (underscoreParts.length >= 2) {
+            topic = underscoreParts[0];
+            title = underscoreParts.slice(1).join(' ');
+        } else {
+            title = middlePart.replace(/_/g, ' ').trim();
+        }
     } else {
         const simpleRankMatch = cleanName.match(/Lec[_\s]+(\d+)/i);
         if (simpleRankMatch) rank = parseInt(simpleRankMatch[1], 10);
         title = cleanName.replace(/^Lec[_\s]+\d+[_\s-]*/i, '').replace(/_/g, ' ').trim();
     }
 
-    return { rank, title, uid };
+    return { rank, title, uid, topic, duration, matchedCourse };
 }
 
 /**
@@ -107,17 +140,19 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
             let rank = parsedFolder.rank;
             let title = parsedFolder.title || videoFile.name.replace(/\.[^/.]+$/, "");
             let uid = parsedFolder.uid || `local_${Date.now()}_${parsedLectures.length + 1}`;
-            let duration = "";
+            let duration = parsedFolder.duration || "";
+            let matchedCourse = parsedFolder.matchedCourse || null;
 
             // Try reading metadata.json if available
             if (metaFile) {
                 try {
                     const metaText = await metaFile.text();
                     const meta = JSON.parse(metaText);
-                    if (meta.title) title = meta.title;
-                    if (meta.rank) rank = parseInt(meta.rank, 10);
-                    if (meta.uid) uid = meta.uid;
-                    if (meta.duration) duration = meta.duration;
+                    // Only let metadata override rank/title if catalog didn't already supply canonical values
+                    if (!matchedCourse && meta.rank != null) rank = parseInt(meta.rank, 10);
+                    if (!matchedCourse && meta.title) title = meta.title;
+                    if (meta.uid && (uid.startsWith("local_") || !matchedCourse)) uid = meta.uid;
+                    if (meta.duration && !duration) duration = meta.duration;
                     if (meta.courseTitle && detectedCourseTitle === "Local Folder") {
                         detectedCourseTitle = meta.courseTitle;
                     }
@@ -135,7 +170,9 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
                 jsonFile,
                 pdfFile: pdfFile || null,
                 pdfAnnoFile: pdfAnnoFile || null,
-                pdfCleanFile: pdfCleanFile || null
+                pdfCleanFile: pdfCleanFile || null,
+                isLocal: true,
+                matchedCourse
             });
         }
     }
@@ -152,15 +189,29 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
             let rank = 1;
             let uid = `local_${Date.now()}`;
             let duration = "";
+            let matchedCourse = null;
+
+            // Check if UID in file names matches catalog
+            const uidMatch = (videoFile.name + " " + jsonFile.name).match(/([A-Z0-9]{15,25})/);
+            if (uidMatch) {
+                const catalogMatch = findLectureInCourses(uidMatch[1]);
+                if (catalogMatch && catalogMatch.lecture) {
+                    rank = catalogMatch.lecture.rank;
+                    title = catalogMatch.lecture.title;
+                    uid = catalogMatch.lecture.uid;
+                    duration = catalogMatch.lecture.duration || "";
+                    matchedCourse = catalogMatch.course;
+                }
+            }
 
             if (metaFile) {
                 try {
                     const metaText = await metaFile.text();
                     const meta = JSON.parse(metaText);
-                    if (meta.title) title = meta.title;
-                    if (meta.rank) rank = parseInt(meta.rank, 10);
-                    if (meta.uid) uid = meta.uid;
-                    if (meta.duration) duration = meta.duration;
+                    if (!matchedCourse && meta.title) title = meta.title;
+                    if (!matchedCourse && meta.rank != null) rank = parseInt(meta.rank, 10);
+                    if (meta.uid && (uid.startsWith("local_") || !matchedCourse)) uid = meta.uid;
+                    if (meta.duration && !duration) duration = meta.duration;
                     if (meta.courseTitle) detectedCourseTitle = meta.courseTitle;
                 } catch (e) {}
             }
@@ -172,7 +223,9 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
                 duration: duration || "--",
                 videoFile,
                 jsonFile,
-                pdfFile: pdfFile || null
+                pdfFile: pdfFile || null,
+                isLocal: true,
+                matchedCourse
             });
         }
     }
@@ -182,16 +235,32 @@ async function processRawFiles(fileList, rootName = "Local Folder") {
         return;
     }
 
-    // Sort by rank
+    // Sort strictly by rank
     parsedLectures.sort((a, b) => a.rank - b.rank);
 
-    const courseTitle = detectedCourseTitle !== "Local Folder" ? detectedCourseTitle : (parsedLectures.length === 1 ? parsedLectures[0].title : "Downloaded Course");
+    // Check if majority of lectures belong to an existing catalog course
+    let canonicalCourse = null;
+    const matchedCourses = parsedLectures.map(l => l.matchedCourse).filter(Boolean);
+    if (matchedCourses.length > 0) {
+        const counts = {};
+        matchedCourses.forEach(c => { counts[c.id] = (counts[c.id] || 0) + 1; });
+        const topCourseId = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+        canonicalCourse = matchedCourses.find(c => c.id === topCourseId);
+    }
+
+    const courseTitle = canonicalCourse ? canonicalCourse.title : (detectedCourseTitle !== "Local Folder" ? detectedCourseTitle : (parsedLectures.length === 1 ? parsedLectures[0].title : "Downloaded Course"));
+    const courseId = canonicalCourse ? canonicalCourse.id : `local-course-${Date.now()}`;
+    const courseDesc = canonicalCourse ? canonicalCourse.description : `Imported local storage folder with ${parsedLectures.length} offline lecture(s).`;
+    const courseIcon = canonicalCourse ? (canonicalCourse.icon || "fa-folder-open") : "fa-folder-open";
 
     const coursePackage = {
-        id: `local-course-${Date.now()}`,
+        id: courseId,
         title: courseTitle,
-        description: `Imported local storage folder with ${parsedLectures.length} offline lecture(s).`,
-        icon: "fa-folder-open",
+        description: courseDesc,
+        icon: courseIcon,
+        subject: canonicalCourse ? canonicalCourse.subject : "Local",
+        subjectIcon: canonicalCourse ? canonicalCourse.subjectIcon : "fa-hdd",
+        subjectColor: canonicalCourse ? canonicalCourse.subjectColor : "#22c55e",
         isLocal: true,
         lectures: parsedLectures
     };
