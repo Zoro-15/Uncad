@@ -1,23 +1,32 @@
 // Main Application Bootstrapper
 import { renderMyCourses, switchView } from './dashboard.js';
 import { runEngine } from './player.js';
+import { restoreSavedFolderOnStartup } from './ui/localFileLoader.js';
 
 // ══════════════════════════════════════════════════
-// LOGO FULLSCREEN TOGGLE
+// FULLSCREEN CONTROLLER & AUTO-TRIGGER
 // ══════════════════════════════════════════════════
+function enterFullscreen() {
+    const docEl = document.documentElement;
+    try {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+            if (docEl.requestFullscreen) {
+                docEl.requestFullscreen().catch(() => {});
+            } else if (docEl.webkitRequestFullscreen) {
+                docEl.webkitRequestFullscreen();
+            } else if (docEl.msRequestFullscreen) {
+                docEl.msRequestFullscreen();
+            }
+        }
+    } catch (_) {}
+}
+
 function toggleFullscreen() {
     if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-        const docEl = document.documentElement;
-        if (docEl.requestFullscreen) {
-            docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullscreen) {
-            docEl.webkitRequestFullscreen();
-        } else if (docEl.msRequestFullscreen) {
-            docEl.msRequestFullscreen();
-        }
+        enterFullscreen();
     } else {
         if (document.exitFullscreen) {
-            document.exitFullscreen();
+            document.exitFullscreen().catch(() => {});
         } else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         } else if (document.msExitFullscreen) {
@@ -26,6 +35,17 @@ function toggleFullscreen() {
     }
 }
 window.toggleFullscreen = toggleFullscreen;
+window.enterFullscreen = enterFullscreen;
+
+// Auto-engage fullscreen on the user's first tap/click anywhere on screen
+(function initDefaultFullscreen() {
+    const autoEngage = () => {
+        enterFullscreen();
+    };
+    window.addEventListener('touchstart', autoEngage, { once: true, passive: true });
+    window.addEventListener('pointerdown', autoEngage, { once: true, passive: true });
+    window.addEventListener('click', autoEngage, { once: true, passive: true });
+})();
 
 // ══════════════════════════════════════════════════
 // DARK / LIGHT MODE TOGGLE
@@ -56,10 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
 (async () => {
     try {
         if (window.resizeCanvas) window.resizeCanvas();
+        enterFullscreen();
+
         const params = new URLSearchParams(window.location.search);
         const hasParam = params.get("lec") || params.get("url");
         
         renderMyCourses();
+
+        // Automatically restore course folder from IndexedDB if saved previously
+        restoreSavedFolderOnStartup().then(restored => {
+            if (restored) {
+                console.log("[Main] Course folder automatically restored from IndexedDB memory.");
+            }
+        }).catch(e => {
+            console.warn("[Main] Auto-restore folder check:", e);
+        });
 
         if (hasParam) {
             switchView("player");

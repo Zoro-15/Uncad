@@ -2,9 +2,10 @@
 'use strict';
 
 const DB_NAME = 'lennister_player_db';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_TELEMETRY = 'telemetry_cache';
 const STORE_METADATA = 'offline_metadata';
+const STORE_HANDLES = 'folder_handles';
 
 let dbPromise = null;
 
@@ -27,7 +28,10 @@ function openDB() {
             if (!db.objectStoreNames.contains(STORE_METADATA)) {
                 db.createObjectStore(STORE_METADATA, { keyPath: 'uid' });
             }
-            console.log('[OfflineStorage] IndexedDB schemas initialized.');
+            if (!db.objectStoreNames.contains(STORE_HANDLES)) {
+                db.createObjectStore(STORE_HANDLES, { keyPath: 'id' });
+            }
+            console.log('[OfflineStorage] IndexedDB schemas initialized (v2).');
         };
 
         request.onsuccess = (event) => {
@@ -231,6 +235,68 @@ function notifyOfflineUpdate(uid, isCached) {
     }));
 }
 
+/**
+ * Save FileSystemDirectoryHandle to IndexedDB for permanent course memory
+ */
+async function saveSavedDirectoryHandle(handle, id = 'default_course_folder') {
+    if (!handle) return false;
+    try {
+        const db = await openDB();
+        if (!db) return false;
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_HANDLES], 'readwrite');
+            const store = tx.objectStore(STORE_HANDLES);
+            store.put({ id, handle, savedAt: Date.now() });
+            tx.oncomplete = () => {
+                console.log('[OfflineStorage] Persisted directory handle to IndexedDB:', handle.name);
+                resolve(true);
+            };
+            tx.onerror = () => resolve(false);
+        });
+    } catch (e) {
+        console.warn('[OfflineStorage] Error saving directory handle:', e);
+        return false;
+    }
+}
+
+/**
+ * Retrieve saved FileSystemDirectoryHandle from IndexedDB
+ */
+async function getSavedDirectoryHandle(id = 'default_course_folder') {
+    try {
+        const db = await openDB();
+        if (!db) return null;
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_HANDLES], 'readonly');
+            const store = tx.objectStore(STORE_HANDLES);
+            const req = store.get(id);
+            req.onsuccess = () => resolve(req.result ? req.result.handle : null);
+            req.onerror = () => resolve(null);
+        });
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Clear saved directory handle from IndexedDB
+ */
+async function clearSavedDirectoryHandle(id = 'default_course_folder') {
+    try {
+        const db = await openDB();
+        if (!db) return false;
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_HANDLES], 'readwrite');
+            const store = tx.objectStore(STORE_HANDLES);
+            store.delete(id);
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    } catch (e) {
+        return false;
+    }
+}
+
 export {
     openDB,
     saveTelemetryOffline,
@@ -238,5 +304,8 @@ export {
     isTelemetryCached,
     getAllCachedUids,
     deleteOfflineTelemetry,
-    clearAllOfflineTelemetry
+    clearAllOfflineTelemetry,
+    saveSavedDirectoryHandle,
+    getSavedDirectoryHandle,
+    clearSavedDirectoryHandle
 };

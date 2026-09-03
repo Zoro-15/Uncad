@@ -2,6 +2,7 @@
 'use strict';
 
 import { findLectureInCourses, COURSES } from '../courses.js';
+import { saveSavedDirectoryHandle, getSavedDirectoryHandle, clearSavedDirectoryHandle } from '../engine/offlineStorage.js';
 
 let onLocalCourseLoadedCallback = null;
 let onSingleLectureLoadedCallback = null;
@@ -332,7 +333,46 @@ function initLocalFileLoader({ onCourseLoaded, onSingleLectureLoaded }) {
     }
 }
 
-function openLocalFolderPicker() {
+async function scanDirectoryHandle(dirHandle, pathPrefix = "") {
+    const files = [];
+    for await (const entry of dirHandle.values()) {
+        const fullPath = pathPrefix ? `${pathPrefix}/${entry.name}` : entry.name;
+        if (entry.kind === "file") {
+            try {
+                const file = await entry.getFile();
+                file.fullPath = fullPath;
+                files.push(file);
+            } catch (fe) {
+                console.warn("[LocalLoader] Failed to read file from handle:", entry.name, fe);
+            }
+        } else if (entry.kind === "directory") {
+            const subFiles = await scanDirectoryHandle(entry, fullPath);
+            files.push(...subFiles);
+        }
+    }
+    return files;
+}
+
+async function openLocalFolderPicker() {
+    // 1. Try modern File System Access API (supports permanent IndexedDB handles)
+    if (typeof window.showDirectoryPicker === "function") {
+        try {
+            const dirHandle = await window.showDirectoryPicker({ mode: "read" });
+            if (dirHandle) {
+                await saveSavedDirectoryHandle(dirHandle);
+                const files = await scanDirectoryHandle(dirHandle, dirHandle.name);
+                if (files.length > 0) {
+                    await processRawFiles(files, dirHandle.name);
+                    return;
+                }
+            }
+        } catch (err) {
+            if (err.name === "AbortError") return; // User cancelled dialog
+            console.warn("[LocalLoader] showDirectoryPicker failed, falling back to file input:", err);
+        }
+    }
+
+    // 2. Fallback to standard input element
     const folderInput = document.getElementById("local-folder-input");
     if (folderInput) {
         folderInput.click();
@@ -340,4 +380,41 @@ function openLocalFolderPicker() {
 }
 window.openLocalFolderPicker = openLocalFolderPicker;
 
-export { initLocalFileLoader, openLocalFolderPicker, processRawFiles, parseLectureFolderName, cleanCourseTitle };
+/**
+ * Automatically restore saved course folder from IndexedDB on startup
+ */
+async function restoreSavedFolderOnStartup() {
+    try {
+        const dirHandle = await getSavedDirectoryHandle();
+        if (!dirHandle) return false;
+
+        // Query permission without showing prompt
+        let perm = await dirHandle.queryPermission({ mode: "read" });
+        if (perm === "prompt") {
+            // Some browsers require requestPermission
+            perm = await dirHandle.requestPermission({ mode: "read" });
+        }
+
+        if (perm === "granted") {
+            console.log("[LocalLoader] Auto-restoring saved course folder from IndexedDB:", dirHandle.name);
+            const files = await scanDirectoryHandle(dirHandle, dirHandle.name);
+            if (files.length > 0) {
+                await processRawFiles(files, dirHandle.name);
+                return true;
+            }
+        }
+    } catch (err) {
+        console.warn("[LocalLoader] Could not auto-restore directory handle:", err);
+    }
+    return false;
+}
+window.restoreSavedFolderOnStartup = restoreSavedFolderOnStartup;
+
+export { 
+    initLocalFileLoader, 
+    openLocalFolderPicker, 
+    restoreSavedFolderOnStartup, 
+    processRawFiles, 
+    parseLectureFolderName, 
+    cleanCourseTitle 
+};
