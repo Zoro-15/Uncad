@@ -122,12 +122,6 @@ const COURSES = [
             {
                 "rank": 3,
                 "title": "Algebra Lec 03",
-                "uid": "",
-                "duration": "2h 45m"
-            },
-            {
-                "rank": 3,
-                "title": "Algebra Lec 03",
                 "uid": "CZX0YLRYYNELHGM4YDF1",
                 "duration": "2h 14m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/CZX0YLRYYNELHGM4YDF1/Algebra_Lec_03_with_anno.pdf",
@@ -268,12 +262,6 @@ const COURSES = [
                 "duration": "2h 18m",
                 "pdfUrl": "https://player.uacdn.net/slides_pdf/KDCS5WH47U3HOQ83SWYV/Complete_Discussion_of_AlgebraI_Sheet__JEE_ADV_PYQs_with_anno.pdf",
                 "pdfCleanUrl": "https://player.uacdn.net/slides_pdf/KDCS5WH47U3HOQ83SWYV/Complete_Discussion_of_AlgebraI_Sheet__JEE_ADV_PYQs_no_anno.pdf"
-            },
-            {
-                "rank": 21,
-                "title": "Test",
-                "uid": "",
-                "duration": "2h 0m"
             }
         ],
         "subject": "Mathematics",
@@ -8943,8 +8931,14 @@ const COURSES = [
         "subtitle": "Physics One Shots & Core Problem Solving",
         "description": "Complete 16-lesson intensive Physics crash course arranged topic-wise: Kinematics, NLM, WPE, Momentum, COM, Rotation, Electrostatics, Gravitation, Capacitance, Current Electricity, and Fluid Mechanics.",
         "icon": "fa-atom",
+        "educator": "Nexus Physics",
+        "educatorRole": "JEE Physics Specialist",
+        "rating": "4.96",
+        "reviewsCount": "2.1k",
+        "lessonsCount": 16,
+        "totalDuration": "51h 37m",
         "startDate": "2025-01-01T08:00:00Z",
-        "badge": "16 Lessons",
+        "badge": "16 Lessons • Phy OS",
         "lectures": [
             {
                 "rank": 1,

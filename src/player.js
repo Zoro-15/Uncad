@@ -338,7 +338,8 @@ window.updateSplash = (txt, pct) => {
 
         let prevRafTs = 0;
         let fpsSamples = [];
-        let gsMode = false;
+        const activeBlobUrls = new Set();
+        let lastLocalVideoBlobUrl = null;
 
         let pointerStream = [];
         let ptrStreamIdx = 0;
@@ -346,18 +347,6 @@ window.updateSplash = (txt, pct) => {
         const fmt = sec => { const s = Math.max(0, sec); return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, "0")}`; };
         const curVideoUs = () => Math.round(video.currentTime * 1e6);
         const drawingUs = vUs => vUs + drawOffset;
-
-        function handleEducatorAlign(val) {
-            if (!gsOverlay) return;
-            const s = gsOverlay.style;
-            s.left = s.right = s.top = s.bottom = "auto";
-            const v = String(val).toLowerCase();
-            if (v === "lb" || v === "left_bottom" || v === "1") { s.left = "16px"; s.bottom = "16px"; }
-            else if (v === "rb" || v === "right_bottom" || v === "2") { s.right = "16px"; s.bottom = "16px"; }
-            else if (v === "rt" || v === "right_top" || v === "3") { s.right = "16px"; s.top = "16px"; }
-            else if (v === "lt" || v === "left_top" || v === "4") { s.left = "16px"; s.top = "16px"; }
-            else { s.right = "16px"; s.bottom = "16px"; }
-        }
 
         function setStatus(cls, msg) {
             console.log(`[Status] ${cls.toUpperCase()}: ${msg}`);
@@ -1188,10 +1177,20 @@ window.updateSplash = (txt, pct) => {
             }
         }
 
-        async function loadLectureByUid(uid, startSec = 0) {
-            const course = findCourseByLectureUid(uid);
-            if (course) {
-                activeCourseId = course.id;
+        async function loadLectureByUid(uid, startSec = 0, preferredCourseId = null) {
+            if (!uid) {
+                console.warn("[Player] Attempted to load lecture with empty UID.");
+                return false;
+            }
+            if (preferredCourseId) {
+                activeCourseId = preferredCourseId;
+            } else {
+                const currentCourse = (window.LOCAL_COURSES && window.LOCAL_COURSES.find(c => c.id === activeCourseId)) || COURSES.find(c => c.id === activeCourseId);
+                const hasLec = currentCourse && currentCourse.lectures && currentCourse.lectures.some(l => l.uid === uid);
+                if (!hasLec) {
+                    const found = findCourseByLectureUid(uid);
+                    if (found) activeCourseId = found.id;
+                }
             }
             activeUid = uid;
             renderLectureDrawer();
@@ -1218,20 +1217,10 @@ window.updateSplash = (txt, pct) => {
             video.src = videoUrl;
             video.load();
 
-            if (gsMode && gsVideo) {
-                gsVideo.preload = "auto";
-                gsVideo.playsInline = true;
-                gsVideo.setAttribute("playsinline", "true");
-                gsVideo.setAttribute("webkit-playsinline", "true");
-                gsVideo.src = videoUrl;
-                gsVideo.load();
-            }
-
             if (startSec > 0) {
                 const applyResumePosition = () => {
                     try {
                         video.currentTime = startSec;
-                        if (gsMode && gsVideo) gsVideo.currentTime = startSec;
                         doSeek(startSec * 1e6);
                     } catch (e) {
                         console.warn("[Player] Seek on load error:", e);
@@ -1344,7 +1333,6 @@ window.updateSplash = (txt, pct) => {
                     return await loadLectureByUid(lecUrl);
                 }
                 video.src = lecUrl;
-                if (gsMode) gsVideo.src = lecUrl;
                 console.log(`[Engine] Custom Lecture URL: ${lecUrl}`);
 
                 const derivedData = lecUrl.replace(/\/[^/]+\.(webm|mp4|m3u8)$/i, "/data.json");
@@ -1357,6 +1345,12 @@ window.updateSplash = (txt, pct) => {
                     engineLoaded = true;
                     return true;
                 }
+            }
+
+            if (!activeUid) {
+                console.warn("[Engine] No lecture UID available to load.");
+                setStatus("standby", "STANDBY");
+                return false;
             }
 
             return await loadLectureByUid(activeUid);
@@ -1935,8 +1929,6 @@ window.updateSplash = (txt, pct) => {
                         }
                         break;
                     case "erase_all": if (ev.sid === curSid) activeStrokes.clear(); break;
-                    case "camera_switch": if (gsMode) { ev.value ? gsVideo.play().catch(() => { }) : gsVideo.pause(); } break;
-                    case "educator_align": handleEducatorAlign(ev.value); break;
                     case "rotate_slide": curSlideRotation = ev.v || 0; break;
                     case "play_gif": curGifUrl = ev.src || ''; break;
                     case "share_screen": curScreenShare = !!ev.value; break;
@@ -2096,8 +2088,6 @@ window.updateSplash = (txt, pct) => {
                         break;
                     }
                     case "poll": activePollEvent = ev; renderPollEvent(ev); break;
-                    case "camera_switch": if (gsMode) { ev.value ? gsVideo.play().catch(() => { }) : gsVideo.pause(); } break;
-                    case "educator_align": handleEducatorAlign(ev.value); break;
                     case "pn": if (curPanX !== (ev.v.x || 0) || curPanY !== (ev.v.y || 0)) { curPanX = ev.v.x || 0; curPanY = ev.v.y || 0; needsRedraw = true; bgChanged = true; } break;
                     case "zm": if (curZoom !== (ev.v || 1)) { curZoom = ev.v || 1; needsRedraw = true; bgChanged = true; } break;
                     case "rotate_slide": if (curSlideRotation !== (ev.v || 0)) { curSlideRotation = ev.v || 0; bgChanged = true; } break;
@@ -2231,7 +2221,8 @@ window.updateSplash = (txt, pct) => {
                 }
             }
             prevRafTs = ts;
-            if (!engineLoaded) return;
+            const appEl = $("app");
+            if (!engineLoaded || (appEl && appEl.style.display === "none")) return;
 
             const vUs = curVideoUs();
             const dUs = drawingUs(vUs);
@@ -2292,32 +2283,24 @@ window.updateSplash = (txt, pct) => {
             isBuffering = false;
             if (bufferingOverlay) bufferingOverlay.classList.remove("show");
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
-            if (gsMode) gsVideo.play().catch(() => { });
             requestWakeLock();
         });
         video.addEventListener("pause", () => {
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`;
-            if (gsMode) gsVideo.pause();
             releaseWakeLock();
         });
         video.addEventListener("seeking", () => {
             isSeeking = true;
             if (bufferingOverlay) bufferingOverlay.classList.add("show");
-            if (gsMode) { try { gsVideo.pause(); } catch (_) { } }
         });
         video.addEventListener("seeked", () => {
             if (engineLoaded) doSeek(curVideoUs());
-            if (gsMode) {
-                try { gsVideo.pause(); } catch (_) { }
-                gsVideo.currentTime = video.currentTime;
-            }
             if (autoResumeAfterSeek) {
                 autoResumeAfterSeek = false;
                 video.play().catch(() => { });
             } else {
                 isSeeking = false;
                 if (bufferingOverlay) bufferingOverlay.classList.remove("show");
-                if (gsMode && !video.paused) gsVideo.play().catch(() => { });
             }
         });
         video.addEventListener("waiting", () => { 
@@ -2337,7 +2320,7 @@ window.updateSplash = (txt, pct) => {
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; 
             releaseWakeLock();
         });
-        video.addEventListener("ratechange", () => { if (gsMode) gsVideo.playbackRate = video.playbackRate; });
+
 
         function renderPollEvent(latest) {
             const pd = latest.data, inner = pd.data || {};
@@ -2354,7 +2337,12 @@ window.updateSplash = (txt, pct) => {
         }
 
         function buildChapterMarks() {
-            if (chapterMarks) chapterMarks.innerHTML = '';
+            if (!chapterMarks) return;
+            chapterMarks.innerHTML = '';
+            const totalDurationSec = (Number.isFinite(video.duration) && video.duration > 0) ? video.duration : (maxDuration > 0 ? maxDuration / 1e6 : 0);
+            if (finalSlideList && finalSlideList.length > 0 && totalDurationSec > 0) {
+                renderChapterMarks(finalSlideList, totalDurationSec, seekToSec);
+            }
         }
 
         function seekToSec(sec) {
@@ -2365,7 +2353,6 @@ window.updateSplash = (txt, pct) => {
             }
             isSeeking = true;
             if (bufferingOverlay) bufferingOverlay.classList.add("show");
-            if (gsMode) { try { gsVideo.pause(); } catch (_) { } }
             video.currentTime = Math.max(0, Math.min(video.duration || 1e9, sec));
         }
 
@@ -2476,7 +2463,6 @@ window.updateSplash = (txt, pct) => {
         const teacherSizeWrap = $("teacher-size-wrap");
         if (teacherSizeWrap) {
             function applyTeacherSize(size) {
-                const gs = $("gs-overlay");
                 const vc = $("video-circle");
                 const cp = $("cam-placeholder");
                 document.querySelectorAll(".teacher-size-chip").forEach(c => {
@@ -2484,11 +2470,9 @@ window.updateSplash = (txt, pct) => {
                     else c.classList.remove("active");
                 });
                 if (size === "small") {
-                    if (gs) gs.classList.add("small-size");
                     if (vc) vc.classList.add("small-size");
                     if (cp) cp.classList.add("small-size");
                 } else {
-                    if (gs) gs.classList.remove("small-size");
                     if (vc) vc.classList.remove("small-size");
                     if (cp) cp.classList.remove("small-size");
                 }
@@ -2600,12 +2584,10 @@ window.updateSplash = (txt, pct) => {
         const canvasArea = $("canvas-area") || $("stage");
         if (canvasArea) {
             canvasArea.addEventListener("click", (e) => {
-            const gsOverlay = $("gs-overlay");
             const videoCircle = $("video-circle");
             const isOnControl = (controlsOverlay && controlsOverlay.contains(e.target)) || 
                                 (settingsMenuEl && settingsMenuEl.contains(e.target)) || 
                                 (videoCircle && videoCircle.contains(e.target)) || 
-                                (gsOverlay && gsOverlay.contains(e.target)) ||
                                 (ytCenterBtn && ytCenterBtn.contains(e.target));
             if (isOnControl) return;
 
@@ -2686,8 +2668,14 @@ window.updateSplash = (txt, pct) => {
             const isFS = !!document.fullscreenElement;
             const fsBtnUi = $("fs-btn-ui");
             if (fsBtnUi) fsBtnUi.innerHTML = isFS ? `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2"><polyline points="4,14 10,14 10,20"/><polyline points="20,10 14,10 14,4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="14" y1="10" x2="21" y2="3"/></svg>` : `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2"><polyline points="15,3 21,3 21,9"/><polyline points="9,21 3,21 3,15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`;
+            const vcEl = $("video-circle");
             if (!isFS) {
                 try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) { }
+                if (vcEl) vcEl.classList.remove('fs-floating');
+                if (window.positionCamDocked) window.positionCamDocked();
+            } else {
+                if (vcEl) vcEl.classList.add('fs-floating');
+                if (window.positionCamFloating) window.positionCamFloating();
             }
             const _doResize = () => resizeCanvas(true);
             setTimeout(_doResize, 80);
@@ -2813,7 +2801,8 @@ window.updateSplash = (txt, pct) => {
             if (!pdfNav) return;
             pdfNav.innerHTML = '';
 
-            const activeCourse = COURSES.find(c => c.id === activeCourseId) || COURSES[0];
+            const localCourse = (window.LOCAL_COURSES && window.LOCAL_COURSES.find(c => c.id === activeCourseId || (c.lectures && c.lectures.some(l => l.uid === uid))));
+            const activeCourse = localCourse || COURSES.find(c => c.id === activeCourseId) || COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid)) || COURSES[0];
             const lec = (activeCourse && activeCourse.lectures) ? (activeCourse.lectures.find(l => l.uid === uid) || activeCourse.lectures[0]) : null;
             
             // 1. LOCAL DOWNLOAD MODE PDF
@@ -2824,6 +2813,7 @@ window.updateSplash = (txt, pct) => {
 
                 if (annoFile) {
                     const localPdfBlobUrl = URL.createObjectURL(annoFile);
+                    activeBlobUrls.add(localPdfBlobUrl);
                     localHtml += `
                         <div class="pdf-card" style="border: 1px solid rgba(34,197,94,0.35); background: rgba(34,197,94,0.06);">
                             <div class="pdf-card-header">
@@ -2842,6 +2832,7 @@ window.updateSplash = (txt, pct) => {
 
                 if (cleanFile && cleanFile !== annoFile) {
                     const cleanPdfBlobUrl = URL.createObjectURL(cleanFile);
+                    activeBlobUrls.add(cleanPdfBlobUrl);
                     localHtml += `
                         <div class="pdf-card" style="border: 1px solid rgba(59,130,246,0.35); background: rgba(59,130,246,0.06);">
                             <div class="pdf-card-header">
@@ -2867,7 +2858,7 @@ window.updateSplash = (txt, pct) => {
             let noAnnoUrl = (lec && lec.pdfCleanUrl) ? lec.pdfCleanUrl : null;
 
             if (!withAnnoUrl) {
-                const titleSlug = ((lec && lec.title) || "Lecture_Notes").replace(/\s+/g, '_');
+                const titleSlug = ((lec && lec.title) || "Lecture_Notes").replace(/[\s\/:?#\-()&!,]+/g, '_').replace(/^_+|_+$/g, '');
                 withAnnoUrl = `https://player.uacdn.net/slides_pdf/${uid}/${titleSlug}_with_anno.pdf`;
             }
             if (!noAnnoUrl && withAnnoUrl && withAnnoUrl.includes('_with_anno.pdf')) {
@@ -3269,13 +3260,20 @@ window.updateSplash = (txt, pct) => {
             if (video) {
                 try { video.pause(); } catch (e) {}
             }
+            activeBlobUrls.forEach(u => {
+                try { URL.revokeObjectURL(u); } catch (_) {}
+            });
+            activeBlobUrls.clear();
+            lastLocalVideoBlobUrl = null;
+
             for (const c of [slideCanvas, hlCanvas, penCanvas, eraserCanvas, drawCanvas, shapePreviewCanvas, laserCanvas]) {
                 if (c) {
                     const ctx = c.getContext("2d");
                     if (ctx) {
-                        const dpr = window.devicePixelRatio || 1;
-                        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                        ctx.clearRect(0, 0, CW || c.width, CH || c.height);
+                        ctx.save();
+                        ctx.setTransform(1, 0, 0, 1, 0, 0);
+                        ctx.clearRect(0, 0, c.width, c.height);
+                        ctx.restore();
                     }
                 }
             }
@@ -3321,7 +3319,15 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
 
     destroyEngine();
 
+    if (lastLocalVideoBlobUrl) {
+        try { URL.revokeObjectURL(lastLocalVideoBlobUrl); } catch (_) {}
+        activeBlobUrls.delete(lastLocalVideoBlobUrl);
+    }
     const videoUrl = lec.videoFile ? URL.createObjectURL(lec.videoFile) : (lec.videoUrl || "");
+    if (lec.videoFile) {
+        lastLocalVideoBlobUrl = videoUrl;
+        activeBlobUrls.add(videoUrl);
+    }
     video.preload = "auto";
     video.src = videoUrl;
     video.load();

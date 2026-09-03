@@ -388,13 +388,8 @@ async function restoreSavedFolderOnStartup() {
         const dirHandle = await getSavedDirectoryHandle();
         if (!dirHandle) return false;
 
-        // Query permission without showing prompt
-        let perm = await dirHandle.queryPermission({ mode: "read" });
-        if (perm === "prompt") {
-            // Some browsers require requestPermission
-            perm = await dirHandle.requestPermission({ mode: "read" });
-        }
-
+        // Query permission without showing prompt (avoids browser SecurityError on startup)
+        const perm = await dirHandle.queryPermission({ mode: "read" });
         if (perm === "granted") {
             console.log("[LocalLoader] Auto-restoring saved course folder from IndexedDB:", dirHandle.name);
             const files = await scanDirectoryHandle(dirHandle, dirHandle.name);

@@ -743,6 +743,7 @@ function filterLectures() {
 }
 
 async function launchLecture(uid, startTimeSec = null) {
+    activeUid = uid;
     const sp = document.getElementById("splash");
     if (sp) {
         sp.style.display = "flex";
@@ -790,7 +791,7 @@ async function launchLecture(uid, startTimeSec = null) {
     }
 
     saveLastWatched(uid, activeCourseId, targetTime);
-    const success = await loadLectureByUid(uid, targetTime);
+    const success = await loadLectureByUid(uid, targetTime, activeCourseId);
     if (success) {
         if (sp) {
             sp.classList.add("hidden");

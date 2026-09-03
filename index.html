@@ -234,11 +234,6 @@
         <button id="off-plus-fine">+0.1s</button>
         <button id="gs-toggle-btn">Green Screen</button>
         <div id="sync-panel"></div>
-        <div id="poll-panel">
-            <div class="poll-head">📊 Live Poll</div>
-            <div class="poll-question" id="poll-q"></div>
-            <div id="poll-opts"></div>
-        </div>
         <header>
             <div class="logo">PRO<span>DECK</span></div>
             <button class="hbtn" id="fs-btn">⤢ Fullscreen</button>
@@ -291,6 +286,13 @@
                         <div class="net-label">Loading...</div>
                     </div>
                     <div id="ist-clock" style="display:none">STANDBY IST</div>
+
+                    <!-- LIVE POLL PANEL -->
+                    <div id="poll-panel">
+                        <div class="poll-head">📊 Live Poll</div>
+                        <div class="poll-question" id="poll-q"></div>
+                        <div id="poll-opts"></div>
+                    </div>
 
                     <!-- YOUTUBE CENTER PLAY/PAUSE OVERLAY -->
                     <div id="yt-center-play-overlay" class="yt-center-play-overlay">
@@ -466,74 +468,7 @@
     <!-- Panel Toggle Arrow -->
     <button id="panel-toggle" title="Toggle Panel">❯</button>
 
-    <!-- Security layer script block -->
-    <script>
-        function initSecurityLayer() {
-            function triggerOverlayAndRedirect() {
-                if (document.getElementById("antiOverlay")) return;
-                const overlay = document.createElement("div");
-                overlay.id = "antiOverlay";
-                overlay.style.cssText = `
-                  position: fixed; top:0; left:0; width:100%; height:100%;
-                  background: rgba(0,0,0,0.9); color:#fff; font-size:30px;
-                  display:flex; align-items:center; justify-content:center;
-                  z-index:999999; font-weight:bold; backdrop-filter:blur(5px);
-                `;
-                overlay.innerText = "Unauthorized Action Detected!";
-                document.body.appendChild(overlay);
-                setTimeout(() => {
-                    window.location.href = "https://www.google.com";
-                }, 800);
-            }
 
-            let devtoolsOpen = false;
-            const interval = setInterval(() => {
-                const start = new Date();
-                debugger;
-                const end = new Date();
-                if (end - start > 150) {
-                    if (!devtoolsOpen) {
-                        devtoolsOpen = true;
-                        triggerOverlayAndRedirect();
-                    }
-                } else {
-                    devtoolsOpen = false;
-                }
-            }, 1000);
-
-            document.addEventListener("keydown", e => {
-                const key = e.key.toLowerCase();
-                if (
-                    e.key === "F12" ||
-                    (e.ctrlKey && ["u", "s", "p", "c", "x"].includes(key)) ||
-                    (e.ctrlKey && e.shiftKey && ["i", "j", "c", "k"].includes(key)) ||
-                    (e.metaKey && e.altKey && key === "i")
-                ) {
-                    e.preventDefault();
-                    triggerOverlayAndRedirect();
-                }
-            }, true);
-
-            window.addEventListener("contextmenu", e => {
-                e.preventDefault();
-                triggerOverlayAndRedirect();
-            }, true);
-
-            ["mousedown", "mouseup"].forEach(evt => {
-                window.addEventListener(evt, e => {
-                    if (e.button === 1 || e.button === 2) {
-                        e.preventDefault();
-                        triggerOverlayAndRedirect();
-                    }
-                }, true);
-            });
-
-            return () => clearInterval(interval);
-        }
-
-        // Disabled DevTools blocker in development environment for debugging ease
-        // initSecurityLayer();
-    </script>
 
     <!-- URL param logic -->
     <script>
