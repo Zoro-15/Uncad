@@ -85,7 +85,6 @@ window.updateSplash = (txt, pct) => {
         const debugConsoleBtn = $("debug-console-btn");
 
         const BASE_WIDTH = 1080;
-        const POINTER_HIDE_US = 2e6;
         const SHAPES_STROKE_TO_REPLACE = "#000001";
         const USLShape_DASH_SCALE_BASE_DIM = 100;
 
@@ -338,6 +337,9 @@ window.updateSplash = (txt, pct) => {
 
         let pointerStream = [];
         let ptrStreamIdx = 0;
+        let targetPtrPos = { x: -999, y: -999 };
+        let currentPtrPos = { x: -999, y: -999 };
+        let isPointerVisible = false;
 
         const fmt = sec => { const s = Math.max(0, sec); return `${Math.floor(s / 60)}:${Math.floor(s % 60).toString().padStart(2, "0")}`; };
         const curVideoUs = () => Math.round(video.currentTime * 1e6);
@@ -1403,6 +1405,12 @@ window.updateSplash = (txt, pct) => {
 
         async function processData(raw, startSec = 0) {
             ptrStreamIdx = 0;
+            targetPtrPos = { x: -999, y: -999 };
+            currentPtrPos = { x: -999, y: -999 };
+            isPointerVisible = false;
+            ptrX = -999;
+            ptrY = -999;
+            if (pointerDot) pointerDot.style.opacity = "0";
             console.log("[Data] Deobfuscating telemetry headers...");
             raw = deobfuscateNode(raw);
             let flat = [];
@@ -1610,7 +1618,7 @@ window.updateSplash = (txt, pct) => {
                     const isValidPt = (p) => p && Number.isFinite(p.x) && Number.isFinite(p.y);
                     const isOrigin = (p) => Math.abs(p.x) < 0.0001 && Math.abs(p.y) < 0.0001;
 
-                    if ((inner.e === "d" || (inner.e === "p" && !strokeMap.has(cwId))) && isValidPt(inner.p)) {
+                    if (inner.e === "d" && isValidPt(inner.p)) {
                         if (strokeMap.has(cwId)) {
                             const old = strokeMap.get(cwId);
                             if (old.isTempHL) { tempHighlightStrokes.push(old); }
@@ -1825,7 +1833,12 @@ window.updateSplash = (txt, pct) => {
 
             eraseLog = allEvents.filter(ev => ev.type === "erase_all").map(ev => ({ sid: ev.sid, t: ev.t }));
             pointerStream = allEvents.filter(ev => ["pointer", "stroke_down", "stroke_move", "stroke_up"].includes(ev.type))
-                .map(ev => ({ t: ev.t, x: ev.type === "pointer" ? ev.x : ev.pt.x, y: ev.type === "pointer" ? ev.y : ev.pt.y }));
+                .map(ev => ({
+                    t: ev.t,
+                    x: ev.type === "pointer" ? ev.x : ev.pt.x,
+                    y: ev.type === "pointer" ? ev.y : ev.pt.y,
+                    isDraw: ev.type !== "pointer"
+                }));
 
             snapshots = [];
             let curSnapshotState = { sid: "init", slideUrl: '', bgColor: "#111118", bgImageUrl: '', color: "#ffff00", mode: "marker", penSize: 2, eraserSize: 10, panX: 0, panY: 0, zoom: 1, rotation: 0, gifUrl: '', screenShare: false };
@@ -1867,16 +1880,60 @@ window.updateSplash = (txt, pct) => {
             ensureSyncLoop();
         }
 
-        function getInterpolatedPointer(targetUs) {
-            if (!pointerStream.length) return null;
-            while (ptrStreamIdx < pointerStream.length - 1 && pointerStream[ptrStreamIdx + 1].t < targetUs) ptrStreamIdx++;
-            while (ptrStreamIdx > 0 && pointerStream[ptrStreamIdx].t > targetUs) ptrStreamIdx--;
-            const p0 = pointerStream[ptrStreamIdx];
-            if (targetUs < p0.t) return null;
-            if (ptrStreamIdx === pointerStream.length - 1 || targetUs > p0.t + POINTER_HIDE_US) return (targetUs - p0.t <= POINTER_HIDE_US) ? p0 : null;
-            const p1 = pointerStream[ptrStreamIdx + 1];
-            const ratio = (targetUs - p0.t) / (p1.t - p0.t);
-            return { t: targetUs, x: p0.x + (p1.x - p0.x) * ratio, y: p0.y + (p1.y - p0.y) * ratio };
+        function updatePointer(targetUs, immediate = false) {
+            if (!pointerStream.length || !pointerDot) return;
+
+            if (targetUs < pointerStream[0].t) {
+                if (isPointerVisible) {
+                    isPointerVisible = false;
+                    pointerDot.style.opacity = "0";
+                }
+                return;
+            }
+
+            let isDrawing = false;
+            while (ptrStreamIdx < pointerStream.length - 1 && pointerStream[ptrStreamIdx + 1].t <= targetUs) {
+                ptrStreamIdx++;
+                if (pointerStream[ptrStreamIdx].isDraw) isDrawing = true;
+            }
+            while (ptrStreamIdx > 0 && pointerStream[ptrStreamIdx].t > targetUs) {
+                ptrStreamIdx--;
+            }
+
+            const p = pointerStream[ptrStreamIdx];
+            targetPtrPos.x = p.x;
+            targetPtrPos.y = p.y;
+
+            if (immediate || !isPointerVisible || isDrawing || p.isDraw) {
+                currentPtrPos.x = targetPtrPos.x;
+                currentPtrPos.y = targetPtrPos.y;
+            } else {
+                const speed = 10;
+                const dx = targetPtrPos.x - currentPtrPos.x;
+                const dy = targetPtrPos.y - currentPtrPos.y;
+                if (Math.abs(dx) > 0.00001 || Math.abs(dy) > 0.00001) {
+                    currentPtrPos.x += dx / speed;
+                    currentPtrPos.y += dy / speed;
+                } else {
+                    currentPtrPos.x = targetPtrPos.x;
+                    currentPtrPos.y = targetPtrPos.y;
+                }
+            }
+
+            const projected = projectBoardPoint(currentPtrPos.x * CW, currentPtrPos.y * CH);
+            const nextPtrX = Number((projected.x - 2.25).toFixed(1));
+            const nextPtrY = Number((projected.y - 2.25).toFixed(1));
+
+            if (nextPtrX !== ptrX || nextPtrY !== ptrY) {
+                ptrX = nextPtrX;
+                ptrY = nextPtrY;
+                pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
+            }
+
+            if (!isPointerVisible) {
+                isPointerVisible = true;
+                pointerDot.style.opacity = "1";
+            }
         }
 
         function findClosestSnapshot(targetUs) {
@@ -1945,14 +2002,7 @@ window.updateSplash = (txt, pct) => {
             const fItem = finalSlideList.find(s => s._sid === curSid);
             if (fItem) curSlideIdx = finalSlideList.indexOf(fItem);
 
-            const p = getInterpolatedPointer(targetUs);
-            if (p) {
-                const projected = projectBoardPoint(p.x * CW, p.y * CH);
-                ptrX = projected.x - 2.25; ptrY = projected.y - 2.25;
-                pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
-                pointerDot.style.opacity = "1";
-            }
-            else { pointerDot.style.opacity = "0"; }
+            updatePointer(targetUs, true);
             if (pageIndicator) { const pg = getPdfPage(curSlideUrl); pageIndicator.textContent = pg ? `Slide ${curSlideIdx + 1} (Page ${pg})` : `Slide ${curSlideIdx + 1}`; }
             updateSlideNavUI();
 
@@ -2105,20 +2155,7 @@ window.updateSplash = (txt, pct) => {
                 }
             }
 
-            const p = getInterpolatedPointer(targetUs);
-            if (p) {
-                const projected = projectBoardPoint(p.x * CW, p.y * CH);
-                const nextPtrX = Number((projected.x - 2.25).toFixed(1));
-                const nextPtrY = Number((projected.y - 2.25).toFixed(1));
-                if (nextPtrX !== ptrX || nextPtrY !== ptrY) {
-                    ptrX = nextPtrX;
-                    ptrY = nextPtrY;
-                    pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
-                }
-                if (pointerDot.style.opacity !== "1") pointerDot.style.opacity = "1";
-            } else if (pointerDot.style.opacity !== "0") {
-                pointerDot.style.opacity = "0";
-            }
+            updatePointer(targetUs, false);
 
             if (bgChanged) paintBackground(false);
             if (needsRedraw) replayStrokes(targetUs);
