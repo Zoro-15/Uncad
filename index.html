@@ -336,8 +336,20 @@
                     <!-- CONTROLS OVERLAY -->
                     <div id="controls-overlay">
                         <!-- SEEK BAR -->
-                        <div class="ua-seek-row">
+                        <div class="ua-seek-row" id="ua-seek-row">
                             <div id="chapter-marks"></div>
+                            <div id="seek-hover-tooltip" class="seek-hover-tooltip">
+                                <div class="seek-tooltip-thumb-wrap" id="seek-tooltip-thumb-wrap">
+                                    <img id="seek-tooltip-thumb" class="seek-tooltip-thumb" alt="Slide preview" src="" />
+                                    <div id="seek-tooltip-empty" class="seek-tooltip-empty" style="display:none;">
+                                        <i class="fas fa-edit"></i>
+                                        <span id="seek-tooltip-empty-text">Blank Slide</span>
+                                    </div>
+                                    <div id="seek-tooltip-badge" class="seek-tooltip-badge">Slide 1</div>
+                                </div>
+                                <div class="seek-tooltip-time" id="seek-tooltip-time">0:00</div>
+                            </div>
+                            <div id="seek-hover-line" class="seek-hover-line"></div>
                             <input type="range" id="seek-bar" min="0" value="0" step="1">
                         </div>
 

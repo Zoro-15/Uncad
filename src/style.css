@@ -727,6 +727,129 @@
             pointer-events: none;
         }
 
+        /* SEEK BAR HOVER TOOLTIP & PREVIEW */
+        .seek-hover-tooltip {
+            position: absolute;
+            bottom: calc(100% + 14px);
+            left: 50%;
+            transform: translate(-50%, 4px) scale(0.96);
+            background: rgba(18, 18, 24, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 1px rgba(255, 255, 255, 0.3);
+            z-index: 500;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.16s;
+            transform-origin: bottom center;
+        }
+
+        .seek-hover-tooltip.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0) scale(1);
+        }
+
+        .seek-hover-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: var(--arrow-x, 50%);
+            transform: translateX(-50%);
+            border-width: 6px 6px 0 6px;
+            border-style: solid;
+            border-color: rgba(18, 18, 24, 0.95) transparent transparent transparent;
+            transition: left 0.04s ease;
+        }
+
+        .seek-tooltip-thumb-wrap {
+            position: relative;
+            width: 160px;
+            height: 90px;
+            background: #0f0f14;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .seek-tooltip-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #111118;
+            display: block;
+        }
+
+        .seek-tooltip-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: var(--text-2);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .seek-tooltip-empty i {
+            font-size: 16px;
+            color: var(--accent);
+        }
+
+        .seek-tooltip-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.2px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .seek-tooltip-time {
+            margin-top: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .seek-hover-line {
+            position: absolute;
+            top: 50%;
+            height: 16px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 10;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+            transition: opacity 0.12s ease;
+        }
+
+        .seek-hover-line.show {
+            opacity: 1;
+        }
+
         /* BOTTOM CONTROLS BAR */
         .ua-controls-bar {
             display: flex;

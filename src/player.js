@@ -222,6 +222,7 @@ window.updateSplash = (txt, pct) => {
         let ptrX = -999, ptrY = -999;
         let lastPollUid = null;
         let evIdx = 0;
+        let lastDrawUs = 0;
         let isSeeking = false;
         let isBuffering = false;
         let autoResumeAfterSeek = false;
@@ -1671,8 +1672,17 @@ window.updateSplash = (txt, pct) => {
                                     allEvents.push({ t, type: "stroke_down", cwId, pt: inner.p, ...newStroke });
                                 }
                             } else {
-                                stroke.pts.push({ x: inner.p.x, y: inner.p.y, t });
-                                allEvents.push({ t, type: inner.e === "m" ? "stroke_move" : "stroke_up", cwId, pt: inner.p });
+                                let ptToRecord = inner.p;
+                                if (stroke.pts.length > 0 && (!stroke.mode || stroke.mode === "marker") && !stroke.isErase) {
+                                    const val = Math.floor(dist * 10) + 1;
+                                    ptToRecord = {
+                                        ...inner.p,
+                                        x: (last.x + inner.p.x * val) / (val + 1),
+                                        y: (last.y + inner.p.y * val) / (val + 1)
+                                    };
+                                }
+                                stroke.pts.push({ x: ptToRecord.x, y: ptToRecord.y, t });
+                                allEvents.push({ t, type: inner.e === "m" ? "stroke_move" : "stroke_up", cwId, pt: ptToRecord });
                                 if (inner.e === "u") {
                                     if (stroke.isTempHL) tempHighlightStrokes.push(stroke);
                                     else pushCompletedStroke(stroke);
@@ -2008,10 +2018,23 @@ window.updateSplash = (txt, pct) => {
 
             let latestPoll = null; for (let i = evIdx - 1; i >= 0; i--) { if (allEvents[i].type === "poll") { latestPoll = allEvents[i]; break; } }
             if (latestPoll && (targetUs - latestPoll.t) <= 20000000) { renderPollEvent(latestPoll); activePollEvent = latestPoll; } else { pollPanel.classList.remove("show"); }
+            lastDrawUs = targetUs;
             paintBackground(true); replayStrokes(targetUs);
         }
 
+        function prefetchUpcomingSlides(centerIdx) {
+            if (!slideRegistry) return;
+            for (let i = centerIdx + 1; i <= centerIdx + 2; i++) {
+                const nextSlide = slideRegistry[i];
+                if (nextSlide) {
+                    if (nextSlide.url) getImg(nextSlide.url);
+                    if (nextSlide.bg) getImg(nextSlide.bg);
+                }
+            }
+        }
+
         function updateSlideNavUI() {
+            prefetchUpcomingSlides(curSlideIdx);
             document.querySelectorAll(".slide-thumb").forEach(t => t.classList.remove("active"));
             const active = $(`thumb-${curSlideIdx}`);
             if (active) {
@@ -2058,6 +2081,12 @@ window.updateSplash = (txt, pct) => {
 
         function tickDraw(targetVideoUs) {
             const targetUs = drawingUs(targetVideoUs);
+            if (lastDrawUs > 0 && Math.abs(targetUs - lastDrawUs) > 600000) {
+                lastDrawUs = targetUs;
+                doSeek(targetVideoUs);
+                return;
+            }
+            lastDrawUs = targetUs;
             let bgChanged = false;
             let needsRedraw = false;
 
@@ -2098,7 +2127,12 @@ window.updateSplash = (txt, pct) => {
                             else renderLiveShapePreview(s, nx, ny);
                         } else if (!needsRedraw && isViewportDefault()) {
                             if (s.isErase) { drawDot(penCtx, s); drawDot(hlCtx, s); drawDot(drawCtx, s); drawDot(eraserCtx, s); }
-                            else { if (!s.isHighlight && !s.isTempHL) drawDot(penCtx, s); }
+                            else if (s.isTempHL) {
+                                laserCtx.clearRect(0, 0, CW, CH);
+                                drawDot(laserCtx, s);
+                            } else {
+                                if (!s.isHighlight) drawDot(penCtx, s);
+                            }
                         }
                         activeStrokes.set(ev.cwId, s);
                         if (s.isTempHL) latestTempHLcwId = ev.cwId;
@@ -2121,7 +2155,9 @@ window.updateSplash = (txt, pct) => {
                                 needsRedraw = true;
                             } else if (!needsRedraw) {
                                 if (s.isErase) { drawCurve(penCtx, s, mx, my); drawCurve(hlCtx, s, mx, my); drawCurve(drawCtx, s, mx, my); drawCurve(eraserCtx, s, mx, my); }
-                                else if (s.isTempHL) needsRedraw = true;
+                                else if (s.isTempHL) {
+                                    drawCurve(laserCtx, s, mx, my);
+                                }
                                 else if (s.isPermHL) drawCurve(hlCtx, s, mx, my);
                                 else drawCurve(penCtx, s, mx, my);
                             }
@@ -2132,7 +2168,10 @@ window.updateSplash = (txt, pct) => {
                                 }
                                 if (liveShape && isViewportDefault()) {
                                     clearShapePreview();
-                                    if (s.isTempHL) needsRedraw = true;
+                                    if (s.isTempHL) {
+                                        laserCtx.clearRect(0, 0, CW, CH);
+                                        drawShape(laserCtx, s, s.startX, s.startY, nx, ny);
+                                    }
                                     else {
                                         const targetCtx = s.isHighlight ? hlCtx : drawCtx;
                                         targetCtx.save();
@@ -2513,6 +2552,121 @@ window.updateSplash = (txt, pct) => {
             applyDecoupledSeek(targetAnimUs - drawOffset, true);
         });
 
+        // ══════════════════════════════════════════════════
+        // SEEK BAR HOVER TIME & SLIDE THUMBNAIL TOOLTIP
+        // ══════════════════════════════════════════════════
+        const seekRow = $("ua-seek-row") || (seekBar ? seekBar.parentElement : null);
+        const seekTooltip = $("seek-hover-tooltip");
+        const seekThumbWrap = $("seek-tooltip-thumb-wrap");
+        const seekThumbImg = $("seek-tooltip-thumb");
+        const seekThumbEmpty = $("seek-tooltip-empty");
+        const seekThumbBadge = $("seek-tooltip-badge");
+        const seekTooltipTime = $("seek-tooltip-time");
+        const seekHoverLine = $("seek-hover-line");
+
+        let isSeekHoverActive = false;
+
+        function updateSeekTooltip(e) {
+            if (!seekBar || !seekTooltip || !seekTooltipTime) return;
+            const rect = seekBar.getBoundingClientRect();
+            if (rect.width <= 0) return;
+
+            const clientX = Math.max(rect.left, Math.min(rect.right, e.clientX));
+            const pct = (clientX - rect.left) / rect.width;
+            const relX = clientX - rect.left;
+
+            const totalSec = (Number.isFinite(video.duration) && video.duration > 0)
+                ? video.duration
+                : (maxDuration > 0 ? maxDuration / 1e6 : 0);
+
+            const hoverSec = Math.max(0, Math.min(totalSec, pct * totalSec));
+            const hoverAnimUs = (hoverSec * 1e6) + drawOffset;
+
+            seekTooltipTime.textContent = fmt(Math.floor(hoverSec));
+
+            if (seekHoverLine) {
+                seekHoverLine.style.left = `${relX}px`;
+            }
+
+            const cardWidth = 172;
+            const halfCard = cardWidth / 2;
+            const clampedX = Math.max(halfCard, Math.min(rect.width - halfCard, relX));
+            seekTooltip.style.left = `${clampedX}px`;
+
+            // Position tooltip downward arrow directly over cursor
+            const arrowX = Math.max(12, Math.min(cardWidth - 12, relX - clampedX + halfCard));
+            seekTooltip.style.setProperty("--arrow-x", `${arrowX}px`);
+
+            let slideUrl = "";
+            let slideIdx = -1;
+            if (engineLoaded && snapshots && snapshots.length > 0) {
+                const snap = findClosestSnapshot(hoverAnimUs);
+                const activeSid = snap ? snap.state.sid : "init";
+                slideUrl = snap ? snap.state.slideUrl : "";
+
+                if (finalSlideList && finalSlideList.length > 0) {
+                    const fIdx = finalSlideList.findIndex(s => s._sid === activeSid);
+                    if (fIdx !== -1) {
+                        slideIdx = fIdx;
+                        if (!slideUrl && finalSlideList[fIdx].url) {
+                            slideUrl = finalSlideList[fIdx].url;
+                        }
+                    }
+                }
+            }
+
+            if (finalSlideList && finalSlideList.length > 0) {
+                if (seekThumbWrap) seekThumbWrap.style.display = "flex";
+                if (slideUrl) {
+                    if (seekThumbImg) {
+                        if (seekThumbImg.src !== slideUrl) seekThumbImg.src = slideUrl;
+                        seekThumbImg.style.display = "block";
+                    }
+                    if (seekThumbEmpty) seekThumbEmpty.style.display = "none";
+                } else {
+                    if (seekThumbImg) seekThumbImg.style.display = "none";
+                    if (seekThumbEmpty) seekThumbEmpty.style.display = "flex";
+                }
+
+                if (seekThumbBadge) {
+                    const pg = getPdfPage(slideUrl);
+                    seekThumbBadge.textContent = pg ? `Slide ${slideIdx + 1} (Page ${pg})` : (slideIdx >= 0 ? `Slide ${slideIdx + 1}` : 'Intro');
+                }
+            } else {
+                if (seekThumbWrap) seekThumbWrap.style.display = "none";
+            }
+        }
+
+        if (seekRow && seekBar) {
+            const onEnter = (e) => {
+                if (e.pointerType === 'touch') return;
+                isSeekHoverActive = true;
+                if (seekTooltip) seekTooltip.classList.add("show");
+                if (seekHoverLine) seekHoverLine.classList.add("show");
+                updateSeekTooltip(e);
+            };
+
+            const onMove = (e) => {
+                if (e.pointerType === 'touch') return;
+                if (!isSeekHoverActive) {
+                    isSeekHoverActive = true;
+                    if (seekTooltip) seekTooltip.classList.add("show");
+                    if (seekHoverLine) seekHoverLine.classList.add("show");
+                }
+                updateSeekTooltip(e);
+            };
+
+            const onLeave = () => {
+                isSeekHoverActive = false;
+                if (seekTooltip) seekTooltip.classList.remove("show");
+                if (seekHoverLine) seekHoverLine.classList.remove("show");
+            };
+
+            seekRow.addEventListener("pointerenter", onEnter);
+            seekRow.addEventListener("pointermove", onMove);
+            seekRow.addEventListener("pointerleave", onLeave);
+        }
+
         $("rew-btn-ui").addEventListener("click", () => seekToSec(video.currentTime - 10));
         $("fwd-btn-ui").addEventListener("click", () => seekToSec(video.currentTime + 10));
 
@@ -2618,8 +2772,11 @@ window.updateSplash = (txt, pct) => {
         $("fs-btn-ui").addEventListener("click", () => toggleFullScreen());
 
         document.addEventListener('visibilitychange', async () => {
-            if (document.visibilityState === 'visible' && !video.paused) {
-                await requestWakeLock();
+            if (document.visibilityState === 'visible') {
+                if (!video.paused) await requestWakeLock();
+                if (engineLoaded && !video.paused) {
+                    doSeek(curVideoUs());
+                }
             } else if (document.visibilityState === 'hidden') {
                 releaseWakeLock();
             }
