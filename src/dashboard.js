@@ -197,7 +197,7 @@ function initHistoryRouting() {
             if (currentView === "player") {
                 switchView("course", { courseId: activeCourseId }, true);
             } else if (currentView === "course") {
-                switchView("my-courses", {}, true);
+                switchView(lastCatalogView || "my-courses", {}, true);
             } else {
                 switchView("my-courses", {}, true);
             }
@@ -208,7 +208,11 @@ function initHistoryRouting() {
 let lastCatalogView = "my-courses";
 
 function handleBackNavigation() {
-    switchView(lastCatalogView || "my-courses");
+    if (window.history.length > 1 && window.history.state) {
+        window.history.back();
+    } else {
+        switchView(lastCatalogView || "my-courses");
+    }
 }
 
 function switchView(viewName, params = {}, skipPush = false) {
@@ -219,7 +223,11 @@ function switchView(viewName, params = {}, skipPush = false) {
     }
 
     if (!skipPush) {
-        history.pushState({ view: viewName, params }, '', '#' + viewName);
+        if (!history.state) {
+            history.replaceState({ view: viewName, params }, '', '#' + viewName);
+        } else if (history.state.view !== viewName || JSON.stringify(history.state.params) !== JSON.stringify(params)) {
+            history.pushState({ view: viewName, params }, '', '#' + viewName);
+        }
     }
 
     const dbShell = document.getElementById("dashboard-shell");
@@ -847,6 +855,52 @@ function filterLectures() {
     }, 60);
 }
 
+function resetCurrentCourseProgress(courseId = null) {
+    const targetCourseId = courseId || activeCourseId;
+    const course = findCourseById(targetCourseId);
+    if (!course || !course.lectures || course.lectures.length === 0) return;
+
+    const confirmed = confirm(`Are you sure you want to reset all watch progress for "${course.title}"?\n\nThis will clear all completion checkmarks and saved resume positions for this course.`);
+    if (!confirmed) return;
+
+    try {
+        let progMap = {};
+        const stored = localStorage.getItem(PROGRESS_KEY);
+        if (stored) progMap = JSON.parse(stored);
+
+        course.lectures.forEach(lec => {
+            if (lec.uid && progMap[lec.uid]) {
+                delete progMap[lec.uid];
+            }
+        });
+
+        _memoProgress = progMap;
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(progMap));
+
+        // Clear last watched if it belonged to this course
+        const lastWatched = getLastWatched();
+        if (lastWatched && (lastWatched.courseId === targetCourseId || course.lectures.some(l => l.uid === lastWatched.uid))) {
+            localStorage.removeItem(LAST_WATCHED_KEY);
+            _memoLastWatched = null;
+        }
+
+        // Re-render course details and dashboard progress bars
+        const searchInput = document.getElementById("lecture-search-input");
+        if (searchInput && searchInput.value.trim()) {
+            filterLectures();
+        } else {
+            renderLecturesList(course.lectures);
+        }
+        renderMyCourses();
+
+        if (window.showToast) {
+            window.showToast(`Reset progress for "${course.title}"`, "info");
+        }
+    } catch (e) {
+        console.error("Failed to reset course progress:", e);
+    }
+}
+
 async function launchLecture(uid, startTimeSec = null, courseId = null) {
     activeUid = uid;
     if (courseId) {
@@ -925,7 +979,11 @@ function goBackToCourse() {
     if (video && activeUid && video.currentTime > 0) {
         saveLastWatched(activeUid, activeCourseId, video.currentTime);
     }
-    switchView("course", { courseId: activeCourseId });
+    if (window.history.length > 1 && window.history.state && window.history.state.view === "player") {
+        window.history.back();
+    } else {
+        switchView("course", { courseId: activeCourseId });
+    }
 }
 
 // ══════════════════════════════════════════════════
@@ -998,6 +1056,110 @@ async function prefetchPredictiveLectures() {
     }
 }
 
+// ══════════════════════════════════════════════════
+// STUDY PROGRESS BACKUP / EXPORT / IMPORT
+// ══════════════════════════════════════════════════
+function exportStudyProgress() {
+    try {
+        let lectureProgress = {};
+        try {
+            const rawProg = localStorage.getItem(PROGRESS_KEY);
+            if (rawProg) lectureProgress = JSON.parse(rawProg);
+        } catch (_) {}
+
+        const backupData = {
+            app: "lennister-player",
+            version: "1.0",
+            exportedAt: new Date().toISOString(),
+            enrolledCourses: getEnrolledCourses(),
+            lastWatched: getLastWatched(),
+            lectureProgress: lectureProgress,
+            teacherCamSize: localStorage.getItem("teacher_cam_size") || "big"
+        };
+
+        const jsonStr = JSON.stringify(backupData, null, 2);
+        const blob = new Blob([jsonStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const dateStr = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `lennister_progress_backup_${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+        if (window.showToast) {
+            window.showToast("Exported study progress backup!", "success");
+        }
+    } catch (e) {
+        console.error("Export progress failed:", e);
+        if (window.showToast) window.showToast("Failed to export progress backup", "warn");
+    }
+}
+
+function openProgressImportDialog() {
+    const input = document.getElementById("progress-import-input");
+    if (input) input.click();
+}
+
+async function handleProgressImportFile(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+
+        if (!data || typeof data !== "object") {
+            throw new Error("Invalid backup file format");
+        }
+
+        let importedCount = 0;
+
+        if (Array.isArray(data.enrolledCourses)) {
+            localStorage.setItem(ENROLLED_KEY, JSON.stringify(data.enrolledCourses));
+            _memoEnrolled = data.enrolledCourses;
+            importedCount++;
+        }
+
+        if (data.lectureProgress && typeof data.lectureProgress === "object") {
+            localStorage.setItem(PROGRESS_KEY, JSON.stringify(data.lectureProgress));
+            _memoProgress = data.lectureProgress;
+            importedCount++;
+        }
+
+        if (data.lastWatched && typeof data.lastWatched === "object" && data.lastWatched.uid) {
+            localStorage.setItem(LAST_WATCHED_KEY, JSON.stringify(data.lastWatched));
+            _memoLastWatched = data.lastWatched;
+            importedCount++;
+        }
+
+        if (data.teacherCamSize && typeof data.teacherCamSize === "string") {
+            localStorage.setItem("teacher_cam_size", data.teacherCamSize);
+        }
+
+        if (importedCount === 0) {
+            throw new Error("Backup file contains no recognizable study progress or course data.");
+        }
+
+        renderMyCourses();
+        if (currentView === "course" && activeCourseId) {
+            const course = findCourseById(activeCourseId);
+            if (course) renderLecturesList(course.lectures);
+        }
+
+        if (window.showToast) {
+            window.showToast("Study progress restored successfully!", "success");
+        }
+    } catch (err) {
+        console.error("Import progress failed:", err);
+        alert("Failed to restore backup: " + (err.message || "Invalid JSON file"));
+    } finally {
+        event.target.value = "";
+    }
+}
+
 // Trigger silent predictive caching after dashboard initial mount
 setTimeout(prefetchPredictiveLectures, 1200);
 
@@ -1008,30 +1170,34 @@ initHistoryRouting();
 export { 
     switchView, 
     renderMyCourses, 
-    renderSubjectGrid,
-    renderOfflineMode,
-    clearOfflineStorage,
+    renderSubjectGrid, 
+    renderOfflineMode, 
+    clearOfflineStorage, 
     renderCourseDetails, 
     renderLecturesList, 
     filterLectures, 
     launchLecture, 
     goBackToCourse,
     handleBackNavigation,
-    toggleEnrollCourse,
-    toggleNavMenu,
-    switchNavView,
-    saveLastWatched,
-    getLastWatched,
-    getLectureProgress,
-    saveLectureProgress,
-    launchCourseContinue,
-    refreshCachedUidsSet,
-    addLocalCourse,
-    findCourseById,
-    LOCAL_COURSES,
-    prefetchPredictiveLectures,
-    parseDurationToSeconds,
-    getCourseCompletionStats
+    toggleEnrollCourse, 
+    toggleNavMenu, 
+    switchNavView, 
+    saveLastWatched, 
+    getLastWatched, 
+    getLectureProgress, 
+    saveLectureProgress, 
+    launchCourseContinue, 
+    refreshCachedUidsSet, 
+    addLocalCourse, 
+    findCourseById, 
+    LOCAL_COURSES, 
+    prefetchPredictiveLectures, 
+    parseDurationToSeconds, 
+    getCourseCompletionStats,
+    exportStudyProgress,
+    openProgressImportDialog,
+    handleProgressImportFile,
+    resetCurrentCourseProgress
 };
 
 window.switchView = switchView;
@@ -1059,3 +1225,7 @@ window.openLocalFolderPicker = () => {
     const input = document.getElementById("local-folder-input");
     if (input) input.click();
 };
+window.exportStudyProgress = exportStudyProgress;
+window.openProgressImportDialog = openProgressImportDialog;
+window.handleProgressImportFile = handleProgressImportFile;
+window.resetCurrentCourseProgress = resetCurrentCourseProgress;

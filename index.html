@@ -11,6 +11,7 @@
     <meta name="referrer" content="no-referrer">
     <title>Runcadel's Player</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -175,6 +176,26 @@
                 </button>
             </div>
 
+            <!-- STUDY PROGRESS & DATA BACKUP CARD -->
+            <div class="offline-backup-card">
+                <div class="offline-backup-left">
+                    <div class="offline-backup-icon"><i class="fas fa-cloud-arrow-down"></i></div>
+                    <div>
+                        <div class="offline-hero-title">Study Progress & Backup</div>
+                        <div class="offline-hero-desc">Export or restore your enrolled courses, lecture watch progress, and saved checkpoints as a portable JSON backup file.</div>
+                    </div>
+                </div>
+                <div class="offline-backup-actions">
+                    <button class="backup-action-btn export-btn" onclick="exportStudyProgress()">
+                        <i class="fas fa-download"></i> Export Progress
+                    </button>
+                    <button class="backup-action-btn import-btn" onclick="openProgressImportDialog()">
+                        <i class="fas fa-upload"></i> Restore Backup
+                    </button>
+                    <input type="file" id="progress-import-input" accept=".json,application/json" style="display:none;" onchange="handleProgressImportFile(event)">
+                </div>
+            </div>
+
             <!-- LOCAL IMPORTED COURSES SECTION -->
             <div class="db-section-subtitle"><i class="fas fa-hdd" style="color:#22c55e; margin-right:8px;"></i>Local Storage Folders</div>
             <div class="db-grid" id="local-courses-grid">
@@ -208,6 +229,9 @@
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" id="lecture-search-input" placeholder="Search lectures by title or number..." oninput="filterLectures()">
                 </div>
+                <button id="reset-course-progress-btn" class="reset-course-progress-btn" title="Reset watch progress for this course" onclick="resetCurrentCourseProgress()">
+                    <i class="fas fa-undo-alt"></i> <span>Reset Progress</span>
+                </button>
                 <div class="lecture-count-chip" id="lecture-count-chip">20 Lectures</div>
             </div>
             <div class="lecture-list" id="course-lectures-list">
@@ -504,26 +528,6 @@
         </div>
     </div>
 
-    <!-- Chroma key filters -->
-    <svg width="0" height="0" style="position:absolute; pointer-events:none;">
-        <filter id="chroma-key" color-interpolation-filters="sRGB">
-            <feColorMatrix type="matrix" values="
-                1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                2.5 -5.0 2.5 0 1.5
-            " result="keyed" />
-            <feColorMatrix in="keyed" type="matrix" values="
-                1 0 0 0 0
-                -0.1 1.1 -0.1 0 0
-                0 0 1 0 0
-                0 0 0 1 0
-            " result="despilled" />
-            <feComponentTransfer in="despilled">
-                <feFuncA type="linear" slope="2" intercept="-0.5" />
-            </feComponentTransfer>
-        </filter>
-    </svg>
 </body>
 
 </html>

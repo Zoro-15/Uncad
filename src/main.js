@@ -120,3 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Engine startup failed:", e);
     }
 })();
+
+// Register Service Worker for Offline PWA Support
+if ('serviceWorker' in navigator && (window.location.protocol === 'http:' || window.location.protocol === 'https:')) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+            console.log('[SW] Service Worker registered with scope:', reg.scope);
+        }).catch((err) => {
+            console.warn('[SW] Service Worker registration failed:', err);
+        });
+    });
+}
+
