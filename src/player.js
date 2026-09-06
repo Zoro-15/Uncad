@@ -1,5 +1,5 @@
 import { findCourseByLectureUid, COURSES } from './courses.js';
-import { switchView, saveLastWatched, getLectureProgress, getLastWatched } from './dashboard.js';
+import { switchView, saveLastWatched, getLectureProgress, getLastWatched, parseDurationToSeconds } from './dashboard.js';
 import { tryDecryptAndParse } from './engine/crypto.js';
 import { getOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
 import { requestWakeLock, releaseWakeLock } from './engine/mediaSync.js';
@@ -174,8 +174,6 @@ window.updateSplash = (txt, pct) => {
 
         let slideRegistry = {};
         let assetMap = {};
-
-        // Maths and Bezier functions imported from ./engine/bezier.js
 
         function smoothStroke(stroke) {
             // parities matching production engine: Use raw recorded points
@@ -1949,7 +1947,7 @@ window.updateSplash = (txt, pct) => {
             const p = getInterpolatedPointer(targetUs);
             if (p) {
                 const projected = projectBoardPoint(p.x * CW, p.y * CH);
-                ptrX = projected.x - 3; ptrY = projected.y - 3;
+                ptrX = projected.x - 2.25; ptrY = projected.y - 2.25;
                 pointerDot.style.transform = `translate3d(${ptrX}px,${ptrY}px,0)`;
                 pointerDot.style.opacity = "1";
             }
@@ -2109,8 +2107,8 @@ window.updateSplash = (txt, pct) => {
             const p = getInterpolatedPointer(targetUs);
             if (p) {
                 const projected = projectBoardPoint(p.x * CW, p.y * CH);
-                const nextPtrX = Math.round(projected.x - 3);
-                const nextPtrY = Math.round(projected.y - 3);
+                const nextPtrX = Number((projected.x - 2.25).toFixed(1));
+                const nextPtrY = Number((projected.y - 2.25).toFixed(1));
                 if (nextPtrX !== ptrX || nextPtrY !== ptrY) {
                     ptrX = nextPtrX;
                     ptrY = nextPtrY;
@@ -2181,24 +2179,52 @@ window.updateSplash = (txt, pct) => {
 
         let isDraggingSeek = false;
         let throttledVideoSeekTimer = null;
+        let lastCanvasSeekTs = 0;
+        let pendingCanvasSeekTimer = null;
+        const CANVAS_SEEK_THROTTLE_MS = 35; // ~28-30fps throttle for canvas vector redraws during active dragging
 
         function applyDecoupledSeek(targetVideoUs, isFinalSeek = false) {
             if (!engineLoaded) return;
             const targetSec = Math.max(0, Math.min(video.duration || 1e9, targetVideoUs / 1e6));
             
-            // 1. Immediately redraw whiteboard canvas with 0ms latency
-            doSeek(targetVideoUs);
-            
-            // 2. Immediately update time display text
+            // 1. Immediately update time display text and seek slider track (0ms visual feedback)
             updateTimeDisplaysFast(drawingUs(targetVideoUs), targetSec);
 
-            // 3. Update seek slider progress visuals
             const masterMax = parseFloat(seekBar.max) || 1;
             const dUs = drawingUs(targetVideoUs);
             const mPct = (dUs / masterMax) * 100;
             seekBar.style.setProperty("--pct", mPct.toFixed(1) + "%");
 
-            // 4. Decoupled video hardware decoder seeking
+            // 2. Whiteboard canvas stroke redraw with smart scrubbing throttle
+            if (isFinalSeek) {
+                if (pendingCanvasSeekTimer) {
+                    clearTimeout(pendingCanvasSeekTimer);
+                    pendingCanvasSeekTimer = null;
+                }
+                doSeek(targetVideoUs);
+                lastCanvasSeekTs = performance.now();
+            } else {
+                const now = performance.now();
+                if (now - lastCanvasSeekTs >= CANVAS_SEEK_THROTTLE_MS) {
+                    if (pendingCanvasSeekTimer) {
+                        clearTimeout(pendingCanvasSeekTimer);
+                        pendingCanvasSeekTimer = null;
+                    }
+                    doSeek(targetVideoUs);
+                    lastCanvasSeekTs = now;
+                } else if (!pendingCanvasSeekTimer) {
+                    const delay = Math.max(5, CANVAS_SEEK_THROTTLE_MS - (now - lastCanvasSeekTs));
+                    pendingCanvasSeekTimer = setTimeout(() => {
+                        pendingCanvasSeekTimer = null;
+                        if (isDraggingSeek) {
+                            doSeek(targetVideoUs);
+                            lastCanvasSeekTs = performance.now();
+                        }
+                    }, delay);
+                }
+            }
+
+            // 3. Decoupled video hardware decoder seeking
             if (isFinalSeek) {
                 if (throttledVideoSeekTimer) {
                     clearTimeout(throttledVideoSeekTimer);
@@ -2435,6 +2461,10 @@ window.updateSplash = (txt, pct) => {
             if (seekRafId) {
                 cancelAnimationFrame(seekRafId);
                 seekRafId = null;
+            }
+            if (pendingCanvasSeekTimer) {
+                clearTimeout(pendingCanvasSeekTimer);
+                pendingCanvasSeekTimer = null;
             }
             isDraggingSeek = false;
             const targetAnimUs = parseInt(seekBar.value);
@@ -2966,12 +2996,24 @@ window.updateSplash = (txt, pct) => {
             activeCourse.lectures.forEach(lec => {
                 const item = document.createElement('div');
                 const isActive = (lec.uid === activeUid);
+                const prog = getLectureProgress(lec.uid);
+                let progIndicator = '';
+                if (prog && prog.timeSec > 60) {
+                    const totalDurSec = parseDurationToSeconds(lec.duration);
+                    const pct = totalDurSec > 0 ? Math.min(100, Math.round((prog.timeSec / totalDurSec) * 100)) : 0;
+                    if (pct >= 90) {
+                        progIndicator = `<span style="color:#22c55e;font-size:10.5px;font-weight:600;"><i class="fas fa-check-circle"></i> Done</span>`;
+                    } else if (pct > 0) {
+                        progIndicator = `<span style="color:#60a5fa;font-size:10.5px;font-weight:500;"><i class="fas fa-history"></i> ${pct}%</span>`;
+                    }
+                }
                 item.className = `lec-item ${isActive ? 'active' : ''}`;
                 item.innerHTML = `
                     <div class="lec-title">${lec.title}</div>
                     <div class="lec-meta">
                         <span>Lec #${lec.rank}</span>
                         <span><i class="far fa-clock"></i> ${lec.duration || '--'}</span>
+                        ${progIndicator}
                     </div>
                 `;
                 item.onclick = () => {

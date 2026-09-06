@@ -378,6 +378,46 @@ function switchNavView(target) {
     switchView(target);
 }
 
+
+function parseDurationToSeconds(durationStr) {
+    if (!durationStr || typeof durationStr !== 'string') return 0;
+    let totalSec = 0;
+    const hMatch = durationStr.match(/(\d+)\s*h/i);
+    const mMatch = durationStr.match(/(\d+)\s*m/i);
+    const sMatch = durationStr.match(/(\d+)\s*s/i);
+    if (hMatch) totalSec += parseInt(hMatch[1], 10) * 3600;
+    if (mMatch) totalSec += parseInt(mMatch[1], 10) * 60;
+    if (sMatch) totalSec += parseInt(sMatch[1], 10);
+    if (!hMatch && !mMatch && !sMatch) {
+        const onlyNum = durationStr.match(/(\d+)/);
+        if (onlyNum) totalSec += parseInt(onlyNum[1], 10) * 60;
+    }
+    return totalSec;
+}
+
+function getCourseCompletionStats(course) {
+    if (!course || !course.lectures || course.lectures.length === 0) {
+        return { completed: 0, total: 0, pct: 0, inProgress: 0 };
+    }
+    const total = course.lectures.length;
+    let completed = 0;
+    let inProgress = 0;
+    course.lectures.forEach(lec => {
+        const prog = getLectureProgress(lec.uid);
+        if (prog && prog.timeSec > 60) {
+            const dur = parseDurationToSeconds(lec.duration);
+            const pct = dur > 0 ? Math.min(100, Math.round((prog.timeSec / dur) * 100)) : 0;
+            if (pct >= 90) {
+                completed++;
+            } else {
+                inProgress++;
+            }
+        }
+    });
+    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+    return { completed, total, pct, inProgress };
+}
+
 function getCourseStatsText(course) {
     if (course._statsText) return course._statsText;
     const totalLectures = course.lectures ? course.lectures.length : 0;
@@ -471,17 +511,31 @@ function renderMyCourses() {
     }
 
     enrolledCourses.forEach(course => {
+        const comp = getCourseCompletionStats(course);
         const card = document.createElement("div");
         card.className = "course-card";
         card.onclick = () => switchView("course", { courseId: course.id });
+
+        const progressHtml = (comp.completed > 0 || comp.inProgress > 0) ? `
+            <div class="course-progress-wrap">
+                <div class="course-progress-bar">
+                    <div class="course-progress-fill ${comp.pct >= 100 ? 'all-done' : ''}" style="width: ${comp.pct}%;"></div>
+                </div>
+                <div class="course-progress-text">
+                    <span>${comp.completed}/${comp.total} Completed</span>
+                    <span>${comp.pct}%</span>
+                </div>
+            </div>
+        ` : '';
 
         card.innerHTML = `
             <div class="course-card-left">
                 <h3 class="course-card-title">${course.title}</h3>
                 <p class="course-card-desc">${course.description}</p>
+                ${progressHtml}
             </div>
             <div class="course-card-right-col">
-                <div class="course-card-badge">${getCourseStatsText(course)}</div>
+                <div class="course-card-badge ${comp.pct >= 100 ? 'completed' : ''}">${comp.pct >= 100 ? '<i class="fas fa-check-circle"></i> Completed' : getCourseStatsText(course)}</div>
                 <div class="course-btn-group">
                     <button class="course-continue-btn" title="Continue watching" onclick="event.stopPropagation(); launchCourseContinue('${course.id}')">
                         <i class="fas fa-play" style="font-size:10px;"></i> Continue
@@ -530,17 +584,31 @@ function renderSubjectGrid(subject, gridId) {
 
     subjectCourses.forEach(course => {
         const enrolled = isCourseEnrolled(course.id);
+        const comp = getCourseCompletionStats(course);
         const card = document.createElement("div");
         card.className = "course-card";
         card.onclick = () => switchView("course", { courseId: course.id });
+
+        const progressHtml = (comp.completed > 0 || comp.inProgress > 0) ? `
+            <div class="course-progress-wrap">
+                <div class="course-progress-bar">
+                    <div class="course-progress-fill ${comp.pct >= 100 ? 'all-done' : ''}" style="width: ${comp.pct}%;"></div>
+                </div>
+                <div class="course-progress-text">
+                    <span>${comp.completed}/${comp.total} Completed</span>
+                    <span>${comp.pct}%</span>
+                </div>
+            </div>
+        ` : '';
 
         card.innerHTML = `
             <div class="course-card-left">
                 <h3 class="course-card-title">${course.title}</h3>
                 <p class="course-card-desc">${course.description}</p>
+                ${progressHtml}
             </div>
             <div class="course-card-right-col">
-                <div class="course-card-badge">${getCourseStatsText(course)}</div>
+                <div class="course-card-badge ${comp.pct >= 100 ? 'completed' : ''}">${comp.pct >= 100 ? '<i class="fas fa-check-circle"></i> Completed' : getCourseStatsText(course)}</div>
                 <div class="course-btn-group">
                     <button class="course-add-btn ${enrolled ? 'added' : ''}" title="${enrolled ? 'Remove from My Courses' : 'Add to My Courses'}" onclick="toggleEnrollCourse('${course.id}', event)">
                         <i class="fas ${enrolled ? 'fa-check' : 'fa-plus'}"></i> ${enrolled ? 'Added' : 'Add'}
@@ -708,22 +776,34 @@ function renderLecturesList(lectures) {
         const isLocal = !!(lec.videoFile || lec.jsonFile || lec.isLocal);
         const prog = getLectureProgress(lec.uid);
         const watchedSec = prog ? prog.timeSec : 0;
+        const totalDurSec = parseDurationToSeconds(lec.duration);
+        const pct = (totalDurSec > 0 && watchedSec > 0) ? Math.min(100, Math.round((watchedSec / totalDurSec) * 100)) : 0;
+        const isCompleted = pct >= 90;
+
         let progBadge = "";
-        if (watchedSec > 60) {
+        let progressBarHtml = "";
+        if (isCompleted) {
+            progBadge = `<span class="offline-badge lecture-badge-completed" title="Completed (>= 90% watched)"><i class="fas fa-check-circle"></i> Completed</span>`;
+            progressBarHtml = `<div class="lecture-progress-track"><div class="lecture-progress-fill completed" style="width: 100%;"></div></div>`;
+        } else if (watchedSec > 60) {
             const wM = Math.floor(watchedSec / 60);
             const wH = Math.floor(wM / 60);
             const remM = wM % 60;
             const timeStr = wH > 0 ? `${wH}h ${remM}m` : `${remM}m`;
-            progBadge = `<span class="offline-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);" title="Resume position: ${timeStr}"><i class="fas fa-history"></i> At ${timeStr}</span>`;
+            const pctLabel = pct > 0 ? ` (${pct}%)` : '';
+            progBadge = `<span class="offline-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);" title="Resume position: ${timeStr}${pctLabel}"><i class="fas fa-history"></i> At ${timeStr}${pctLabel}</span>`;
+            if (pct > 0) {
+                progressBarHtml = `<div class="lecture-progress-track"><div class="lecture-progress-fill" style="width: ${pct}%;"></div></div>`;
+            }
         }
 
         const card = document.createElement("div");
-        card.className = "lecture-card";
+        card.className = `lecture-card ${isCompleted ? 'completed' : ''}`;
         card.onclick = () => launchLecture(lec.uid, null, activeCourseId);
         card.innerHTML = `
             <div class="lecture-card-left">
-                <div class="lecture-number">${lec.rank}</div>
-                <div>
+                <div class="lecture-number ${isCompleted ? 'completed' : ''}" title="${isCompleted ? 'Completed' : 'Lecture #' + lec.rank}">${isCompleted ? '<i class="fas fa-check"></i>' : lec.rank}</div>
+                <div style="flex:1; min-width:0;">
                     <div class="lecture-card-title">${lec.title}</div>
                     <div class="lecture-card-duration">
                         <i class="far fa-clock"></i> ${lec.duration || '--'}
@@ -731,10 +811,11 @@ function renderLecturesList(lectures) {
                         ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : '')}
                         ${lec.pdfFile ? `<span class="offline-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="PDF Notes Attached"><i class="fas fa-file-pdf"></i> Notes</span>` : ''}
                     </div>
+                    ${progressBarHtml}
                 </div>
             </div>
             <div class="lecture-card-play-btn">
-                <i class="fas fa-play"></i>
+                <i class="fas ${isCompleted ? 'fa-redo' : 'fa-play'}"></i>
             </div>
         `;
         fragment.appendChild(card);
@@ -948,7 +1029,9 @@ export {
     addLocalCourse,
     findCourseById,
     LOCAL_COURSES,
-    prefetchPredictiveLectures
+    prefetchPredictiveLectures,
+    parseDurationToSeconds,
+    getCourseCompletionStats
 };
 
 window.switchView = switchView;

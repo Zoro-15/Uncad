@@ -587,11 +587,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 6px;
-            height: 6px;
+            width: 4.5px;
+            height: 4.5px;
             border-radius: 50%;
             background: #fff;
-            box-shadow: 0 0 12px 6px rgba(255, 40, 40, 0.9), 0 0 26px 12px rgba(255, 40, 40, 0.5);
+            box-shadow: 0 0 6px 2px rgba(255, 40, 40, 0.95), 0 0 12px 4px rgba(255, 40, 40, 0.45);
             transform: translate3d(-999px, -999px, 0);
             pointer-events: none;
             z-index: 25;
@@ -602,7 +602,7 @@
 
         body.light-mode #pointer-dot {
             background: #ef4444;
-            box-shadow: 0 0 12px 6px rgba(239, 68, 68, 0.9), 0 0 26px 12px rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 6px 2px rgba(239, 68, 68, 0.95), 0 0 12px 4px rgba(239, 68, 68, 0.45);
         }
 
         /* PAGE INDICATOR */
@@ -1653,6 +1653,96 @@
             font-size: 13px;
             line-height: 1;
             flex-shrink: 0;
+        }
+
+        /* COURSE & LECTURE VISUAL PROGRESS BARS & COMPLETION STATUS */
+        .course-progress-wrap {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 280px;
+        }
+        .course-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .course-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .course-progress-fill.all-done {
+            background: #22c55e;
+        }
+        .course-progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #71717a;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .course-card-badge.completed {
+            background: rgba(34, 197, 94, 0.12) !important;
+            border-color: rgba(34, 197, 94, 0.3) !important;
+            color: #22c55e !important;
+        }
+
+        .lecture-progress-track {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            margin-top: 7px;
+            overflow: hidden;
+        }
+        .lecture-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .lecture-progress-fill.completed {
+            background: #22c55e;
+        }
+        .lecture-card.completed {
+            border-color: rgba(34, 197, 94, 0.18);
+        }
+        .lecture-card.completed:hover {
+            border-color: rgba(34, 197, 94, 0.35);
+            box-shadow: 0 0 14px rgba(34, 197, 94, 0.06);
+        }
+        .lecture-number.completed {
+            background: rgba(34, 197, 94, 0.15) !important;
+            border-color: rgba(34, 197, 94, 0.35) !important;
+            color: #22c55e !important;
+        }
+        .lecture-badge-completed {
+            background: rgba(34, 197, 94, 0.15) !important;
+            color: #22c55e !important;
+            border: 1px solid rgba(34, 197, 94, 0.3) !important;
+        }
+        .lecture-card.completed .lecture-card-play-btn {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+        .lecture-card.completed:hover .lecture-card-play-btn {
+            background: #22c55e;
+            color: #ffffff;
+            border-color: #22c55e;
+            box-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
+        }
+
+        body.light-mode .course-progress-bar,
+        body.light-mode .lecture-progress-track {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        body.light-mode .course-progress-text {
+            color: #71717a;
         }
 
         /* ANDROID WEBVIEW RESPONSIVE ADAPTATIONS */
