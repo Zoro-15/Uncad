@@ -1173,6 +1173,7 @@ window.updateSplash = (txt, pct) => {
         }
 
         async function loadLectureByUid(uid, startSec = 0, preferredCourseId = null) {
+            if (window.enterFullscreen) window.enterFullscreen();
             if (!uid) {
                 console.warn("[Player] Attempted to load lecture with empty UID.");
                 return false;
@@ -2379,6 +2380,9 @@ window.updateSplash = (txt, pct) => {
             isBuffering = false;
             if (bufferingOverlay && !isSeeking) bufferingOverlay.classList.remove("show");
         });
+        video.addEventListener("play", () => {
+            if (window.enterFullscreen) window.enterFullscreen();
+        });
         video.addEventListener("ended", () => { 
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; 
             releaseWakeLock();
@@ -2434,6 +2438,7 @@ window.updateSplash = (txt, pct) => {
                 if (sp) sp.style.display = "none";
             }
             if (video.paused) {
+                if (window.enterFullscreen) window.enterFullscreen();
                 video.play().catch(err => { console.error("[Player] Play error:", err); });
             } else {
                 video.pause();
@@ -2627,6 +2632,7 @@ window.updateSplash = (txt, pct) => {
             ytCenterBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 if (video.paused) {
+                    if (window.enterFullscreen) window.enterFullscreen();
                     video.play().catch(() => {});
                 } else {
                     video.pause();
@@ -2796,7 +2802,12 @@ window.updateSplash = (txt, pct) => {
             
             if (e.code === "Space" || e.code === "KeyK") {
                 e.preventDefault();
-                if (video.paused) video.play(); else video.pause();
+                if (video.paused) {
+                    if (window.enterFullscreen) window.enterFullscreen();
+                    video.play();
+                } else {
+                    video.pause();
+                }
                 updateYtCenterIcon();
             } else if (e.code === "KeyJ") {
                 e.preventDefault();

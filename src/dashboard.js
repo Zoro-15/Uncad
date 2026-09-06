@@ -985,6 +985,7 @@ function resetCurrentCourseProgress(courseId = null) {
 }
 
 async function launchLecture(uid, startTimeSec = null, courseId = null) {
+    if (window.enterFullscreen) window.enterFullscreen();
     activeUid = uid;
     if (courseId) {
         activeCourseId = courseId;

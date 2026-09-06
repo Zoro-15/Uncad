@@ -37,14 +37,34 @@ function toggleFullscreen() {
 window.toggleFullscreen = toggleFullscreen;
 window.enterFullscreen = enterFullscreen;
 
-// Auto-engage fullscreen on the user's first tap/click anywhere on screen
+function isVideoPlaying() {
+    try {
+        const appEl = document.getElementById("app");
+        if (!appEl || appEl.style.display === "none") return false;
+        const video = document.getElementById("main-video");
+        return !!(video && !video.paused && !video.ended && video.readyState > 1);
+    } catch (_) {
+        return false;
+    }
+}
+
+function enforceFullscreenIfNotPlaying(e) {
+    if (e && (e.key === "Escape" || e.code === "Escape")) return;
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        return;
+    }
+    if (isVideoPlaying()) {
+        return;
+    }
+    enterFullscreen();
+}
+
+// Persistent interaction listener: ANY interaction whilst video is not playing forces fullscreen
 (function initDefaultFullscreen() {
-    const autoEngage = () => {
-        enterFullscreen();
-    };
-    window.addEventListener('touchstart', autoEngage, { once: true, passive: true });
-    window.addEventListener('pointerdown', autoEngage, { once: true, passive: true });
-    window.addEventListener('click', autoEngage, { once: true, passive: true });
+    window.addEventListener('touchstart', enforceFullscreenIfNotPlaying, { passive: true });
+    window.addEventListener('pointerdown', enforceFullscreenIfNotPlaying, { passive: true });
+    window.addEventListener('click', enforceFullscreenIfNotPlaying, { passive: true });
+    window.addEventListener('keydown', enforceFullscreenIfNotPlaying, { passive: true });
 })();
 
 // ══════════════════════════════════════════════════
