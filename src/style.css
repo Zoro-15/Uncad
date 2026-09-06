@@ -1577,6 +1577,18 @@
         .reset-course-progress-btn:active {
             transform: translateY(0);
         }
+        .reset-course-progress-btn.has-selected {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+        }
+        .reset-course-progress-btn.has-selected:hover {
+            background: #f87171;
+            border-color: #f87171;
+            color: #ffffff;
+            box-shadow: 0 0 22px rgba(239, 68, 68, 0.7);
+        }
         body.light-mode .reset-course-progress-btn {
             background: rgba(239, 68, 68, 0.08);
             border-color: rgba(239, 68, 68, 0.25);
@@ -1585,6 +1597,32 @@
         body.light-mode .reset-course-progress-btn:hover {
             background: rgba(239, 68, 68, 0.16);
             color: #b91c1c;
+        }
+        body.light-mode .reset-course-progress-btn.has-selected {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #ffffff;
+        }
+        .lecture-number {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        .lecture-number:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+        }
+        .lecture-number.selected {
+            background: #ef4444 !important;
+            border-color: #ef4444 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.75) !important;
+            transform: scale(1.1);
+        }
+        .lecture-card.selected {
+            border-color: rgba(239, 68, 68, 0.45);
+            background: rgba(239, 68, 68, 0.04);
+            box-shadow: 0 4px 18px rgba(239, 68, 68, 0.15);
         }
         .lecture-count-chip {
             background: rgba(255, 255, 255, 0.05);

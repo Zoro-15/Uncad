@@ -750,6 +750,9 @@ function renderCourseDetails(courseId) {
     const course = findCourseById(courseId);
     if (!course) return;
 
+    selectedLectureUids.clear();
+    updateResetProgressButtonUI();
+
     const header = document.getElementById("course-header-details");
     if (header) {
         header.innerHTML = `
@@ -765,6 +768,53 @@ function renderCourseDetails(courseId) {
     if (searchInput) searchInput.value = "";
 
     renderLecturesList(course.lectures);
+}
+
+let selectedLectureUids = new Set();
+
+function updateResetProgressButtonUI() {
+    const btn = document.getElementById("reset-course-progress-btn");
+    if (!btn) return;
+    const count = selectedLectureUids.size;
+    if (count > 0) {
+        btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Selected (${count})</span>`;
+        btn.classList.add("has-selected");
+        btn.title = `Reset watch progress for ${count} selected lecture(s)`;
+    } else {
+        btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Progress</span>`;
+        btn.classList.remove("has-selected");
+        btn.title = "Reset watch progress for this course";
+    }
+}
+
+function toggleLectureSelection(uid) {
+    if (!uid) return;
+    if (selectedLectureUids.has(uid)) {
+        selectedLectureUids.delete(uid);
+    } else {
+        selectedLectureUids.add(uid);
+    }
+    updateResetProgressButtonUI();
+
+    const card = document.querySelector(`.lecture-card[data-uid="${uid}"]`);
+    if (card) {
+        const isSel = selectedLectureUids.has(uid);
+        card.classList.toggle("selected", isSel);
+        const numEl = card.querySelector(".lecture-number");
+        if (numEl) {
+            numEl.classList.toggle("selected", isSel);
+            const isCompleted = card.classList.contains("completed");
+            numEl.title = isSel 
+                ? "Selected for reset (Click to unselect)" 
+                : (isCompleted ? "Completed (Click to select for reset)" : "Click to select for reset");
+            if (isSel) {
+                numEl.innerHTML = `<i class="fas fa-check"></i>`;
+            } else {
+                const rankVal = numEl.getAttribute("data-rank") || "";
+                numEl.innerHTML = isCompleted ? `<i class="fas fa-check"></i>` : rankVal;
+            }
+        }
+    }
 }
 
 function renderLecturesList(lectures) {
@@ -805,12 +855,27 @@ function renderLecturesList(lectures) {
             }
         }
 
+        const isSelected = selectedLectureUids.has(lec.uid);
         const card = document.createElement("div");
-        card.className = `lecture-card ${isCompleted ? 'completed' : ''}`;
+        card.className = `lecture-card ${isCompleted ? 'completed' : ''} ${isSelected ? 'selected' : ''}`;
+        card.setAttribute("data-uid", lec.uid);
         card.onclick = () => launchLecture(lec.uid, null, activeCourseId);
+
+        const circleContent = isSelected 
+            ? '<i class="fas fa-check"></i>' 
+            : (isCompleted ? '<i class="fas fa-check"></i>' : lec.rank);
+        const circleTitle = isSelected 
+            ? 'Selected for reset (Click to unselect)' 
+            : (isCompleted ? 'Completed (Click to select for reset)' : `Lecture #${lec.rank} (Click to select for reset)`);
+
         card.innerHTML = `
             <div class="lecture-card-left">
-                <div class="lecture-number ${isCompleted ? 'completed' : ''}" title="${isCompleted ? 'Completed' : 'Lecture #' + lec.rank}">${isCompleted ? '<i class="fas fa-check"></i>' : lec.rank}</div>
+                <div class="lecture-number ${isCompleted ? 'completed' : ''} ${isSelected ? 'selected' : ''}" 
+                     data-rank="${lec.rank}"
+                     title="${circleTitle}"
+                     onclick="event.stopPropagation(); toggleLectureSelection('${lec.uid}')">
+                    ${circleContent}
+                </div>
                 <div style="flex:1; min-width:0;">
                     <div class="lecture-card-title">${lec.title}</div>
                     <div class="lecture-card-duration">
@@ -860,7 +925,19 @@ function resetCurrentCourseProgress(courseId = null) {
     const course = findCourseById(targetCourseId);
     if (!course || !course.lectures || course.lectures.length === 0) return;
 
-    const confirmed = confirm(`Are you sure you want to reset all watch progress for "${course.title}"?\n\nThis will clear all completion checkmarks and saved resume positions for this course.`);
+    const count = selectedLectureUids.size;
+    let targetUids = [];
+    let confirmMsg = "";
+
+    if (count > 0) {
+        targetUids = Array.from(selectedLectureUids);
+        confirmMsg = `Are you sure you want to reset watch progress for ${count} selected lecture(s) in "${course.title}"?`;
+    } else {
+        targetUids = course.lectures.map(l => l.uid).filter(Boolean);
+        confirmMsg = `Are you sure you want to reset all watch progress for "${course.title}"?\n\nThis will clear all completion checkmarks and saved resume positions for this course.`;
+    }
+
+    const confirmed = confirm(confirmMsg);
     if (!confirmed) return;
 
     try {
@@ -868,21 +945,24 @@ function resetCurrentCourseProgress(courseId = null) {
         const stored = localStorage.getItem(PROGRESS_KEY);
         if (stored) progMap = JSON.parse(stored);
 
-        course.lectures.forEach(lec => {
-            if (lec.uid && progMap[lec.uid]) {
-                delete progMap[lec.uid];
+        targetUids.forEach(uid => {
+            if (progMap[uid]) {
+                delete progMap[uid];
             }
         });
 
         _memoProgress = progMap;
         localStorage.setItem(PROGRESS_KEY, JSON.stringify(progMap));
 
-        // Clear last watched if it belonged to this course
+        // Clear last watched if it belonged to one of the reset lectures
         const lastWatched = getLastWatched();
-        if (lastWatched && (lastWatched.courseId === targetCourseId || course.lectures.some(l => l.uid === lastWatched.uid))) {
+        if (lastWatched && targetUids.includes(lastWatched.uid)) {
             localStorage.removeItem(LAST_WATCHED_KEY);
             _memoLastWatched = null;
         }
+
+        selectedLectureUids.clear();
+        updateResetProgressButtonUI();
 
         // Re-render course details and dashboard progress bars
         const searchInput = document.getElementById("lecture-search-input");
@@ -894,7 +974,10 @@ function resetCurrentCourseProgress(courseId = null) {
         renderMyCourses();
 
         if (window.showToast) {
-            window.showToast(`Reset progress for "${course.title}"`, "info");
+            const toastMsg = count > 0 
+                ? `Reset progress for ${count} selected lecture(s)` 
+                : `Reset progress for "${course.title}"`;
+            window.showToast(toastMsg, "info");
         }
     } catch (e) {
         console.error("Failed to reset course progress:", e);
@@ -1197,7 +1280,9 @@ export {
     exportStudyProgress,
     openProgressImportDialog,
     handleProgressImportFile,
-    resetCurrentCourseProgress
+    resetCurrentCourseProgress,
+    toggleLectureSelection,
+    selectedLectureUids
 };
 
 window.switchView = switchView;
@@ -1229,3 +1314,5 @@ window.exportStudyProgress = exportStudyProgress;
 window.openProgressImportDialog = openProgressImportDialog;
 window.handleProgressImportFile = handleProgressImportFile;
 window.resetCurrentCourseProgress = resetCurrentCourseProgress;
+window.toggleLectureSelection = toggleLectureSelection;
+window.selectedLectureUids = selectedLectureUids;
