@@ -37,23 +37,35 @@ function toggleFullscreen() {
 window.toggleFullscreen = toggleFullscreen;
 window.enterFullscreen = enterFullscreen;
 
-function isVideoPlaying() {
+function shouldExcludeFromForcedFullscreen(e) {
+    if (e && (e.key === "Escape" || e.code === "Escape")) return true;
+
     try {
         const appEl = document.getElementById("app");
-        if (!appEl || appEl.style.display === "none") return false;
+        // Exclude player view: student going through slides, taking notes, or scrubbing
+        // must never be forcefully shoved into fullscreen on click/interaction
+        if (appEl && appEl.style.display !== "none") {
+            return true;
+        }
+        if (e && e.target && appEl && appEl.contains(e.target)) {
+            return true;
+        }
+
+        // Exclude if video is actively playing
         const video = document.getElementById("main-video");
-        return !!(video && !video.paused && !video.ended && video.readyState > 1);
-    } catch (_) {
-        return false;
-    }
+        if (video && !video.paused && !video.ended && video.currentTime > 0) {
+            return true;
+        }
+    } catch (_) {}
+
+    return false;
 }
 
 function enforceFullscreenIfNotPlaying(e) {
-    if (e && (e.key === "Escape" || e.code === "Escape")) return;
     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
         return;
     }
-    if (isVideoPlaying()) {
+    if (shouldExcludeFromForcedFullscreen(e)) {
         return;
     }
     enterFullscreen();
