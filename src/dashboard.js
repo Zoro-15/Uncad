@@ -145,14 +145,44 @@ function getLectureProgress(uid) {
     return null;
 }
 
-function saveLectureProgress(uid, timeSec) {
+function saveLectureProgress(uid, timeSec, durationSec = 0, forceCompleted = false) {
     if (!uid || timeSec <= 0) return;
     try {
         let map = {};
         const stored = localStorage.getItem(PROGRESS_KEY);
         if (stored) map = JSON.parse(stored);
+
+        const prev = map[uid] || {};
+        const maxWatched = Math.max(prev.maxWatchedSec || 0, prev.timeSec || 0, Math.floor(timeSec));
+        
+        let totalDur = 0;
+        if (durationSec && durationSec > 0) {
+            totalDur = Math.floor(durationSec);
+        } else if (prev.durationSec && prev.durationSec > 0) {
+            totalDur = prev.durationSec;
+        } else {
+            const match = findLectureInCourses(uid);
+            if (match && match.lecture && match.lecture.duration) {
+                totalDur = parseDurationToSeconds(match.lecture.duration);
+            }
+        }
+
+        let pct = 0;
+        if (totalDur > 0) {
+            pct = Math.min(100, Math.round((maxWatched / totalDur) * 100));
+        } else if (prev.percent) {
+            pct = prev.percent;
+        }
+
+        const isCompleted = forceCompleted || pct >= 90 || (totalDur > 0 && maxWatched >= totalDur - 90);
+        if (isCompleted && pct < 90) pct = 100;
+
         map[uid] = {
             timeSec: Math.floor(timeSec),
+            maxWatchedSec: maxWatched,
+            durationSec: totalDur,
+            percent: pct,
+            isCompleted: isCompleted,
             updatedAt: Date.now()
         };
         _memoProgress = map;
@@ -160,7 +190,7 @@ function saveLectureProgress(uid, timeSec) {
     } catch (e) {}
 }
 
-function saveLastWatched(uid, courseId, timeSec = 0) {
+function saveLastWatched(uid, courseId, timeSec = 0, durationSec = 0) {
     if (!uid) return;
     const course = findCourseById(courseId) || COURSES.find(c => c.lectures && c.lectures.some(l => l.uid === uid));
     if (!course) return;
@@ -180,7 +210,7 @@ function saveLastWatched(uid, courseId, timeSec = 0) {
     _memoLastWatched = record;
     localStorage.setItem(LAST_WATCHED_KEY, JSON.stringify(record));
     if (timeSec > 0) {
-        saveLectureProgress(uid, timeSec);
+        saveLectureProgress(uid, timeSec, durationSec);
     }
 }
 
@@ -753,11 +783,18 @@ function renderCourseDetails(courseId) {
     selectedLectureUids.clear();
     updateResetProgressButtonUI();
 
+    const stats = getCourseCompletionStats(course);
     const header = document.getElementById("course-header-details");
     if (header) {
         header.innerHTML = `
             <h1 class="course-title-main">${course.title}</h1>
             <p class="course-desc-main">${course.description}</p>
+            <div class="course-summary-progress">
+                <span><i class="fas fa-tasks" style="color:var(--accent);"></i> Progress: <strong>${stats.completed}/${stats.total} Completed</strong> (${stats.pct}%)</span>
+                <div class="course-summary-progress-bar">
+                    <div class="course-summary-progress-fill" style="width: ${stats.pct}%;"></div>
+                </div>
+            </div>
         `;
     }
 
@@ -833,26 +870,32 @@ function renderLecturesList(lectures) {
         const isOffline = cachedUidsSet.has(lec.uid);
         const isLocal = !!(lec.videoFile || lec.jsonFile || lec.isLocal);
         const prog = getLectureProgress(lec.uid);
-        const watchedSec = prog ? prog.timeSec : 0;
-        const totalDurSec = parseDurationToSeconds(lec.duration);
-        const pct = (totalDurSec > 0 && watchedSec > 0) ? Math.min(100, Math.round((watchedSec / totalDurSec) * 100)) : 0;
-        const isCompleted = pct >= 90;
+        const watchedSec = prog ? (prog.maxWatchedSec || prog.timeSec || 0) : 0;
+        let totalDurSec = parseDurationToSeconds(lec.duration);
+        if (totalDurSec <= 0 && prog && prog.durationSec > 0) {
+            totalDurSec = prog.durationSec;
+        }
+        let pct = (totalDurSec > 0 && watchedSec > 0) 
+            ? Math.min(100, Math.round((watchedSec / totalDurSec) * 100)) 
+            : (prog ? (prog.percent || 0) : 0);
+        const isCompleted = pct >= 90 || (prog && prog.isCompleted);
+        if (isCompleted) pct = 100;
 
+        let pctBadge = "";
         let progBadge = "";
         let progressBarHtml = "";
+
         if (isCompleted) {
-            progBadge = `<span class="offline-badge lecture-badge-completed" title="Completed (>= 90% watched)"><i class="fas fa-check-circle"></i> Completed</span>`;
+            pctBadge = `<span class="lecture-percent-chip completed" title="100% Completed"><i class="fas fa-check-circle"></i> 100%</span>`;
             progressBarHtml = `<div class="lecture-progress-track"><div class="lecture-progress-fill completed" style="width: 100%;"></div></div>`;
-        } else if (watchedSec > 60) {
+        } else if (watchedSec > 10 || pct > 0) {
+            pctBadge = `<span class="lecture-percent-chip" title="${pct}% Completed"><i class="fas fa-play-circle"></i> ${pct}%</span>`;
             const wM = Math.floor(watchedSec / 60);
             const wH = Math.floor(wM / 60);
             const remM = wM % 60;
             const timeStr = wH > 0 ? `${wH}h ${remM}m` : `${remM}m`;
-            const pctLabel = pct > 0 ? ` (${pct}%)` : '';
-            progBadge = `<span class="offline-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);" title="Resume position: ${timeStr}${pctLabel}"><i class="fas fa-history"></i> At ${timeStr}${pctLabel}</span>`;
-            if (pct > 0) {
-                progressBarHtml = `<div class="lecture-progress-track"><div class="lecture-progress-fill" style="width: ${pct}%;"></div></div>`;
-            }
+            progBadge = `<span class="offline-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3);" title="Resume at ${timeStr}"><i class="fas fa-history"></i> At ${timeStr}</span>`;
+            progressBarHtml = `<div class="lecture-progress-track"><div class="lecture-progress-fill" style="width: ${Math.max(4, pct)}%;"></div></div>`;
         }
 
         const isSelected = selectedLectureUids.has(lec.uid);
@@ -880,6 +923,7 @@ function renderLecturesList(lectures) {
                     <div class="lecture-card-title">${lec.title}</div>
                     <div class="lecture-card-duration">
                         <i class="far fa-clock"></i> ${lec.duration || '--'}
+                        ${pctBadge}
                         ${progBadge}
                         ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : '')}
                         ${lec.pdfFile ? `<span class="offline-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="PDF Notes Attached"><i class="fas fa-file-pdf"></i> Notes</span>` : ''}

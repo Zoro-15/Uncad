@@ -465,6 +465,9 @@
                 <button id="tab-btn-pdf" class="tab-btn" onclick="switchPanelTab('pdf')">
                     <i class="fas fa-file-pdf"></i> Notes PDF
                 </button>
+                <button id="tab-btn-notes" class="tab-btn" onclick="switchPanelTab('notes')">
+                    <i class="fas fa-bookmark"></i> Notes
+                </button>
             </div>
 
             <!-- Slides List Panel -->
@@ -492,6 +495,28 @@
                     <span class="doubts-title">📄 Slide Notes PDF</span>
                 </div>
                 <div class="doubts-body" id="pdf-nav"></div>
+            </div>
+
+            <!-- Notes & Bookmarks Panel -->
+            <div id="notes-panel" class="panel-tab-content">
+                <div class="doubts-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="doubts-title"><i class="fas fa-bookmark" style="color:var(--accent);"></i> Notes & Bookmarks</span>
+                    <button id="add-current-note-btn" class="add-note-action-btn" onclick="openNewNoteInput()">
+                        <i class="fas fa-plus"></i> Add Note (<span id="note-curr-time-badge">0:00</span>)
+                    </button>
+                </div>
+                <div id="new-note-box" class="new-note-box" style="display:none;">
+                    <div class="new-note-header">
+                        <span class="note-time-pill" id="new-note-time-label"><i class="fas fa-clock"></i> 0:00</span>
+                        <span class="new-note-hint">Timestamp Bookmark</span>
+                    </div>
+                    <textarea id="new-note-textarea" placeholder="Write key formulas, concepts, or bookmarks here..." rows="3"></textarea>
+                    <div class="new-note-actions">
+                        <button class="note-btn-cancel" onclick="cancelNewNote()">Cancel</button>
+                        <button class="note-btn-save" onclick="saveNewNote()"><i class="fas fa-save"></i> Save</button>
+                    </div>
+                </div>
+                <div class="doubts-body" id="notes-list-wrap"></div>
             </div>
         </div>
     </div>

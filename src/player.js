@@ -2238,6 +2238,8 @@ window.updateSplash = (txt, pct) => {
                 if (vSec !== lastRenderedVideoSec) {
                     lastRenderedVideoSec = vSec;
                     if (vCurr) vCurr.textContent = fmt(vSec);
+                    const noteBadge = document.getElementById("note-curr-time-badge");
+                    if (noteBadge) noteBadge.textContent = fmt(vSec);
                 }
             }
 
@@ -2904,13 +2906,23 @@ window.updateSplash = (txt, pct) => {
             const curSec = Math.floor(video.currentTime);
             if (activeUid && curSec > 0 && Math.abs(curSec - lastProgressSaveSec) >= 3) {
                 lastProgressSaveSec = curSec;
-                saveLastWatched(activeUid, activeCourseId, video.currentTime);
+                saveLastWatched(activeUid, activeCourseId, video.currentTime, video.duration);
+            }
+        });
+
+        video.addEventListener("ended", () => {
+            if (activeUid && video) {
+                const totalDur = video.duration || video.currentTime;
+                saveLastWatched(activeUid, activeCourseId, totalDur, totalDur);
+                if (window.saveLectureProgress) {
+                    window.saveLectureProgress(activeUid, totalDur, totalDur, true);
+                }
             }
         });
 
         window.addEventListener("beforeunload", () => {
             if (activeUid && video && video.currentTime > 0) {
-                saveLastWatched(activeUid, activeCourseId, video.currentTime);
+                saveLastWatched(activeUid, activeCourseId, video.currentTime, video.duration);
             }
         });
 
@@ -3165,10 +3177,10 @@ window.updateSplash = (txt, pct) => {
                 c.classList.remove('active');
             });
             if (tab === 'slides') {
-                document.getElementById('tab-btn-slides').classList.add('active');
+                const b = document.getElementById('tab-btn-slides');
+                if (b) b.classList.add('active');
                 const t = document.getElementById('doubts-panel');
-                t.style.display = 'flex';
-                t.classList.add('active');
+                if (t) { t.style.display = 'flex'; t.classList.add('active'); }
             } else if (tab === 'pdf') {
                 const pdfBtn = document.getElementById('tab-btn-pdf');
                 if (pdfBtn) pdfBtn.classList.add('active');
@@ -3178,13 +3190,164 @@ window.updateSplash = (txt, pct) => {
                     t.classList.add('active');
                     renderPdfNotes(activeUid);
                 }
+            } else if (tab === 'notes') {
+                const notesBtn = document.getElementById('tab-btn-notes');
+                if (notesBtn) notesBtn.classList.add('active');
+                const t = document.getElementById('notes-panel');
+                if (t) {
+                    t.style.display = 'flex';
+                    t.classList.add('active');
+                    renderStudyNotes(activeUid);
+                }
             } else {
-                document.getElementById('tab-btn-lectures').classList.add('active');
+                const b = document.getElementById('tab-btn-lectures');
+                if (b) b.classList.add('active');
                 const t = document.getElementById('lectures-panel');
-                t.style.display = 'flex';
-                t.classList.add('active');
+                if (t) { t.style.display = 'flex'; t.classList.add('active'); }
             }
         }
+
+        // ══════════════════════════════════════════════════
+        //  TIMESTAMPED STUDY NOTES & BOOKMARKS SYSTEM
+        // ══════════════════════════════════════════════════
+        let currentNoteCapturedSec = 0;
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function getLectureNotes(uid) {
+            if (!uid) return [];
+            try {
+                const raw = localStorage.getItem(`runcadel_notes_${uid}`);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveLectureNotes(uid, notes) {
+            if (!uid) return;
+            try {
+                localStorage.setItem(`runcadel_notes_${uid}`, JSON.stringify(notes || []));
+            } catch (e) {}
+        }
+
+        function openNewNoteInput() {
+            const box = document.getElementById('new-note-box');
+            const timeBadge = document.getElementById('new-note-time-label');
+            const textarea = document.getElementById('new-note-textarea');
+            if (!box) return;
+
+            currentNoteCapturedSec = video ? video.currentTime : 0;
+            const timeStr = fmt(Math.floor(currentNoteCapturedSec));
+            if (timeBadge) timeBadge.innerHTML = `<i class="fas fa-clock"></i> ${timeStr}`;
+
+            box.style.display = 'flex';
+            if (textarea) {
+                textarea.value = '';
+                textarea.focus();
+            }
+        }
+        window.openNewNoteInput = openNewNoteInput;
+
+        function cancelNewNote() {
+            const box = document.getElementById('new-note-box');
+            if (box) box.style.display = 'none';
+        }
+        window.cancelNewNote = cancelNewNote;
+
+        function saveNewNote() {
+            const textarea = document.getElementById('new-note-textarea');
+            const text = (textarea ? textarea.value : '').trim();
+            if (!text) {
+                showToast("Please enter some text for your note", "warn");
+                return;
+            }
+
+            const notes = getLectureNotes(activeUid);
+            const timeSec = Math.floor(currentNoteCapturedSec);
+            const timeFormatted = fmt(timeSec);
+
+            const newNote = {
+                id: `note_${Date.now()}`,
+                timeSec: timeSec,
+                timeFormatted: timeFormatted,
+                text: text,
+                createdAt: Date.now()
+            };
+
+            notes.push(newNote);
+            notes.sort((a, b) => a.timeSec - b.timeSec);
+            saveLectureNotes(activeUid, notes);
+
+            cancelNewNote();
+            renderStudyNotes(activeUid);
+            showToast(`🔖 Bookmark saved at ${timeFormatted}`, "success");
+        }
+        window.saveNewNote = saveNewNote;
+
+        function seekToNote(timeSec) {
+            if (video) {
+                video.currentTime = timeSec;
+                doSeek(timeSec * 1e6);
+                showToast(`⏱️ Jumped to ${fmt(timeSec)}`, "info");
+            }
+        }
+        window.seekToNote = seekToNote;
+
+        function deleteNote(noteId) {
+            if (!confirm("Are you sure you want to delete this bookmark?")) return;
+            let notes = getLectureNotes(activeUid);
+            notes = notes.filter(n => n.id !== noteId);
+            saveLectureNotes(activeUid, notes);
+            renderStudyNotes(activeUid);
+            showToast("Bookmark removed", "info");
+        }
+        window.deleteNote = deleteNote;
+
+        function renderStudyNotes(uid) {
+            const wrap = document.getElementById('notes-list-wrap');
+            if (!wrap) return;
+            wrap.innerHTML = '';
+
+            const notes = getLectureNotes(uid);
+            if (!notes || notes.length === 0) {
+                wrap.innerHTML = `
+                    <div class="notes-empty-state">
+                        <i class="fas fa-bookmark"></i>
+                        <strong>No study notes or bookmarks yet</strong>
+                        <p style="margin-top:6px;">Tap "+ Add Note" to save formulas, derivation steps, or bookmarks at your current video timestamp.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            notes.forEach(note => {
+                const card = document.createElement('div');
+                card.className = 'note-card';
+                card.innerHTML = `
+                    <div class="note-card-top">
+                        <button class="note-time-chip" onclick="seekToNote(${note.timeSec})" title="Seek to ${note.timeFormatted}">
+                            <i class="fas fa-play"></i> ${note.timeFormatted}
+                        </button>
+                        <span class="note-date">${new Date(note.createdAt).toLocaleDateString()}</span>
+                        <button class="note-delete-btn" onclick="deleteNote('${note.id}')" title="Delete bookmark">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="note-card-text">${escapeHtml(note.text)}</div>
+                `;
+                wrap.appendChild(card);
+            });
+        }
+        window.renderStudyNotes = renderStudyNotes;
 
         function renderLectureDrawer() {
             const nav = document.getElementById('lecture-nav');
@@ -3203,14 +3366,16 @@ window.updateSplash = (txt, pct) => {
                 const isActive = (lec.uid === activeUid);
                 const prog = getLectureProgress(lec.uid);
                 let progIndicator = '';
-                if (prog && prog.timeSec > 60) {
-                    const totalDurSec = parseDurationToSeconds(lec.duration);
-                    const pct = totalDurSec > 0 ? Math.min(100, Math.round((prog.timeSec / totalDurSec) * 100)) : 0;
-                    if (pct >= 90) {
-                        progIndicator = `<span style="color:#22c55e;font-size:10.5px;font-weight:600;"><i class="fas fa-check-circle"></i> Done</span>`;
-                    } else if (pct > 0) {
-                        progIndicator = `<span style="color:#60a5fa;font-size:10.5px;font-weight:500;"><i class="fas fa-history"></i> ${pct}%</span>`;
-                    }
+                const watchedSec = prog ? (prog.maxWatchedSec || prog.timeSec || 0) : 0;
+                let totalDurSec = parseDurationToSeconds(lec.duration);
+                if (totalDurSec <= 0 && prog && prog.durationSec > 0) totalDurSec = prog.durationSec;
+                const pct = (totalDurSec > 0 && watchedSec > 0) ? Math.min(100, Math.round((watchedSec / totalDurSec) * 100)) : (prog ? (prog.percent || 0) : 0);
+                const isDone = pct >= 90 || (prog && prog.isCompleted);
+
+                if (isDone) {
+                    progIndicator = `<span style="color:#22c55e;font-size:10.5px;font-weight:700;"><i class="fas fa-check-circle"></i> 100%</span>`;
+                } else if (pct > 0) {
+                    progIndicator = `<span style="color:#60a5fa;font-size:10.5px;font-weight:600;"><i class="fas fa-play-circle"></i> ${pct}%</span>`;
                 }
                 item.className = `lec-item ${isActive ? 'active' : ''}`;
                 item.innerHTML = `
@@ -3223,8 +3388,13 @@ window.updateSplash = (txt, pct) => {
                 `;
                 item.onclick = () => {
                     if (lec.uid !== activeUid) {
-                        if (window.launchLecture) {
-                            window.launchLecture(lec.uid);
+                        switchPanelTab('slides');
+                        const panel = document.getElementById('right-panel');
+                        if (panel && window.innerWidth <= 768) {
+                            panel.classList.remove('show');
+                        }
+                        if (lec.isLocal || lec.videoFile) {
+                            loadLocalLecture(lec);
                         } else {
                             loadLectureByUid(lec.uid);
                         }
