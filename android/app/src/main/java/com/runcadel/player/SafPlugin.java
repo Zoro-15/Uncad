@@ -357,4 +357,53 @@ public class SafPlugin extends Plugin {
 
         return null;
     }
+
+    @PluginMethod
+    public void enterImmersive(PluginCall call) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            activity.runOnUiThread(() -> {
+                try {
+                    androidx.core.view.WindowInsetsControllerCompat controller =
+                        androidx.core.view.WindowCompat.getInsetsController(activity.getWindow(), activity.getWindow().getDecorView());
+                    if (controller != null) {
+                        controller.hide(androidx.core.view.WindowInsetsCompat.Type.systemBars());
+                        controller.setSystemBarsBehavior(androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                    }
+                } catch (Exception e) {
+                    try {
+                        int flags = android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                                | android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                        activity.getWindow().getDecorView().setSystemUiVisibility(flags);
+                    } catch (Exception ignored) {}
+                }
+            });
+        }
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void exitImmersive(PluginCall call) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            activity.runOnUiThread(() -> {
+                try {
+                    androidx.core.view.WindowInsetsControllerCompat controller =
+                        androidx.core.view.WindowCompat.getInsetsController(activity.getWindow(), activity.getWindow().getDecorView());
+                    if (controller != null) {
+                        controller.show(androidx.core.view.WindowInsetsCompat.Type.systemBars());
+                    }
+                } catch (Exception e) {
+                    try {
+                        activity.getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_VISIBLE);
+                    } catch (Exception ignored) {}
+                }
+            });
+        }
+        call.resolve();
+    }
 }

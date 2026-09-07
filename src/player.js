@@ -168,6 +168,7 @@ window.updateSplash = (txt, pct) => {
         let drawOffset = 0;
         let maxDuration = 0;
         let CW = 1, CH = 1;
+        let hasFirstPlayOccurred = false;
         let recordStartMs = -1;
         let lastPaintedPanX = 0, lastPaintedPanY = 0, lastPaintedZoom = 1;
 
@@ -1176,6 +1177,8 @@ window.updateSplash = (txt, pct) => {
         }
 
         async function loadLectureByUid(uid, startSec = 0, preferredCourseId = null) {
+            hasFirstPlayOccurred = false;
+            if (window.enterFullscreen) window.enterFullscreen();
             if (!uid) {
                 console.warn("[Player] Attempted to load lecture with empty UID.");
                 return false;
@@ -2427,6 +2430,10 @@ window.updateSplash = (txt, pct) => {
             ensureSyncLoop();
         });
         video.addEventListener("play", () => {
+            if (!hasFirstPlayOccurred) {
+                hasFirstPlayOccurred = true;
+                if (window.enterFullscreen) window.enterFullscreen();
+            }
             isSeeking = false;
             isBuffering = false;
             if (bufferingOverlay) bufferingOverlay.classList.remove("show");
@@ -4089,6 +4096,8 @@ async function loadLocalLecture(lec, course = null, startSec = 0) {
         activeCourseId = course.id;
     }
     activeUid = lec.uid;
+    hasFirstPlayOccurred = false;
+    if (window.enterFullscreen) window.enterFullscreen();
     renderLectureDrawer();
 
     video.pause();

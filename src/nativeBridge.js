@@ -58,6 +58,30 @@ export async function unlockOrientation() {
     }
 }
 
+export async function hideStatusBar() {
+    if (!isNativePlatform()) return;
+    try {
+        if (SafStorage && typeof SafStorage.enterImmersive === 'function') {
+            await SafStorage.enterImmersive();
+        }
+    } catch (_) {}
+    try {
+        await StatusBar.hide();
+    } catch (_) {}
+}
+
+export async function showStatusBar() {
+    if (!isNativePlatform()) return;
+    try {
+        if (SafStorage && typeof SafStorage.exitImmersive === 'function') {
+            await SafStorage.exitImmersive();
+        }
+    } catch (_) {}
+    try {
+        await StatusBar.show();
+    } catch (_) {}
+}
+
 /**
  * Initialize all native bridge capabilities: StatusBar, Hardware Back Button, and Lifecycle
  */

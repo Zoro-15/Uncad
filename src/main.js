@@ -2,7 +2,7 @@
 import { renderMyCourses, switchView, switchNavView } from './dashboard.js';
 import { runEngine } from './player.js';
 import { restoreSavedFolderOnStartup } from './ui/localFileLoader.js';
-import { initNativeBridge, isNativePlatform } from './nativeBridge.js';
+import { initNativeBridge, isNativePlatform, hideStatusBar, showStatusBar } from './nativeBridge.js';
 
 // ══════════════════════════════════════════════════
 // FULLSCREEN CONTROLLER & AUTO-TRIGGER
@@ -19,6 +19,9 @@ function enterFullscreen() {
                 docEl.msRequestFullscreen();
             }
         }
+        if (isNativePlatform()) {
+            hideStatusBar();
+        }
     } catch (_) {}
 }
 
@@ -33,11 +36,33 @@ function toggleFullscreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+        if (isNativePlatform()) {
+            showStatusBar();
+        }
     }
 }
-// Explicit user-triggered fullscreen toggles remain available via toggleFullscreen()
 window.toggleFullscreen = toggleFullscreen;
 window.enterFullscreen = enterFullscreen;
+
+// ══════════════════════════════════════════════════
+// HOMEPAGE INTERACTION FULLSCREEN TRIGGER
+// (Makes navigation buttons and notification panel disappear on interaction)
+// ══════════════════════════════════════════════════
+function onHomepageInteraction() {
+    try {
+        const appEl = document.getElementById("app");
+        // Strictly only when on the homepage (player #app is hidden)
+        if (appEl && appEl.style.display !== "none") {
+            return;
+        }
+        enterFullscreen();
+    } catch (_) {}
+}
+
+window.addEventListener('touchstart', onHomepageInteraction, { capture: true, passive: true });
+window.addEventListener('pointerdown', onHomepageInteraction, { capture: true, passive: true });
+window.addEventListener('click', onHomepageInteraction, { capture: true, passive: true });
+window.addEventListener('keydown', onHomepageInteraction, { capture: true, passive: true });
 
 // ══════════════════════════════════════════════════
 // DARK / LIGHT MODE TOGGLE
@@ -86,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hasParam) {
             switchView("player");
+            if (window.enterFullscreen) window.enterFullscreen();
             const success = await runEngine();
             if (success) {
                 const sp = document.getElementById("splash");
