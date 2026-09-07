@@ -43,6 +43,11 @@ function openDB() {
         };
 
         request.onsuccess = (event) => {
+            if (typeof navigator !== 'undefined' && navigator.storage && navigator.storage.persist) {
+                navigator.storage.persist().then(isPersisted => {
+                    if (isPersisted) console.log('[OfflineStorage] Persistent storage granted by system.');
+                }).catch(() => {});
+            }
             resolve(event.target.result);
         };
 
