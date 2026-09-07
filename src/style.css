@@ -1332,14 +1332,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
-            background: rgba(15, 15, 20, 0.9);
+            padding: calc(12px + env(safe-area-inset-top, 0px)) calc(20px + env(safe-area-inset-right, 0px)) 12px calc(20px + env(safe-area-inset-left, 0px));
+            background: rgba(15, 15, 20, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-            min-height: 56px;
+            min-height: calc(56px + env(safe-area-inset-top, 0px));
             flex-shrink: 0;
             box-sizing: border-box;
             gap: 12px;
@@ -1956,7 +1956,8 @@
         /* ANDROID WEBVIEW RESPONSIVE ADAPTATIONS */
         @media (max-width: 480px) {
             .db-header {
-                padding: 10px 14px;
+                padding: calc(10px + env(safe-area-inset-top, 0px)) calc(14px + env(safe-area-inset-right, 0px)) 10px calc(14px + env(safe-area-inset-left, 0px));
+                min-height: calc(50px + env(safe-area-inset-top, 0px));
             }
             .db-user {
                 max-width: 140px;

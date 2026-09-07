@@ -2,6 +2,7 @@
 import { renderMyCourses, switchView, switchNavView } from './dashboard.js';
 import { runEngine } from './player.js';
 import { restoreSavedFolderOnStartup } from './ui/localFileLoader.js';
+import { initNativeBridge, isNativePlatform } from './nativeBridge.js';
 
 // ══════════════════════════════════════════════════
 // FULLSCREEN CONTROLLER & AUTO-TRIGGER
@@ -38,6 +39,7 @@ window.toggleFullscreen = toggleFullscreen;
 window.enterFullscreen = enterFullscreen;
 
 function shouldExcludeFromForcedFullscreen(e) {
+    if (isNativePlatform()) return true;
     if (e && (e.key === "Escape" || e.code === "Escape")) return true;
 
     try {
@@ -107,8 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Bootstrap launch
 (async () => {
     try {
+        initNativeBridge();
         if (window.resizeCanvas) window.resizeCanvas();
-        enterFullscreen();
+        if (!isNativePlatform()) enterFullscreen();
 
         const params = new URLSearchParams(window.location.search);
         const hasParam = params.get("lec") || params.get("url");

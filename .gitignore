@@ -54,6 +54,7 @@ nexus_*.html
 *.db
 *.md
 !README.md
+!contextpromptapk.md
 FUTURE.md
 extension/
 
@@ -143,3 +144,6 @@ cypress/screenshots/
 # ─── 12. Subprojects / Batch Folders ───
 ramanujan-20-ioqm-2026/
 
+ 
+# Standalone Android APK Repository
+runcadel-offline-apk/

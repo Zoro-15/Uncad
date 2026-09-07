@@ -3,6 +3,7 @@
 
 import { findLectureInCourses, COURSES } from '../courses.js';
 import { saveSavedDirectoryHandle, getSavedDirectoryHandle, clearSavedDirectoryHandle } from '../engine/offlineStorage.js';
+import { isNativePlatform, pickNativeSafCourseFolder, checkPersistedSafFolder } from '../nativeBridge.js';
 
 let onLocalCourseLoadedCallback = null;
 let onSingleLectureLoadedCallback = null;
@@ -354,6 +355,20 @@ async function scanDirectoryHandle(dirHandle, pathPrefix = "") {
 }
 
 async function openLocalFolderPicker() {
+    // 0. Native Android Capacitor SAF folder picker
+    if (isNativePlatform()) {
+        try {
+            const course = await pickNativeSafCourseFolder();
+            if (course && onLocalCourseLoadedCallback) {
+                onLocalCourseLoadedCallback(course);
+                return;
+            }
+        } catch (err) {
+            console.error("[LocalLoader] Native SAF folder picker error:", err);
+        }
+        return;
+    }
+
     // 1. Try modern File System Access API (supports permanent IndexedDB handles)
     if (typeof window.showDirectoryPicker === "function") {
         try {
@@ -381,9 +396,25 @@ async function openLocalFolderPicker() {
 window.openLocalFolderPicker = openLocalFolderPicker;
 
 /**
- * Automatically restore saved course folder from IndexedDB on startup
+ * Automatically restore saved course folder from IndexedDB or native SAF on startup
  */
 async function restoreSavedFolderOnStartup() {
+    // 0. Native Android Capacitor SAF auto-restore
+    if (isNativePlatform()) {
+        try {
+            const course = await checkPersistedSafFolder();
+            if (course && onLocalCourseLoadedCallback) {
+                console.log("[LocalLoader] Auto-restored persisted SAF course on Android:", course.title);
+                onLocalCourseLoadedCallback(course);
+                return true;
+            }
+        } catch (err) {
+            console.warn("[LocalLoader] Native SAF auto-restore error:", err);
+        }
+        return false;
+    }
+
+    // 1. Browser IndexedDB directory handle
     try {
         const dirHandle = await getSavedDirectoryHandle();
         if (!dirHandle) return false;
