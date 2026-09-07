@@ -234,7 +234,160 @@ async function clearAllOfflineTelemetry() {
 
             tx.oncomplete = () => {
                 console.log('[OfflineStorage] Cleared all offline telemetry, videos, and PDFs.');
-                window.dispatchEvent(new CustomEvent('lennister-offline-cleared'));
+                window.dispatchEvent(new CustomEvent('lennister-offline-cleared', { detail: { category: 'all' } }));
+                resolve(true);
+            };
+            tx.onerror = () => resolve(false);
+        });
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Retrieve all downloaded video lecture UIDs
+ * @returns {Promise<string[]>}
+ */
+async function getAllDownloadedVideoUids() {
+    try {
+        const db = await openDB();
+        if (!db) return [];
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_VIDEOS], 'readonly');
+            const store = tx.objectStore(STORE_VIDEOS);
+            const req = store.getAllKeys();
+            req.onsuccess = () => resolve(req.result || []);
+            req.onerror = () => resolve([]);
+        });
+    } catch (e) {
+        return [];
+    }
+}
+
+/**
+ * Retrieve map of downloaded video metadata (size, cachedAt) keyed by UID
+ * @returns {Promise<Record<string, { size: number, cachedAt: number }>>}
+ */
+async function getAllDownloadedVideosMeta() {
+    try {
+        const db = await openDB();
+        if (!db) return {};
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_VIDEOS], 'readonly');
+            const store = tx.objectStore(STORE_VIDEOS);
+            const req = store.openCursor();
+            const map = {};
+            req.onsuccess = (e) => {
+                const cursor = e.target.result;
+                if (cursor) {
+                    const val = cursor.value;
+                    map[cursor.key] = {
+                        size: val.size || (val.blob ? val.blob.size : 0),
+                        cachedAt: val.cachedAt || Date.now()
+                    };
+                    cursor.continue();
+                } else {
+                    resolve(map);
+                }
+            };
+            req.onerror = () => resolve({});
+        });
+    } catch (e) {
+        return {};
+    }
+}
+
+/**
+ * Totally delete all downloaded files (video, PDFs, telemetry & metadata) for a single lecture
+ * @param {string} uid
+ */
+async function deleteDownloadedLectureBundle(uid) {
+    if (!uid) return false;
+    try {
+        const db = await openDB();
+        if (!db) return false;
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_VIDEOS, STORE_PDFS, STORE_TELEMETRY, STORE_METADATA], 'readwrite');
+            tx.objectStore(STORE_VIDEOS).delete(uid);
+            tx.objectStore(STORE_PDFS).delete(`${uid}_clean`);
+            tx.objectStore(STORE_PDFS).delete(`${uid}_anno`);
+            tx.objectStore(STORE_TELEMETRY).delete(uid);
+            tx.objectStore(STORE_METADATA).delete(uid);
+            tx.oncomplete = () => {
+                console.log(`[OfflineStorage] Deleted downloaded lecture bundle for ${uid}`);
+                notifyOfflineUpdate(uid, false);
+                resolve(true);
+            };
+            tx.onerror = () => resolve(false);
+        });
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Clear all downloaded lecture videos, PDFs, and related telemetry/metadata
+ */
+async function clearAllDownloadedLectures() {
+    try {
+        const db = await openDB();
+        if (!db) return false;
+
+        const videoUids = await getAllDownloadedVideoUids();
+
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_VIDEOS, STORE_PDFS, STORE_TELEMETRY, STORE_METADATA], 'readwrite');
+            const videoStore = tx.objectStore(STORE_VIDEOS);
+            const pdfStore = tx.objectStore(STORE_PDFS);
+            const telStore = tx.objectStore(STORE_TELEMETRY);
+            const metaStore = tx.objectStore(STORE_METADATA);
+
+            videoStore.clear();
+            pdfStore.clear();
+
+            videoUids.forEach(uid => {
+                telStore.delete(uid);
+                metaStore.delete(uid);
+            });
+
+            tx.oncomplete = () => {
+                console.log('[OfflineStorage] Totally cleared all downloaded videos, PDFs, and related files.');
+                window.dispatchEvent(new CustomEvent('lennister-offline-cleared', { detail: { category: 'downloaded' } }));
+                resolve(true);
+            };
+            tx.onerror = () => resolve(false);
+        });
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Clear only pre-cached telemetry and metadata, preserving downloaded videos & related files
+ */
+async function clearPreCachedTelemetryOnly() {
+    try {
+        const db = await openDB();
+        if (!db) return false;
+
+        const videoUids = new Set(await getAllDownloadedVideoUids());
+        const allMetaUids = await getAllCachedUids();
+
+        return new Promise((resolve) => {
+            const tx = db.transaction([STORE_TELEMETRY, STORE_METADATA], 'readwrite');
+            const telStore = tx.objectStore(STORE_TELEMETRY);
+            const metaStore = tx.objectStore(STORE_METADATA);
+
+            allMetaUids.forEach(uid => {
+                if (!videoUids.has(uid)) {
+                    telStore.delete(uid);
+                    metaStore.delete(uid);
+                }
+            });
+
+            tx.oncomplete = () => {
+                console.log('[OfflineStorage] Cleared pre-cached telemetry (downloaded videos preserved).');
+                window.dispatchEvent(new CustomEvent('lennister-offline-cleared', { detail: { category: 'pre-cached' } }));
                 resolve(true);
             };
             tx.onerror = () => resolve(false);
@@ -497,6 +650,11 @@ export {
     getOfflineVideo,
     savePdfOffline,
     getOfflinePdf,
-    downloadLectureBundle
+    downloadLectureBundle,
+    getAllDownloadedVideoUids,
+    getAllDownloadedVideosMeta,
+    deleteDownloadedLectureBundle,
+    clearAllDownloadedLectures,
+    clearPreCachedTelemetryOnly
 };
 

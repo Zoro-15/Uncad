@@ -1,7 +1,18 @@
 // Dashboard views, routing, offline manager, and predictive caching module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
-import { getAllCachedUids, clearAllOfflineTelemetry, saveTelemetryOffline, downloadLectureBundle } from './engine/offlineStorage.js';
+import { 
+    getAllCachedUids, 
+    clearAllOfflineTelemetry, 
+    saveTelemetryOffline, 
+    downloadLectureBundle,
+    getAllDownloadedVideoUids,
+    getAllDownloadedVideosMeta,
+    deleteDownloadedLectureBundle,
+    clearAllDownloadedLectures,
+    clearPreCachedTelemetryOnly,
+    deleteOfflineTelemetry
+} from './engine/offlineStorage.js';
 import { openLocalFolderPicker } from './ui/localFileLoader.js';
 
 let currentView = "my-courses";
@@ -31,24 +42,27 @@ function findCourseById(id) {
 // IN-MEMORY OFFLINE UIDS CACHE (FOR ZERO-LAG SEARCH)
 // ══════════════════════════════════════════════════
 let cachedUidsSet = new Set();
+let downloadedUidsSet = new Set();
+let downloadedVideosMeta = {};
+let activeOfflineCategory = 'pre-cached'; // 'pre-cached' | 'downloaded'
 
 async function refreshCachedUidsSet() {
     try {
         const uids = await getAllCachedUids();
+        const videoUids = await getAllDownloadedVideoUids();
+        downloadedVideosMeta = await getAllDownloadedVideosMeta();
         cachedUidsSet = new Set(uids || []);
+        downloadedUidsSet = new Set(videoUids || []);
     } catch (e) {
         cachedUidsSet = new Set();
+        downloadedUidsSet = new Set();
+        downloadedVideosMeta = {};
     }
 }
 refreshCachedUidsSet();
 
-window.addEventListener('lennister-offline-change', (e) => {
-    if (e.detail && e.detail.uid) {
-        if (e.detail.isCached) cachedUidsSet.add(e.detail.uid);
-        else cachedUidsSet.delete(e.detail.uid);
-    } else {
-        refreshCachedUidsSet();
-    }
+window.addEventListener('lennister-offline-change', async (e) => {
+    await refreshCachedUidsSet();
     if (currentView === "course" && activeCourseId) {
         const course = findCourseById(activeCourseId);
         if (course) renderLecturesList(course.lectures);
@@ -57,8 +71,8 @@ window.addEventListener('lennister-offline-change', (e) => {
     }
 });
 
-window.addEventListener('lennister-offline-cleared', () => {
-    cachedUidsSet.clear();
+window.addEventListener('lennister-offline-cleared', async () => {
+    await refreshCachedUidsSet();
     if (currentView === "course" && activeCourseId) {
         const course = findCourseById(activeCourseId);
         if (course) renderLecturesList(course.lectures);
@@ -702,25 +716,50 @@ function renderOfflineMode() {
         }
     }
 
-    // 2. Pre-cached / IndexedDB Online Lectures
+    // 2. Pre-cached / IndexedDB Online Lectures & Downloaded Videos
     const cachedList = document.getElementById("offline-cached-list");
     const clearBtn = document.getElementById("clear-cache-btn");
+    const clearBtnText = document.getElementById("clear-cache-btn-text");
+    const tabPreCached = document.getElementById("tab-pre-cached");
+    const tabDownloaded = document.getElementById("tab-downloaded");
+    const countPreCachedEl = document.getElementById("count-pre-cached");
+    const countDownloadedEl = document.getElementById("count-downloaded");
+
+    const downloadedUids = Array.from(downloadedUidsSet);
+    const preCachedUids = Array.from(cachedUidsSet).filter(uid => !downloadedUidsSet.has(uid));
+
+    if (countPreCachedEl) countPreCachedEl.textContent = preCachedUids.length;
+    if (countDownloadedEl) countDownloadedEl.textContent = downloadedUids.length;
+
+    if (tabPreCached) tabPreCached.classList.toggle("active", activeOfflineCategory === 'pre-cached');
+    if (tabDownloaded) tabDownloaded.classList.toggle("active", activeOfflineCategory === 'downloaded');
+
+    const activeUids = activeOfflineCategory === 'downloaded' ? downloadedUids : preCachedUids;
+
+    if (clearBtn) {
+        if (activeUids.length > 0) {
+            clearBtn.style.display = "inline-flex";
+            if (clearBtnText) {
+                clearBtnText.textContent = activeOfflineCategory === 'downloaded' ? "Clear Downloaded" : "Clear Pre-Cached";
+            }
+        } else {
+            clearBtn.style.display = "none";
+        }
+    }
+
     if (cachedList) {
         cachedList.innerHTML = "";
-        const uids = Array.from(cachedUidsSet);
-        if (uids.length === 0) {
-            if (clearBtn) clearBtn.style.display = "none";
-            cachedList.innerHTML = `
-                <div style="text-align:center; padding:30px; color:#71717a; font-size:13px; border: 1px dashed rgba(255,255,255,0.06); border-radius: 12px;">
-                    <i class="fas fa-bolt" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.4;"></i>
-                    No fast-cached online lectures yet. Telemetry data is automatically pre-cached silently on startup.
-                </div>
-            `;
+        if (activeUids.length === 0) {
+            const emptyMsg = activeOfflineCategory === 'downloaded' 
+                ? `<i class="fas fa-cloud-arrow-down" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.4;"></i>
+                   No downloaded lectures found. Select lectures in any course and tap <strong>Download [N]</strong> to download full video and slides for 100% offline playback.`
+                : `<i class="fas fa-bolt" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.4;"></i>
+                   No pre-cached telemetry found. Telemetry data is pre-cached silently on startup for instant whiteboard loading.`;
+
+            cachedList.innerHTML = `<div class="offline-empty-state">${emptyMsg}</div>`;
         } else {
-            if (clearBtn) clearBtn.style.display = "block";
             const fragment = document.createDocumentFragment();
-            
-            uids.forEach(uid => {
+            activeUids.forEach(uid => {
                 let foundLec = null;
                 let foundCourse = null;
                 for (const c of COURSES) {
@@ -735,26 +774,58 @@ function renderOfflineMode() {
                 }
 
                 const title = foundLec ? foundLec.title : `Lecture ${uid}`;
-                const rank = foundLec ? foundLec.rank : "--";
                 const courseName = foundCourse ? foundCourse.title : "Online Catalog";
                 const duration = foundLec ? foundLec.duration : "";
+                const isDownloadedItem = activeOfflineCategory === 'downloaded';
 
                 const card = document.createElement("div");
                 card.className = "lecture-card";
                 card.onclick = () => launchLecture(uid);
+
+                let badgeHtml = "";
+                let deleteAction = "";
+
+                if (isDownloadedItem) {
+                    const meta = downloadedVideosMeta[uid];
+                    const sizeStr = meta && meta.size ? `${(meta.size / (1024 * 1024)).toFixed(1)} MB` : "";
+                    badgeHtml = `
+                        <span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border-color:rgba(34,197,94,0.3);"><i class="fas fa-check-circle"></i> Video & Slides Offline</span>
+                        ${sizeStr ? `<span class="offline-badge" style="background:rgba(255,255,255,0.06);color:var(--text-2);border-color:rgba(255,255,255,0.1);"><i class="fas fa-hdd"></i> ${sizeStr}</span>` : ''}
+                    `;
+                    deleteAction = `
+                        <button class="delete-single-offline-btn" title="Delete downloaded video & files" onclick="deleteSingleDownloadedLecture('${uid}', event)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    `;
+                } else {
+                    badgeHtml = `
+                        <span class="offline-badge" style="background:rgba(239,68,68,0.15);color:var(--accent);border-color:rgba(239,68,68,0.3);"><i class="fas fa-bolt"></i> Pre-Cached</span>
+                    `;
+                    deleteAction = `
+                        <button class="delete-single-offline-btn" title="Remove pre-cached telemetry" onclick="deleteSinglePreCachedLecture('${uid}', event)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    `;
+                }
+
                 card.innerHTML = `
                     <div class="lecture-card-left">
-                        <div class="lecture-number"><i class="fas fa-bolt" style="color:var(--accent);"></i></div>
+                        <div class="lecture-number" style="${isDownloadedItem ? 'background:rgba(34,197,94,0.15); color:#22c55e;' : ''}">
+                            <i class="${isDownloadedItem ? 'fas fa-cloud-arrow-down' : 'fas fa-bolt'}" style="${isDownloadedItem ? 'color:#22c55e;' : 'color:var(--accent);'}"></i>
+                        </div>
                         <div>
                             <div class="lecture-card-title">${title}</div>
                             <div class="lecture-card-duration">
                                 <span>${courseName}</span> • <i class="far fa-clock"></i> ${duration || '--'}
-                                <span class="offline-badge" style="background:rgba(239,68,68,0.15);color:var(--accent);border-color:rgba(239,68,68,0.3);"><i class="fas fa-bolt"></i> Instant Ready</span>
+                                ${badgeHtml}
                             </div>
                         </div>
                     </div>
-                    <div class="lecture-card-play-btn">
-                        <i class="fas fa-play"></i>
+                    <div class="lecture-card-right-actions" style="display:flex; align-items:center; gap:10px;">
+                        ${deleteAction}
+                        <div class="lecture-card-play-btn" style="${isDownloadedItem ? 'background:#22c55e; color:#09090b;' : ''}">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
                 `;
                 fragment.appendChild(card);
@@ -765,17 +836,67 @@ function renderOfflineMode() {
 }
 
 async function clearOfflineStorage() {
-    if (!confirm("Are you sure you want to clear all offline pre-cached lecture data?")) return;
-    try {
-        await clearAllOfflineTelemetry();
-        cachedUidsSet.clear();
-        window.dispatchEvent(new CustomEvent('lennister-offline-cleared'));
-        renderOfflineMode();
-        if (window.showToast) window.showToast("🧹 Cleared offline pre-cached telemetry", "info");
-    } catch (e) {
-        console.error("Failed to clear offline storage:", e);
+    if (activeOfflineCategory === 'downloaded') {
+        const count = downloadedUidsSet.size;
+        if (count === 0) return;
+        if (!confirm(`Are you sure you want to completely delete all ${count} downloaded lecture video(s) and related files?`)) return;
+        try {
+            await clearAllDownloadedLectures();
+            await refreshCachedUidsSet();
+            renderOfflineMode();
+            if (window.showToast) window.showToast("🗑️ All downloaded videos and related files deleted", "info");
+        } catch (e) {
+            console.error("Failed to clear downloaded lectures:", e);
+        }
+    } else {
+        const preCachedUids = Array.from(cachedUidsSet).filter(uid => !downloadedUidsSet.has(uid));
+        const count = preCachedUids.length;
+        if (count === 0) return;
+        if (!confirm(`Are you sure you want to clear all ${count} pre-cached telemetry file(s)?`)) return;
+        try {
+            await clearPreCachedTelemetryOnly();
+            await refreshCachedUidsSet();
+            renderOfflineMode();
+            if (window.showToast) window.showToast("🧹 Pre-cached telemetry cleared", "info");
+        } catch (e) {
+            console.error("Failed to clear pre-cached telemetry:", e);
+        }
     }
 }
+window.clearOfflineStorage = clearOfflineStorage;
+
+function switchOfflineCategory(category) {
+    activeOfflineCategory = category;
+    renderOfflineMode();
+}
+window.switchOfflineCategory = switchOfflineCategory;
+
+async function deleteSingleDownloadedLecture(uid, e) {
+    if (e) e.stopPropagation();
+    if (!confirm("Delete downloaded video and related files for this lecture?")) return;
+    try {
+        await deleteDownloadedLectureBundle(uid);
+        await refreshCachedUidsSet();
+        renderOfflineMode();
+        if (window.showToast) window.showToast("🗑️ Downloaded files removed", "info");
+    } catch (err) {
+        console.error("Failed to delete downloaded lecture:", err);
+    }
+}
+window.deleteSingleDownloadedLecture = deleteSingleDownloadedLecture;
+
+async function deleteSinglePreCachedLecture(uid, e) {
+    if (e) e.stopPropagation();
+    try {
+        await deleteOfflineTelemetry(uid);
+        await refreshCachedUidsSet();
+        renderOfflineMode();
+        if (window.showToast) window.showToast("🧹 Pre-cached telemetry removed", "info");
+    } catch (err) {
+        console.error("Failed to delete pre-cached telemetry:", err);
+    }
+}
+window.deleteSinglePreCachedLecture = deleteSinglePreCachedLecture;
 
 function renderCourseDetails(courseId) {
     const course = findCourseById(courseId);
@@ -956,6 +1077,7 @@ function renderLecturesList(lectures) {
     const fragment = document.createDocumentFragment();
 
     lectures.forEach(lec => {
+        const isDownloaded = downloadedUidsSet.has(lec.uid);
         const isOffline = cachedUidsSet.has(lec.uid);
         const isLocal = !!(lec.videoFile || lec.jsonFile || lec.isLocal);
         const prog = getLectureProgress(lec.uid);
@@ -1014,7 +1136,7 @@ function renderLecturesList(lectures) {
                         <i class="far fa-clock"></i> ${lec.duration || '--'}
                         ${pctBadge}
                         ${progBadge}
-                        ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isOffline ? `<span class="offline-badge" title="Cached in IndexedDB for Offline Learning"><i class="fas fa-bolt"></i> Offline Ready</span>` : '')}
+                        ${isLocal ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Loaded from Local Folder"><i class="fas fa-folder-open"></i> Local Ready</span>` : (isDownloaded ? `<span class="offline-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);" title="Full Video & Notes Cached Offline"><i class="fas fa-check-circle"></i> Downloaded</span>` : (isOffline ? `<span class="offline-badge" title="Telemetry Cached in IndexedDB"><i class="fas fa-bolt"></i> Pre-Cached</span>` : ''))}
                         ${lec.pdfFile ? `<span class="offline-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="PDF Notes Attached"><i class="fas fa-file-pdf"></i> Notes</span>` : ''}
                     </div>
                     ${progressBarHtml}
@@ -1473,7 +1595,10 @@ export {
     toggleLectureSelection,
     selectedLectureUids,
     downloadSelectedLectures,
-    openLocalFolderPicker
+    openLocalFolderPicker,
+    switchOfflineCategory,
+    deleteSingleDownloadedLecture,
+    deleteSinglePreCachedLecture
 };
 
 window.switchView = switchView;
@@ -1482,6 +1607,9 @@ window.renderMyCourses = renderMyCourses;
 window.renderSubjectGrid = renderSubjectGrid;
 window.renderOfflineMode = renderOfflineMode;
 window.clearOfflineStorage = clearOfflineStorage;
+window.switchOfflineCategory = switchOfflineCategory;
+window.deleteSingleDownloadedLecture = deleteSingleDownloadedLecture;
+window.deleteSinglePreCachedLecture = deleteSinglePreCachedLecture;
 window.renderCourseDetails = renderCourseDetails;
 window.renderLecturesList = renderLecturesList;
 window.filterLectures = filterLectures;

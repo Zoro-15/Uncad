@@ -3047,6 +3047,91 @@
             border-color: #ef4444;
         }
 
+        /* OFFLINE SUBCATEGORY TOGGLES */
+        .offline-category-toggles {
+            display: inline-flex;
+            gap: 6px;
+            margin: 10px 0 16px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+        }
+
+        .offline-category-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 7px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-2, #a1a1aa);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .offline-category-tab:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .offline-category-tab.active {
+            background: var(--surface-2, #27272a);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .offline-tab-count {
+            font-size: 11px;
+            padding: 1px 7px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: inherit;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .offline-category-tab.active .offline-tab-count {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .delete-single-offline-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-3, #71717a);
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .delete-single-offline-btn:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.35);
+            color: #ef4444;
+        }
+
+        .offline-empty-state {
+            text-align: center;
+            padding: 36px 20px;
+            color: #71717a;
+            font-size: 13px;
+            line-height: 1.6;
+            border: 1px dashed rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
         @media (max-width: 720px) {
             .offline-hero-card,
             .offline-backup-card {
