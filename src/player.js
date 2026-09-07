@@ -1,7 +1,7 @@
 import { findCourseByLectureUid, COURSES } from './courses.js';
 import { switchView, saveLastWatched, getLectureProgress, getLastWatched, parseDurationToSeconds } from './dashboard.js';
 import { tryDecryptAndParse } from './engine/crypto.js';
-import { getOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
+import { getOfflineTelemetry, saveTelemetryOffline, getOfflineVideo, getOfflinePdf } from './engine/offlineStorage.js';
 import { requestWakeLock, releaseWakeLock } from './engine/mediaSync.js';
 import { renderChapterMarks } from './ui/seekChapterBar.js';
 import { initLocalFileLoader } from './ui/localFileLoader.js';
@@ -1208,7 +1208,23 @@ window.updateSplash = (txt, pct) => {
 
             destroyEngine();
 
-            const videoUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
+            let videoUrl = `https://uamedia.uacdn.net/lesson-raw/${uid}/output.webm`;
+            try {
+                const cachedVideoBlob = await getOfflineVideo(uid);
+                if (cachedVideoBlob) {
+                    console.log(`[Player] Using cached offline video stream for ${uid} (${Math.round(cachedVideoBlob.size / 1024 / 1024)}MB)`);
+                    if (lastLocalVideoBlobUrl) {
+                        try { URL.revokeObjectURL(lastLocalVideoBlobUrl); } catch (_) {}
+                        activeBlobUrls.delete(lastLocalVideoBlobUrl);
+                    }
+                    videoUrl = URL.createObjectURL(cachedVideoBlob);
+                    lastLocalVideoBlobUrl = videoUrl;
+                    activeBlobUrls.add(videoUrl);
+                    showToast("⚡ Playing from Offline Cache", "offline", 2000);
+                }
+            } catch (err) {
+                console.warn("[Player] Offline video cache check failed:", err);
+            }
             video.preload = "auto";
             video.playsInline = true;
             video.setAttribute("playsinline", "true");
@@ -3069,7 +3085,7 @@ window.updateSplash = (txt, pct) => {
         // ══════════════════════════════════════════════════
         //  PDF NOTES CARD RENDERER
         // ══════════════════════════════════════════════════
-        function renderPdfNotes(uid) {
+        async function renderPdfNotes(uid) {
             const pdfNav = document.getElementById('pdf-nav');
             if (!pdfNav) return;
             pdfNav.innerHTML = '';
@@ -3126,7 +3142,56 @@ window.updateSplash = (txt, pct) => {
                 return;
             }
 
-            // 2. REMOTE STREAMING MODE PDF
+            // 2. CHECK INDEXEDDB OFFLINE CACHED PDF
+            try {
+                const cachedAnnoPdf = await getOfflinePdf(uid, false);
+                const cachedCleanPdf = await getOfflinePdf(uid, true);
+                if (cachedAnnoPdf || cachedCleanPdf) {
+                    let cacheHtml = '';
+                    if (cachedAnnoPdf) {
+                        const annoBlobUrl = URL.createObjectURL(cachedAnnoPdf);
+                        activeBlobUrls.add(annoBlobUrl);
+                        cacheHtml += `
+                            <div class="pdf-card" style="border: 1px solid rgba(239,68,68,0.35); background: rgba(239,68,68,0.06);">
+                                <div class="pdf-card-header">
+                                    <i class="fas fa-file-pdf pdf-card-icon anno"></i>
+                                    <div>
+                                        <div class="pdf-card-title">Annotated Notes PDF <span class="offline-badge" style="margin-left:6px;"><i class="fas fa-bolt"></i> Cached Offline</span></div>
+                                        <div class="pdf-card-sub">Offline cached copy (${Math.round(cachedAnnoPdf.size / 1024)} KB)</div>
+                                    </div>
+                                </div>
+                                <div class="pdf-card-actions">
+                                    <a href="${annoBlobUrl}" target="_blank" rel="noopener" class="pdf-btn anno" style="background:var(--accent);color:#ffffff;"><i class="fas fa-external-link-alt"></i> Open Cached PDF</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    if (cachedCleanPdf) {
+                        const cleanBlobUrl = URL.createObjectURL(cachedCleanPdf);
+                        activeBlobUrls.add(cleanBlobUrl);
+                        cacheHtml += `
+                            <div class="pdf-card" style="border: 1px solid rgba(59,130,246,0.35); background: rgba(59,130,246,0.06);">
+                                <div class="pdf-card-header">
+                                    <i class="fas fa-file-pdf pdf-card-icon clean"></i>
+                                    <div>
+                                        <div class="pdf-card-title">Clean Slide PDF <span class="offline-badge" style="margin-left:6px;"><i class="fas fa-bolt"></i> Cached Offline</span></div>
+                                        <div class="pdf-card-sub">Offline cached copy (${Math.round(cachedCleanPdf.size / 1024)} KB)</div>
+                                    </div>
+                                </div>
+                                <div class="pdf-card-actions">
+                                    <a href="${cleanBlobUrl}" target="_blank" rel="noopener" class="pdf-btn clean"><i class="fas fa-external-link-alt"></i> Open Cached PDF</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    pdfNav.innerHTML = cacheHtml;
+                    return;
+                }
+            } catch (err) {
+                console.warn("[Player] Error checking offline PDF cache:", err);
+            }
+
+            // 3. REMOTE STREAMING MODE PDF
             let withAnnoUrl = (lec && lec.pdfUrl) ? lec.pdfUrl : null;
             let noAnnoUrl = (lec && lec.pdfCleanUrl) ? lec.pdfCleanUrl : null;
 
@@ -3348,6 +3413,140 @@ window.updateSplash = (txt, pct) => {
             });
         }
         window.renderStudyNotes = renderStudyNotes;
+
+        function triggerNotesFileDownload(text, fileName) {
+            const blob = new Blob([text], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        function exportCurrentNotes() {
+            try {
+                const notes = getLectureNotes(activeUid);
+                const allNotes = {};
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && key.startsWith("runcadel_notes_")) {
+                        const uid = key.replace("runcadel_notes_", "");
+                        try {
+                            const parsed = JSON.parse(localStorage.getItem(key));
+                            if (Array.isArray(parsed) && parsed.length > 0) {
+                                allNotes[uid] = parsed;
+                            }
+                        } catch (_) {}
+                    }
+                }
+
+                const exportObj = {
+                    app: "lennister-player",
+                    type: "runcadel_notes_backup",
+                    version: "2.0",
+                    exportedAt: new Date().toISOString(),
+                    activeUid: activeUid,
+                    currentLectureNotes: notes,
+                    notes: allNotes
+                };
+
+                const jsonStr = JSON.stringify(exportObj, null, 2);
+                const dateStr = new Date().toISOString().slice(0, 10);
+                const fileName = `runcadel_notes_${dateStr}.json`;
+
+                try {
+                    const file = new File([jsonStr], fileName, { type: "application/json" });
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        navigator.share({
+                            title: "Runcadel Study Notes",
+                            text: "Bookmarks and Study Notes Backup",
+                            files: [file]
+                        }).then(() => {
+                            showToast("Shared study notes backup!", "success");
+                        }).catch((err) => {
+                            if (err.name !== "AbortError") {
+                                triggerNotesFileDownload(jsonStr, fileName);
+                            }
+                        });
+                        return;
+                    }
+                } catch (_) {}
+
+                triggerNotesFileDownload(jsonStr, fileName);
+                showToast("Exported study notes & bookmarks!", "success");
+            } catch (err) {
+                console.error("Failed to export notes:", err);
+                showToast("Failed to export notes", "warn");
+            }
+        }
+        window.exportCurrentNotes = exportCurrentNotes;
+
+        function openNotesImportDialog() {
+            const input = document.getElementById("notes-direct-import-input");
+            if (input) input.click();
+        }
+        window.openNotesImportDialog = openNotesImportDialog;
+
+        async function handleNotesDirectImport(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            try {
+                const text = await file.text();
+                const data = JSON.parse(text);
+                if (!data || typeof data !== "object") {
+                    throw new Error("Invalid notes file format");
+                }
+
+                let importedCount = 0;
+                const notesSource = data.notes || (data.currentLectureNotes && { [activeUid]: data.currentLectureNotes });
+                if (notesSource && typeof notesSource === "object") {
+                    for (const [uid, notesArr] of Object.entries(notesSource)) {
+                        if (Array.isArray(notesArr)) {
+                            const existing = getLectureNotes(uid);
+                            const existingIds = new Set(existing.map(n => n.id));
+                            const merged = [...existing];
+                            for (const n of notesArr) {
+                                if (!existingIds.has(n.id)) {
+                                    merged.push(n);
+                                    importedCount++;
+                                }
+                            }
+                            merged.sort((a, b) => a.timeSec - b.timeSec);
+                            saveLectureNotes(uid, merged);
+                        }
+                    }
+                } else if (Array.isArray(data)) {
+                    const existing = getLectureNotes(activeUid);
+                    const existingIds = new Set(existing.map(n => n.id));
+                    const merged = [...existing];
+                    for (const n of data) {
+                        if (n && n.timeSec !== undefined && !existingIds.has(n.id)) {
+                            merged.push(n);
+                            importedCount++;
+                        }
+                    }
+                    merged.sort((a, b) => a.timeSec - b.timeSec);
+                    saveLectureNotes(activeUid, merged);
+                }
+
+                renderStudyNotes(activeUid);
+                showToast(`Restored bookmarks & study notes!`, "success");
+            } catch (err) {
+                console.error("Import notes failed:", err);
+                alert("Failed to import notes: " + (err.message || "Invalid JSON"));
+            } finally {
+                event.target.value = "";
+            }
+        }
+        window.handleNotesDirectImport = handleNotesDirectImport;
+
+        window.addEventListener('runcadel-notes-updated', () => {
+            if (activeUid) renderStudyNotes(activeUid);
+        });
 
         function renderLectureDrawer() {
             const nav = document.getElementById('lecture-nav');

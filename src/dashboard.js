@@ -1,7 +1,7 @@
 // Dashboard views, routing, offline manager, and predictive caching module
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
-import { getAllCachedUids, clearAllOfflineTelemetry, saveTelemetryOffline } from './engine/offlineStorage.js';
+import { getAllCachedUids, clearAllOfflineTelemetry, saveTelemetryOffline, downloadLectureBundle } from './engine/offlineStorage.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";
@@ -808,21 +808,109 @@ function renderCourseDetails(courseId) {
 }
 
 let selectedLectureUids = new Set();
+let _isDownloadingLectures = false;
 
 function updateResetProgressButtonUI() {
     const btn = document.getElementById("reset-course-progress-btn");
-    if (!btn) return;
+    const countChip = document.getElementById("lecture-count-chip");
     const count = selectedLectureUids.size;
-    if (count > 0) {
-        btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Selected (${count})</span>`;
-        btn.classList.add("has-selected");
-        btn.title = `Reset watch progress for ${count} selected lecture(s)`;
-    } else {
-        btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Progress</span>`;
-        btn.classList.remove("has-selected");
-        btn.title = "Reset watch progress for this course";
+
+    if (btn) {
+        if (count > 0) {
+            btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Selected (${count})</span>`;
+            btn.classList.add("has-selected");
+            btn.title = `Reset watch progress for ${count} selected lecture(s)`;
+        } else {
+            btn.innerHTML = `<i class="fas fa-undo-alt"></i> <span>Reset Progress</span>`;
+            btn.classList.remove("has-selected");
+            btn.title = "Reset watch progress for this course";
+        }
+    }
+
+    if (countChip && !_isDownloadingLectures) {
+        if (count > 0) {
+            countChip.className = "lecture-count-chip download-selected-chip";
+            countChip.innerHTML = `<i class="fas fa-cloud-arrow-down"></i> <span>Download [${count}]</span>`;
+            countChip.title = `Click to download ${count} selected lecture(s) (telemetry, video & PDFs) for offline viewing`;
+            countChip.onclick = (e) => {
+                e.stopPropagation();
+                downloadSelectedLectures();
+            };
+        } else {
+            countChip.className = "lecture-count-chip";
+            const course = findCourseById(activeCourseId);
+            countChip.textContent = course ? getCourseStatsText(course) : "Lectures";
+            countChip.title = "";
+            countChip.onclick = null;
+        }
     }
 }
+
+async function downloadSelectedLectures() {
+    if (_isDownloadingLectures) return;
+    const count = selectedLectureUids.size;
+    if (count === 0) {
+        if (window.showToast) window.showToast("Select one or more lectures to download", "info");
+        return;
+    }
+
+    const course = findCourseById(activeCourseId);
+    if (!course || !course.lectures) return;
+
+    const countChip = document.getElementById("lecture-count-chip");
+    const targetUids = Array.from(selectedLectureUids);
+    const targetLectures = course.lectures.filter(l => targetUids.includes(l.uid));
+
+    if (targetLectures.length === 0) return;
+
+    _isDownloadingLectures = true;
+    if (countChip) {
+        countChip.classList.add("downloading");
+        countChip.innerHTML = `<i class="fas fa-spinner fa-spin"></i> <span>Downloading [1/${targetLectures.length}]...</span>`;
+    }
+    if (window.showToast) {
+        window.showToast(`Starting offline download for ${targetLectures.length} lecture(s)...`, "info", 2500);
+    }
+
+    let successCount = 0;
+    for (let i = 0; i < targetLectures.length; i++) {
+        const lec = targetLectures[i];
+        if (countChip) {
+            countChip.innerHTML = `<i class="fas fa-spinner fa-spin"></i> <span>Downloading [${i + 1}/${targetLectures.length}]...</span>`;
+        }
+        try {
+            const ok = await downloadLectureBundle(lec, course);
+            if (ok) {
+                successCount++;
+                cachedUidsSet.add(lec.uid);
+            }
+        } catch (err) {
+            console.error(`[OfflineDownload] Error downloading ${lec.uid}:`, err);
+        }
+    }
+
+    _isDownloadingLectures = false;
+    await refreshCachedUidsSet();
+
+    selectedLectureUids.clear();
+    updateResetProgressButtonUI();
+
+    const searchInput = document.getElementById("lecture-search-input");
+    if (searchInput && searchInput.value.trim()) {
+        filterLectures();
+    } else {
+        renderLecturesList(course.lectures);
+    }
+
+    if (window.showToast) {
+        if (successCount > 0) {
+            window.showToast(`🎉 Downloaded ${successCount} lecture(s) for offline viewing!`, "success", 4000);
+        } else {
+            window.showToast(`Download failed or partially failed. Please check network connection.`, "warn", 3500);
+        }
+    }
+}
+window.downloadSelectedLectures = downloadSelectedLectures;
 
 function toggleLectureSelection(uid) {
     if (!uid) return;
@@ -842,8 +930,8 @@ function toggleLectureSelection(uid) {
             numEl.classList.toggle("selected", isSel);
             const isCompleted = card.classList.contains("completed");
             numEl.title = isSel 
-                ? "Selected for reset (Click to unselect)" 
-                : (isCompleted ? "Completed (Click to select for reset)" : "Click to select for reset");
+                ? "Selected (Click to unselect)" 
+                : (isCompleted ? "Completed (Click to select)" : "Click to select for download / reset");
             if (isSel) {
                 numEl.innerHTML = `<i class="fas fa-check"></i>`;
             } else {
@@ -1187,6 +1275,18 @@ async function prefetchPredictiveLectures() {
 // ══════════════════════════════════════════════════
 // STUDY PROGRESS BACKUP / EXPORT / IMPORT
 // ══════════════════════════════════════════════════
+function triggerBlobDownload(text, fileName) {
+    const blob = new Blob([text], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 function exportStudyProgress() {
     try {
         let lectureProgress = {};
@@ -1195,30 +1295,58 @@ function exportStudyProgress() {
             if (rawProg) lectureProgress = JSON.parse(rawProg);
         } catch (_) {}
 
+        // Collect all timestamped study notes and bookmarks across all lectures
+        const notesMap = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith("runcadel_notes_")) {
+                const uid = key.replace("runcadel_notes_", "");
+                try {
+                    const parsed = JSON.parse(localStorage.getItem(key));
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        notesMap[uid] = parsed;
+                    }
+                } catch (_) {}
+            }
+        }
+
         const backupData = {
             app: "lennister-player",
-            version: "1.0",
+            version: "2.0",
             exportedAt: new Date().toISOString(),
             enrolledCourses: getEnrolledCourses(),
             lastWatched: getLastWatched(),
             lectureProgress: lectureProgress,
+            notes: notesMap,
             teacherCamSize: localStorage.getItem("teacher_cam_size") || "big"
         };
 
         const jsonStr = JSON.stringify(backupData, null, 2);
-        const blob = new Blob([jsonStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
         const dateStr = new Date().toISOString().slice(0, 10);
-        a.href = url;
-        a.download = `lennister_progress_backup_${dateStr}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const fileName = `lennister_progress_backup_${dateStr}.json`;
 
+        // If mobile share is available and can share files, offer native share
+        try {
+            const file = new File([jsonStr], fileName, { type: "application/json" });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                navigator.share({
+                    title: "Runcadel Player Backup",
+                    text: "Progress, Bookmarks & Notes Backup",
+                    files: [file]
+                }).then(() => {
+                    if (window.showToast) window.showToast("Backup shared successfully!", "success");
+                }).catch((err) => {
+                    if (err.name !== "AbortError") {
+                        triggerBlobDownload(jsonStr, fileName);
+                    }
+                });
+                return;
+            }
+        } catch (_) {}
+
+        triggerBlobDownload(jsonStr, fileName);
         if (window.showToast) {
-            window.showToast("Exported study progress backup!", "success");
+            window.showToast("Exported study progress & notes backup!", "success");
         }
     } catch (e) {
         console.error("Export progress failed:", e);
@@ -1267,8 +1395,24 @@ async function handleProgressImportFile(event) {
             localStorage.setItem("teacher_cam_size", data.teacherCamSize);
         }
 
+        // Restore study notes and bookmarks across all lectures
+        if (data.notes && typeof data.notes === "object") {
+            let noteCount = 0;
+            for (const [uid, notesArr] of Object.entries(data.notes)) {
+                if (Array.isArray(notesArr) && notesArr.length > 0) {
+                    localStorage.setItem(`runcadel_notes_${uid}`, JSON.stringify(notesArr));
+                    noteCount += notesArr.length;
+                }
+            }
+            if (noteCount > 0) {
+                importedCount++;
+                console.log(`[BackupImport] Restored ${noteCount} bookmarks/notes.`);
+                window.dispatchEvent(new CustomEvent('runcadel-notes-updated'));
+            }
+        }
+
         if (importedCount === 0) {
-            throw new Error("Backup file contains no recognizable study progress or course data.");
+            throw new Error("Backup file contains no recognizable study progress, bookmarks, or course data.");
         }
 
         renderMyCourses();
@@ -1278,7 +1422,7 @@ async function handleProgressImportFile(event) {
         }
 
         if (window.showToast) {
-            window.showToast("Study progress restored successfully!", "success");
+            window.showToast("Study progress & notes restored successfully!", "success");
         }
     } catch (err) {
         console.error("Import progress failed:", err);
@@ -1327,7 +1471,8 @@ export {
     handleProgressImportFile,
     resetCurrentCourseProgress,
     toggleLectureSelection,
-    selectedLectureUids
+    selectedLectureUids,
+    downloadSelectedLectures
 };
 
 window.switchView = switchView;
@@ -1361,3 +1506,5 @@ window.handleProgressImportFile = handleProgressImportFile;
 window.resetCurrentCourseProgress = resetCurrentCourseProgress;
 window.toggleLectureSelection = toggleLectureSelection;
 window.selectedLectureUids = selectedLectureUids;
+window.downloadSelectedLectures = downloadSelectedLectures;
+
