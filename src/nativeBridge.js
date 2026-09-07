@@ -5,7 +5,6 @@ import { Capacitor, registerPlugin } from '@capacitor/core';
 import { App } from '@capacitor/app';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
-import { parseLectureFolderName, cleanCourseTitle } from './ui/localFileLoader.js';
 
 // Register custom native SAF Storage Plugin
 export const SafStorage = registerPlugin('SafStorage');
@@ -14,139 +13,25 @@ export const SafStorage = registerPlugin('SafStorage');
  * Returns true if running inside native Android / iOS Capacitor container
  */
 export function isNativePlatform() {
-    return Capacitor.isNativePlatform();
-}
-
-/**
- * Creates a File-like proxy object wrapping an Android Content/File URI
- * with .text() and .arrayBuffer() methods for seamless playback compatibility
- */
-export function createSafFileProxy(name, uri, size = 0) {
-    return {
-        name,
-        size,
-        uri,
-        isSafProxy: true,
-        async text() {
-            const res = await SafStorage.readTextFile({ uri });
-            return res.content;
-        },
-        async arrayBuffer() {
-            const res = await SafStorage.readBinaryFileBase64({ uri });
-            const binaryString = atob(res.data);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
+    try {
+        if (Capacitor && typeof Capacitor.isNativePlatform === 'function' && Capacitor.isNativePlatform()) {
+            return true;
+        }
+        if (Capacitor && typeof Capacitor.getPlatform === 'function') {
+            const p = Capacitor.getPlatform();
+            if (p === 'android' || p === 'ios') return true;
+        }
+        if (typeof window !== 'undefined' && window.Capacitor) {
+            if (typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform()) {
+                return true;
             }
-            return bytes.buffer;
+            if (typeof window.Capacitor.getPlatform === 'function') {
+                const p = window.Capacitor.getPlatform();
+                if (p === 'android' || p === 'ios') return true;
+            }
         }
-    };
-}
-
-/**
- * Convert raw SAF lecture metadata from native Android to Runcadel Player course format
- */
-export function transformSafLectures(safLectures, folderName = "Local Storage") {
-    if (!Array.isArray(safLectures) || safLectures.length === 0) return null;
-
-    const parsedLectures = [];
-    let detectedCourseTitle = cleanCourseTitle(folderName);
-
-    for (const item of safLectures) {
-        const parsedFolder = parseLectureFolderName(item.folderName || item.videoName || "Lecture");
-
-        const videoProxy = item.videoUri ? {
-            name: item.videoName || "output.webm",
-            size: item.videoSize || 0,
-            uri: item.videoUri,
-            // Convert to webview-accessible URL for HTML5 <video>
-            webviewUrl: Capacitor.convertFileSrc(item.videoUri)
-        } : null;
-
-        const jsonProxy = item.telemetryUri ? createSafFileProxy(
-            item.telemetryName || "data.json",
-            item.telemetryUri,
-            item.telemetrySize || 0
-        ) : null;
-
-        const pdfProxy = item.pdfUri ? createSafFileProxy(
-            item.pdfName || "notes.pdf",
-            item.pdfUri,
-            item.pdfSize || 0
-        ) : null;
-
-        if (videoProxy || jsonProxy) {
-            parsedLectures.push({
-                rank: parsedFolder.rank || (parsedLectures.length + 1),
-                title: parsedFolder.title || item.folderName || "Offline Lecture",
-                uid: parsedFolder.uid || `saf_${Date.now()}_${parsedLectures.length + 1}`,
-                duration: parsedFolder.duration || "--",
-                videoFile: null,
-                videoUrl: videoProxy ? videoProxy.webviewUrl : "",
-                jsonFile: jsonProxy,
-                pdfFile: pdfProxy,
-                isLocal: true,
-                isSaf: true,
-                matchedCourse: parsedFolder.matchedCourse || null
-            });
-        }
-    }
-
-    if (parsedLectures.length === 0) return null;
-
-    parsedLectures.sort((a, b) => a.rank - b.rank);
-
-    const courseId = `saf_course_${Date.now()}`;
-    return {
-        id: courseId,
-        title: detectedCourseTitle || "Offline Course",
-        category: "offline-mode",
-        isLocal: true,
-        isSaf: true,
-        badge: "SAF OFFLINE",
-        lectures: parsedLectures
-    };
-}
-
-/**
- * Request folder picker via native Android Storage Access Framework
- */
-export async function pickNativeSafCourseFolder() {
-    if (!isNativePlatform()) return null;
-
-    try {
-        const result = await SafStorage.openFolderPicker();
-        if (result && result.cancelled) {
-            return null;
-        }
-
-        if (result && result.success && Array.isArray(result.lectures)) {
-            return transformSafLectures(result.lectures, result.folderName);
-        }
-    } catch (e) {
-        console.error("[NativeBridge] Error picking SAF folder:", e);
-        throw e;
-    }
-    return null;
-}
-
-/**
- * Check and restore persisted SAF folder on startup
- */
-export async function checkPersistedSafFolder() {
-    if (!isNativePlatform()) return null;
-
-    try {
-        const result = await SafStorage.getPersistedFolder();
-        if (result && result.hasPersisted && Array.isArray(result.lectures)) {
-            console.log("[NativeBridge] Restored persisted SAF folder:", result.folderName);
-            return transformSafLectures(result.lectures, result.folderName);
-        }
-    } catch (e) {
-        console.warn("[NativeBridge] Could not restore persisted SAF folder:", e);
-    }
-    return null;
+    } catch (_) {}
+    return false;
 }
 
 /**

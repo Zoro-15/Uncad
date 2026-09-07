@@ -78,7 +78,7 @@ public class SafPlugin extends Plugin {
     }
 
     @ActivityCallback
-    private void folderPickerResult(PluginCall call, ActivityResult result) {
+    public void folderPickerResult(PluginCall call, ActivityResult result) {
         if (call == null) return;
         if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null || result.getData().getData() == null) {
             JSObject res = new JSObject();

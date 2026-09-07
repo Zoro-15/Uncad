@@ -2,6 +2,7 @@
 import { COURSES } from './courses.js';
 import { loadLectureByUid } from './player.js';
 import { getAllCachedUids, clearAllOfflineTelemetry, saveTelemetryOffline, downloadLectureBundle } from './engine/offlineStorage.js';
+import { openLocalFolderPicker } from './ui/localFileLoader.js';
 
 let currentView = "my-courses";
 let activeCourseId = "LPN7OFOL";
@@ -1472,7 +1473,8 @@ export {
     resetCurrentCourseProgress,
     toggleLectureSelection,
     selectedLectureUids,
-    downloadSelectedLectures
+    downloadSelectedLectures,
+    openLocalFolderPicker
 };
 
 window.switchView = switchView;
@@ -1496,10 +1498,7 @@ window.saveLectureProgress = saveLectureProgress;
 window.addLocalCourse = addLocalCourse;
 window.findCourseById = findCourseById;
 window.LOCAL_COURSES = LOCAL_COURSES;
-window.openLocalFolderPicker = () => {
-    const input = document.getElementById("local-folder-input");
-    if (input) input.click();
-};
+window.openLocalFolderPicker = openLocalFolderPicker;
 window.exportStudyProgress = exportStudyProgress;
 window.openProgressImportDialog = openProgressImportDialog;
 window.handleProgressImportFile = handleProgressImportFile;
