@@ -502,7 +502,7 @@
                 <div class="doubts-header" style="display:flex; justify-content:space-between; align-items:center;">
                     <span class="doubts-title"><i class="fas fa-bookmark" style="color:var(--accent);"></i> Notes & Bookmarks</span>
                     <button id="add-current-note-btn" class="add-note-action-btn" onclick="openNewNoteInput()">
-                        <i class="fas fa-plus"></i> Add Note (<span id="note-curr-time-badge">0:00</span>)
+                        <i class="fas fa-plus"></i> Add Note / Bookmark (<span id="note-curr-time-badge">0:00</span>)
                     </button>
                 </div>
                 <div id="new-note-box" class="new-note-box" style="display:none;">
@@ -510,10 +510,10 @@
                         <span class="note-time-pill" id="new-note-time-label"><i class="fas fa-clock"></i> 0:00</span>
                         <span class="new-note-hint">Timestamp Bookmark</span>
                     </div>
-                    <textarea id="new-note-textarea" placeholder="Write key formulas, concepts, or bookmarks here..." rows="3"></textarea>
+                    <textarea id="new-note-textarea" placeholder="Optional: Add a note, formula, or leave empty to bookmark timestamp..." rows="3"></textarea>
                     <div class="new-note-actions">
                         <button class="note-btn-cancel" onclick="cancelNewNote()">Cancel</button>
-                        <button class="note-btn-save" onclick="saveNewNote()"><i class="fas fa-save"></i> Save</button>
+                        <button class="note-btn-save" onclick="saveNewNote()"><i class="fas fa-bookmark"></i> Save Bookmark</button>
                     </div>
                 </div>
                 <div class="doubts-body" id="notes-list-wrap"></div>

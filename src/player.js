@@ -1176,7 +1176,6 @@ window.updateSplash = (txt, pct) => {
         }
 
         async function loadLectureByUid(uid, startSec = 0, preferredCourseId = null) {
-            if (window.enterFullscreen) window.enterFullscreen();
             if (!uid) {
                 console.warn("[Player] Attempted to load lecture with empty UID.");
                 return false;
@@ -2474,9 +2473,6 @@ window.updateSplash = (txt, pct) => {
             isBuffering = false;
             if (bufferingOverlay && !isSeeking) bufferingOverlay.classList.remove("show");
         });
-        video.addEventListener("play", () => {
-            if (window.enterFullscreen) window.enterFullscreen();
-        });
         video.addEventListener("ended", () => { 
             playBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>`; 
             releaseWakeLock();
@@ -2532,7 +2528,6 @@ window.updateSplash = (txt, pct) => {
                 if (sp) sp.style.display = "none";
             }
             if (video.paused) {
-                if (window.enterFullscreen) window.enterFullscreen();
                 video.play().catch(err => { console.error("[Player] Play error:", err); });
             } else {
                 video.pause();
@@ -2683,6 +2678,133 @@ window.updateSplash = (txt, pct) => {
             seekRow.addEventListener("pointerenter", onEnter);
             seekRow.addEventListener("pointermove", onMove);
             seekRow.addEventListener("pointerleave", onLeave);
+
+            // ══════════════════════════════════════════════════
+            // MOBILE TOUCH SEEK / SCRUB CONTROLLER (Android Web & APK)
+            // ══════════════════════════════════════════════════
+            let isTouchingSeek = false;
+            let touchSeekHideTimer = null;
+
+            function getTouchClientX(e) {
+                if (e.touches && e.touches.length > 0) return e.touches[0].clientX;
+                if (e.changedTouches && e.changedTouches.length > 0) return e.changedTouches[0].clientX;
+                return e.clientX;
+            }
+
+            function handleTouchSeekProgress(e, isFinal = false) {
+                if (!seekBar) return;
+                const targetEl = seekBar;
+                const rect = targetEl.getBoundingClientRect();
+                if (rect.width <= 0) return;
+
+                const clientX = getTouchClientX(e);
+                if (clientX === undefined) return;
+
+                const clampedX = Math.max(rect.left, Math.min(rect.right, clientX));
+                const pct = Math.max(0, Math.min(1, (clampedX - rect.left) / rect.width));
+
+                const totalDurationSec = (Number.isFinite(video.duration) && video.duration > 0)
+                    ? video.duration
+                    : (maxDuration > 0 ? maxDuration / 1e6 : 0);
+
+                if (totalDurationSec <= 0) return;
+
+                const targetSec = pct * totalDurationSec;
+                const targetAnimUs = (targetSec * 1e6) + drawOffset;
+
+                // Immediate visual feedback on seek bar
+                seekBar.value = targetAnimUs;
+                seekBar.style.setProperty("--pct", (pct * 100).toFixed(1) + "%");
+
+                // Show floating tooltip with slide thumbnail and time over finger
+                if (touchSeekHideTimer) {
+                    clearTimeout(touchSeekHideTimer);
+                    touchSeekHideTimer = null;
+                }
+                if (seekTooltip) seekTooltip.classList.add("show");
+                if (seekHoverLine) seekHoverLine.classList.add("show");
+                updateSeekTooltip({ clientX: clampedX });
+
+                if (isFinal) {
+                    if (seekRafId) {
+                        cancelAnimationFrame(seekRafId);
+                        seekRafId = null;
+                    }
+                    if (pendingCanvasSeekTimer) {
+                        clearTimeout(pendingCanvasSeekTimer);
+                        pendingCanvasSeekTimer = null;
+                    }
+                    isDraggingSeek = false;
+                    applyDecoupledSeek(targetAnimUs - drawOffset, true);
+
+                    touchSeekHideTimer = setTimeout(() => {
+                        if (!isTouchingSeek && !isSeekHoverActive) {
+                            if (seekTooltip) seekTooltip.classList.remove("show");
+                            if (seekHoverLine) seekHoverLine.classList.remove("show");
+                        }
+                    }, 800);
+                } else {
+                    isDraggingSeek = true;
+                    pendingSeekAnimUs = targetAnimUs;
+                    if (!seekRafId) {
+                        seekRafId = requestAnimationFrame(() => {
+                            seekRafId = null;
+                            if (pendingSeekAnimUs !== null) {
+                                applyDecoupledSeek(pendingSeekAnimUs - drawOffset, false);
+                            }
+                        });
+                    }
+                }
+            }
+
+            seekRow.addEventListener("touchstart", (e) => {
+                if (e.touches && e.touches.length > 1) return;
+                isTouchingSeek = true;
+                e.preventDefault();
+                e.stopPropagation();
+                if (controlsOverlay) controlsOverlay.classList.add("visible");
+                clearTimeout(hideControlsTimer);
+                handleTouchSeekProgress(e, false);
+            }, { passive: false });
+
+            window.addEventListener("touchmove", (e) => {
+                if (!isTouchingSeek) return;
+                e.preventDefault();
+                e.stopPropagation();
+                if (controlsOverlay) controlsOverlay.classList.add("visible");
+                clearTimeout(hideControlsTimer);
+                handleTouchSeekProgress(e, false);
+            }, { passive: false });
+
+            const finishTouchSeek = (e) => {
+                if (!isTouchingSeek) return;
+                isTouchingSeek = false;
+                e.preventDefault();
+                e.stopPropagation();
+                showControls(true);
+                handleTouchSeekProgress(e, true);
+            };
+
+            window.addEventListener("touchend", finishTouchSeek, { passive: false });
+            window.addEventListener("touchcancel", finishTouchSeek, { passive: false });
+
+            // Click anywhere on seek row to jump (desktop & mouse)
+            seekRow.addEventListener("click", (e) => {
+                if (e.target === seekBar) return;
+                const rect = (seekBar || seekRow).getBoundingClientRect();
+                if (rect.width <= 0) return;
+                const clientX = Math.max(rect.left, Math.min(rect.right, e.clientX));
+                const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+                const totalDurationSec = (Number.isFinite(video.duration) && video.duration > 0)
+                    ? video.duration
+                    : (maxDuration > 0 ? maxDuration / 1e6 : 0);
+                if (totalDurationSec <= 0) return;
+                const targetSec = pct * totalDurationSec;
+                const targetAnimUs = (targetSec * 1e6) + drawOffset;
+                seekBar.value = targetAnimUs;
+                seekBar.style.setProperty("--pct", (pct * 100).toFixed(1) + "%");
+                applyDecoupledSeek(targetAnimUs - drawOffset, true);
+            });
         }
 
         $("rew-btn-ui").addEventListener("click", () => seekToSec(video.currentTime - 10));
@@ -2844,7 +2966,6 @@ window.updateSplash = (txt, pct) => {
             ytCenterBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 if (video.paused) {
-                    if (window.enterFullscreen) window.enterFullscreen();
                     video.play().catch(() => {});
                 } else {
                     video.pause();
@@ -3025,7 +3146,6 @@ window.updateSplash = (txt, pct) => {
             if (e.code === "Space" || e.code === "KeyK") {
                 e.preventDefault();
                 if (video.paused) {
-                    if (window.enterFullscreen) window.enterFullscreen();
                     video.play();
                 } else {
                     video.pause();
@@ -3317,7 +3437,17 @@ window.updateSplash = (txt, pct) => {
             box.style.display = 'flex';
             if (textarea) {
                 textarea.value = '';
+                textarea.placeholder = "Optional: Add a note or leave blank to bookmark timestamp...";
                 textarea.focus();
+                if (!textarea._enterHandlerAttached) {
+                    textarea._enterHandlerAttached = true;
+                    textarea.addEventListener("keydown", (e) => {
+                        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                            e.preventDefault();
+                            saveNewNote();
+                        }
+                    });
+                }
             }
         }
         window.openNewNoteInput = openNewNoteInput;
@@ -3331,10 +3461,6 @@ window.updateSplash = (txt, pct) => {
         function saveNewNote() {
             const textarea = document.getElementById('new-note-textarea');
             const text = (textarea ? textarea.value : '').trim();
-            if (!text) {
-                showToast("Please enter some text for your note", "warn");
-                return;
-            }
 
             const notes = getLectureNotes(activeUid);
             const timeSec = Math.floor(currentNoteCapturedSec);
@@ -3354,7 +3480,7 @@ window.updateSplash = (txt, pct) => {
 
             cancelNewNote();
             renderStudyNotes(activeUid);
-            showToast(`🔖 Bookmark saved at ${timeFormatted}`, "success");
+            showToast(text ? `🔖 Note saved at ${timeFormatted}` : `🔖 Bookmark saved at ${timeFormatted}`, "success");
         }
         window.saveNewNote = saveNewNote;
 
@@ -3388,7 +3514,7 @@ window.updateSplash = (txt, pct) => {
                     <div class="notes-empty-state">
                         <i class="fas fa-bookmark"></i>
                         <strong>No study notes or bookmarks yet</strong>
-                        <p style="margin-top:6px;">Tap "+ Add Note" to save formulas, derivation steps, or bookmarks at your current video timestamp.</p>
+                        <p style="margin-top:6px;">Tap "+ Add Note / Bookmark" to save formulas, derivation steps, or bookmarks at your current video timestamp.</p>
                     </div>
                 `;
                 return;
@@ -3397,6 +3523,7 @@ window.updateSplash = (txt, pct) => {
             notes.forEach(note => {
                 const card = document.createElement('div');
                 card.className = 'note-card';
+                const hasText = note.text && note.text.trim().length > 0;
                 card.innerHTML = `
                     <div class="note-card-top">
                         <button class="note-time-chip" onclick="seekToNote(${note.timeSec})" title="Seek to ${note.timeFormatted}">
@@ -3407,7 +3534,10 @@ window.updateSplash = (txt, pct) => {
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
-                    <div class="note-card-text">${escapeHtml(note.text)}</div>
+                    ${hasText
+                        ? `<div class="note-card-text">${escapeHtml(note.text)}</div>`
+                        : `<div class="note-card-text" style="color:var(--text-3); font-style:italic; display:flex; align-items:center; gap:5px;"><i class="fas fa-bookmark" style="color:var(--accent); font-size:11px;"></i> Bookmark</div>`
+                    }
                 `;
                 wrap.appendChild(card);
             });

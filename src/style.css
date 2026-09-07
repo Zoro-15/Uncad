@@ -910,15 +910,20 @@
         /* SEEK BAR ROW */
         .ua-seek-row {
             width: 100%;
-            padding: 8px 0 6px;
+            padding: 10px 0 8px;
             position: relative;
             display: flex;
             align-items: center;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            cursor: pointer;
         }
 
         #seek-bar {
             width: 100%;
-            height: 4px;
+            height: 5px;
             -webkit-appearance: none;
             appearance: none;
             background: linear-gradient(to right,
@@ -927,17 +932,19 @@
             border-radius: 4px;
             outline: none;
             cursor: pointer;
+            touch-action: none;
             transition: height 0.15s ease;
         }
 
-        #seek-bar:hover {
-            height: 6px;
+        #seek-bar:hover,
+        #seek-bar:active {
+            height: 7px;
         }
 
         #seek-bar::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
+            width: 15px;
+            height: 15px;
             background: #fff;
             border-radius: 50%;
             cursor: pointer;
@@ -946,8 +953,22 @@
             transition: transform 0.15s ease;
         }
 
-        #seek-bar:hover::-webkit-slider-thumb {
-            transform: scale(1.15);
+        #seek-bar:hover::-webkit-slider-thumb,
+        #seek-bar:active::-webkit-slider-thumb {
+            transform: scale(1.25);
+        }
+
+        @media (max-width: 768px), (pointer: coarse) {
+            .ua-seek-row {
+                padding: 15px 0 12px;
+            }
+            #seek-bar {
+                height: 6px;
+            }
+            #seek-bar::-webkit-slider-thumb {
+                width: 22px;
+                height: 22px;
+            }
         }
 
         #chapter-marks {

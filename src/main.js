@@ -35,51 +35,9 @@ function toggleFullscreen() {
         }
     }
 }
+// Explicit user-triggered fullscreen toggles remain available via toggleFullscreen()
 window.toggleFullscreen = toggleFullscreen;
 window.enterFullscreen = enterFullscreen;
-
-function shouldExcludeFromForcedFullscreen(e) {
-    if (isNativePlatform()) return true;
-    if (e && (e.key === "Escape" || e.code === "Escape")) return true;
-
-    try {
-        const appEl = document.getElementById("app");
-        // Exclude player view: student going through slides, taking notes, or scrubbing
-        // must never be forcefully shoved into fullscreen on click/interaction
-        if (appEl && appEl.style.display !== "none") {
-            return true;
-        }
-        if (e && e.target && appEl && appEl.contains(e.target)) {
-            return true;
-        }
-
-        // Exclude if video is actively playing
-        const video = document.getElementById("main-video");
-        if (video && !video.paused && !video.ended && video.currentTime > 0) {
-            return true;
-        }
-    } catch (_) {}
-
-    return false;
-}
-
-function enforceFullscreenIfNotPlaying(e) {
-    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-        return;
-    }
-    if (shouldExcludeFromForcedFullscreen(e)) {
-        return;
-    }
-    enterFullscreen();
-}
-
-// Persistent interaction listener: ANY interaction whilst video is not playing forces fullscreen
-(function initDefaultFullscreen() {
-    window.addEventListener('touchstart', enforceFullscreenIfNotPlaying, { passive: true });
-    window.addEventListener('pointerdown', enforceFullscreenIfNotPlaying, { passive: true });
-    window.addEventListener('click', enforceFullscreenIfNotPlaying, { passive: true });
-    window.addEventListener('keydown', enforceFullscreenIfNotPlaying, { passive: true });
-})();
 
 // ══════════════════════════════════════════════════
 // DARK / LIGHT MODE TOGGLE
@@ -111,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         initNativeBridge();
         if (window.resizeCanvas) window.resizeCanvas();
-        if (!isNativePlatform()) enterFullscreen();
 
         const params = new URLSearchParams(window.location.search);
         const hasParam = params.get("lec") || params.get("url");
